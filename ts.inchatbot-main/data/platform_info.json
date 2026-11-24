@@ -1,0 +1,64 @@
+{
+  "company": "EDUNEXUS",
+  "website": "edunexus.io",
+  "domains": ["Artificial Intelligence", "Cybersecurity", "Data Science", "Cloud Computing"],
+  "labs": {
+    "overview": "EduNexus Labs is an interactive hands-on virtual sandbox and practice platform for students to apply theoretical knowledge in realistic, controlled multi-tenant environments.",
+    "features": [
+      "Interactive virtual sandboxes",
+      "Dynamic flag validation engine",
+      "Real-time problem challenges",
+      "System telemetry & automated grading",
+      "Real-world enterprise scenarios"
+    ],
+    "covered_areas": [
+      "Cybersecurity Fundamentals",
+      "Networking & Network Defense",
+      "Ethical Hacking & Web Security",
+      "API Security & Penetration Testing",
+      "VAPT & System Auditing",
+      "SOC Analysis & Threat Detection",
+      "Cloud Infrastructure & Container Security",
+      "Machine Learning & Data Pipelines",
+      "Advanced Autonomous Systems"
+    ],
+    "methodology": "Instead of only watching passive lectures, students learn by active execution: Learn → Discover → Analyze → Solve → Document → Validate.",
+    "example": "NEXUS-LAB 1 SQL Injection Sandbox: Students are provided a containerized app → isolate endpoint → analyze vulnerability → extract flag NEXUS{...} → submit for cryptographic score verification."
+  },
+  "student_benefits": [
+    "Enrolled students receive a unique NEXUS-ID (EduNexus Identifier).",
+    "Unified dashboard access across all courses, cohorts, and labs.",
+    "Access to interactive virtual sandboxes with real-time flag grading.",
+    "Students can track enrolled curricula, timed assessments, attendance, and academic report transcripts.",
+    "Upon successful completion, SHA-256 verifiable certificates can be downloaded and publicly verified."
+  ],
+  "enrollment_and_pricing": [
+    "For all questions regarding courses, academic cohorts, and university partnerships, visit edunexus.io/courses."
+  ],
+  "projects": [
+    "All courses include industry-ready, portfolio capstone projects designed to provide verifiable proof-of-work before graduation."
+  ],
+  "industry_standards": {
+    "overview": "EduNexus curricula are built around open industry-grade tools and modern enterprise workflows across AI, Cloud, and Cybersecurity disciplines.",
+    "tools_and_frameworks": {
+      "cybersecurity": ["Burp Suite", "Nmap", "Wireshark", "Metasploit", "OWASP methodologies", "MITRE ATT&CK", "SIEM platforms", "Nuclei", "Linux security tooling"],
+      "ai": ["Python", "TensorFlow", "PyTorch", "Scikit-learn", "LangChain", "Hugging Face", "FastAPI", "Docker", "Kubernetes", "Vector databases", "LLMOps pipelines"]
+    },
+    "learning_methodology": [
+      "Project-based curriculum: every track includes a capstone real-world project.",
+      "Students work on modern tools and production architectures from day one.",
+      "Learning is structured around measurable competencies and continuous assessment.",
+      "Virtual sandboxes give students hands-on access to simulated enterprise environments."
+    ],
+    "placement_readiness": [
+      "Students graduate with an online verifiable portfolio of demonstrated projects.",
+      "Curriculum is aligned with international competency standards.",
+      "Students build proof-of-work that can be verified by university evaluators and employers.",
+      "Prepares learners for roles including Security Engineer, SOC Analyst, AI Engineer, ML Specialist, and Cloud Architect."
+    ],
+    "contact": {
+      "email": "contact@edunexus.io",
+      "url": "https://edunexus.io"
+    }
+  }
+}

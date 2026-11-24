@@ -1,0 +1,2461 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
+import {
+  Users,
+  Plus,
+  Calendar,
+  Clock,
+  ShieldCheck,
+  BookOpen,
+  Search,
+  Layers,
+  UserPlus,
+  CheckSquare,
+  ChevronLeft,
+  ChevronRight,
+  Filter,
+  Database,
+  UserCheck,
+  FileText,
+  AlertCircle,
+  CheckCircle2,
+  XCircle,
+  MessageSquare,
+  Edit3,
+  Trash2,
+} from 'lucide-react';
+import {
+  createBatchAction,
+  updateBatchAction,
+  deleteBatchAction,
+  assignStudentToBatchAction,
+  assignStudentToBatchByTsIdAction,
+  createBatchSessionAction,
+  markBatchAttendanceAction,
+  fetchDeliveredLecturesAuditAction,
+  fetchPendingCorrectionRequestsAction,
+  adminApproveOrRejectCorrectionAction,
+  bulkAssignStudentsToBatchAction,
+  assignBatchMentorAction,
+} from '@/features/batch/actions/batch.actions';
+
+function BatchCalendarDatePicker({
+  value,
+  onChange,
+  name = 'startDate',
+  label = 'START DATE *',
+}: {
+  value: string;
+  onChange: (val: string) => void;
+  name?: string;
+  label?: string;
+}) {
+  const [currentMonth, setCurrentMonth] = useState(() => {
+    return value ? new Date(value) : new Date();
+  });
+
+  const year = currentMonth.getFullYear();
+  const month = currentMonth.getMonth();
+  const monthNames = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December',
+  ];
+
+  const firstDay = new Date(year, month, 1).getDay();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+  const handlePrev = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setCurrentMonth(new Date(year, month - 1, 1));
+  };
+
+  const handleNext = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setCurrentMonth(new Date(year, month + 1, 1));
+  };
+
+  const handleSelectDay = (day: number) => {
+    const mStr = String(month + 1).padStart(2, '0');
+    const dStr = String(day).padStart(2, '0');
+    onChange(`${year}-${mStr}-${dStr}`);
+  };
+
+  const selectedDateObj = value ? new Date(value) : null;
+
+  return (
+    <div className="space-y-1.5 font-sans">
+      <label className="block text-slate-700 font-semibold text-xs">{label}</label>
+      <input type="hidden" name={name} value={value} required />
+
+      <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+        <div className="flex items-center justify-between text-xs">
+          <button
+            type="button"
+            onClick={handlePrev}
+            className="p-1 rounded-lg text-slate-600 hover:bg-slate-200 transition-colors"
+          >
+            <ChevronLeft className="w-4 h-4" />
+          </button>
+          <span className="font-semibold text-slate-800">
+            {monthNames[month]} {year}
+          </span>
+          <button
+            type="button"
+            onClick={handleNext}
+            className="p-1 rounded-lg text-slate-600 hover:bg-slate-200 transition-colors"
+          >
+            <ChevronRight className="w-4 h-4" />
+          </button>
+        </div>
+
+        <div className="grid grid-cols-7 text-center text-[10px] font-semibold text-slate-500 py-1 border-b border-slate-200">
+          <span>Su</span>
+          <span>Mo</span>
+          <span>Tu</span>
+          <span>We</span>
+          <span>Th</span>
+          <span>Fr</span>
+          <span>Sa</span>
+        </div>
+
+        <div className="grid grid-cols-7 gap-1 text-xs">
+          {Array.from({ length: firstDay }).map((_, i) => (
+            <div key={`pad-${i}`} className="h-7" />
+          ))}
+          {Array.from({ length: daysInMonth }).map((_, i) => {
+            const dayNum = i + 1;
+            const isSelected =
+              selectedDateObj &&
+              selectedDateObj.getFullYear() === year &&
+              selectedDateObj.getMonth() === month &&
+              selectedDateObj.getDate() === dayNum;
+
+            return (
+              <button
+                type="button"
+                key={`day-${dayNum}`}
+                onClick={() => handleSelectDay(dayNum)}
+                className={`h-7 w-7 mx-auto rounded-lg text-xs font-medium flex items-center justify-center transition-all ${
+                  isSelected
+                    ? 'bg-violet-600 text-white font-bold shadow-xs'
+                    : 'text-slate-700 hover:bg-violet-100 hover:text-violet-700'
+                }`}
+              >
+                {dayNum}
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="text-[11px] text-slate-500 pt-1 border-t border-slate-200 flex items-center justify-between">
+          <span>Selected Date:</span>
+          <strong className="text-violet-700 font-semibold">
+            {value ? new Date(value).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : 'Please select a day'}
+          </strong>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function BatchManagementClient({
+  batches,
+  courses,
+  mentors,
+  allStudents,
+}: {
+  batches: any[];
+  courses: any[];
+  mentors: any[];
+  allStudents: any[];
+}) {
+  // Main Tab State: 'cohorts' | 'calendar' | 'audit' | 'corrections'
+  const [activeTab, setActiveTab] = useState<'cohorts' | 'calendar' | 'audit' | 'corrections'>('cohorts');
+
+  // Attendance Correction Requests State
+  const [correctionRequests, setCorrectionRequests] = useState<any[]>([]);
+  const [correctionFilter, setCorrectionFilter] = useState<'ALL' | 'PENDING' | 'APPROVED' | 'REJECTED'>('PENDING');
+  const [loadingCorrections, setLoadingCorrections] = useState(false);
+  const [reviewNotes, setReviewNotes] = useState<Record<string, string>>({});
+  const [processingRequestId, setProcessingRequestId] = useState<string | null>(null);
+
+  // Calendar State
+  const [calendarMonth, setCalendarMonth] = useState(() => new Date());
+
+  // Audit Ledger State
+  const [deliveredLectures, setDeliveredLectures] = useState<any[]>([]);
+  const [dateFilter, setDateFilter] = useState('');
+  const [batchFilter, setBatchFilter] = useState('ALL');
+  const [mentorFilter, setMentorFilter] = useState('ALL');
+  const [loadingLectures, setLoadingLectures] = useState(false);
+
+  // Dialog & Selection States
+  const [isCreateOpen, setIsCreateOpen] = useState(false);
+  const [selectedBatchForStudents, setSelectedBatchForStudents] = useState<any | null>(null);
+  const [selectedBatchForSessions, setSelectedBatchForSessions] = useState<any | null>(null);
+  const [selectedSessionForAttendance, setSelectedSessionForAttendance] = useState<any | null>(null);
+
+  // Form inputs
+  const [tsIdInput, setTsIdInput] = useState('');
+  const [searchStudent, setSearchStudent] = useState('');
+  const [studentFilterTab, setStudentFilterTab] = useState<'ALL' | 'UNASSIGNED' | 'IN_BATCH'>('ALL');
+  const [selectedStudentProfileIds, setSelectedStudentProfileIds] = useState<string[]>([]);
+  const [newSessionTitle, setNewSessionTitle] = useState('');
+  const [newSessionDate, setNewSessionDate] = useState('');
+  const [newSessionAgenda, setNewSessionAgenda] = useState('');
+
+  // Attendance state
+  const [attendanceDraft, setAttendanceDraft] = useState<Record<string, 'PRESENT' | 'ABSENT' | 'LATE' | 'EXCUSED'>>({});
+  const [attendanceRemarks, setAttendanceRemarks] = useState<Record<string, string>>({});
+
+  const [loading, setLoading] = useState(false);
+  const [feedbackMsg, setFeedbackMsg] = useState<string | null>(null);
+
+  // Load correction requests initially and on tab change
+  useEffect(() => {
+    loadCorrectionRequests();
+  }, []);
+
+  useEffect(() => {
+    if (activeTab === 'corrections') {
+      loadCorrectionRequests();
+    }
+  }, [activeTab]);
+
+  const loadCorrectionRequests = async () => {
+    setLoadingCorrections(true);
+    const res = await fetchPendingCorrectionRequestsAction();
+    if (res.success && res.requests) {
+      setCorrectionRequests(res.requests);
+    }
+    setLoadingCorrections(false);
+  };
+
+  const handleAdminReview = async (requestId: string, decision: 'APPROVED' | 'REJECTED') => {
+    setProcessingRequestId(requestId);
+    const notes = reviewNotes[requestId] || '';
+    const res = await adminApproveOrRejectCorrectionAction(requestId, decision, notes);
+    if (res.success) {
+      await loadCorrectionRequests();
+    } else {
+      alert(res.error || 'Failed to review request');
+    }
+    setProcessingRequestId(null);
+  };
+
+  const pendingCorrectionsCount = correctionRequests.filter((r) => r.status === 'PENDING').length;
+
+  // Load audit data automatically when audit tab is selected
+  useEffect(() => {
+    if (activeTab === 'audit' && deliveredLectures.length === 0) {
+      loadDeliveredLectures();
+    }
+  }, [activeTab]);
+
+  const loadDeliveredLectures = async () => {
+    setLoadingLectures(true);
+    const res = await fetchDeliveredLecturesAuditAction();
+    if (res.success && res.lectures) {
+      setDeliveredLectures(res.lectures);
+    }
+    setLoadingLectures(false);
+  };
+
+  const filteredStudents = allStudents.filter((s) => {
+    const q = searchStudent.toLowerCase();
+    const name = s.user?.name?.toLowerCase() || '';
+    const email = s.user?.email?.toLowerCase() || '';
+    const tsId = s.user?.tsIdentity?.tsId?.toLowerCase() || '';
+    const matchesSearch = name.includes(q) || email.includes(q) || tsId.includes(q);
+    if (!matchesSearch) return false;
+
+    if (studentFilterTab === 'UNASSIGNED') {
+      return !s.batchId;
+    }
+    if (studentFilterTab === 'IN_BATCH' && selectedBatchForStudents) {
+      return s.batchId === selectedBatchForStudents.id;
+    }
+    return true;
+  });
+
+  // Flat list of all sessions across all batches for calendar placement
+  const allSessions = batches.flatMap((batch) =>
+    (batch.sessions || []).map((session: any) => ({
+      ...session,
+      batchCode: batch.batchCode,
+      batchTitle: batch.title,
+      mentorName: batch.mentor?.user?.name || batch.mentor?.title || 'Unassigned Faculty',
+      batch,
+    }))
+  );
+
+  const [editingBatch, setEditingBatch] = useState<any | null>(null);
+  const [createBatchDate, setCreateBatchDate] = useState(() => {
+    const d = new Date();
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  });
+  const [editBatchDate, setEditBatchDate] = useState('');
+
+  // Duration Presets & Timetable States
+  const [durationPreset, setDurationPreset] = useState<'45_DAYS' | '3_MONTHS' | '6_MONTHS' | 'CUSTOM'>('3_MONTHS');
+  const [facultyRole, setFacultyRole] = useState<'TEACHER_LECTURER' | 'FACULTY_NON_TEACHING'>('TEACHER_LECTURER');
+  const [selectedDays, setSelectedDays] = useState<string[]>(['Mon', 'Wed', 'Fri']);
+  const [batchStartTime, setBatchStartTime] = useState('19:00');
+  const [batchEndTime, setBatchEndTime] = useState('21:00');
+  const [autoGenerateTimetable, setAutoGenerateTimetable] = useState(true);
+  const [attendanceLockHours, setAttendanceLockHours] = useState(120);
+
+  const calculateEndDate = (startDateStr: string, preset: '45_DAYS' | '3_MONTHS' | '6_MONTHS' | 'CUSTOM') => {
+    if (!startDateStr || preset === 'CUSTOM') return '';
+    const d = new Date(startDateStr);
+    if (preset === '45_DAYS') {
+      d.setDate(d.getDate() + 45);
+    } else if (preset === '3_MONTHS') {
+      d.setMonth(d.getMonth() + 3);
+    } else if (preset === '6_MONTHS') {
+      d.setMonth(d.getMonth() + 6);
+    }
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  };
+
+  const computedEndDate = calculateEndDate(createBatchDate, durationPreset);
+
+  const toggleDaySelection = (day: string) => {
+    if (selectedDays.includes(day)) {
+      if (selectedDays.length > 1) {
+        setSelectedDays(selectedDays.filter((d) => d !== day));
+      }
+    } else {
+      setSelectedDays([...selectedDays, day]);
+    }
+  };
+
+  const daysList = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+  const handleCreateBatch = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    setFeedbackMsg(null);
+
+    const formData = new FormData(e.currentTarget);
+    const res = await createBatchAction(formData);
+    setLoading(false);
+
+    if (!res.success) {
+      setFeedbackMsg(res.error || 'Failed to create batch');
+    } else {
+      setFeedbackMsg('Academic Cohort created and launched successfully.');
+      setTimeout(() => {
+        setFeedbackMsg(null);
+        setIsCreateOpen(false);
+      }, 1500);
+    }
+  };
+
+  const handleUpdateBatch = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!editingBatch) return;
+    setLoading(true);
+    setFeedbackMsg(null);
+
+    const formData = new FormData(e.currentTarget);
+    const res = await updateBatchAction(editingBatch.id, formData);
+    setLoading(false);
+
+    if (!res.success) {
+      setFeedbackMsg(res.error || 'Failed to update batch');
+    } else {
+      setFeedbackMsg('Academic Cohort updated successfully.');
+      setTimeout(() => {
+        setFeedbackMsg(null);
+        setEditingBatch(null);
+      }, 1500);
+    }
+  };
+
+  const handleDeleteBatch = async (batchId: string, title: string) => {
+    if (!confirm(`Are you sure you want to remove cohort "${title}"?`)) return;
+    setLoading(true);
+    setFeedbackMsg(null);
+
+    const res = await deleteBatchAction(batchId);
+    setLoading(false);
+
+    if (!res.success) {
+      setFeedbackMsg(res.error || 'Failed to delete batch.');
+    } else {
+      setFeedbackMsg(`Cohort "${title}" removed successfully.`);
+      setTimeout(() => setFeedbackMsg(null), 2500);
+    }
+  };
+
+  const handleAssignStudent = async (studentProfileId: string, batchId: string | null) => {
+    setLoading(true);
+    setFeedbackMsg(null);
+    const res = await assignStudentToBatchAction(studentProfileId, batchId);
+    setLoading(false);
+    if (res.success) {
+      setFeedbackMsg('✓ Student batch alignment updated in Database!');
+      setTimeout(() => setFeedbackMsg(null), 2000);
+    }
+  };
+
+  const handleFastEnrollByTsId = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!selectedBatchForStudents || !tsIdInput.trim()) return;
+    setLoading(true);
+    setFeedbackMsg(null);
+
+    const res = await assignStudentToBatchByTsIdAction(tsIdInput.trim(), selectedBatchForStudents.id);
+    setLoading(false);
+
+    if (res.success) {
+      setFeedbackMsg(`✓ Student ${res.studentName} (${res.tsId}) successfully enrolled into ${selectedBatchForStudents.batchCode}!`);
+      setTsIdInput('');
+      setTimeout(() => setFeedbackMsg(null), 3000);
+    } else {
+      setFeedbackMsg(res.error || 'Failed to enroll student by Student ID.');
+    }
+  };
+
+  const handleAssignBatchMentor = async (batchId: string, mentorId: string | null) => {
+    setLoading(true);
+    setFeedbackMsg(null);
+    const res = await assignBatchMentorAction(batchId, mentorId);
+    setLoading(false);
+    if (res.success) {
+      setFeedbackMsg('✓ Faculty mentor assigned to cohort batch successfully!');
+      setTimeout(() => setFeedbackMsg(null), 2500);
+    } else {
+      setFeedbackMsg(res.error || 'Failed to assign mentor.');
+    }
+  };
+
+  const handleBulkAssignStudents = async () => {
+    if (!selectedBatchForStudents || selectedStudentProfileIds.length === 0) return;
+    setLoading(true);
+    setFeedbackMsg(null);
+    const res = await bulkAssignStudentsToBatchAction(selectedStudentProfileIds, selectedBatchForStudents.id);
+    setLoading(false);
+    if (res.success) {
+      setFeedbackMsg(`✓ Successfully assigned ${res.count} students to ${selectedBatchForStudents.batchCode}!`);
+      setSelectedStudentProfileIds([]);
+      setTimeout(() => setFeedbackMsg(null), 3000);
+    } else {
+      setFeedbackMsg(res.error || 'Failed to bulk assign students.');
+    }
+  };
+
+  const toggleSelectStudent = (id: string) => {
+    setSelectedStudentProfileIds((prev) =>
+      prev.includes(id) ? prev.filter((sId) => sId !== id) : [...prev, id]
+    );
+  };
+
+  const handleCreateSession = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!selectedBatchForSessions || !newSessionTitle || !newSessionDate) return;
+    setLoading(true);
+    setFeedbackMsg(null);
+
+    const formData = new FormData();
+    formData.append('batchId', selectedBatchForSessions.id);
+    formData.append('title', newSessionTitle);
+    formData.append('sessionDate', newSessionDate);
+    formData.append('agenda', newSessionAgenda);
+
+    const res = await createBatchSessionAction(formData);
+    setLoading(false);
+
+    if (res.success) {
+      setFeedbackMsg('✓ Lecture session successfully scheduled in Database!');
+      setNewSessionTitle('');
+      setNewSessionDate('');
+      setNewSessionAgenda('');
+      setTimeout(() => setFeedbackMsg(null), 2000);
+    } else {
+      setFeedbackMsg(res.error || 'Failed to schedule lecture session.');
+    }
+  };
+
+  const openAttendanceModal = (session: any, batch: any) => {
+    setSelectedSessionForAttendance({ session, batch });
+    const initialStatus: Record<string, 'PRESENT' | 'ABSENT' | 'LATE' | 'EXCUSED'> = {};
+    const initialRemarks: Record<string, string> = {};
+
+    batch.students?.forEach((s: any) => {
+      const existingRecord = session.attendanceRecords?.find((r: any) => r.studentId === s.id);
+      initialStatus[s.id] = existingRecord?.status || 'PRESENT';
+      initialRemarks[s.id] = existingRecord?.remarks || '';
+    });
+
+    setAttendanceDraft(initialStatus);
+    setAttendanceRemarks(initialRemarks);
+  };
+
+  const handleSaveAttendance = async () => {
+    if (!selectedSessionForAttendance) return;
+    setLoading(true);
+    setFeedbackMsg(null);
+
+    const records = Object.keys(attendanceDraft).map((studentId) => ({
+      studentId,
+      status: attendanceDraft[studentId],
+      remarks: attendanceRemarks[studentId] || undefined,
+    }));
+
+    const res = await markBatchAttendanceAction(
+      selectedSessionForAttendance.session.id,
+      records
+    );
+    setLoading(false);
+
+    if (res.success) {
+      setFeedbackMsg(`✓ Lecture attendance marked for ${res.count} student(s) in Database!`);
+      setTimeout(() => {
+        setFeedbackMsg(null);
+        setSelectedSessionForAttendance(null);
+        loadDeliveredLectures();
+      }, 1500);
+    } else {
+      setFeedbackMsg(res.error || 'Failed to mark attendance.');
+    }
+  };
+
+  // Calendar Date Math
+  const year = calendarMonth.getFullYear();
+  const month = calendarMonth.getMonth(); // 0-indexed
+  const monthName = calendarMonth.toLocaleString('en-US', { month: 'long', year: 'numeric' });
+  const firstDayIndex = new Date(year, month, 1).getDay(); // 0 = Sun
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+  const handleCalendarDayClick = (day: number) => {
+    const formattedMonth = String(month + 1).padStart(2, '0');
+    const formattedDay = String(day).padStart(2, '0');
+    const dateStr = `${year}-${formattedMonth}-${formattedDay}T16:00`;
+    setNewSessionDate(dateStr);
+
+    if (batches.length > 0) {
+      setSelectedBatchForSessions(batches[0]);
+    }
+  };
+
+  return (
+    <div className="space-y-6 text-slate-900 font-sans">
+      {/* Top Header & DB Persistence Status Banner */}
+      <div className="p-5 rounded-2xl bg-white border border-slate-200 text-slate-900 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <div className="flex items-center gap-2 mb-1">
+            <span className="w-2 h-2 rounded-full bg-violet-600" />
+            <Badge className="bg-violet-50 text-violet-700 border border-violet-200 font-mono text-[10px] flex items-center gap-1 font-semibold">
+              <Database className="w-3 h-3 text-violet-600" />
+              PostgreSQL DB Persisted
+            </Badge>
+            <span className="text-xs text-slate-500 font-mono">
+              Duration-Based Cohorts • 5-Day Attendance Policy
+            </span>
+          </div>
+          <h1 className="text-xl font-bold font-mono text-slate-900 flex items-center gap-2">
+            Academic Batches, Timetable Calendar &amp; Attendance Audit
+          </h1>
+          <p className="text-xs text-slate-500 mt-1 max-w-3xl">
+            Configure 45-day, 3-month, or 6-month cohorts, classify teaching lecturers vs non-teaching faculty, build published student timetables, and monitor the 5-day attendance window.
+          </p>
+        </div>
+
+        <button
+          onClick={() => setIsCreateOpen(true)}
+          className="px-5 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-700 text-white font-mono font-semibold text-xs shadow-xs active:scale-95 transition-all cursor-pointer flex items-center gap-2 whitespace-nowrap self-start md:self-auto"
+        >
+          <Plus className="w-4 h-4" />
+          <span>Conduct New Batch</span>
+        </button>
+      </div>
+
+      {/* Main Tab Navigation Bar */}
+      <div className="flex items-center gap-2 p-1.5 rounded-2xl bg-white border border-slate-200 shadow-xs">
+        <button
+          onClick={() => setActiveTab('cohorts')}
+          className={`flex-1 py-2.5 px-4 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center justify-center gap-2 ${
+            activeTab === 'cohorts'
+              ? 'bg-violet-600 text-white shadow-sm'
+              : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+          }`}
+        >
+          <Layers className="w-4 h-4" />
+          <span>Academic Cohorts &amp; Batches ({batches.length})</span>
+        </button>
+
+        <button
+          onClick={() => setActiveTab('calendar')}
+          className={`flex-1 py-2.5 px-4 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center justify-center gap-2 ${
+            activeTab === 'calendar'
+              ? 'bg-violet-600 text-white shadow-sm'
+              : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+          }`}
+        >
+          <Calendar className="w-4 h-4" />
+          <span>Lecture Calendar</span>
+        </button>
+
+        <button
+          onClick={() => setActiveTab('audit')}
+          className={`flex-1 py-2.5 px-4 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center justify-center gap-2 ${
+            activeTab === 'audit'
+              ? 'bg-violet-600 text-white shadow-sm'
+              : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+          }`}
+        >
+          <CheckSquare className="w-4 h-4" />
+          <span>Lecture Delivery Audit</span>
+        </button>
+
+        <button
+          onClick={() => setActiveTab('corrections')}
+          className={`flex-1 py-2.5 px-4 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center justify-center gap-2 ${
+            activeTab === 'corrections'
+              ? 'bg-violet-600 text-white shadow-sm'
+              : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+          }`}
+        >
+          <AlertCircle className="w-4 h-4" />
+          <span>Attendance Corrections</span>
+          {pendingCorrectionsCount > 0 && (
+            <span className="px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-500 text-white shadow-xs">
+              {pendingCorrectionsCount}
+            </span>
+          )}
+        </button>
+      </div>
+
+      {/* ========================================================================= */}
+      {/* 📌 TAB 1: ACADEMIC COHORTS & BATCHES */}
+      {/* ========================================================================= */}
+      {activeTab === 'cohorts' && (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {batches.map((batch) => {
+            const studentCount = batch.students?.length || 0;
+            const sessionCount = batch.sessions?.length || 0;
+
+            return (
+              <Card
+                key={batch.id}
+                className="bg-white border border-slate-200 text-slate-900 hover:border-violet-300 hover:shadow-md transition-all rounded-2xl flex flex-col justify-between shadow-xs"
+              >
+                <div>
+                  <CardHeader className="p-5 pb-3">
+                    <div className="flex items-center justify-between gap-2 mb-1.5">
+                      <Badge
+                        variant="outline"
+                        className="font-mono text-[10px] text-violet-700 border-violet-200 bg-violet-50 font-bold"
+                      >
+                        {batch.batchCode}
+                      </Badge>
+                      <Badge
+                        className={`text-[10px] font-mono ${
+                          batch.status === 'ACTIVE'
+                            ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                            : 'bg-slate-100 text-slate-600 border border-slate-200'
+                        }`}
+                      >
+                        {batch.status}
+                      </Badge>
+                    </div>
+                    <CardTitle className="text-base font-bold font-sans text-slate-900">
+                      {batch.title}
+                    </CardTitle>
+                  </CardHeader>
+
+                  <CardContent className="p-5 pt-0 space-y-3.5 text-xs text-slate-700">
+                    <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 space-y-1.5 font-mono text-[11px]">
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="flex items-center gap-1.5 text-slate-500 shrink-0">
+                          <ShieldCheck className="w-3.5 h-3.5 text-violet-600" />
+                          Faculty Lead:
+                        </span>
+                        <select
+                          value={batch.mentorId || ''}
+                          disabled={loading}
+                          onChange={(e) => handleAssignBatchMentor(batch.id, e.target.value || null)}
+                          className="bg-white border border-slate-200 text-slate-900 rounded-lg px-2 py-0.5 text-[11px] font-sans font-medium focus:outline-none focus:border-violet-600 max-w-[170px] truncate cursor-pointer"
+                          title="Assign or reassign faculty teacher to this batch"
+                        >
+                          <option value="">-- Unassigned --</option>
+                          {mentors.map((m) => (
+                            <option key={m.id} value={m.id}>
+                              {m.user?.name || m.title || 'Mentor'}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+
+                      <div className="flex items-center justify-between">
+                        <span className="flex items-center gap-1.5 text-slate-500">
+                          <Clock className="w-3.5 h-3.5 text-slate-400" />
+                          Schedule:
+                        </span>
+                        <span className="text-[10px] text-violet-700 font-bold truncate max-w-[150px]">
+                          {batch.schedule || 'Mon/Wed/Fri 7-9 PM'}
+                        </span>
+                      </div>
+
+                      <div className="flex items-center justify-between">
+                        <span className="flex items-center gap-1.5 text-slate-500">
+                          <BookOpen className="w-3.5 h-3.5 text-slate-400" />
+                          Lectures Conducted:
+                        </span>
+                        <strong className="text-slate-900">{sessionCount} Live Classes</strong>
+                      </div>
+                    </div>
+
+                    {/* Enrollment Progress bar */}
+                    <div className="space-y-1">
+                      <div className="flex justify-between text-[11px] font-mono">
+                        <span className="text-slate-600">Enrolled Students:</span>
+                        <strong className="text-violet-700 font-bold">
+                          {studentCount} / {batch.maxCapacity} Max
+                        </strong>
+                      </div>
+                      <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden border border-slate-200">
+                        <div
+                          className="bg-gradient-to-r from-violet-600 to-indigo-600 h-full rounded-full transition-all"
+                          style={{
+                            width: `${Math.min(100, (studentCount / batch.maxCapacity) * 100)}%`,
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </CardContent>
+                </div>
+
+                {/* Card Footer Actions */}
+                <div className="p-3.5 border-t border-slate-100 flex items-center justify-between gap-1.5 flex-wrap">
+                  <button
+                    onClick={() => setSelectedBatchForStudents(batch)}
+                    className="flex-1 px-3 py-2 rounded-xl bg-violet-50 hover:bg-violet-100 text-violet-700 border border-violet-200 text-xs font-semibold flex items-center justify-center gap-1.5 cursor-pointer transition-all active:scale-95"
+                  >
+                    <Users className="w-3.5 h-3.5 text-violet-600" />
+                    <span>Students ({studentCount})</span>
+                  </button>
+
+                  <button
+                    onClick={() => setSelectedBatchForSessions(batch)}
+                    className="px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 text-xs font-semibold flex items-center justify-center gap-1.5 cursor-pointer transition-all active:scale-95"
+                    title="View Live Lectures & Attendance"
+                  >
+                    <CheckSquare className="w-3.5 h-3.5 text-emerald-600" />
+                    <span>Attendance</span>
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      setEditingBatch(batch);
+                      const d = batch.startDate ? new Date(batch.startDate) : new Date();
+                      setEditBatchDate(`${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`);
+                    }}
+                    className="p-2 rounded-xl bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 text-xs transition-all cursor-pointer"
+                    title="Update Batch"
+                  >
+                    <Edit3 className="w-3.5 h-3.5" />
+                  </button>
+
+                  <button
+                    onClick={() => handleDeleteBatch(batch.id, batch.title)}
+                    className="p-2 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 text-xs transition-all cursor-pointer"
+                    title="Remove Batch"
+                  >
+                    <Trash2 className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              </Card>
+            );
+          })}
+        </div>
+      )}
+
+      {/* ========================================================================= */}
+      {/* 📅 TAB 2: INTERACTIVE LECTURE CALENDAR & CONDUCT SESSION */}
+      {/* ========================================================================= */}
+      {activeTab === 'calendar' && (
+        <div className="p-6 rounded-2xl bg-white border border-slate-200 space-y-6 shadow-xs font-sans">
+          {/* Calendar Header Controls */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-200 pb-4">
+            <div>
+              <h2 className="text-xl font-bold font-mono text-slate-900 flex items-center gap-2">
+                <Calendar className="w-5 h-5 text-violet-600" />
+                {monthName} Lecture Schedule &amp; Timetable
+              </h2>
+              <p className="text-xs text-slate-500 mt-0.5">
+                Displays live class timings, ongoing status, and active 5-day attendance windows for faculty mentors and students.
+              </p>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => setCalendarMonth(new Date(year, month - 1, 1))}
+                className="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-slate-900 border border-slate-200 cursor-pointer transition-all"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+              <span className="font-mono text-sm font-bold text-violet-700 min-w-[140px] text-center">
+                {monthName}
+              </span>
+              <button
+                onClick={() => setCalendarMonth(new Date(year, month + 1, 1))}
+                className="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-slate-900 border border-slate-200 cursor-pointer transition-all"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+
+          {/* Monthly Calendar Grid */}
+          <div className="border border-slate-200 rounded-2xl overflow-hidden bg-white shadow-xs">
+            {/* Days of Week Header */}
+            <div className="grid grid-cols-7 border-b border-slate-200 bg-slate-50 text-center font-mono text-xs font-semibold text-slate-700 py-2.5">
+              <span>SUN</span>
+              <span>MON</span>
+              <span>TUE</span>
+              <span>WED</span>
+              <span>THU</span>
+              <span>FRI</span>
+              <span>SAT</span>
+            </div>
+
+            {/* Calendar Cells */}
+            <div className="grid grid-cols-7 auto-rows-fr divide-x divide-y divide-slate-100 text-xs">
+              {/* Padding Days Before First Day of Month */}
+              {Array.from({ length: firstDayIndex }).map((_, idx) => (
+                <div key={`pad-${idx}`} className="h-32 bg-slate-50/40 p-2 text-slate-300 pointer-events-none" />
+              ))}
+
+              {/* Days of the Month */}
+              {Array.from({ length: daysInMonth }).map((_, idx) => {
+                const dayNum = idx + 1;
+                const formattedMonth = String(month + 1).padStart(2, '0');
+                const formattedDay = String(dayNum).padStart(2, '0');
+                const dateStr = `${year}-${formattedMonth}-${formattedDay}`;
+
+                // Filter sessions matching this calendar day
+                const daySessions = allSessions.filter((sess: any) => {
+                  const sDate = new Date(sess.sessionDate);
+                  return (
+                    sDate.getFullYear() === year &&
+                    sDate.getMonth() === month &&
+                    sDate.getDate() === dayNum
+                  );
+                });
+
+                const isToday =
+                  new Date().getFullYear() === year &&
+                  new Date().getMonth() === month &&
+                  new Date().getDate() === dayNum;
+
+                const now = new Date();
+
+                return (
+                  <div
+                    key={`day-${dayNum}`}
+                    onClick={() => handleCalendarDayClick(dayNum)}
+                    className={`min-h-[140px] p-2 hover:bg-violet-50/30 transition-colors cursor-pointer flex flex-col justify-between group ${
+                      isToday ? 'bg-violet-50/40 border border-violet-300' : 'bg-white'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between">
+                      <span
+                        className={`font-mono text-xs font-bold px-2 py-0.5 rounded-full ${
+                          isToday
+                            ? 'bg-violet-600 text-white shadow-xs'
+                            : 'text-slate-700 group-hover:text-violet-700'
+                        }`}
+                      >
+                        {dayNum}
+                      </span>
+                      <span className="text-[9px] text-slate-400 group-hover:text-violet-600 font-mono opacity-0 group-hover:opacity-100 transition-opacity font-semibold">
+                        + Schedule
+                      </span>
+                    </div>
+
+                    {/* Session Pills on this Date */}
+                    <div className="space-y-1.5 overflow-y-auto max-h-24 my-1">
+                      {daySessions.map((sess: any) => {
+                        const sessStart = new Date(sess.sessionDate);
+                        const duration = sess.durationMins || 120;
+                        const sessEnd = new Date(sessStart.getTime() + duration * 60 * 1000);
+
+                        let ongoingStatus: 'LIVE' | 'UPCOMING' | 'COMPLETED' = 'UPCOMING';
+                        if (now >= sessStart && now <= sessEnd) {
+                          ongoingStatus = 'LIVE';
+                        } else if (now > sessEnd) {
+                          ongoingStatus = 'COMPLETED';
+                        }
+
+                        // 5-Day Attendance Window Calculation
+                        const elapsedHours = (now.getTime() - sessStart.getTime()) / (1000 * 60 * 60);
+                        const lockHours = sess.batch?.attendanceLockHours || 120; // 5 days default
+                        const isWindowOpen = elapsedHours <= lockHours;
+                        const daysRemaining = Math.max(0, Math.ceil((lockHours - elapsedHours) / 24));
+
+                        const sessTimeFormatted = sessStart.toLocaleTimeString('en-US', {
+                          hour: '2-digit',
+                          minute: '2-digit',
+                        });
+
+                        return (
+                          <div
+                            key={sess.id}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              openAttendanceModal(sess, sess.batch);
+                            }}
+                            className={`p-1.5 rounded-lg border text-[10px] font-mono space-y-1 shadow-xs transition-all cursor-pointer ${
+                              ongoingStatus === 'LIVE'
+                                ? 'bg-violet-100 border-violet-400 text-violet-950 ring-1 ring-violet-400'
+                                : ongoingStatus === 'UPCOMING'
+                                ? 'bg-slate-50 border-slate-200 text-slate-900 hover:bg-slate-100'
+                                : 'bg-slate-100/80 border-slate-200 text-slate-700'
+                            }`}
+                            title="Click to Review & Mark Attendance"
+                          >
+                            <div className="flex items-center justify-between font-bold">
+                              <span className="truncate max-w-[85px]">{sess.batchCode}</span>
+                              <span className="text-[9px] text-slate-600">{sessTimeFormatted}</span>
+                            </div>
+
+                            <div className="flex items-center gap-1.5 flex-wrap">
+                              {ongoingStatus === 'LIVE' ? (
+                                <span className="inline-flex items-center gap-1 px-1.5 py-0.2 rounded-full bg-violet-600 text-white text-[8px] font-bold uppercase tracking-wider animate-pulse">
+                                  <span className="w-1.5 h-1.5 rounded-full bg-white" />
+                                  Live Now
+                                </span>
+                              ) : ongoingStatus === 'UPCOMING' ? (
+                                <span className="px-1.5 py-0.2 rounded-full bg-slate-200 text-slate-700 text-[8px] font-semibold uppercase">
+                                  Upcoming
+                                </span>
+                              ) : (
+                                <span className="px-1.5 py-0.2 rounded-full bg-slate-200 text-slate-600 text-[8px] font-semibold uppercase">
+                                  Completed
+                                </span>
+                              )}
+
+                              {ongoingStatus === 'COMPLETED' && (
+                                <span
+                                  className={`px-1.5 py-0.2 rounded-full text-[8px] font-semibold ${
+                                    isWindowOpen
+                                      ? 'bg-emerald-100 text-emerald-800 border border-emerald-200'
+                                      : 'bg-slate-200 text-slate-500'
+                                  }`}
+                                >
+                                  {isWindowOpen ? `5-Day Attd: ${daysRemaining}d Left` : 'Attd Locked'}
+                                </span>
+                              )}
+                            </div>
+
+                            <span className="text-slate-900 block truncate text-[10px] font-sans font-medium">
+                              {sess.title}
+                            </span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ========================================================================= */}
+      {/* 🔍 TAB 3: DEDICATED LECTURE DELIVERY & ATTENDANCE AUDIT LEDGER */}
+      {/* ========================================================================= */}
+      {activeTab === 'audit' && (
+        <div className="p-6 rounded-2xl bg-white border border-slate-200 space-y-6 shadow-xs font-sans">
+          {/* Header */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-200 pb-4">
+            <div>
+              <Badge className="bg-violet-50 text-violet-700 border border-violet-200 font-mono text-[10px] mb-1 font-semibold">
+                ATTENDANCE AUDIT LEDGER
+              </Badge>
+              <h2 className="text-xl font-bold font-mono text-slate-900 flex items-center gap-2">
+                <CheckSquare className="w-5 h-5 text-emerald-600" />
+                Date &amp; Lecture Inspection Ledger
+              </h2>
+              <p className="text-xs text-slate-500 mt-0.5">
+                Audit every lecture delivered on any specific date, verify faculty agenda logs, and inspect student check-in records.
+              </p>
+            </div>
+
+            <button
+              onClick={loadDeliveredLectures}
+              className="px-4 py-2 rounded-xl bg-violet-50 hover:bg-violet-100 text-violet-700 border border-violet-200 font-mono font-semibold text-xs shadow-xs transition-all cursor-pointer flex items-center gap-1.5"
+            >
+              <CheckSquare className="w-3.5 h-3.5 text-emerald-600" />
+              <span>Refresh Ledger</span>
+            </button>
+          </div>
+
+          {/* Filter Bar */}
+          <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-3 font-mono text-xs">
+            <span className="font-semibold text-slate-900 uppercase text-[11px] flex items-center gap-1.5">
+              <Filter className="w-3.5 h-3.5 text-violet-600" />
+              Filter Delivered Lectures by Date, Cohort &amp; Faculty
+            </span>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div>
+                <label className="block text-[10px] text-slate-600 uppercase mb-1 font-semibold">
+                  Select Specific Date
+                </label>
+                <input
+                  type="date"
+                  value={dateFilter}
+                  onChange={(e) => setDateFilter(e.target.value)}
+                  className="w-full bg-white border border-slate-200 text-slate-900 px-3 py-2 rounded-xl text-xs focus:outline-none focus:border-violet-600"
+                />
+              </div>
+
+              <div>
+                <label className="block text-[10px] text-slate-600 uppercase mb-1 font-semibold">
+                  Filter by Cohort / Batch
+                </label>
+                <select
+                  value={batchFilter}
+                  onChange={(e) => setBatchFilter(e.target.value)}
+                  className="w-full bg-white border border-slate-200 text-slate-900 px-3 py-2 rounded-xl text-xs focus:outline-none focus:border-violet-600"
+                >
+                  <option value="ALL">-- All Batches --</option>
+                  {batches.map((b) => (
+                    <option key={b.id} value={b.batchCode}>
+                      {b.batchCode} ({b.title})
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-[10px] text-slate-600 uppercase mb-1 font-semibold">
+                  Filter by Faculty Lead
+                </label>
+                <select
+                  value={mentorFilter}
+                  onChange={(e) => setMentorFilter(e.target.value)}
+                  className="w-full bg-white border border-slate-200 text-slate-900 px-3 py-2 rounded-xl text-xs focus:outline-none focus:border-violet-600"
+                >
+                  <option value="ALL">-- All Mentors --</option>
+                  {mentors.map((m) => (
+                    <option key={m.id} value={m.user?.name || m.title}>
+                      {m.user?.name || m.title}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            {(dateFilter || batchFilter !== 'ALL' || mentorFilter !== 'ALL') && (
+              <div className="flex justify-between items-center pt-1">
+                <span className="text-[11px] text-slate-700">
+                  Showing filtered delivered lectures for:{' '}
+                  <strong className="text-violet-700">
+                    {dateFilter ? new Date(dateFilter).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' }) : 'All Dates'}
+                  </strong>
+                </span>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setDateFilter('');
+                    setBatchFilter('ALL');
+                    setMentorFilter('ALL');
+                  }}
+                  className="text-[11px] text-red-600 hover:text-red-800 underline cursor-pointer font-bold"
+                >
+                  Reset Filters
+                </button>
+              </div>
+            )}
+          </div>
+
+          {/* Delivered Lectures Audit List */}
+          {loadingLectures ? (
+            <div className="p-8 text-center text-slate-500 font-mono">Loading delivered lectures ledger...</div>
+          ) : deliveredLectures.length === 0 ? (
+            <div className="p-8 text-center text-slate-500 font-mono">No delivered lectures recorded yet.</div>
+          ) : (
+            <div className="space-y-4 font-mono text-xs">
+              {deliveredLectures
+                .filter((sess) => {
+                  if (dateFilter) {
+                    const sessDateStr = new Date(sess.sessionDate).toISOString().split('T')[0];
+                    if (sessDateStr !== dateFilter) return false;
+                  }
+                  if (batchFilter !== 'ALL' && sess.batchCode !== batchFilter) return false;
+                  if (mentorFilter !== 'ALL' && sess.mentorName !== mentorFilter) return false;
+                  return true;
+                })
+                .map((sess) => {
+                  const formattedDate = new Date(sess.sessionDate).toLocaleDateString('en-US', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                  });
+                  const formattedTime = new Date(sess.sessionDate).toLocaleTimeString('en-US', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                  });
+
+                  return (
+                    <div
+                      key={sess.id}
+                      className="p-5 rounded-3xl bg-white border border-red-200/80 space-y-3 hover:border-red-400 shadow-[0_4px_20px_rgba(220,38,38,0.03)] transition-all"
+                    >
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-red-100 pb-3">
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <Badge className="bg-red-50 text-red-700 border-red-200 text-[10px] font-bold">
+                              {sess.batchCode}
+                            </Badge>
+                            <span className="font-bold text-slate-950 text-sm">{sess.title}</span>
+                          </div>
+                          <span className="text-[11px] text-slate-600 block mt-1 font-sans">
+                            Faculty Lead: <strong className="text-slate-950">{sess.mentorName}</strong> ({sess.mentorEmail})
+                          </span>
+                        </div>
+
+                        <div className="flex flex-col items-end gap-1">
+                          <Badge className="bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-bold font-mono">
+                            {sess.attendancePercentage}% Attendance Rate
+                          </Badge>
+                          <span className="text-[11px] text-red-700 font-mono font-bold">
+                            📅 {formattedDate} • {formattedTime}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Agenda & Deliverables */}
+                      <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200 space-y-1">
+                        <span className="text-[10px] text-slate-500 uppercase font-bold block">
+                          Delivered Topic & Agenda
+                        </span>
+                        <p className="text-slate-800 text-xs leading-relaxed font-sans">
+                          {sess.agenda || 'Standard hands-on live lecture and lab instruction.'}
+                        </p>
+                      </div>
+
+                      {/* Attendance Breakdown Pills */}
+                      <div className="grid grid-cols-4 gap-2 text-center text-[10px]">
+                        <div className="p-2.5 rounded-2xl bg-emerald-50 border border-emerald-200">
+                          <span className="text-slate-600 block font-bold">Present</span>
+                          <span className="text-sm font-bold text-emerald-700 block">{sess.presentCount}</span>
+                        </div>
+                        <div className="p-2.5 rounded-2xl bg-amber-50 border border-amber-200">
+                          <span className="text-slate-600 block font-bold">Late</span>
+                          <span className="text-sm font-bold text-amber-700 block">{sess.lateCount}</span>
+                        </div>
+                        <div className="p-2.5 rounded-2xl bg-red-50 border border-red-200">
+                          <span className="text-slate-600 block font-bold">Absent</span>
+                          <span className="text-sm font-bold text-red-700 block">{sess.absentCount}</span>
+                        </div>
+                        <div className="p-2.5 rounded-2xl bg-purple-50 border border-purple-200">
+                          <span className="text-slate-600 block font-bold">Excused</span>
+                          <span className="text-sm font-bold text-purple-700 block">{sess.excusedCount}</span>
+                        </div>
+                      </div>
+
+                      {/* Detailed Student Roster Accordion */}
+                      {sess.records?.length > 0 && (
+                        <div className="pt-2">
+                          <details className="group">
+                            <summary className="text-xs text-red-700 hover:text-red-800 cursor-pointer select-none font-bold flex items-center gap-1.5 p-2 rounded-xl bg-red-50 border border-red-200">
+                              <UserCheck className="w-4 h-4 text-emerald-600" />
+                              <span>View Lecture Student Check-In List ({sess.records.length} Students Tracked)</span>
+                            </summary>
+
+                            <div className="mt-3 max-h-56 overflow-y-auto rounded-2xl border border-red-200 bg-white">
+                              <table className="w-full text-left text-[11px] font-mono">
+                                <thead>
+                                  <tr className="bg-red-50/70 border-b border-red-200 text-red-950 uppercase text-[10px] font-bold">
+                                    <th className="p-2.5">Student</th>
+                                    <th className="p-2.5">TS-ID</th>
+                                    <th className="p-2.5">Status</th>
+                                    <th className="p-2.5">Check-In Time</th>
+                                    <th className="p-2.5">Remarks / Lab Hash</th>
+                                  </tr>
+                                </thead>
+                                <tbody className="divide-y divide-red-100 text-slate-800">
+                                  {sess.records.map((r: any) => (
+                                    <tr key={r.id} className="hover:bg-red-50/40 transition-colors">
+                                      <td className="p-2.5 font-bold text-slate-950">{r.studentName}</td>
+                                      <td className="p-2.5 text-red-700 font-bold">{r.tsId}</td>
+                                      <td className="p-2.5">
+                                        <span
+                                          className={`px-2 py-0.5 rounded-full text-[9px] font-bold ${
+                                            r.status === 'PRESENT'
+                                              ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                                              : r.status === 'ABSENT'
+                                              ? 'bg-red-50 text-red-700 border border-red-200'
+                                              : r.status === 'LATE'
+                                              ? 'bg-amber-50 text-amber-700 border border-amber-200'
+                                              : 'bg-purple-50 text-purple-700 border border-purple-200'
+                                          }`}
+                                        >
+                                          {r.status}
+                                        </span>
+                                      </td>
+                                      <td className="p-2.5 text-slate-600">
+                                        {r.checkInTime ? new Date(r.checkInTime).toLocaleTimeString() : 'N/A'}
+                                      </td>
+                                      <td className="p-2.5 text-slate-700 max-w-[200px] truncate font-sans">
+                                        {r.remarks || 'Standard lecture check-in.'}
+                                      </td>
+                                    </tr>
+                                  ))}
+                                </tbody>
+                              </table>
+                            </div>
+                          </details>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* ========================================================================= */}
+      {/* 🛡️ TAB 4: MENTOR ATTENDANCE CORRECTION REQUESTS REVIEW */}
+      {/* ========================================================================= */}
+      {activeTab === 'corrections' && (
+        <div className="p-6 rounded-3xl bg-white border border-red-200/80 space-y-6 shadow-[0_4px_20px_rgba(220,38,38,0.04)] font-sans">
+          {/* Header */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-red-200 pb-4">
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <Badge className="bg-amber-50 text-amber-700 border border-amber-200 font-mono text-[10px] font-bold">
+                  IMMUTABLE AUDIT WORKFLOW
+                </Badge>
+                {pendingCorrectionsCount > 0 && (
+                  <Badge className="bg-red-50 text-red-700 border border-red-200 font-mono text-[10px] font-bold">
+                    {pendingCorrectionsCount} PENDING ACTION
+                  </Badge>
+                )}
+              </div>
+              <h2 className="text-xl font-bold font-mono text-slate-950 flex items-center gap-2">
+                <AlertCircle className="w-5 h-5 text-amber-600" />
+                Mentor Attendance Correction Requests
+              </h2>
+              <p className="text-xs text-slate-600 mt-0.5">
+                Review and approve or reject attendance correction requests submitted by mentors after the batch 24-hour attendance edit window has locked.
+              </p>
+            </div>
+
+            <button
+              onClick={loadCorrectionRequests}
+              className="px-4 py-2 rounded-full bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 font-mono font-bold text-xs shadow-xs transition-all cursor-pointer flex items-center gap-1.5"
+            >
+              <AlertCircle className="w-3.5 h-3.5 text-amber-600" />
+              <span>Refresh Requests</span>
+            </button>
+          </div>
+
+          {/* Filter Bar */}
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-mono text-slate-600">Filter Status:</span>
+            {(['ALL', 'PENDING', 'APPROVED', 'REJECTED'] as const).map((st) => {
+              const count =
+                st === 'ALL'
+                  ? correctionRequests.length
+                  : correctionRequests.filter((r) => r.status === st).length;
+              return (
+                <button
+                  key={st}
+                  onClick={() => setCorrectionFilter(st)}
+                  className={`px-3 py-1 rounded-lg text-xs font-mono font-bold transition-all cursor-pointer ${
+                    correctionFilter === st
+                      ? 'bg-amber-500 text-black font-black shadow-xs'
+                      : 'bg-slate-100 text-slate-600 hover:text-slate-950 border border-slate-200'
+                  }`}
+                >
+                  {st} ({count})
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Requests List */}
+          {loadingCorrections ? (
+            <div className="p-8 text-center text-xs font-mono text-slate-500">
+              Loading attendance correction requests from database...
+            </div>
+          ) : correctionRequests.filter(
+              (r) => correctionFilter === 'ALL' || r.status === correctionFilter
+            ).length === 0 ? (
+            <div className="p-10 rounded-3xl bg-slate-50 border border-red-100 text-center space-y-2">
+              <CheckCircle2 className="w-8 h-8 text-emerald-600 mx-auto" />
+              <p className="text-sm font-mono text-slate-950 font-bold">
+                No correction requests found for filter: {correctionFilter}
+              </p>
+              <p className="text-xs text-slate-600">
+                When mentors request an attendance change for past locked sessions, they will appear here for administrator review.
+              </p>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              {correctionRequests
+                .filter(
+                  (r) => correctionFilter === 'ALL' || r.status === correctionFilter
+                )
+                .map((req) => {
+                  const studentName = req.student?.user?.name || 'Student';
+                  const studentTsId = req.student?.tsId || 'N/A';
+                  const mentorName = req.mentor?.user?.name || req.mentor?.title || 'Mentor';
+                  const batchCode = req.batch?.batchCode || 'Cohort';
+                  const sessionTitle = req.session?.title || 'Session';
+                  const sessionDate = req.session?.date
+                    ? new Date(req.session.date).toLocaleDateString('en-US', {
+                        weekday: 'short',
+                        month: 'short',
+                        day: 'numeric',
+                        year: 'numeric',
+                      })
+                    : 'N/A';
+                  const requestDate = new Date(req.createdAt).toLocaleString();
+                  const isProcessing = processingRequestId === req.id;
+
+                  return (
+                    <div
+                      key={req.id}
+                      className="p-5 rounded-3xl bg-white border border-red-200/80 hover:border-amber-400 transition-all space-y-4 shadow-[0_4px_20px_rgba(220,38,38,0.03)]"
+                    >
+                      {/* Top Bar */}
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-red-100 pb-3">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span
+                            className={`px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase ${
+                              req.status === 'PENDING'
+                                ? 'bg-amber-50 text-amber-700 border border-amber-300 animate-pulse'
+                                : req.status === 'APPROVED'
+                                ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                                : 'bg-red-50 text-red-700 border border-red-200'
+                            }`}
+                          >
+                            {req.status}
+                          </span>
+                          <Badge className="bg-red-50 text-red-700 border border-red-200 font-mono text-[10px]">
+                            {batchCode}
+                          </Badge>
+                          <span className="text-xs text-slate-500 font-mono">
+                            Requested on: {requestDate}
+                          </span>
+                        </div>
+
+                        <div className="text-xs text-slate-600 font-mono">
+                          Mentor: <span className="text-slate-950 font-bold">{mentorName}</span>
+                        </div>
+                      </div>
+
+                      {/* Details Grid */}
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-mono">
+                        {/* Student Info */}
+                        <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200 space-y-1">
+                          <span className="text-slate-500 text-[10px] uppercase font-bold block">
+                            Target Student
+                          </span>
+                          <p className="text-sm font-bold text-slate-950 font-sans">{studentName}</p>
+                          <p className="text-xs text-red-600 font-bold">{studentTsId}</p>
+                        </div>
+
+                        {/* Session Info */}
+                        <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200 space-y-1">
+                          <span className="text-slate-500 text-[10px] uppercase font-bold block">
+                            Lecture Session
+                          </span>
+                          <p className="text-sm font-bold text-slate-950 font-sans truncate">
+                            {sessionTitle}
+                          </p>
+                          <p className="text-xs text-slate-600">{sessionDate}</p>
+                        </div>
+
+                        {/* Status Change */}
+                        <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200 space-y-1">
+                          <span className="text-slate-500 text-[10px] uppercase font-bold block">
+                            Attendance Change
+                          </span>
+                          <div className="flex items-center gap-2 pt-0.5">
+                            <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-200 text-slate-800">
+                              {req.currentStatus}
+                            </span>
+                            <span className="text-slate-400">→</span>
+                            <span
+                              className={`px-2 py-0.5 rounded text-[10px] font-bold ${
+                                req.requestedStatus === 'PRESENT'
+                                  ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                                  : req.requestedStatus === 'ABSENT'
+                                  ? 'bg-red-50 text-red-700 border border-red-200'
+                                  : req.requestedStatus === 'LATE'
+                                  ? 'bg-amber-50 text-amber-700 border border-amber-200'
+                                  : 'bg-purple-50 text-purple-700 border border-purple-200'
+                              }`}
+                            >
+                              {req.requestedStatus}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Mentor's Reason */}
+                      <div className="p-3.5 rounded-2xl bg-amber-50/60 border border-amber-200 space-y-1">
+                        <span className="text-[10px] font-mono font-bold text-amber-800 uppercase flex items-center gap-1.5">
+                          <MessageSquare className="w-3 h-3 text-amber-600" />
+                          Mentor Justification & Notes
+                        </span>
+                        <p className="text-xs text-slate-800 font-sans leading-relaxed">
+                          &quot;{req.reason}&quot;
+                        </p>
+                      </div>
+
+                      {/* Administrative Review Section */}
+                      {req.status === 'PENDING' ? (
+                        <div className="pt-2 border-t border-red-100 space-y-3">
+                          <div>
+                            <label className="block text-[10px] font-mono text-slate-600 mb-1 font-bold">
+                              ADMIN AUDIT NOTES / REASON FOR DECISION:
+                            </label>
+                            <input
+                              type="text"
+                              value={reviewNotes[req.id] || ''}
+                              onChange={(e) =>
+                                setReviewNotes({ ...reviewNotes, [req.id]: e.target.value })
+                              }
+                              placeholder="e.g., Verified mentor medical justification receipt. Approved change."
+                              className="w-full bg-slate-50 border border-red-200 rounded-2xl px-4 py-2.5 text-xs text-slate-950 placeholder:text-slate-400 focus:outline-none focus:border-amber-500 focus:bg-white font-sans"
+                            />
+                          </div>
+
+                          <div className="flex items-center gap-3">
+                            <button
+                              disabled={isProcessing}
+                              onClick={() => handleAdminReview(req.id, 'APPROVED')}
+                              className="px-5 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-mono font-bold text-xs shadow-md transition-all cursor-pointer flex items-center gap-1.5 disabled:opacity-50"
+                            >
+                              <CheckCircle2 className="w-4 h-4" />
+                              <span>{isProcessing ? 'Processing...' : 'Approve Correction'}</span>
+                            </button>
+
+                            <button
+                              disabled={isProcessing}
+                              onClick={() => handleAdminReview(req.id, 'REJECTED')}
+                              className="px-5 py-2.5 rounded-full bg-red-600 hover:bg-red-700 text-white font-mono font-bold text-xs shadow-md transition-all cursor-pointer flex items-center gap-1.5 disabled:opacity-50"
+                            >
+                              <XCircle className="w-4 h-4" />
+                              <span>{isProcessing ? 'Processing...' : 'Reject Request'}</span>
+                            </button>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="pt-2 border-t border-red-100 text-xs font-mono flex items-center justify-between text-slate-600">
+                          <div>
+                            Reviewed on:{' '}
+                            <span className="text-slate-950 font-bold">
+                              {req.reviewedAt ? new Date(req.reviewedAt).toLocaleString() : 'N/A'}
+                            </span>
+                            {req.adminNotes && (
+                              <span className="ml-3 italic text-slate-700 font-sans">
+                                Note: &quot;{req.adminNotes}&quot;
+                              </span>
+                            )}
+                          </div>
+                          <Badge
+                            className={`font-mono text-[10px] ${
+                              req.status === 'APPROVED'
+                                ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                                : 'bg-red-50 text-red-700 border-red-200'
+                            }`}
+                          >
+                            {req.status}
+                          </Badge>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* CONDUCT NEW BATCH DIALOG (Task 2 & Task 3) */}
+      <Dialog open={isCreateOpen} onOpenChange={setIsCreateOpen}>
+        <DialogContent className="max-w-lg bg-white border border-slate-200 text-slate-900 shadow-xl rounded-2xl p-6 text-xs max-h-[90vh] overflow-y-auto">
+          <DialogHeader className="border-b border-slate-100 pb-3">
+            <DialogTitle className="text-base font-bold text-slate-900 flex items-center gap-2">
+              <Plus className="w-4 h-4 text-violet-600" />
+              Conduct New Academic Batch / Cohort
+            </DialogTitle>
+          </DialogHeader>
+
+          {feedbackMsg && (
+            <div className="p-3 rounded-xl bg-violet-50 border border-violet-200 text-violet-800 text-xs">
+              {feedbackMsg}
+            </div>
+          )}
+
+          <form onSubmit={handleCreateBatch} className="space-y-3.5 pt-2">
+            <div>
+              <label className="block text-slate-700 font-semibold mb-1">BATCH CODE / ID *</label>
+              <input
+                name="batchCode"
+                placeholder="e.g. TSE-COHORT-2026-GAMMA"
+                required
+                className="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-xl px-3.5 py-2 text-xs uppercase focus:outline-none focus:border-violet-600 font-mono"
+              />
+            </div>
+
+            <div>
+              <label className="block text-slate-700 font-semibold mb-1">COHORT TITLE *</label>
+              <input
+                name="title"
+                placeholder="e.g. Advanced Bug Bounty & Web Application Security"
+                required
+                className="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-xl px-3.5 py-2 text-xs focus:outline-none focus:border-violet-600"
+              />
+            </div>
+
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <label className="block text-slate-700 font-semibold mb-1">COURSE CURRICULUM *</label>
+                <select
+                  name="courseId"
+                  required
+                  defaultValue={courses[0]?.id || ''}
+                  className="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-violet-600"
+                >
+                  {courses.map((c) => (
+                    <option key={c.id} value={c.id}>
+                      {c.title}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-slate-700 font-semibold mb-1">FACULTY MENTOR</label>
+                <select
+                  name="mentorId"
+                  defaultValue=""
+                  className="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-violet-600"
+                >
+                  <option value="">-- Assign Later --</option>
+                  {mentors.map((m) => (
+                    <option key={m.id} value={m.id}>
+                      {m.user?.name || m.title}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            {/* Interactive Calendar instead of raw date input (Task 2) */}
+            <BatchCalendarDatePicker
+              value={createBatchDate}
+              onChange={setCreateBatchDate}
+              name="startDate"
+              label="START DATE (CALENDAR SELECTOR) *"
+            />
+
+            {/* DURATION-BASED FORMAT (45 DAYS, 3 MONTHS, 6 MONTHS) */}
+            <div className="space-y-1.5 p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+              <div className="flex items-center justify-between">
+                <label className="text-slate-800 font-semibold text-xs flex items-center gap-1.5">
+                  <Calendar className="w-3.5 h-3.5 text-violet-600" />
+                  BATCH DURATION FORMAT *
+                </label>
+                {computedEndDate && (
+                  <span className="text-[11px] font-mono font-semibold text-violet-700">
+                    Concludes: {new Date(computedEndDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                  </span>
+                )}
+              </div>
+              <input type="hidden" name="durationPreset" value={durationPreset} />
+              <input type="hidden" name="endDate" value={computedEndDate} />
+
+              <div className="grid grid-cols-4 gap-2 pt-1">
+                {(['45_DAYS', '3_MONTHS', '6_MONTHS', 'CUSTOM'] as const).map((preset) => {
+                  const label =
+                    preset === '45_DAYS'
+                      ? '45 Days'
+                      : preset === '3_MONTHS'
+                      ? '3 Months'
+                      : preset === '6_MONTHS'
+                      ? '6 Months'
+                      : 'Custom';
+                  const isSelected = durationPreset === preset;
+                  return (
+                    <button
+                      type="button"
+                      key={preset}
+                      onClick={() => setDurationPreset(preset)}
+                      className={`py-2 px-2.5 rounded-xl text-xs font-semibold border transition-all cursor-pointer text-center ${
+                        isSelected
+                          ? 'bg-violet-600 text-white border-violet-600 shadow-xs'
+                          : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100 hover:border-slate-300'
+                      }`}
+                    >
+                      {label}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* FACULTY CLASSIFICATION: TEACHING LECTURER vs NON-TEACHING FACULTY */}
+            <div className="space-y-2 p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+              <label className="text-slate-800 font-semibold text-xs flex items-center gap-1.5">
+                <ShieldCheck className="w-3.5 h-3.5 text-violet-600" />
+                FACULTY ROLE CLASSIFICATION *
+              </label>
+              <input type="hidden" name="facultyRole" value={facultyRole} />
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-0.5">
+                <div
+                  onClick={() => setFacultyRole('TEACHER_LECTURER')}
+                  className={`p-3 rounded-xl border cursor-pointer transition-all ${
+                    facultyRole === 'TEACHER_LECTURER'
+                      ? 'bg-violet-50/80 border-violet-400 ring-1 ring-violet-400 shadow-xs'
+                      : 'bg-white border-slate-200 hover:bg-slate-50'
+                  }`}
+                >
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="font-semibold text-slate-900 text-xs">Teaching Lecturer</span>
+                    <span className={`w-3.5 h-3.5 rounded-full border flex items-center justify-center ${
+                      facultyRole === 'TEACHER_LECTURER' ? 'border-violet-600 bg-violet-600' : 'border-slate-300'
+                    }`}>
+                      {facultyRole === 'TEACHER_LECTURER' && <span className="w-1.5 h-1.5 rounded-full bg-white" />}
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-slate-500 leading-tight">
+                    Conducts live lectures &amp; practical labs. Builds student timetable.
+                  </p>
+                </div>
+
+                <div
+                  onClick={() => setFacultyRole('FACULTY_NON_TEACHING')}
+                  className={`p-3 rounded-xl border cursor-pointer transition-all ${
+                    facultyRole === 'FACULTY_NON_TEACHING'
+                      ? 'bg-violet-50/80 border-violet-400 ring-1 ring-violet-400 shadow-xs'
+                      : 'bg-white border-slate-200 hover:bg-slate-50'
+                  }`}
+                >
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="font-semibold text-slate-900 text-xs">Faculty Member Only</span>
+                    <span className={`w-3.5 h-3.5 rounded-full border flex items-center justify-center ${
+                      facultyRole === 'FACULTY_NON_TEACHING' ? 'border-violet-600 bg-violet-600' : 'border-slate-300'
+                    }`}>
+                      {facultyRole === 'FACULTY_NON_TEACHING' && <span className="w-1.5 h-1.5 rounded-full bg-white" />}
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-slate-500 leading-tight">
+                    Academic Advisor / Student Coordinator. Not involved in lecturing (No timetable scheduled).
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* SCHEDULE & TIMINGS SECTION */}
+            {facultyRole === 'TEACHER_LECTURER' ? (
+              <div className="space-y-3 p-3.5 rounded-xl bg-violet-50/40 border border-violet-200/80">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-semibold text-violet-900 flex items-center gap-1.5">
+                    <Clock className="w-3.5 h-3.5 text-violet-600" />
+                    SCHEDULE &amp; TIMINGS — BUILD MENTOR TIMETABLE
+                  </span>
+                  <Badge className="bg-violet-100 text-violet-800 border border-violet-200 text-[10px] font-mono">
+                    IST (UTC+05:30)
+                  </Badge>
+                </div>
+
+                {/* Days of Week Multi-Select */}
+                <div>
+                  <label className="block text-[11px] font-semibold text-slate-700 mb-1.5">
+                    SELECT LECTURE DAYS (WEEKLY)
+                  </label>
+                  <input type="hidden" name="daysOfWeek" value={selectedDays.join(',')} />
+                  <div className="flex flex-wrap gap-1.5">
+                    {daysList.map((day) => {
+                      const isDaySelected = selectedDays.includes(day);
+                      return (
+                        <button
+                          type="button"
+                          key={day}
+                          onClick={() => toggleDaySelection(day)}
+                          className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all cursor-pointer ${
+                            isDaySelected
+                              ? 'bg-violet-600 text-white border-violet-600 shadow-xs'
+                              : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'
+                          }`}
+                        >
+                          {day}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Batch Class Timing */}
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-[11px] font-semibold text-slate-700 mb-1">
+                      CLASS START TIME *
+                    </label>
+                    <input
+                      type="time"
+                      name="startTime"
+                      value={batchStartTime}
+                      onChange={(e) => setBatchStartTime(e.target.value)}
+                      required
+                      className="w-full bg-white border border-slate-200 text-slate-900 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-violet-600"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-semibold text-slate-700 mb-1">
+                      CLASS END TIME *
+                    </label>
+                    <input
+                      type="time"
+                      name="endTime"
+                      value={batchEndTime}
+                      onChange={(e) => setBatchEndTime(e.target.value)}
+                      required
+                      className="w-full bg-white border border-slate-200 text-slate-900 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-violet-600"
+                    />
+                  </div>
+                </div>
+
+                {/* Generated Schedule Preview */}
+                <div className="p-2.5 rounded-lg bg-white border border-violet-200 text-[11px] font-mono text-slate-800 flex items-center justify-between">
+                  <span className="text-slate-500 font-sans">Schedule String:</span>
+                  <strong className="text-violet-700">
+                    {selectedDays.join(' / ')} • {batchStartTime} - {batchEndTime} IST
+                  </strong>
+                  <input
+                    type="hidden"
+                    name="schedule"
+                    value={`${selectedDays.join(' / ')} • ${batchStartTime} - ${batchEndTime} IST`}
+                  />
+                </div>
+
+                {/* Auto-generate Timetable Checkbox */}
+                <div className="flex items-center gap-2 pt-1">
+                  <input
+                    type="checkbox"
+                    id="autoGenTimetable"
+                    name="autoGenerateTimetable"
+                    checked={autoGenerateTimetable}
+                    onChange={(e) => setAutoGenerateTimetable(e.target.checked)}
+                    className="w-4 h-4 rounded text-violet-600 accent-violet-600 cursor-pointer"
+                  />
+                  <label htmlFor="autoGenTimetable" className="text-xs font-semibold text-slate-800 cursor-pointer">
+                    Automatically build &amp; publish mentor timetable for enrolled students
+                  </label>
+                </div>
+
+                {/* 5-Day Attendance Policy Activation */}
+                <div className="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <div>
+                      <span className="text-xs font-bold text-emerald-900 block">
+                        5-Day Attendance Window Active (120 Hours)
+                      </span>
+                      <span className="text-[11px] text-emerald-700">
+                        Mentor can mark and update student attendance for up to 5 days post-session.
+                      </span>
+                    </div>
+                  </div>
+                  <input type="hidden" name="attendanceLockHours" value={attendanceLockHours} />
+                  <span className="px-2 py-0.5 rounded-full bg-emerald-200 text-emerald-900 text-[10px] font-mono font-bold">
+                    5 DAYS
+                  </span>
+                </div>
+              </div>
+            ) : (
+              <div className="p-3.5 rounded-xl bg-amber-50 border border-amber-200 space-y-1">
+                <div className="flex items-center gap-2 text-amber-900 font-semibold text-xs">
+                  <AlertCircle className="w-4 h-4 text-amber-600 shrink-0" />
+                  <span>Academic Advisor Aligned (Non-Teaching)</span>
+                </div>
+                <p className="text-[11px] text-amber-700 leading-normal">
+                  Mentor is aligned with the batch for mentorship and guidance only. No classroom lecture sessions will be generated in their timetable.
+                </p>
+                <input type="hidden" name="schedule" value="Academic Advisory & Mentorship Cohort" />
+                <input type="hidden" name="autoGenerateTimetable" value="false" />
+              </div>
+            )}
+
+            <div>
+              <label className="block text-slate-700 font-semibold mb-1">MAX CAPACITY</label>
+              <input
+                type="number"
+                name="maxCapacity"
+                defaultValue="30"
+                className="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-xl px-3.5 py-2 text-xs focus:outline-none focus:border-violet-600"
+              />
+            </div>
+
+            <div className="flex justify-end gap-2 pt-2 border-t border-slate-100">
+              <button
+                type="button"
+                onClick={() => setIsCreateOpen(false)}
+                className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-medium cursor-pointer"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                disabled={loading}
+                className="px-4 py-2 rounded-xl bg-violet-600 hover:bg-violet-700 text-white font-medium text-xs cursor-pointer shadow-sm disabled:opacity-50"
+              >
+                {loading ? 'Creating...' : 'Launch Batch & Publish Timetable'}
+              </button>
+            </div>
+          </form>
+        </DialogContent>
+      </Dialog>
+
+      {/* ✏️ UPDATE BATCH DIALOG (Task 2) */}
+      {editingBatch && (
+        <Dialog open={!!editingBatch} onOpenChange={(open) => !open && setEditingBatch(null)}>
+          <DialogContent className="max-w-lg bg-white border border-slate-200 text-slate-900 shadow-xl rounded-2xl p-6 text-xs max-h-[90vh] overflow-y-auto">
+            <DialogHeader className="border-b border-slate-100 pb-3">
+              <DialogTitle className="text-base font-bold text-slate-900 flex items-center gap-2">
+                <Edit3 className="w-4 h-4 text-violet-600" />
+                Update Academic Batch: {editingBatch.batchCode}
+              </DialogTitle>
+            </DialogHeader>
+
+            <form onSubmit={handleUpdateBatch} className="space-y-3.5 pt-2">
+              <div>
+                <label className="block text-slate-700 font-semibold mb-1">BATCH CODE / ID *</label>
+                <input
+                  name="batchCode"
+                  defaultValue={editingBatch.batchCode}
+                  required
+                  className="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-xl px-3.5 py-2 text-xs uppercase focus:outline-none focus:border-violet-600 font-mono"
+                />
+              </div>
+
+              <div>
+                <label className="block text-slate-700 font-semibold mb-1">COHORT TITLE *</label>
+                <input
+                  name="title"
+                  defaultValue={editingBatch.title}
+                  required
+                  className="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-xl px-3.5 py-2 text-xs focus:outline-none focus:border-violet-600"
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-slate-700 font-semibold mb-1">COURSE CURRICULUM *</label>
+                  <select
+                    name="courseId"
+                    required
+                    defaultValue={editingBatch.courseId || courses[0]?.id || ''}
+                    className="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-violet-600"
+                  >
+                    {courses.map((c) => (
+                      <option key={c.id} value={c.id}>
+                        {c.title}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-slate-700 font-semibold mb-1">FACULTY MENTOR</label>
+                  <select
+                    name="mentorId"
+                    defaultValue={editingBatch.mentorId || ''}
+                    className="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-violet-600"
+                  >
+                    <option value="">-- Unassigned --</option>
+                    {mentors.map((m) => (
+                      <option key={m.id} value={m.id}>
+                        {m.user?.name || m.title}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              {/* Interactive Calendar for Edit Start Date */}
+              <BatchCalendarDatePicker
+                value={editBatchDate}
+                onChange={setEditBatchDate}
+                name="startDate"
+                label="START DATE (CALENDAR SELECTOR) *"
+              />
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-slate-700 font-semibold mb-1">MAX CAPACITY</label>
+                  <input
+                    type="number"
+                    name="maxCapacity"
+                    defaultValue={editingBatch.maxCapacity || 30}
+                    className="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-xl px-3.5 py-2 text-xs focus:outline-none focus:border-violet-600"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-slate-700 font-semibold mb-1">STATUS</label>
+                  <select
+                    name="status"
+                    defaultValue={editingBatch.status || 'ACTIVE'}
+                    className="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-violet-600"
+                  >
+                    <option value="ACTIVE">Active</option>
+                    <option value="UPCOMING">Upcoming</option>
+                    <option value="PAUSED">Paused</option>
+                    <option value="COMPLETED">Completed</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-slate-700 font-semibold mb-1">SCHEDULE &amp; TIMINGS</label>
+                <input
+                  name="schedule"
+                  defaultValue={editingBatch.schedule || 'Mon / Wed / Fri • 7:00 PM - 9:00 PM IST'}
+                  className="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-xl px-3.5 py-2 text-xs focus:outline-none focus:border-violet-600"
+                />
+              </div>
+
+              <div className="flex justify-end gap-2 pt-2 border-t border-slate-100">
+                <button
+                  type="button"
+                  onClick={() => setEditingBatch(null)}
+                  className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-medium cursor-pointer"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="px-4 py-2 rounded-xl bg-violet-600 hover:bg-violet-700 text-white font-medium text-xs cursor-pointer shadow-sm disabled:opacity-50"
+                >
+                  {loading ? 'Saving...' : 'Save Changes'}
+                </button>
+              </div>
+            </form>
+          </DialogContent>
+        </Dialog>
+      )}
+
+      {/* 👥 BATCH STUDENT ROSTER & FAST ENROLLMENT BY TS-ID */}
+      {selectedBatchForStudents && (
+        <Dialog
+          open={!!selectedBatchForStudents}
+          onOpenChange={(open) => !open && setSelectedBatchForStudents(null)}
+        >
+          <DialogContent className="max-w-2xl bg-white border border-slate-200 text-slate-900 shadow-2xl rounded-2xl p-6 max-h-[88vh] flex flex-col font-sans">
+            <DialogHeader className="border-b border-slate-100 pb-3">
+              <div className="flex items-center justify-between">
+                <div>
+                  <Badge className="bg-violet-50 text-violet-700 border border-violet-200 font-mono text-[10px] mb-1 font-semibold">
+                    {selectedBatchForStudents.batchCode}
+                  </Badge>
+                  <DialogTitle className="text-lg font-bold font-mono text-slate-900">
+                    Batch Student Roster &amp; TS-ID Enrollment
+                  </DialogTitle>
+                </div>
+                <Badge variant="outline" className="font-mono text-xs text-violet-700 border-violet-200 bg-violet-50">
+                  {selectedBatchForStudents.students?.length || 0} Students Enrolled
+                </Badge>
+              </div>
+            </DialogHeader>
+
+            {feedbackMsg && (
+              <div className="p-3 rounded-xl bg-violet-50 border border-violet-200 text-violet-700 text-xs font-mono">
+                {feedbackMsg}
+              </div>
+            )}
+
+            <div className="py-3 space-y-4 flex-1 overflow-hidden flex flex-col text-xs font-mono">
+              <form onSubmit={handleFastEnrollByTsId} className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+                <span className="font-semibold text-slate-900 uppercase text-[11px] flex items-center gap-1.5">
+                  <UserPlus className="w-3.5 h-3.5 text-violet-600" />
+                  Fast Enroll Student by Student ID (TS-ID / Email)
+                </span>
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    placeholder="Enter Student TS-ID (e.g. TS-C126, TS-A103) or Email..."
+                    value={tsIdInput}
+                    onChange={(e) => setTsIdInput(e.target.value)}
+                    className="flex-1 bg-white border border-slate-200 text-slate-900 px-3 py-2 rounded-xl text-xs placeholder:text-slate-400 focus:outline-none focus:border-violet-600"
+                  />
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="px-4 py-2 rounded-xl bg-violet-600 hover:bg-violet-700 text-white font-semibold text-xs cursor-pointer shadow-xs whitespace-nowrap"
+                  >
+                    Enroll Student
+                  </button>
+                </div>
+              </form>
+
+              {/* Student Filter Tabs */}
+              <div className="flex items-center gap-1.5 p-1 rounded-xl bg-slate-100 border border-slate-200 text-xs">
+                <button
+                  type="button"
+                  onClick={() => setStudentFilterTab('ALL')}
+                  className={`flex-1 py-1.5 px-2.5 rounded-lg font-medium transition-all cursor-pointer ${
+                    studentFilterTab === 'ALL'
+                      ? 'bg-white text-slate-900 shadow-xs font-semibold'
+                      : 'text-slate-600 hover:text-slate-900'
+                  }`}
+                >
+                  All ({allStudents.length})
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setStudentFilterTab('UNASSIGNED')}
+                  className={`flex-1 py-1.5 px-2.5 rounded-lg font-medium transition-all cursor-pointer ${
+                    studentFilterTab === 'UNASSIGNED'
+                      ? 'bg-white text-amber-700 shadow-xs font-semibold'
+                      : 'text-slate-600 hover:text-slate-900'
+                  }`}
+                >
+                  Unassigned ({allStudents.filter((s) => !s.batchId).length})
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setStudentFilterTab('IN_BATCH')}
+                  className={`flex-1 py-1.5 px-2.5 rounded-lg font-medium transition-all cursor-pointer ${
+                    studentFilterTab === 'IN_BATCH'
+                      ? 'bg-white text-violet-700 shadow-xs font-semibold'
+                      : 'text-slate-600 hover:text-slate-900'
+                  }`}
+                >
+                  In This Batch ({allStudents.filter((s) => s.batchId === selectedBatchForStudents.id).length})
+                </button>
+              </div>
+
+              {/* Search & Bulk Assign Bar */}
+              <div className="space-y-2">
+                <div className="relative">
+                  <Search className="w-4 h-4 absolute left-3 top-2.5 text-slate-400" />
+                  <input
+                    placeholder="Filter students by Name, Email, or TS-ID..."
+                    value={searchStudent}
+                    onChange={(e) => setSearchStudent(e.target.value)}
+                    className="w-full bg-slate-50 border border-slate-200 text-slate-900 pl-9 pr-3 py-2 rounded-xl text-xs focus:outline-none focus:border-violet-600 focus:bg-white"
+                  />
+                </div>
+
+                {/* Bulk Assign Controls */}
+                {filteredStudents.some((s) => s.batchId !== selectedBatchForStudents.id) && (
+                  <div className="flex items-center justify-between p-2 rounded-xl bg-violet-50/60 border border-violet-200 text-xs">
+                    <label className="flex items-center gap-2 cursor-pointer text-slate-700 font-medium">
+                      <input
+                        type="checkbox"
+                        checked={
+                          selectedStudentProfileIds.length > 0 &&
+                          filteredStudents
+                            .filter((s) => s.batchId !== selectedBatchForStudents.id)
+                            .every((s) => selectedStudentProfileIds.includes(s.id))
+                        }
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            const unassignedIds = filteredStudents
+                              .filter((s) => s.batchId !== selectedBatchForStudents.id)
+                              .map((s) => s.id);
+                            setSelectedStudentProfileIds(unassignedIds);
+                          } else {
+                            setSelectedStudentProfileIds([]);
+                          }
+                        }}
+                        className="w-3.5 h-3.5 text-violet-600 rounded border-slate-300 focus:ring-violet-500"
+                      />
+                      <span>Select all unassigned in view ({selectedStudentProfileIds.length} selected)</span>
+                    </label>
+
+                    <button
+                      type="button"
+                      disabled={loading || selectedStudentProfileIds.length === 0}
+                      onClick={handleBulkAssignStudents}
+                      className="px-3 py-1 rounded-lg bg-violet-600 hover:bg-violet-700 text-white font-semibold text-xs shadow-xs disabled:opacity-40 disabled:cursor-not-allowed transition-all cursor-pointer flex items-center gap-1.5"
+                    >
+                      <UserCheck className="w-3.5 h-3.5" />
+                      <span>Assign Selected ({selectedStudentProfileIds.length})</span>
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              {/* Student Roster List */}
+              <div className="flex-1 overflow-y-auto border border-slate-200 rounded-xl divide-y divide-slate-100 bg-white min-h-[220px]">
+                {filteredStudents.length === 0 ? (
+                  <div className="p-8 text-center text-slate-400">
+                    No students match current filter criteria.
+                  </div>
+                ) : (
+                  filteredStudents.map((student) => {
+                    const isAssigned = student.batchId === selectedBatchForStudents.id;
+                    const isOtherBatch = student.batchId && student.batchId !== selectedBatchForStudents.id;
+                    const isSelected = selectedStudentProfileIds.includes(student.id);
+                    const tsId = student.user?.tsIdentity?.tsId || 'TS-STUDENT';
+
+                    return (
+                      <div
+                        key={student.id}
+                        className={`p-3 flex items-center justify-between gap-3 transition-colors ${
+                          isSelected ? 'bg-violet-50/70' : 'hover:bg-slate-50'
+                        }`}
+                      >
+                        <div className="flex items-center gap-3">
+                          {!isAssigned && (
+                            <input
+                              type="checkbox"
+                              checked={isSelected}
+                              onChange={() => toggleSelectStudent(student.id)}
+                              className="w-4 h-4 text-violet-600 rounded border-slate-300 focus:ring-violet-500 cursor-pointer"
+                            />
+                          )}
+
+                          <div>
+                            <div className="flex items-center gap-2">
+                              <span className="font-semibold text-xs text-slate-900">
+                                {student.user?.name || 'Student'}
+                              </span>
+                              <span className="font-mono text-[10px] text-violet-700 bg-violet-50 px-2 py-0.5 rounded border border-violet-200 font-semibold">
+                                {tsId}
+                              </span>
+                              {isAssigned && (
+                                <span className="px-1.5 py-0.5 rounded text-[9px] bg-emerald-50 text-emerald-700 border border-emerald-200 font-semibold">
+                                  In This Batch
+                                </span>
+                              )}
+                              {isOtherBatch && (
+                                <span className="px-1.5 py-0.5 rounded text-[9px] bg-slate-100 text-slate-600 border border-slate-200">
+                                  In Other Batch
+                                </span>
+                              )}
+                              {!student.batchId && (
+                                <span className="px-1.5 py-0.5 rounded text-[9px] bg-amber-50 text-amber-700 border border-amber-200 font-semibold">
+                                  Unassigned
+                                </span>
+                              )}
+                            </div>
+                            <span className="text-[11px] text-slate-500 block font-sans">
+                              {student.user?.email} • Track: {student.track || 'Cyber Security'}
+                            </span>
+                          </div>
+                        </div>
+
+                        {isAssigned ? (
+                          <button
+                            disabled={loading}
+                            onClick={() => handleAssignStudent(student.id, null)}
+                            className="px-3 py-1.5 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 text-xs font-mono font-semibold cursor-pointer transition-all active:scale-95"
+                          >
+                            Remove from Batch
+                          </button>
+                        ) : (
+                          <button
+                            disabled={loading}
+                            onClick={() =>
+                              handleAssignStudent(student.id, selectedBatchForStudents.id)
+                            }
+                            className="px-3 py-1.5 rounded-lg bg-violet-50 hover:bg-violet-100 text-violet-700 border border-violet-200 text-xs font-mono font-semibold cursor-pointer transition-all active:scale-95 flex items-center gap-1"
+                          >
+                            <Plus className="w-3 h-3 text-violet-600" />
+                            <span>{isOtherBatch ? 'Transfer' : 'Assign'}</span>
+                          </button>
+                        )}
+                      </div>
+                    );
+                  })
+                )}
+              </div>
+            </div>
+
+            <div className="flex justify-end pt-3 border-t border-slate-100">
+              <button
+                onClick={() => setSelectedBatchForStudents(null)}
+                className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-mono text-xs cursor-pointer font-semibold"
+              >
+                Done
+              </button>
+            </div>
+          </DialogContent>
+        </Dialog>
+      )}
+
+      {/* 📅 BATCH SESSIONS & LECTURE ATTENDANCE LEDGER */}
+      {selectedBatchForSessions && (
+        <Dialog
+          open={!!selectedBatchForSessions}
+          onOpenChange={(open) => !open && setSelectedBatchForSessions(null)}
+        >
+          <DialogContent className="max-w-2xl bg-white border border-slate-200 text-slate-900 shadow-2xl rounded-2xl p-6 max-h-[88vh] flex flex-col font-sans">
+            <DialogHeader className="border-b border-slate-100 pb-3">
+              <div className="flex items-center justify-between">
+                <div>
+                  <Badge className="bg-violet-50 text-violet-700 border border-violet-200 font-mono text-[10px] mb-1 font-semibold">
+                    {selectedBatchForSessions.batchCode}
+                  </Badge>
+                  <DialogTitle className="text-lg font-bold font-mono text-slate-900">
+                    Conducted Lectures &amp; Attendance Ledger
+                  </DialogTitle>
+                </div>
+                <Badge variant="outline" className="font-mono text-xs text-violet-700 border-violet-200 bg-violet-50">
+                  {selectedBatchForSessions.sessions?.length || 0} Lectures Conducted
+                </Badge>
+              </div>
+            </DialogHeader>
+
+            {feedbackMsg && (
+              <div className="p-3 rounded-xl bg-violet-50 border border-violet-200 text-violet-700 text-xs font-mono">
+                {feedbackMsg}
+              </div>
+            )}
+
+            <div className="py-3 space-y-4 flex-1 overflow-y-auto text-xs font-mono">
+              <form onSubmit={handleCreateSession} className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-3">
+                <span className="font-semibold text-slate-900 uppercase text-[11px] flex items-center gap-1.5">
+                  <Calendar className="w-3.5 h-3.5 text-violet-600" />
+                  Schedule / Conduct Lecture Session
+                </span>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  <input
+                    type="text"
+                    placeholder="Lecture Title (e.g. Session 3: Packet Analysis)..."
+                    value={newSessionTitle}
+                    onChange={(e) => setNewSessionTitle(e.target.value)}
+                    required
+                    className="bg-white border border-slate-200 text-slate-900 px-3 py-2 rounded-xl text-xs focus:outline-none focus:border-violet-600"
+                  />
+                  <input
+                    type="datetime-local"
+                    value={newSessionDate}
+                    onChange={(e) => setNewSessionDate(e.target.value)}
+                    required
+                    className="bg-white border border-slate-200 text-slate-900 px-3 py-2 rounded-xl text-xs focus:outline-none focus:border-violet-600"
+                  />
+                </div>
+
+                <input
+                  type="text"
+                  placeholder="Session Agenda / Target Labs..."
+                  value={newSessionAgenda}
+                  onChange={(e) => setNewSessionAgenda(e.target.value)}
+                  className="w-full bg-white border border-slate-200 text-slate-900 px-3 py-2 rounded-xl text-xs focus:outline-none focus:border-violet-600"
+                />
+
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="px-4 py-2 rounded-xl bg-violet-600 hover:bg-violet-700 text-white font-semibold text-xs cursor-pointer shadow-xs"
+                >
+                  Schedule Session
+                </button>
+              </form>
+
+              <div className="space-y-2">
+                <span className="font-semibold text-slate-800 block uppercase text-[11px]">
+                  Conducted Lecture Sessions ({selectedBatchForSessions.sessions?.length || 0})
+                </span>
+
+                {(!selectedBatchForSessions.sessions || selectedBatchForSessions.sessions.length === 0) ? (
+                  <div className="p-6 text-center text-slate-500 font-sans border border-slate-200 rounded-xl bg-slate-50">
+                    No lecture sessions recorded for this batch yet.
+                  </div>
+                ) : (
+                  selectedBatchForSessions.sessions.map((sess: any) => (
+                    <div
+                      key={sess.id}
+                      className="p-3.5 rounded-xl bg-white border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs"
+                    >
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <Badge className="bg-violet-50 text-violet-700 border border-violet-200 text-[9px] font-semibold">
+                            Session {sess.sessionNumber}
+                          </Badge>
+                          <span className="font-semibold text-slate-900 text-xs">{sess.title}</span>
+                        </div>
+                        <span className="text-[11px] text-slate-500 block mt-1">
+                          Date: {new Date(sess.sessionDate).toLocaleString()} • Duration: {sess.durationMins}m
+                        </span>
+                        {sess.agenda && (
+                          <span className="text-[10px] text-violet-700 block font-sans mt-0.5">
+                            Agenda: {sess.agenda}
+                          </span>
+                        )}
+                      </div>
+
+                      <button
+                        onClick={() => openAttendanceModal(sess, selectedBatchForSessions)}
+                        className="px-4 py-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 font-mono text-xs font-semibold flex items-center gap-1.5 cursor-pointer transition-all active:scale-95 whitespace-nowrap"
+                      >
+                        <CheckSquare className="w-3.5 h-3.5 text-emerald-600" />
+                        <span>Mark / Review Attendance ({sess.attendanceRecords?.length || 0})</span>
+                      </button>
+                    </div>
+                  ))
+                )}
+              </div>
+            </div>
+
+            <div className="flex justify-end pt-3 border-t border-slate-100">
+              <button
+                onClick={() => setSelectedBatchForSessions(null)}
+                className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-mono text-xs cursor-pointer font-semibold"
+              >
+                Close
+              </button>
+            </div>
+          </DialogContent>
+        </Dialog>
+      )}
+
+      {/* 📝 ATTENDANCE MARKING MODAL FOR A SPECIFIC SESSION */}
+      {selectedSessionForAttendance && (
+        <Dialog
+          open={!!selectedSessionForAttendance}
+          onOpenChange={(open) => !open && setSelectedSessionForAttendance(null)}
+        >
+          <DialogContent className="max-w-2xl bg-white border border-slate-200 text-slate-900 shadow-2xl rounded-2xl p-6 max-h-[88vh] flex flex-col font-sans">
+            <DialogHeader className="border-b border-slate-100 pb-3">
+              <div className="flex items-center justify-between">
+                <div>
+                  <Badge className="bg-violet-50 text-violet-700 border border-violet-200 font-mono text-[10px] mb-1 font-semibold">
+                    5-DAY ATTENDANCE WINDOW
+                  </Badge>
+                  <DialogTitle className="text-base font-bold font-mono text-slate-900">
+                    {selectedSessionForAttendance.session.title}
+                  </DialogTitle>
+                </div>
+                <span className="text-xs text-slate-500 font-mono font-semibold">
+                  {selectedSessionForAttendance.batch.batchCode}
+                </span>
+              </div>
+            </DialogHeader>
+
+            {feedbackMsg && (
+              <div className="p-3 rounded-xl bg-violet-50 border border-violet-200 text-violet-700 text-xs font-mono">
+                {feedbackMsg}
+              </div>
+            )}
+
+            <div className="py-3 space-y-3 flex-1 overflow-y-auto text-xs font-mono">
+              <div className="p-3 rounded-xl bg-violet-50/50 border border-violet-200 text-slate-700 text-[11px] flex items-center justify-between gap-2">
+                <span>
+                  Toggle attendance status for each enrolled student. Mentors have <strong>5 days (120 hours)</strong> to mark and update records.
+                </span>
+                <span className="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200 text-[10px] font-bold shrink-0">
+                  5-Day Policy Active
+                </span>
+              </div>
+
+              <div className="border border-slate-200 rounded-xl divide-y divide-slate-100 bg-white">
+                {selectedSessionForAttendance.batch.students?.length === 0 ? (
+                  <div className="p-6 text-center text-slate-500">
+                    No students currently enrolled in this batch. Fast-enroll students via Student Roster.
+                  </div>
+                ) : (
+                  selectedSessionForAttendance.batch.students.map((student: any) => {
+                    const status = attendanceDraft[student.id] || 'PRESENT';
+                    const tsId = student.user?.tsIdentity?.tsId || 'TS-STUDENT';
+
+                    return (
+                      <div key={student.id} className="p-3 space-y-2 hover:bg-violet-50/30 transition-colors">
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                          <div>
+                            <span className="font-semibold text-slate-900 text-xs block">
+                              {student.user?.name}
+                            </span>
+                            <span className="text-[10px] text-violet-700 block font-semibold">
+                              {tsId} • {student.user?.email}
+                            </span>
+                          </div>
+
+                          <div className="flex items-center gap-1.5 flex-wrap">
+                            {(['PRESENT', 'ABSENT', 'LATE', 'EXCUSED'] as const).map((st) => (
+                              <button
+                                key={st}
+                                type="button"
+                                onClick={() =>
+                                  setAttendanceDraft((prev) => ({ ...prev, [student.id]: st }))
+                                }
+                                className={`px-2.5 py-1 rounded-lg text-[10px] font-semibold transition-all cursor-pointer ${
+                                  status === st
+                                    ? st === 'PRESENT'
+                                      ? 'bg-emerald-600 text-white border border-emerald-600 shadow-xs'
+                                      : st === 'ABSENT'
+                                      ? 'bg-rose-600 text-white border border-rose-600 shadow-xs'
+                                      : st === 'LATE'
+                                      ? 'bg-amber-500 text-white border border-amber-500'
+                                      : 'bg-violet-600 text-white border border-violet-600'
+                                    : 'bg-slate-100 text-slate-600 border border-slate-200 hover:text-slate-900'
+                                }`}
+                              >
+                                {st}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+
+                        <input
+                          type="text"
+                          placeholder="Optional remarks (e.g. Completed lab exercise early)..."
+                          value={attendanceRemarks[student.id] || ''}
+                          onChange={(e) =>
+                            setAttendanceRemarks((prev) => ({ ...prev, [student.id]: e.target.value }))
+                          }
+                          className="w-full bg-slate-50 border border-slate-200 text-slate-900 px-3 py-1.5 rounded-xl text-[11px] placeholder:text-slate-400 focus:outline-none focus:border-violet-600 focus:bg-white"
+                        />
+                      </div>
+                    );
+                  })
+                )}
+              </div>
+            </div>
+
+            <div className="flex justify-end gap-2 pt-3 border-t border-slate-100">
+              <button
+                type="button"
+                onClick={() => setSelectedSessionForAttendance(null)}
+                className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-mono cursor-pointer font-semibold"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                disabled={loading}
+                onClick={handleSaveAttendance}
+                className="px-5 py-2 rounded-xl bg-violet-600 hover:bg-violet-700 text-white font-mono font-semibold text-xs cursor-pointer shadow-xs"
+              >
+                {loading ? 'Saving...' : 'Save Attendance Ledger'}
+              </button>
+            </div>
+          </DialogContent>
+        </Dialog>
+      )}
+    </div>
+  );
+}

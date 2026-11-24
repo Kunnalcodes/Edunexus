@@ -1,0 +1,270 @@
+/* ==========================================================
+   TSE UNIVERSAL RESPONSIVE UTILITIES & CONSTRAINT SYSTEM
+   Device-agnostic adaptation across Mobile, Tablet, Laptop,
+   Desktop, 4K, 5K, Ultrawide, Foldables & High-DPI screens.
+   ========================================================== */
+
+/* ── 1. CONSTRAINT-BASED CONTAINERS ── */
+.tse-container-reading {
+  width: 100%;
+  max-width: var(--container-reading);
+  margin-inline: auto;
+  padding-inline: var(--gutter-fluid);
+}
+
+.tse-container {
+  width: 100%;
+  max-width: var(--container-2xl);
+  margin-inline: auto;
+  padding-inline: var(--gutter-fluid);
+}
+
+.tse-container-fluid {
+  width: 100%;
+  max-width: var(--container-full);
+  margin-inline: auto;
+  padding-inline: var(--gutter-fluid);
+}
+
+/* Constrained bounds for 4K / Ultrawide to prevent overstretched content */
+.tse-content-bound {
+  width: 100%;
+  max-width: 1600px;
+  margin-inline: auto;
+}
+
+.tse-reading-bound {
+  width: 100%;
+  max-width: 75ch;
+  margin-inline: auto;
+}
+
+.tse-dashboard-bound {
+  width: 100%;
+  max-width: 1920px;
+  margin-inline: auto;
+}
+
+/* ── 2. SAFE AREA INSETS (iOS & Android) ── */
+.safe-top {
+  padding-top: max(var(--sat), 0.75rem);
+}
+.safe-bottom {
+  padding-bottom: max(var(--sab), 0.75rem);
+}
+.safe-left {
+  padding-left: max(var(--sal), 1rem);
+}
+.safe-right {
+  padding-right: max(var(--sar), 1rem);
+}
+.safe-x {
+  padding-left: max(var(--sal), 1rem);
+  padding-right: max(var(--sar), 1rem);
+}
+.safe-y {
+  padding-top: max(var(--sat), 0.75rem);
+  padding-bottom: max(var(--sab), 0.75rem);
+}
+.safe-inset {
+  padding-top: max(var(--sat), 0.75rem);
+  padding-bottom: max(var(--sab), 0.75rem);
+  padding-left: max(var(--sal), 1rem);
+  padding-right: max(var(--sar), 1rem);
+}
+
+/* Bottom navigation clearance */
+.safe-bottom-clearance {
+  padding-bottom: calc(4.5rem + var(--sab));
+}
+
+/* ── 3. DYNAMIC VIEWPORT HEIGHT & WIDTH UTILITIES ── */
+.h-dvh {
+  height: 100vh;
+  height: 100dvh;
+}
+.min-h-dvh {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+.max-h-dvh {
+  max-height: 100vh;
+  max-height: 100dvh;
+}
+.h-svh {
+  height: 100vh;
+  height: 100svh;
+}
+.min-h-svh {
+  min-height: 100vh;
+  min-height: 100svh;
+}
+.h-lvh {
+  height: 100vh;
+  height: 100lvh;
+}
+
+/* ── 4. TOUCH TARGET STANDARDS (WCAG 2.2 AA) ── */
+.touch-target {
+  min-width: var(--touch-target-min);
+  min-height: var(--touch-target-min);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.touch-target-comfortable {
+  min-width: var(--touch-target-comfortable);
+  min-height: var(--touch-target-comfortable);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.touch-target-large {
+  min-width: var(--touch-target-large);
+  min-height: var(--touch-target-large);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── 5. CONTAINER QUERY INFRASTRUCTURE ── */
+.cq-container {
+  container-type: inline-size;
+}
+
+.cq-card-grid {
+  container-type: inline-size;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: var(--space-md);
+}
+
+@container (min-width: 600px) {
+  .cq-col-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@container (min-width: 900px) {
+  .cq-col-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@container (min-width: 1200px) {
+  .cq-col-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ── 6. RESPONSIVE MEDIA WRAPPERS ── */
+.tse-video-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 1rem;
+  background-color: #000000;
+}
+
+.tse-video-wrapper iframe,
+.tse-video-wrapper video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Responsive Images */
+.tse-img-responsive {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  object-fit: cover;
+}
+
+/* ── 7. RESPONSIVE TABLE CONTAINERS (Momentum Scrolling & Zero Page Overflow) ── */
+.tse-table-container {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  border-radius: 0.75rem;
+  position: relative;
+}
+
+.tse-table-container table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+}
+
+/* ── 8. MICRO-INTERACTION & NEUMORPHISM ── */
+.tse-neo-control {
+  background: #f7f9fa;
+  box-shadow: 3px 3px 8px rgba(4, 17, 28, 0.08), -3px -3px 8px #ffffff;
+  border-radius: 12px;
+  transition: all 180ms ease;
+}
+
+.tse-neo-control:active,
+.tse-neo-control.active {
+  box-shadow: inset 2px 2px 4px rgba(4, 17, 28, 0.12), inset -2px -2px 4px #ffffff;
+}
+
+/* Security Glow & Badge Utilities */
+.tse-glow-green {
+  box-shadow: 0 0 20px -2px rgba(49, 209, 124, 0.35);
+}
+
+.tse-badge-green {
+  background: var(--tse-security-green-soft);
+  color: var(--tse-security-green-dark);
+  border: 1px solid rgba(49, 209, 124, 0.3);
+}
+
+/* ── 9. TOUCH / POINTER HOVER ENHANCEMENTS ── */
+@media (hover: hover) and (pointer: fine) {
+  .hover-elevate {
+    transition: transform 200ms ease, box-shadow 200ms ease;
+  }
+  .hover-elevate:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* ── 10. CUSTOM SCROLLBAR (Discreet on Touch) ── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.4);
+  border-radius: 9999px;
+}
+@media (hover: hover) {
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(100, 116, 139, 0.8);
+  }
+}
+
+/* ── 11. ACCESSIBILITY: REDUCED MOTION ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

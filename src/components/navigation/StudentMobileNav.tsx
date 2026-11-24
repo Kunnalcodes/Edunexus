@@ -1,0 +1,265 @@
+'use client';
+
+import React, { useState } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { usePathname } from 'next/navigation';
+import {
+  LayoutDashboard,
+  BookOpen,
+  Terminal,
+  Cpu,
+  Award,
+  Calendar,
+  FileText,
+  Menu,
+  X,
+  LogOut,
+  User,
+  ShieldCheck,
+  Sparkles,
+  Globe,
+} from 'lucide-react';
+import { cn } from '@/lib/utils';
+import { motion, AnimatePresence } from 'framer-motion';
+
+interface StudentMobileNavProps {
+  tsId: string;
+  studentName: string;
+}
+
+export function StudentMobileNav({ tsId, studentName }: StudentMobileNavProps) {
+  const pathname = usePathname();
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
+  const bottomNavItems = [
+    { label: 'Home', href: '/student', icon: LayoutDashboard },
+    { label: 'Learn', href: '/student/courses', icon: BookOpen },
+    { label: 'Labs', href: '/student/labs', icon: Terminal },
+    { label: 'Quiz', href: '/student/assessments', icon: Cpu },
+    { label: 'Materials', href: '/student/materials', icon: FileText },
+  ];
+
+  return (
+    <>
+      {/* Mobile Drawer Trigger Header button (visible < md) */}
+      <button
+        onClick={() => setDrawerOpen(true)}
+        aria-label="Open student menu"
+        className="md:hidden touch-target p-2 rounded-xl text-white hover:bg-white/10 transition-colors cursor-pointer"
+      >
+        <Menu className="w-5 h-5 text-white" />
+      </button>
+
+      {/* Drawer Menu */}
+      <AnimatePresence>
+        {drawerOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setDrawerOpen(false)}
+              className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 md:hidden"
+            />
+            <motion.aside
+              initial={{ x: '-100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '-100%' }}
+              transition={{ type: 'spring', damping: 26, stiffness: 260 }}
+              className="fixed top-0 left-0 bottom-0 w-[min(82vw,300px)] bg-[#09090d] text-white z-50 border-r border-white/10 shadow-2xl flex flex-col justify-between p-5 md:hidden safe-top safe-bottom safe-left"
+            >
+              <div className="space-y-6">
+                <div className="flex items-center justify-between">
+                  <Link href="/" onClick={() => setDrawerOpen(false)}>
+                    <Image
+                      src="/logos/TSE Logo Nav.svg"
+                      alt="Thread Security Education"
+                      width={32}
+                      height={32}
+                      unoptimized
+                      className="h-8 w-auto object-contain"
+                    />
+                  </Link>
+                  <button
+                    onClick={() => setDrawerOpen(false)}
+                    aria-label="Close menu"
+                    className="touch-target p-1.5 rounded-lg text-slate-400 hover:text-white"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
+
+                {/* TS-ID Pill */}
+                <div className="p-3 rounded-xl bg-purple-500/10 border border-purple-500/20 space-y-0.5 font-mono text-xs">
+                  <span className="text-[10px] text-purple-300 uppercase tracking-wider block">
+                    AUTHENTICATED TS-ID
+                  </span>
+                  <span className="text-purple-400 font-bold text-sm block">{tsId}</span>
+                </div>
+
+                {/* Full Nav in Drawer */}
+                <nav className="space-y-1 text-sm font-medium text-slate-300">
+                  <Link
+                    href="/student"
+                    onClick={() => setDrawerOpen(false)}
+                    className={cn(
+                      'flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors',
+                      pathname === '/student'
+                        ? 'bg-purple-600/15 text-white font-bold border border-purple-500/30'
+                        : 'hover:bg-white/5 hover:text-white'
+                    )}
+                  >
+                    <LayoutDashboard className="w-4 h-4 text-purple-400" />
+                    <span>Dashboard</span>
+                  </Link>
+
+                  <Link
+                    href="/student/courses"
+                    onClick={() => setDrawerOpen(false)}
+                    className={cn(
+                      'flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors',
+                      pathname.startsWith('/student/courses')
+                        ? 'bg-purple-600/15 text-white font-bold border border-purple-500/30'
+                        : 'hover:bg-white/5 hover:text-white'
+                    )}
+                  >
+                    <BookOpen className="w-4 h-4 text-slate-400" />
+                    <span>My Courses</span>
+                  </Link>
+
+                  <Link
+                    href="/student/labs"
+                    onClick={() => setDrawerOpen(false)}
+                    className={cn(
+                      'flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors',
+                      pathname.startsWith('/student/labs')
+                        ? 'bg-purple-600/15 text-white font-bold border border-purple-500/30'
+                        : 'hover:bg-white/5 hover:text-white'
+                    )}
+                  >
+                    <Terminal className="w-4 h-4 text-slate-400" />
+                    <span>Practical Labs</span>
+                  </Link>
+
+                  <Link
+                    href="/student/assessments"
+                    onClick={() => setDrawerOpen(false)}
+                    className={cn(
+                      'flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors',
+                      pathname.startsWith('/student/assessments')
+                        ? 'bg-purple-600/15 text-white font-bold border border-purple-500/30'
+                        : 'hover:bg-white/5 hover:text-white'
+                    )}
+                  >
+                    <Cpu className="w-4 h-4 text-slate-400" />
+                    <span>Assessments</span>
+                  </Link>
+
+                  <Link
+                    href="/student/assignments"
+                    onClick={() => setDrawerOpen(false)}
+                    className={cn(
+                      'flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors',
+                      pathname.startsWith('/student/assignments')
+                        ? 'bg-purple-600/15 text-white font-bold border border-purple-500/30'
+                        : 'hover:bg-white/5 hover:text-white'
+                    )}
+                  >
+                    <FileText className="w-4 h-4 text-slate-400" />
+                    <span>Assignments</span>
+                  </Link>
+
+                  <Link
+                    href="/student/materials"
+                    onClick={() => setDrawerOpen(false)}
+                    className={cn(
+                      'flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors',
+                      pathname.startsWith('/student/materials')
+                        ? 'bg-purple-600/15 text-white font-bold border border-purple-500/30'
+                        : 'hover:bg-white/5 hover:text-white'
+                    )}
+                  >
+                    <BookOpen className="w-4 h-4 text-slate-400" />
+                    <span>Study Materials</span>
+                  </Link>
+
+                  <Link
+                    href="/student/attendance"
+                    onClick={() => setDrawerOpen(false)}
+                    className={cn(
+                      'flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors',
+                      pathname.startsWith('/student/attendance')
+                        ? 'bg-purple-600/15 text-white font-bold border border-purple-500/30'
+                        : 'hover:bg-white/5 hover:text-white'
+                    )}
+                  >
+                    <Calendar className="w-4 h-4 text-purple-400" />
+                    <span>Batch & Attendance</span>
+                  </Link>
+                </nav>
+              </div>
+
+              {/* User logout */}
+              <div className="pt-4 border-t border-white/10 flex items-center justify-between">
+                <div className="truncate">
+                  <span className="text-xs font-bold text-white block truncate">{studentName}</span>
+                  <span className="text-[10px] text-purple-400 font-mono block">Verified Student</span>
+                </div>
+                <Link
+                  href="/login"
+                  onClick={() => setDrawerOpen(false)}
+                  className="text-slate-400 hover:text-white p-2"
+                >
+                  <LogOut className="w-4 h-4" />
+                </Link>
+              </div>
+            </motion.aside>
+          </>
+        )}
+      </AnimatePresence>
+
+      {/* Persistent Mobile Bottom Navigation (< md) */}
+      <nav
+        aria-label="Student mobile navigation"
+        className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#09090d]/95 backdrop-blur-xl border-t border-white/[0.08] safe-bottom shadow-[0_-4px_24px_rgba(0,0,0,0.6)]"
+      >
+        <div className="grid grid-cols-5 h-14 items-center px-1 max-w-lg mx-auto">
+          {bottomNavItems.map((item) => {
+            const Icon = item.icon;
+            const isActive =
+              item.href === '/student'
+                ? pathname === '/student'
+                : pathname.startsWith(item.href);
+
+            return (
+              <Link
+                key={item.label}
+                href={item.href}
+                className={cn(
+                  'touch-target flex flex-col items-center justify-center gap-1 rounded-lg transition-colors py-1 text-center',
+                  isActive ? 'text-purple-400 font-extrabold' : 'text-zinc-500 hover:text-white'
+                )}
+              >
+                <div className="relative">
+                  <Icon className={cn('w-5 h-5', isActive && 'text-purple-400 stroke-[2.5]')} />
+                  {isActive && (
+                    <motion.div
+                      layoutId="student-tab-dot"
+                      className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-purple-500 rounded-full shadow-[0_0_6px_#a855f7]"
+                    />
+                  )}
+                </div>
+                <span className="text-[10px] tracking-tight leading-none truncate max-w-full">
+                  {item.label}
+                </span>
+              </Link>
+            );
+          })}
+        </div>
+      </nav>
+    </>
+  );
+}
+
+export default StudentMobileNav;

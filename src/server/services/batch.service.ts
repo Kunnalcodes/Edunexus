@@ -1,0 +1,1669 @@
+import { prisma } from '../database/prisma';
+import { logAuditEvent } from '../security/audit';
+
+const db = prisma as any;
+
+export interface CreateBatchInput {
+  batchCode: string;
+  title: string;
+  description?: string;
+  courseId?: string;
+  mentorId?: string;
+  startDate: Date;
+  endDate?: Date;
+  schedule?: string;
+  maxCapacity?: number;
+  durationPreset?: '45_DAYS' | '3_MONTHS' | '6_MONTHS' | 'CUSTOM';
+  facultyRole?: 'TEACHER_LECTURER' | 'FACULTY_NON_TEACHING';
+  autoGenerateTimetable?: boolean;
+  daysOfWeek?: string[];
+  startTime?: string;
+  endTime?: string;
+  attendanceLockHours?: number;
+}
+
+export interface MarkAttendanceInput {
+  sessionId: string;
+  records: {
+    studentId: string;
+    status: 'PRESENT' | 'ABSENT' | 'LATE' | 'EXCUSED';
+    remarks?: string;
+  }[];
+  markedBy: string;
+}
+
+let batchesSeeded = false;
+
+/**
+ * Ensures initial default cohorts exist in PostgreSQL database
+ */
+export async function seedBatchesIfEmpty() {
+  // Disabled auto-seeding to respect user manual batch deletions & tests
+  return;
+}
+
+/**
+ * Retrieves all batches with course, mentor, and student counts
+ */
+export async function getAllBatchesService() {
+  await seedBatchesIfEmpty();
+
+  const batches = await db.batch.findMany({
+    include: {
+      course: true,
+      mentor: {
+        include: { user: true },
+      },
+      students: {
+        include: {
+          user: {
+            include: { tsIdentity: true },
+          },
+        },
+      },
+      sessions: {
+        include: {
+          attendanceRecords: true,
+        },
+        orderBy: { sessionNumber: 'asc' },
+      },
+    },
+    orderBy: { createdAt: 'desc' },
+  });
+
+  return batches;
+}
+
+/**
+ * Super Admin creates a new batch with duration presets and automated timetable generation
+ */
+export async function createBatchService(data: CreateBatchInput, adminUserId: string) {
+  const cleanCode = data.batchCode.trim().toUpperCase();
+
+  const existing = await db.batch.findUnique({
+    where: { batchCode: cleanCode },
+  });
+
+  if (existing) {
+    throw new Error(`Batch with code '${cleanCode}' already exists.`);
+  }
+
+  // Calculate duration-based end date if preset specified
+  let computedEndDate = data.endDate || null;
+  if (data.durationPreset) {
+    const sDate = new Date(data.startDate);
+    if (data.durationPreset === '45_DAYS') {
+      computedEndDate = new Date(sDate.getTime() + 45 * 24 * 60 * 60 * 1000);
+    } else if (data.durationPreset === '3_MONTHS') {
+      const ed = new Date(sDate);
+      ed.setMonth(ed.getMonth() + 3);
+      computedEndDate = ed;
+    } else if (data.durationPreset === '6_MONTHS') {
+      const ed = new Date(sDate);
+      ed.setMonth(ed.getMonth() + 6);
+      computedEndDate = ed;
+    }
+  }
+
+  // Construct schedule string
+  let scheduleStr = data.schedule?.trim();
+  if (!scheduleStr && data.daysOfWeek && data.daysOfWeek.length > 0) {
+    const timeFormatted = data.startTime && data.endTime ? `${data.startTime} - ${data.endTime} IST` : '7:00 PM - 9:00 PM IST';
+    scheduleStr = `${data.daysOfWeek.join(' / ')} • ${timeFormatted}`;
+  }
+  if (!scheduleStr) {
+    scheduleStr = 'Mon / Wed / Fri • 7:00 PM - 9:00 PM IST';
+  }
+
+  // Add note in description if non-teaching faculty
+  let finalDescription = data.description?.trim() || '';
+  if (data.facultyRole === 'FACULTY_NON_TEACHING') {
+    finalDescription = finalDescription
+      ? `[Faculty: Non-Teaching Academic Advisor / Coordinator] ${finalDescription}`
+      : '[Faculty: Non-Teaching Academic Advisor / Coordinator]';
+  }
+
+  const batch = await db.batch.create({
+    data: {
+      batchCode: cleanCode,
+      title: data.title.trim(),
+      description: finalDescription || null,
+      courseId: data.courseId || null,
+      mentorId: data.mentorId || null,
+      startDate: data.startDate,
+      endDate: computedEndDate,
+      schedule: scheduleStr,
+      maxCapacity: data.maxCapacity || 30,
+      attendanceLockHours: data.attendanceLockHours || 120, // 5 days window
+    },
+    include: {
+      course: true,
+      mentor: { include: { user: true } },
+    },
+  });
+
+  // Automated Timetable Generation for Teaching Lecturers
+  if (
+    data.facultyRole !== 'FACULTY_NON_TEACHING' &&
+    data.autoGenerateTimetable &&
+    computedEndDate &&
+    data.daysOfWeek &&
+    data.daysOfWeek.length > 0
+  ) {
+    try {
+      const dayMap: Record<string, number> = {
+        sunday: 0, sun: 0,
+        monday: 1, mon: 1,
+        tuesday: 2, tue: 2,
+        wednesday: 3, wed: 3,
+        thursday: 4, thu: 4,
+        friday: 5, fri: 5,
+        saturday: 6, sat: 6,
+      };
+
+      const selectedDayNumbers = new Set(
+        data.daysOfWeek.map((d) => dayMap[d.toLowerCase()]).filter((n) => n !== undefined)
+      );
+
+      // Parse start and end hours for session calculation
+      let startHour = 19;
+      let startMinute = 0;
+      let durationMins = 120;
+
+      if (data.startTime) {
+        const parts = data.startTime.split(':');
+        if (parts.length >= 2) {
+          startHour = parseInt(parts[0], 10);
+          startMinute = parseInt(parts[1], 10);
+        }
+      }
+
+      if (data.startTime && data.endTime) {
+        const endParts = data.endTime.split(':');
+        if (endParts.length >= 2) {
+          const endHour = parseInt(endParts[0], 10);
+          const endMinute = parseInt(endParts[1], 10);
+          const diff = (endHour * 60 + endMinute) - (startHour * 60 + startMinute);
+          if (diff > 0) durationMins = diff;
+        }
+      }
+
+      // Generate sessions for every matched day from startDate to computedEndDate
+      const sessionsToCreate = [];
+      const cur = new Date(data.startDate);
+      let sessionNumber = 1;
+
+      while (cur <= computedEndDate) {
+        if (selectedDayNumbers.has(cur.getDay())) {
+          const sessionDateTime = new Date(cur);
+          sessionDateTime.setHours(startHour, startMinute, 0, 0);
+
+          sessionsToCreate.push({
+            batchId: batch.id,
+            sessionNumber,
+            title: `Session ${sessionNumber}: Live Lecture & Hands-On Lab`,
+            sessionDate: sessionDateTime,
+            durationMins,
+            agenda: `Core curriculum lecture and practical lab exercises for ${batch.batchCode}`,
+            status: 'SCHEDULED',
+          });
+
+          sessionNumber++;
+        }
+        cur.setDate(cur.getDate() + 1);
+      }
+
+      if (sessionsToCreate.length > 0) {
+        await db.batchSession.createMany({
+          data: sessionsToCreate,
+        });
+      }
+    } catch (genErr) {
+      console.warn('[createBatchService] Timetable generation warning:', genErr);
+    }
+  }
+
+  await logAuditEvent({
+    actorId: adminUserId,
+    action: 'BATCH_CREATED_BY_SUPER_ADMIN',
+    entity: 'BATCH',
+    entityId: batch.id,
+    details: JSON.stringify({
+      batchCode: batch.batchCode,
+      title: batch.title,
+      attendanceLockHours: batch.attendanceLockHours,
+      facultyRole: data.facultyRole || 'TEACHER_LECTURER',
+    }),
+  });
+
+  return batch;
+}
+
+/**
+ * Assigns or reassigns a student to a batch with automatic Course Enrollment sync
+ */
+export async function assignStudentToBatchService(
+  studentProfileId: string,
+  batchId: string | null,
+  adminUserId: string
+) {
+  const profile = await db.studentProfile.update({
+    where: { id: studentProfileId },
+    data: { batchId },
+    include: {
+      user: { include: { tsIdentity: true } },
+      batch: true,
+    },
+  });
+
+  // Connectivity fix: Auto-enroll student into batch's course
+  if (batchId && profile.batch?.courseId) {
+    try {
+      await db.enrollment.upsert({
+        where: {
+          userId_courseId: {
+            userId: profile.userId,
+            courseId: profile.batch.courseId,
+          },
+        },
+        update: { status: 'ACTIVE' },
+        create: {
+          userId: profile.userId,
+          courseId: profile.batch.courseId,
+          status: 'ACTIVE',
+        },
+      });
+    } catch (enrErr) {
+      console.warn('[assignStudentToBatchService] Auto-enrollment sync warning:', enrErr);
+    }
+  }
+
+  await logAuditEvent({
+    actorId: adminUserId,
+    action: 'STUDENT_BATCH_ASSIGNMENT_UPDATED',
+    entity: 'STUDENT_PROFILE',
+    entityId: studentProfileId,
+    details: JSON.stringify({
+      student: profile.user.name,
+      tsId: profile.user.tsIdentity?.tsId,
+      batchId,
+      batchCode: profile.batch?.batchCode || 'UNASSIGNED',
+    }),
+  });
+
+  return profile;
+}
+
+/**
+ * Retrieves batches assigned to a specific mentor
+ */
+export async function getMentorBatchesService(mentorUserId: string) {
+  await seedBatchesIfEmpty();
+
+  const mentorProfile = await db.mentorProfile.findUnique({
+    where: { userId: mentorUserId },
+  });
+
+  if (!mentorProfile) {
+    // If no specific mentor profile, return all active batches so mentor can view & conduct
+    const allBatches = await db.batch.findMany({
+      include: {
+        course: true,
+        students: {
+          include: {
+            user: { include: { tsIdentity: true } },
+            attendanceRecords: {
+              include: { session: true },
+            },
+          },
+        },
+        sessions: {
+          include: {
+            attendanceRecords: {
+              include: {
+                student: {
+                  include: { user: { include: { tsIdentity: true } } },
+                },
+              },
+            },
+          },
+          orderBy: { sessionNumber: 'asc' },
+        },
+      },
+      orderBy: { createdAt: 'desc' },
+    });
+    return allBatches;
+  }
+
+  const batches = await db.batch.findMany({
+    where: { mentorId: mentorProfile.id },
+    include: {
+      course: true,
+      students: {
+        include: {
+          user: { include: { tsIdentity: true } },
+          attendanceRecords: {
+            include: { session: true },
+          },
+        },
+      },
+      sessions: {
+        include: {
+          attendanceRecords: {
+            include: {
+              student: {
+                include: { user: { include: { tsIdentity: true } } },
+              },
+            },
+          },
+        },
+        orderBy: { sessionNumber: 'asc' },
+      },
+    },
+    orderBy: { createdAt: 'desc' },
+  });
+
+  return batches;
+}
+
+/**
+ * Creates a new session for a batch
+ */
+export async function createBatchSessionService(
+  batchId: string,
+  title: string,
+  sessionDate: Date,
+  durationMins: number = 120,
+  agenda?: string,
+  actorUserId?: string
+) {
+  const lastSession = await db.batchSession.findFirst({
+    where: { batchId },
+    orderBy: { sessionNumber: 'desc' },
+  });
+
+  const nextNumber = (lastSession?.sessionNumber || 0) + 1;
+
+  const session = await db.batchSession.create({
+    data: {
+      batchId,
+      sessionNumber: nextNumber,
+      title: title.trim(),
+      sessionDate,
+      durationMins,
+      agenda: agenda?.trim(),
+    },
+    include: {
+      batch: true,
+    },
+  });
+
+  if (actorUserId) {
+    await logAuditEvent({
+      actorId: actorUserId,
+      action: 'BATCH_SESSION_CONDUCTED',
+      entity: 'BATCH_SESSION',
+      entityId: session.id,
+      details: JSON.stringify({
+        batchCode: session.batch.batchCode,
+        sessionNumber: session.sessionNumber,
+        title: session.title,
+      }),
+    });
+  }
+
+  return session;
+}
+
+/**
+ * Mentor explicitly marks and updates attendance for all students in a session
+ */
+export async function markBatchAttendanceService(input: MarkAttendanceInput, actorUserId: string) {
+  const session = await db.batchSession.findUnique({
+    where: { id: input.sessionId },
+    include: { batch: true },
+  });
+
+  if (!session) {
+    throw new Error('Batch session not found.');
+  }
+
+  const results = [];
+
+  for (const record of input.records) {
+    const attendance = await db.attendanceRecord.upsert({
+      where: {
+        sessionId_studentId: {
+          sessionId: input.sessionId,
+          studentId: record.studentId,
+        },
+      },
+      update: {
+        status: record.status,
+        remarks: record.remarks?.trim() || null,
+        markedBy: input.markedBy,
+        checkInTime: record.status === 'PRESENT' || record.status === 'LATE' ? new Date() : null,
+      },
+      create: {
+        sessionId: input.sessionId,
+        studentId: record.studentId,
+        status: record.status,
+        remarks: record.remarks?.trim() || null,
+        markedBy: input.markedBy,
+        checkInTime: record.status === 'PRESENT' || record.status === 'LATE' ? new Date() : null,
+      },
+    });
+
+    results.push(attendance);
+  }
+
+  await logAuditEvent({
+    actorId: actorUserId,
+    action: 'BATCH_ATTENDANCE_EXPLICITLY_MARKED',
+    entity: 'BATCH_SESSION',
+    entityId: input.sessionId,
+    details: JSON.stringify({
+      batchCode: session.batch.batchCode,
+      sessionNumber: session.sessionNumber,
+      updatedCount: results.length,
+      markedBy: input.markedBy,
+    }),
+  });
+
+  return results;
+}
+
+/**
+ * Retrieves student's assigned batch details, mentor info, and full attendance history
+ */
+export async function getStudentBatchAndAttendanceService(studentUserId: string) {
+  await seedBatchesIfEmpty();
+
+  const profile = await db.studentProfile.findUnique({
+    where: { userId: studentUserId },
+    include: {
+      user: { include: { tsIdentity: true } },
+      batch: {
+        include: {
+          course: true,
+          mentor: { include: { user: true } },
+          sessions: {
+            orderBy: { sessionNumber: 'asc' },
+            include: {
+              attendanceRecords: true,
+            },
+          },
+          broadcasts: {
+            orderBy: { createdAt: 'desc' },
+            take: 10,
+          },
+          resources: {
+            orderBy: { createdAt: 'desc' },
+          },
+        },
+      },
+      attendanceRecords: {
+        include: {
+          session: {
+            include: { batch: true },
+          },
+        },
+        orderBy: { session: { sessionDate: 'desc' } },
+      },
+    },
+  });
+
+  if (!profile || !profile.batch) {
+    return {
+      profile,
+      batch: null,
+      attendancePercentage: 0,
+      totalSessions: 0,
+      presentSessions: 0,
+      records: [],
+    };
+  }
+
+  const totalSessions = profile.batch.sessions?.length || 0;
+  const presentSessions = (profile.attendanceRecords || []).filter(
+    (r: any) => r.status === 'PRESENT' || r.status === 'LATE'
+  ).length;
+
+  const attendancePercentage =
+    totalSessions > 0 ? Math.round((presentSessions / totalSessions) * 100) : 100;
+
+  return {
+    profile,
+    batch: profile.batch,
+    attendancePercentage,
+    totalSessions,
+    presentSessions,
+    records: profile.attendanceRecords || [],
+  };
+}
+
+/**
+ * Retrieves all delivered lectures across batches for date-based & lecture-based admin auditing
+ */
+export async function getAllDeliveredSessionsService() {
+  await seedBatchesIfEmpty();
+
+  const sessions = await db.batchSession.findMany({
+    include: {
+      batch: {
+        include: {
+          mentor: { include: { user: true } },
+          students: { include: { user: { include: { tsIdentity: true } } } },
+        },
+      },
+      attendanceRecords: {
+        include: {
+          student: {
+            include: { user: { include: { tsIdentity: true } } },
+          },
+        },
+      },
+    },
+    orderBy: { sessionDate: 'desc' },
+  });
+
+  return sessions.map((sess: any) => {
+    const totalEnrolled = sess.batch?.students?.length || 0;
+    const records = sess.attendanceRecords || [];
+    const presentCount = records.filter((r: any) => r.status === 'PRESENT').length;
+    const lateCount = records.filter((r: any) => r.status === 'LATE').length;
+    const absentCount = records.filter((r: any) => r.status === 'ABSENT').length;
+    const excusedCount = records.filter((r: any) => r.status === 'EXCUSED').length;
+
+    const attendedTotal = presentCount + lateCount;
+    const attendancePercentage = totalEnrolled > 0 ? Math.round((attendedTotal / totalEnrolled) * 100) : 100;
+
+    return {
+      id: sess.id,
+      sessionNumber: sess.sessionNumber,
+      title: sess.title,
+      sessionDate: sess.sessionDate,
+      durationMins: sess.durationMins,
+      agenda: sess.agenda || 'Standard Curriculum Module Delivery',
+      batchCode: sess.batch?.batchCode || 'N/A',
+      batchTitle: sess.batch?.title || 'N/A',
+      mentorName: sess.batch?.mentor?.user?.name || 'Unassigned Mentor',
+      mentorEmail: sess.batch?.mentor?.user?.email || 'N/A',
+      totalEnrolled,
+      presentCount,
+      lateCount,
+      absentCount,
+      excusedCount,
+      attendancePercentage,
+      records: records.map((r: any) => ({
+        id: r.id,
+        studentId: r.studentId,
+        studentName: r.student?.user?.name || 'Student',
+        studentEmail: r.student?.user?.email || 'N/A',
+        tsId: r.student?.user?.tsIdentity?.tsId || 'N/A',
+        status: r.status,
+        checkInTime: r.checkInTime,
+        remarks: r.remarks || '',
+        markedBy: r.markedBy || 'Mentor',
+      })),
+    };
+  });
+}
+
+/**
+ * Validates whether a mentor or admin is authorized to view/operate on a batch
+ */
+export async function validateMentorBatchAccess(userId: string, batchId: string) {
+  const user = await db.user.findUnique({
+    where: { id: userId },
+    include: { mentorProfile: true },
+  });
+
+  if (!user) {
+    throw new Error('User not found.');
+  }
+
+  // Admins always have executive oversight
+  if (user.role === 'SUPER_ADMIN' || user.role === 'ACADEMIC_ADMIN') {
+    const batch = await db.batch.findUnique({ where: { id: batchId } });
+    if (!batch) throw new Error('Batch not found.');
+    return { authorized: true, user, mentorProfile: user.mentorProfile, batch };
+  }
+
+  if (user.role !== 'MENTOR') {
+    throw new Error('Unauthorized: User is not a mentor.');
+  }
+
+  const mentorProfile = user.mentorProfile;
+  if (!mentorProfile) {
+    throw new Error('Mentor profile not found for this account.');
+  }
+
+  const batch = await db.batch.findUnique({
+    where: { id: batchId },
+  });
+
+  if (!batch) {
+    throw new Error('Batch not found.');
+  }
+
+  if (batch.mentorId && batch.mentorId !== mentorProfile.id) {
+    throw new Error('Unauthorized: You are not assigned to manage this batch.');
+  }
+
+  return { authorized: true, user, mentorProfile, batch };
+}
+
+/**
+ * Returns isolated Batch Workspace data for the mentor panel
+ */
+export async function getBatchWorkspaceService(batchId: string, userId: string) {
+  await seedBatchesIfEmpty();
+  await validateMentorBatchAccess(userId, batchId);
+
+  const batch = await db.batch.findUnique({
+    where: { id: batchId },
+    include: {
+      course: {
+        include: {
+          modules: {
+            orderBy: { orderIndex: 'asc' },
+            include: {
+              lessons: { orderBy: { orderIndex: 'asc' } },
+            },
+          },
+        },
+      },
+      mentor: {
+        include: { user: true },
+      },
+      students: {
+        include: {
+          user: {
+            include: {
+              tsIdentity: true,
+              progress: true,
+              enrollments: true,
+              labAttempts: { include: { lab: true } },
+              assessments: true,
+              certificates: true,
+            },
+          },
+          attendanceRecords: {
+            include: { session: true },
+          },
+        },
+      },
+      sessions: {
+        include: {
+          module: true,
+          attendanceRecords: {
+            include: {
+              student: {
+                include: { user: { include: { tsIdentity: true } } },
+              },
+            },
+          },
+          attendanceAudits: {
+            orderBy: { createdAt: 'desc' },
+          },
+          resources: true,
+          correctionRequests: {
+            include: {
+              student: { include: { user: true } },
+            },
+            orderBy: { createdAt: 'desc' },
+          },
+        },
+        orderBy: { sessionDate: 'asc' },
+      },
+      resources: {
+        include: {
+          module: true,
+          session: true,
+        },
+        orderBy: { createdAt: 'desc' },
+      },
+      broadcasts: {
+        include: {
+          mentor: { include: { user: true } },
+          recipients: {
+            include: {
+              student: { include: { user: true } },
+            },
+          },
+        },
+        orderBy: { createdAt: 'desc' },
+      },
+      correctionRequests: {
+        include: {
+          session: true,
+          student: { include: { user: true } },
+          mentor: { include: { user: true } },
+        },
+        orderBy: { createdAt: 'desc' },
+      },
+    },
+  });
+
+  if (!batch) {
+    throw new Error('Batch not found.');
+  }
+
+  // Calculate batch metrics
+  const totalStudents = batch.students.length;
+  const totalSessions = batch.sessions.length;
+  const completedSessions = batch.sessions.filter((s: any) => s.status === 'COMPLETED').length;
+
+  let totalPossibleAttendances = 0;
+  let totalPresentAttendances = 0;
+
+  batch.sessions.forEach((s: any) => {
+    s.attendanceRecords.forEach((r: any) => {
+      totalPossibleAttendances++;
+      if (r.status === 'PRESENT' || r.status === 'LATE') {
+        totalPresentAttendances++;
+      }
+    });
+  });
+
+  const averageAttendance =
+    totalPossibleAttendances > 0
+      ? Math.round((totalPresentAttendances / totalPossibleAttendances) * 100)
+      : 100;
+
+  // Module delivery calculation
+  const totalCourseModules = batch.course?.modules?.length || 1;
+  const distinctModulesTaught = new Set(
+    batch.sessions
+      .filter((s: any) => s.status === 'COMPLETED' && s.moduleId)
+      .map((s: any) => s.moduleId)
+  ).size;
+  const moduleDeliveryPercent = Math.min(
+    100,
+    Math.round((distinctModulesTaught / totalCourseModules) * 100) || (completedSessions > 0 ? 50 : 0)
+  );
+
+  // Student progress calculation
+  const studentLearningPercents = batch.students.map((st: any) => {
+    const totalLessons = (batch.course?.modules || []).reduce(
+      (acc: number, m: any) => acc + (m.lessons?.length || 0),
+      0
+    );
+    const completedLessons = st.user?.progress?.filter((p: any) => p.isCompleted)?.length || 0;
+    return totalLessons > 0 ? Math.round((completedLessons / totalLessons) * 100) : 50;
+  });
+
+  const averageStudentLearning =
+    studentLearningPercents.length > 0
+      ? Math.round(
+          studentLearningPercents.reduce((a: number, b: number) => a + b, 0) /
+            studentLearningPercents.length
+        )
+      : 50;
+
+  return {
+    batch,
+    metrics: {
+      totalStudents,
+      totalSessions,
+      completedSessions,
+      remainingSessions: Math.max(0, totalSessions - completedSessions),
+      averageAttendance,
+      moduleDeliveryPercent,
+      averageStudentLearning,
+      assessmentCompletionPercent: 65,
+    },
+  };
+}
+
+/**
+ * Mentor updates lecture conduction record
+ */
+export async function updateLectureRecordService(
+  sessionId: string,
+  data: {
+    status?: 'SCHEDULED' | 'LIVE' | 'COMPLETED' | 'CANCELLED';
+    topicsCovered?: string;
+    importantNotes?: string;
+    homework?: string;
+    resourcesJson?: string;
+    moduleId?: string;
+    agenda?: string;
+    durationMins?: number;
+  },
+  userId: string
+) {
+  const session = await db.batchSession.findUnique({
+    where: { id: sessionId },
+    include: { batch: true },
+  });
+
+  if (!session) {
+    throw new Error('Lecture session not found.');
+  }
+
+  await validateMentorBatchAccess(userId, session.batchId);
+
+  const updated = await db.batchSession.update({
+    where: { id: sessionId },
+    data: {
+      status: data.status || session.status,
+      topicsCovered: data.topicsCovered !== undefined ? data.topicsCovered : session.topicsCovered,
+      importantNotes: data.importantNotes !== undefined ? data.importantNotes : session.importantNotes,
+      homework: data.homework !== undefined ? data.homework : session.homework,
+      resourcesJson: data.resourcesJson !== undefined ? data.resourcesJson : session.resourcesJson,
+      moduleId: data.moduleId !== undefined ? data.moduleId : session.moduleId,
+      agenda: data.agenda !== undefined ? data.agenda : session.agenda,
+      durationMins: data.durationMins || session.durationMins,
+    },
+    include: {
+      module: true,
+      batch: true,
+    },
+  });
+
+  await logAuditEvent({
+    actorId: userId,
+    action: 'LECTURE_RECORD_UPDATED',
+    entity: 'BATCH_SESSION',
+    entityId: sessionId,
+    details: JSON.stringify({
+      title: updated.title,
+      status: updated.status,
+      topicsCovered: updated.topicsCovered,
+    }),
+  });
+
+  return updated;
+}
+
+/**
+ * Checks if attendance is locked for a session based on batch.attendanceLockHours (default 120h = 5 days)
+ */
+export function isSessionAttendanceLocked(sessionDate: Date, lockHours: number = 120): boolean {
+  const sessionTime = new Date(sessionDate).getTime();
+  const currentTime = new Date().getTime();
+  const elapsedHours = (currentTime - sessionTime) / (1000 * 60 * 60);
+  return elapsedHours > lockHours;
+}
+
+/**
+ * Mark attendance with strict locking check and audit logging
+ */
+export async function markBatchAttendanceWithLockCheckService(
+  input: {
+    sessionId: string;
+    records: {
+      studentId: string;
+      status: 'PRESENT' | 'ABSENT' | 'LATE' | 'EXCUSED';
+      remarks?: string;
+    }[];
+    markedBy: string;
+    forceAdminBypass?: boolean;
+  },
+  userId: string
+) {
+  const session = await db.batchSession.findUnique({
+    where: { id: input.sessionId },
+    include: {
+      batch: true,
+      attendanceRecords: true,
+    },
+  });
+
+  if (!session) {
+    throw new Error('Batch session not found.');
+  }
+
+  const { user } = await validateMentorBatchAccess(userId, session.batchId);
+  const isAdmin = user.role === 'SUPER_ADMIN' || user.role === 'ACADEMIC_ADMIN';
+
+  // Check 24/48 hour locking rule
+  const locked = isSessionAttendanceLocked(session.sessionDate, session.batch.attendanceLockHours);
+
+  if (locked && !isAdmin && !input.forceAdminBypass) {
+    throw new Error(
+      `ATTENDANCE_LOCKED: Attendance for this session was locked after ${session.batch.attendanceLockHours} hours. Please submit an Attendance Correction Request to Admin.`
+    );
+  }
+
+  const existingMap = new Map(
+    session.attendanceRecords.map((r: any) => [r.studentId, r.status])
+  );
+
+  const updatedRecords = [];
+  const auditEntries = [];
+
+  for (const record of input.records) {
+    const oldStatus = existingMap.get(record.studentId) || null;
+    const isChange = oldStatus !== record.status;
+
+    const saved = await db.attendanceRecord.upsert({
+      where: {
+        sessionId_studentId: {
+          sessionId: input.sessionId,
+          studentId: record.studentId,
+        },
+      },
+      update: {
+        status: record.status,
+        remarks: record.remarks?.trim() || null,
+        markedBy: input.markedBy,
+        checkInTime: record.status === 'PRESENT' || record.status === 'LATE' ? new Date() : null,
+      },
+      create: {
+        sessionId: input.sessionId,
+        studentId: record.studentId,
+        status: record.status,
+        remarks: record.remarks?.trim() || null,
+        markedBy: input.markedBy,
+        checkInTime: record.status === 'PRESENT' || record.status === 'LATE' ? new Date() : null,
+      },
+    });
+
+    updatedRecords.push(saved);
+
+    if (isChange || !oldStatus) {
+      auditEntries.push({
+        mentorId: userId,
+        batchId: session.batchId,
+        sessionId: input.sessionId,
+        studentId: record.studentId,
+        date: session.sessionDate,
+        oldStatus: oldStatus as any,
+        newStatus: record.status,
+        action: !oldStatus ? 'INITIAL_MARK' : 'ATTENDANCE_MODIFIED',
+        reason: record.remarks || 'Regular classroom attendance update',
+        approvedBy: isAdmin ? user.name : null,
+      });
+    }
+  }
+
+  if (auditEntries.length > 0) {
+    await db.attendanceAudit.createMany({
+      data: auditEntries,
+    });
+  }
+
+  // Update session status to completed if not already
+  if (session.status === 'SCHEDULED' || session.status === 'LIVE') {
+    await db.batchSession.update({
+      where: { id: input.sessionId },
+      data: { status: 'COMPLETED' },
+    });
+  }
+
+  return updatedRecords;
+}
+
+/**
+ * Mentor submits an Attendance Correction Request when attendance is locked
+ */
+export async function requestAttendanceCorrectionService(
+  input: {
+    batchId: string;
+    sessionId: string;
+    studentId: string;
+    requestedStatus: 'PRESENT' | 'ABSENT' | 'LATE' | 'EXCUSED';
+    reason: string;
+  },
+  userId: string
+) {
+  const { mentorProfile } = await validateMentorBatchAccess(userId, input.batchId);
+
+  if (!mentorProfile) {
+    throw new Error('Mentor profile is required to request correction.');
+  }
+
+  const req = await db.attendanceCorrectionRequest.create({
+    data: {
+      batchId: input.batchId,
+      sessionId: input.sessionId,
+      studentId: input.studentId,
+      mentorId: mentorProfile.id,
+      requestedStatus: input.requestedStatus,
+      reason: input.reason.trim(),
+      status: 'PENDING',
+    },
+    include: {
+      student: { include: { user: true } },
+      session: true,
+      batch: true,
+    },
+  });
+
+  // Notify admins
+  const admins = await db.user.findMany({
+    where: { role: { in: ['SUPER_ADMIN', 'ACADEMIC_ADMIN'] } },
+  });
+
+  for (const admin of admins) {
+    await db.notification.create({
+      data: {
+        userId: admin.id,
+        title: 'Attendance Correction Request',
+        message: `Mentor ${mentorProfile.user?.name || 'Mentor'} requested attendance correction for ${req.student.user.name} in ${req.batch.batchCode}. Reason: ${input.reason}`,
+        type: 'ATTENDANCE',
+        linkUrl: `/admin/batches`,
+      },
+    });
+  }
+
+  await logAuditEvent({
+    actorId: userId,
+    action: 'ATTENDANCE_CORRECTION_REQUESTED',
+    entity: 'ATTENDANCE_CORRECTION_REQUEST',
+    entityId: req.id,
+    details: JSON.stringify({
+      student: req.student.user.name,
+      requestedStatus: input.requestedStatus,
+      reason: input.reason,
+    }),
+  });
+
+  return req;
+}
+
+/**
+ * Admin reviews (Approves or Rejects) an Attendance Correction Request
+ */
+export async function adminReviewCorrectionRequestService(
+  requestId: string,
+  decision: 'APPROVED' | 'REJECTED',
+  adminNotes: string,
+  adminUserId: string
+) {
+  const admin = await db.user.findUnique({ where: { id: adminUserId } });
+  if (!admin || (admin.role !== 'SUPER_ADMIN' && admin.role !== 'ACADEMIC_ADMIN')) {
+    throw new Error('Unauthorized: Only administrators can review correction requests.');
+  }
+
+  const req = await db.attendanceCorrectionRequest.findUnique({
+    where: { id: requestId },
+    include: {
+      student: { include: { user: true } },
+      mentor: { include: { user: true } },
+      session: true,
+      batch: true,
+    },
+  });
+
+  if (!req) {
+    throw new Error('Correction request not found.');
+  }
+
+  const updatedReq = await db.attendanceCorrectionRequest.update({
+    where: { id: requestId },
+    data: {
+      status: decision,
+      adminNotes: adminNotes.trim(),
+      reviewedBy: admin.name,
+    },
+  });
+
+  if (decision === 'APPROVED') {
+    // Get previous status
+    const previousRecord = await db.attendanceRecord.findUnique({
+      where: {
+        sessionId_studentId: {
+          sessionId: req.sessionId,
+          studentId: req.studentId,
+        },
+      },
+    });
+
+    // Update AttendanceRecord
+    await db.attendanceRecord.upsert({
+      where: {
+        sessionId_studentId: {
+          sessionId: req.sessionId,
+          studentId: req.studentId,
+        },
+      },
+      update: {
+        status: req.requestedStatus,
+        remarks: `Correction Approved by Admin (${admin.name}): ${req.reason}`,
+        markedBy: `Admin (${admin.name})`,
+        checkInTime: req.requestedStatus === 'PRESENT' || req.requestedStatus === 'LATE' ? new Date() : null,
+      },
+      create: {
+        sessionId: req.sessionId,
+        studentId: req.studentId,
+        status: req.requestedStatus,
+        remarks: `Correction Approved by Admin (${admin.name}): ${req.reason}`,
+        markedBy: `Admin (${admin.name})`,
+        checkInTime: req.requestedStatus === 'PRESENT' || req.requestedStatus === 'LATE' ? new Date() : null,
+      },
+    });
+
+    // Create Audit entry
+    await db.attendanceAudit.create({
+      data: {
+        mentorId: req.mentorId,
+        batchId: req.batchId,
+        sessionId: req.sessionId,
+        studentId: req.studentId,
+        date: req.session.sessionDate,
+        oldStatus: previousRecord?.status || null,
+        newStatus: req.requestedStatus,
+        action: 'CORRECTION_APPROVED',
+        reason: req.reason,
+        approvedBy: admin.name,
+      },
+    });
+  }
+
+  // Notify Mentor
+  if (req.mentor?.userId) {
+    await db.notification.create({
+      data: {
+        userId: req.mentor.userId,
+        title: `Correction Request ${decision}`,
+        message: `Admin ${admin.name} ${decision.toLowerCase()} your attendance correction for ${req.student.user.name} in ${req.batch.batchCode}. ${adminNotes ? `Notes: ${adminNotes}` : ''}`,
+        type: 'ATTENDANCE',
+        linkUrl: `/mentor/batches/${req.batchId}/attendance`,
+      },
+    });
+  }
+
+  await logAuditEvent({
+    actorId: adminUserId,
+    action: `ATTENDANCE_CORRECTION_${decision}`,
+    entity: 'ATTENDANCE_CORRECTION_REQUEST',
+    entityId: requestId,
+    details: JSON.stringify({
+      decision,
+      adminNotes,
+      student: req.student.user.name,
+    }),
+  });
+
+  return updatedReq;
+}
+
+/**
+ * Mentor creates a new learning resource in the batch workspace
+ */
+export async function createBatchResourceService(
+  input: {
+    batchId: string;
+    moduleId?: string;
+    sessionId?: string;
+    title: string;
+    description?: string;
+    resourceType: string;
+    url: string;
+    driveFileId?: string;
+    driveMetadataJson?: string;
+  },
+  userId: string
+) {
+  await validateMentorBatchAccess(userId, input.batchId);
+
+  const resource = await db.batchResource.create({
+    data: {
+      batchId: input.batchId,
+      moduleId: input.moduleId || null,
+      sessionId: input.sessionId || null,
+      title: input.title.trim(),
+      description: input.description?.trim() || null,
+      resourceType: input.resourceType || 'PDF',
+      url: input.url.trim(),
+      driveFileId: input.driveFileId?.trim() || null,
+      driveMetadataJson: input.driveMetadataJson || null,
+      createdById: userId,
+    },
+    include: {
+      batch: true,
+      module: true,
+      session: true,
+    },
+  });
+
+  await logAuditEvent({
+    actorId: userId,
+    action: 'BATCH_RESOURCE_SHARED',
+    entity: 'BATCH_RESOURCE',
+    entityId: resource.id,
+    details: JSON.stringify({
+      title: resource.title,
+      resourceType: resource.resourceType,
+      batchCode: resource.batch.batchCode,
+    }),
+  });
+
+  return resource;
+}
+
+/**
+ * Mentor publishes a one-way broadcast announcement to the batch
+ */
+export async function sendBatchBroadcastService(
+  input: {
+    batchId: string;
+    title: string;
+    message: string;
+    attachmentUrl?: string;
+  },
+  userId: string
+) {
+  const { mentorProfile, batch } = await validateMentorBatchAccess(userId, input.batchId);
+
+  const students = await db.studentProfile.findMany({
+    where: { batchId: input.batchId },
+    include: { user: true },
+  });
+
+  const broadcast = await db.broadcast.create({
+    data: {
+      batchId: input.batchId,
+      mentorId: mentorProfile.id,
+      title: input.title.trim(),
+      message: input.message.trim(),
+      attachmentUrl: input.attachmentUrl?.trim() || null,
+      recipientsCount: students.length,
+      deliveryStatus: 'DELIVERED',
+    },
+  });
+
+  // Create BroadcastRecipient entries and student notifications
+  if (students.length > 0) {
+    await db.broadcastRecipient.createMany({
+      data: students.map((s: any) => ({
+        broadcastId: broadcast.id,
+        studentId: s.id,
+        deliveredAt: new Date(),
+        isRead: false,
+      })),
+      skipDuplicates: true,
+    });
+
+    for (const student of students) {
+      await db.notification.create({
+        data: {
+          userId: student.userId,
+          title: `Announcement: ${input.title.trim()}`,
+          message: input.message.trim(),
+          type: 'ANNOUNCEMENT',
+          linkUrl: `/student/attendance`,
+        },
+      });
+    }
+  }
+
+  await logAuditEvent({
+    actorId: userId,
+    action: 'BATCH_BROADCAST_SENT',
+    entity: 'BROADCAST',
+    entityId: broadcast.id,
+    details: JSON.stringify({
+      batchCode: batch.batchCode,
+      title: broadcast.title,
+      recipientsCount: students.length,
+    }),
+  });
+
+  return broadcast;
+}
+
+/**
+ * Retrieves full unified calendar schedule for a mentor
+ */
+export async function getMentorCalendarService(userId: string) {
+  await seedBatchesIfEmpty();
+  const user = await db.user.findUnique({
+    where: { id: userId },
+    include: { mentorProfile: true },
+  });
+
+  const isAdmin = user?.role === 'SUPER_ADMIN' || user?.role === 'ACADEMIC_ADMIN';
+  const mentorId = user?.mentorProfile?.id;
+
+  const batches = await db.batch.findMany({
+    where: isAdmin ? undefined : { mentorId: mentorId || undefined },
+    include: {
+      course: true,
+      sessions: {
+        include: {
+          module: true,
+          attendanceRecords: true,
+        },
+        orderBy: { sessionDate: 'asc' },
+      },
+    },
+  });
+
+  const events: any[] = [];
+
+  batches.forEach((b: any) => {
+    b.sessions.forEach((s: any) => {
+      const isLocked = isSessionAttendanceLocked(s.sessionDate, b.attendanceLockHours);
+      const isMarked = s.attendanceRecords?.length > 0;
+      events.push({
+        id: s.id,
+        type: 'LECTURE',
+        title: s.title,
+        batchId: b.id,
+        batchCode: b.batchCode,
+        batchTitle: b.title,
+        courseTitle: b.course?.title || 'Security Curriculum',
+        moduleTitle: s.module?.title || 'Core Module',
+        date: s.sessionDate,
+        durationMins: s.durationMins,
+        status: s.status,
+        isLocked,
+        isMarked,
+        presentCount: s.attendanceRecords.filter((r: any) => r.status === 'PRESENT' || r.status === 'LATE').length,
+        totalEnrolled: b.students?.length || s.attendanceRecords.length || 30,
+      });
+    });
+  });
+
+  return events;
+}
+
+/**
+ * Returns student's comprehensive dossier within a batch
+ */
+export async function getStudentDossierInBatchService(
+  batchId: string,
+  studentId: string,
+  userId: string
+) {
+  await validateMentorBatchAccess(userId, batchId);
+
+  const student = await db.studentProfile.findUnique({
+    where: { id: studentId },
+    include: {
+      user: {
+        include: {
+          tsIdentity: true,
+          enrollments: { include: { course: true } },
+          progress: { include: { lesson: { include: { module: true } } } },
+          labAttempts: { include: { lab: true } },
+          assessments: { include: { assessment: true } },
+          certificates: true,
+        },
+      },
+      batch: {
+        include: {
+          course: {
+            include: {
+              modules: {
+                include: { lessons: true },
+              },
+            },
+          },
+          sessions: {
+            include: {
+              module: true,
+              attendanceRecords: {
+                where: { studentId },
+              },
+            },
+            orderBy: { sessionDate: 'asc' },
+          },
+        },
+      },
+      skills: true,
+      attendanceRecords: {
+        where: { session: { batchId } },
+        include: { session: true },
+        orderBy: { session: { sessionDate: 'desc' } },
+      },
+    },
+  });
+
+  if (!student) {
+    throw new Error('Student record not found.');
+  }
+
+  // Calculate student metrics
+  const totalClasses = student.batch?.sessions?.length || 0;
+  const attendedClasses = student.attendanceRecords.filter(
+    (r: any) => r.status === 'PRESENT' || r.status === 'LATE'
+  ).length;
+  const absentClasses = student.attendanceRecords.filter((r: any) => r.status === 'ABSENT').length;
+  const attendancePercentage =
+    totalClasses > 0 ? Math.round((attendedClasses / totalClasses) * 100) : 100;
+
+  // Determine risk indicator
+  let riskStatus: 'ON_TRACK' | 'NEEDS_ATTENTION' | 'AT_RISK' = 'ON_TRACK';
+  let riskReason = 'Student performance and attendance are meeting faculty benchmarks.';
+
+  if (attendancePercentage < 70) {
+    riskStatus = 'AT_RISK';
+    riskReason = `Attendance is critically below the 75% required threshold (${attendancePercentage}%).`;
+  } else if (attendancePercentage < 80) {
+    riskStatus = 'NEEDS_ATTENTION';
+    riskReason = `Attendance is approaching the minimum threshold (${attendancePercentage}%).`;
+  }
+
+  return {
+    student,
+    metrics: {
+      totalClasses,
+      attendedClasses,
+      absentClasses,
+      attendancePercentage,
+      riskStatus,
+      riskReason,
+    },
+  };
+}
+
+/**
+ * Validates timetable conflict for a cohort session or mentor
+ */
+export async function checkScheduleConflictService({
+  targetSessionId,
+  batchId,
+  sessionDate,
+  durationMins = 120,
+}: {
+  targetSessionId?: string;
+  batchId: string;
+  sessionDate: Date;
+  durationMins?: number;
+}) {
+  const targetStart = new Date(sessionDate).getTime();
+  const targetEnd = targetStart + durationMins * 60 * 1000;
+
+  const batch = await db.batch.findUnique({
+    where: { id: batchId },
+    select: { mentorId: true, batchCode: true, title: true },
+  });
+
+  const queryConditions: any[] = [{ batchId }];
+  if (batch?.mentorId) {
+    queryConditions.push({ batch: { mentorId: batch.mentorId } });
+  }
+
+  const existingSessions = await db.batchSession.findMany({
+    where: {
+      id: targetSessionId ? { not: targetSessionId } : undefined,
+      OR: queryConditions,
+    },
+    include: {
+      batch: { select: { batchCode: true, title: true, mentorId: true } },
+    },
+  });
+
+  const conflicts = existingSessions.filter((s: any) => {
+    const sStart = new Date(s.sessionDate).getTime();
+    const sEnd = sStart + (s.durationMins || 120) * 60 * 1000;
+    return targetStart < sEnd && targetEnd > sStart;
+  });
+
+  return {
+    hasConflict: conflicts.length > 0,
+    conflicts: conflicts.map((c: any) => ({
+      sessionId: c.id,
+      title: c.title,
+      sessionNumber: c.sessionNumber,
+      sessionDate: c.sessionDate,
+      durationMins: c.durationMins,
+      batchCode: c.batch.batchCode,
+      conflictType: c.batchId === batchId ? 'BATCH_DOUBLE_BOOKING' : 'MENTOR_OVERLAP',
+    })),
+  };
+}
+
+/**
+ * Reschedule an existing lecture with conflict safety and audit tracking
+ */
+export async function rescheduleBatchSessionService({
+  sessionId,
+  newSessionDate,
+  newDurationMins,
+  reason,
+  actorUserId,
+  forceOverride = false,
+}: {
+  sessionId: string;
+  newSessionDate: Date;
+  newDurationMins?: number;
+  reason?: string;
+  actorUserId?: string;
+  forceOverride?: boolean;
+}) {
+  const session = await db.batchSession.findUnique({
+    where: { id: sessionId },
+    include: { batch: true },
+  });
+
+  if (!session) {
+    throw new Error('Batch session not found.');
+  }
+
+  const duration = newDurationMins ?? session.durationMins;
+
+  if (!forceOverride) {
+    const conflictCheck = await checkScheduleConflictService({
+      targetSessionId: sessionId,
+      batchId: session.batchId,
+      sessionDate: newSessionDate,
+      durationMins: duration,
+    });
+
+    if (conflictCheck.hasConflict) {
+      return {
+        success: false,
+        conflict: true,
+        conflicts: conflictCheck.conflicts,
+        error: 'Timetable conflict detected with an existing lecture.',
+      };
+    }
+  }
+
+  const oldDate = session.sessionDate;
+
+  const updatedSession = await db.batchSession.update({
+    where: { id: sessionId },
+    data: {
+      sessionDate: newSessionDate,
+      durationMins: duration,
+    },
+    include: { batch: true },
+  });
+
+  if (actorUserId) {
+    await logAuditEvent({
+      actorId: actorUserId,
+      action: 'BATCH_SESSION_RESCHEDULED',
+      entity: 'BATCH_SESSION',
+      entityId: session.id,
+      details: JSON.stringify({
+        batchCode: session.batch.batchCode,
+        sessionNumber: session.sessionNumber,
+        oldDate: oldDate.toISOString(),
+        newDate: newSessionDate.toISOString(),
+        reason: reason || 'Academic rescheduling directive',
+      }),
+    });
+  }
+
+  return {
+    success: true,
+    conflict: false,
+    session: updatedSession,
+  };
+}
+
+export async function updateBatchService(
+  batchId: string,
+  data: {
+    batchCode?: string;
+    title?: string;
+    description?: string;
+    courseId?: string | null;
+    mentorId?: string | null;
+    startDate?: Date;
+    endDate?: Date | null;
+    schedule?: string;
+    maxCapacity?: number;
+    status?: any;
+  },
+  actorUserId?: string
+) {
+  const updated = await db.batch.update({
+    where: { id: batchId },
+    data: {
+      ...(data.batchCode ? { batchCode: data.batchCode.trim() } : {}),
+      ...(data.title ? { title: data.title.trim() } : {}),
+      ...(data.description !== undefined ? { description: data.description } : {}),
+      ...(data.courseId !== undefined ? { courseId: data.courseId || null } : {}),
+      ...(data.mentorId !== undefined ? { mentorId: data.mentorId || null } : {}),
+      ...(data.startDate ? { startDate: data.startDate } : {}),
+      ...(data.endDate !== undefined ? { endDate: data.endDate } : {}),
+      ...(data.schedule ? { schedule: data.schedule.trim() } : {}),
+      ...(data.maxCapacity ? { maxCapacity: data.maxCapacity } : {}),
+      ...(data.status ? { status: data.status } : {}),
+    },
+  });
+
+  if (actorUserId) {
+    await logAuditEvent({
+      actorId: actorUserId,
+      action: 'BATCH_UPDATED',
+      entity: 'BATCH',
+      entityId: batchId,
+      details: `Updated batch ${updated.batchCode} (${updated.title})`,
+    });
+  }
+
+  return updated;
+}
+
+export async function deleteBatchService(batchId: string, actorUserId?: string) {
+  const batch = await db.batch.findUnique({
+    where: { id: batchId },
+    select: { batchCode: true, title: true },
+  });
+
+  // First unassign any students
+  await db.studentProfile.updateMany({
+    where: { batchId },
+    data: { batchId: null },
+  });
+
+  const deleted = await db.batch.delete({
+    where: { id: batchId },
+  });
+
+  if (actorUserId) {
+    await logAuditEvent({
+      actorId: actorUserId,
+      action: 'BATCH_DELETED',
+      entity: 'BATCH',
+      entityId: batchId,
+      details: `Deleted batch ${batch?.batchCode || batchId}`,
+    });
+  }
+
+  return deleted;
+}
+
+
+

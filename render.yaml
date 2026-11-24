@@ -1,0 +1,51 @@
+services:
+  - type: web
+    name: edunexus-lms
+    runtime: node
+    plan: free
+    buildCommand: npm install --legacy-peer-deps && npx prisma generate && npx prisma db push && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health/liveness
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: DATABASE_URL
+        sync: false
+      - key: NEXTAUTH_SECRET
+        generateValue: true
+      - key: NEXTAUTH_URL
+        sync: false
+      - key: NEXT_PUBLIC_APP_URL
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+      - key: NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
+      - key: RESEND_API_KEY
+        sync: false
+      - key: RESEND_FROM_EMAIL
+        value: "EduNexus Platform <onboarding@edunexus.io>"
+      - key: FACULTY_NOTIFY_EMAIL
+        value: "admissions@edunexus.io"
+      - key: ADMIN_PASSKEY
+        sync: false
+      - key: ADMIN_SECRET_KEY
+        sync: false
+      - key: SECURITY_ADMIN_PASSKEY
+        sync: false
+      - key: SECURITY_ADMIN_SECRET_KEY
+        sync: false
+      - key: MENTOR_PASSKEY
+        sync: false
+      - key: MENTOR_SECRET_KEY
+        sync: false
