@@ -38,7 +38,7 @@ export async function generateMetadata({
     keywords: [
       blog.category?.name || 'Cybersecurity',
       ...(blog.tags?.map((t: any) => t.name) || []),
-      'Thread Security Research',
+      'Edu Nexus Research',
       'Technical Article',
     ],
     alternates: {
@@ -51,7 +51,7 @@ export async function generateMetadata({
       type: 'article',
       publishedTime: blog.publishedAt?.toISOString(),
       modifiedTime: blog.updatedAt?.toISOString(),
-      authors: [blog.author?.user?.name || 'Thread Security Mentor'],
+      authors: [blog.author?.user?.name || 'Edu Nexus Mentor'],
       images: ogImage
         ? [{ url: ogImage, width: 1080, height: 711, alt: blog.title }]
         : [{ url: `${APP_URL}/logos/TSE%20Logo%20Dark.svg`, width: 1200, height: 630, alt: blog.title }],
@@ -89,7 +89,7 @@ export default async function PublicBlogArticlePage({
         slug={blog.slug}
         publishedTime={blog.publishedAt?.toISOString()}
         modifiedTime={blog.updatedAt?.toISOString()}
-        authorName={blog.author?.user?.name || 'Thread Security Mentor'}
+        authorName={blog.author?.user?.name || 'Edu Nexus Mentor'}
         authorRole={blog.author?.title || 'Lead Cybersecurity Mentor'}
         category={blog.category?.name}
         keywords={blog.tags?.map((t: any) => t.name)}

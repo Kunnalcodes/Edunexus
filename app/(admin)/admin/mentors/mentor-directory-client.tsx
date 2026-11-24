@@ -321,13 +321,12 @@ export function MentorDirectoryClient({ mentors, allBatches = [], allCourses = [
                       </div>
                     </div>
 
-                    <span className={`px-2 py-0.5 rounded-full text-[10px] font-semibold border ${
-                      !isUserActive
+                    <span className={`px-2 py-0.5 rounded-full text-[10px] font-semibold border ${!isUserActive
                         ? 'bg-rose-50 text-rose-700 border-rose-200'
                         : !isDashboardGranted
-                        ? 'bg-amber-50 text-amber-700 border-amber-200'
-                        : 'bg-emerald-50 text-emerald-700 border-emerald-200'
-                    }`}>
+                          ? 'bg-amber-50 text-amber-700 border-amber-200'
+                          : 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                      }`}>
                       {!isUserActive ? 'Archived' : !isDashboardGranted ? 'Suspended' : 'Active'}
                     </span>
                   </div>
@@ -424,11 +423,10 @@ export function MentorDirectoryClient({ mentors, allBatches = [], allCourses = [
                     }
                   }}
                   disabled={!isTeaching}
-                  className={`px-2.5 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1 transition-all ${
-                    isTeaching
+                  className={`px-2.5 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1 transition-all ${isTeaching
                       ? 'bg-violet-600 hover:bg-violet-700 text-white cursor-pointer shadow-xs'
                       : 'bg-slate-100 text-slate-400 cursor-not-allowed'
-                  }`}
+                    }`}
                   title={isTeaching ? 'Schedule Lecture for this Mentor' : 'Assign a batch first to schedule lectures'}
                 >
                   <Calendar className="w-3.5 h-3.5" />
@@ -508,11 +506,10 @@ export function MentorDirectoryClient({ mentors, allBatches = [], allCourses = [
               <button
                 key={pg}
                 onClick={() => setCurrentPage(pg)}
-                className={`w-7 h-7 rounded-lg text-xs font-semibold ${
-                  currentPage === pg
+                className={`w-7 h-7 rounded-lg text-xs font-semibold ${currentPage === pg
                     ? 'bg-violet-600 text-white'
                     : 'text-slate-700 hover:bg-slate-100'
-                }`}
+                  }`}
               >
                 {pg}
               </button>
@@ -826,7 +823,7 @@ export function MentorDirectoryClient({ mentors, allBatches = [], allCourses = [
                   <input
                     type="text"
                     name="company"
-                    placeholder="e.g. Thread Security"
+                    placeholder="e.g. Edu Nexus"
                     className="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-xl px-3.5 py-2 text-xs focus:outline-none focus:border-violet-600"
                   />
                 </div>

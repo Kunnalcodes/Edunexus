@@ -52,7 +52,7 @@ export default async function StudentPendingApprovalPage() {
         {/* Header */}
         <div className="text-center space-y-2">
           <Link href="/" className="inline-flex items-center gap-2 mb-2">
-            <img src="/logos/TSE Logo Nav.svg" alt="Thread Security Education Logo" className="h-12 w-auto object-contain" />
+            <img src="/logos/TSE Logo Nav.svg" alt="Edu Nexus Education Logo" className="h-12 w-auto object-contain" />
           </Link>
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 font-mono text-xs">
             <Clock className="w-3.5 h-3.5 animate-spin" />
@@ -60,7 +60,7 @@ export default async function StudentPendingApprovalPage() {
           </div>
           <h1 className="tse-h2 text-white">Student Registration & Credentials Verified</h1>
           <p className="tse-body-sm text-slate-300 max-w-xl mx-auto">
-            Your unique Thread Security Identity (TS-ID) has been provisioned. Academic registrar approval is required before the full training environment and course labs unlock.
+            Your unique Edu Nexus Identity (TS-ID) has been provisioned. Academic registrar approval is required before the full training environment and course labs unlock.
           </p>
         </div>
 
@@ -89,7 +89,7 @@ export default async function StudentPendingApprovalPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="p-4 rounded-xl bg-white/5 border border-white/10 space-y-1">
                 <span className="text-[11px] font-mono text-slate-400 uppercase tracking-wider block">
-                  Thread Security ID (TS-ID)
+                  Edu Nexus ID (TS-ID)
                 </span>
                 <span className="text-xl font-bold font-mono text-security-green block">
                   {tsId}

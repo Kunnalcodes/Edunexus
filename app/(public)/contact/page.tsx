@@ -10,7 +10,7 @@ const APP_URL = getSiteUrl();
 export const metadata: Metadata = {
   title: 'Cyber Security Training Institute in Jalandhar, Punjab | Contact & Admissions',
   description:
-    'Visit Thread Security Education campus at Vasal Mall, Jalandhar, Punjab. Enroll in offline & online cyber security courses, ethical hacking training, 45-day summer internships, and 6-month industrial programs. Speak to our expert career counselors today.',
+    'Visit Edu Nexus Education campus at Vasal Mall, Jalandhar, Punjab. Enroll in offline & online cyber security courses, ethical hacking training, 45-day summer internships, and 6-month industrial programs. Speak to our expert career counselors today.',
   keywords: [
     'cyber security course in Jalandhar',
     'cybersecurity training in Jalandhar',
@@ -31,13 +31,13 @@ export const metadata: Metadata = {
     'cyber security course in Ludhiana',
     'cyber security course in Mohali',
     'cyber security course in Chandigarh',
-    'Thread Security Education',
+    'Edu Nexus Education',
   ],
   alternates: {
     canonical: `${APP_URL}/contact`,
   },
   openGraph: {
-    title: 'Cyber Security Training Institute in Jalandhar, Punjab | Thread Security Education',
+    title: 'Cyber Security Training Institute in Jalandhar, Punjab | Edu Nexus Education',
     description:
       'Visit our physical campus at Vasal Mall, Jalandhar, Punjab. Book a free 1-on-1 counseling session for Cyber Security & AI programs.',
     url: `${APP_URL}/contact`,
@@ -47,13 +47,13 @@ export const metadata: Metadata = {
         url: `${APP_URL}/images/og-thread-security-education.png`,
         width: 1200,
         height: 630,
-        alt: 'Contact Thread Security Education Campus — Jalandhar, Punjab',
+        alt: 'Contact Edu Nexus Education Campus — Jalandhar, Punjab',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Cyber Security Training Institute in Jalandhar, Punjab | Thread Security Education',
+    title: 'Cyber Security Training Institute in Jalandhar, Punjab | Edu Nexus Education',
     description:
       'Visit our physical campus at Vasal Mall, Jalandhar, Punjab or join interactive online live batches.',
     images: [`${APP_URL}/images/og-thread-security-education.png`],

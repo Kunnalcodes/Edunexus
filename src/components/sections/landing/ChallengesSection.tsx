@@ -154,13 +154,13 @@ export function ChallengesSection() {
             </h2>
 
             <p className="mt-5 text-base sm:text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed font-medium">
-              Here&apos;s how Thread Security Education helps you overcome them.
+              Here&apos;s how Edu Nexus Education helps you overcome them.
             </p>
           </motion.div>
         </div>
 
         {/* 3D Circular Revolving Showcase */}
-        <div 
+        <div
           className="relative w-full h-[540px] flex items-center justify-center z-10"
           style={{ perspective: '1600px', perspectiveOrigin: '50% 25%' }}
         >
@@ -197,11 +197,10 @@ export function ChallengesSection() {
                         {c.icon}
                       </div>
                       <span
-                        className={`text-[10px] font-medium tracking-[0.15em] uppercase px-2.5 py-1 rounded-full border ${
-                          isCyber
+                        className={`text-[10px] font-medium tracking-[0.15em] uppercase px-2.5 py-1 rounded-full border ${isCyber
                             ? 'bg-[#C6FF34]/10 text-[#C6FF34] border-[#C6FF34]/20'
                             : 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20'
-                        }`}
+                          }`}
                       >
                         {isCyber ? 'Cybersecurity' : 'AI'}
                       </span>

@@ -24,15 +24,15 @@ export const metadata: Metadata = {
     'cyber security course with placement support',
     'cyber security career after BTech',
     'cyber security career after BCA',
-    'Thread Security Education',
+    'Edu Nexus Education',
   ],
   alternates: {
     canonical: `${APP_URL}/placements`,
   },
   openGraph: {
-    title: 'Cyber Security Placement Training & Career Outcomes | Thread Security Education',
+    title: 'Cyber Security Placement Training & Career Outcomes | Edu Nexus Education',
     description:
-      'Explore verified career transformation stories and hiring partners of Thread Security Education alumni placed at top cybersecurity firms.',
+      'Explore verified career transformation stories and hiring partners of Edu Nexus Education alumni placed at top cybersecurity firms.',
     url: `${APP_URL}/placements`,
     type: 'website',
     images: [
@@ -40,13 +40,13 @@ export const metadata: Metadata = {
         url: `${APP_URL}/images/og-thread-security-education.png`,
         width: 1200,
         height: 630,
-        alt: 'Cyber Security Placements & Career Outcomes — Thread Security Education',
+        alt: 'Cyber Security Placements & Career Outcomes — Edu Nexus Education',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Cyber Security Placement Training & Career Outcomes | Thread Security Education',
+    title: 'Cyber Security Placement Training & Career Outcomes | Edu Nexus Education',
     description:
       '100% placement support, resume reviews, technical mock interviews, and direct hiring referrals.',
     images: [`${APP_URL}/images/og-thread-security-education.png`],

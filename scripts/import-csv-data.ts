@@ -63,7 +63,7 @@ async function main() {
       data: {
         userId: mentorUser.id,
         title: 'Lead Security Instructor',
-        company: 'Thread Security Education',
+        company: 'Edu Nexus Education',
         bio: 'Senior Security Practitioner and Academic Mentor.',
         expertise: 'Cybersecurity, VAPT, Bug Bounty, AI Security',
       },
@@ -90,7 +90,7 @@ async function main() {
       create: {
         slug: c.slug,
         title: c.title,
-        subtitle: `Professional ${c.title} Training Program by Thread Security`,
+        subtitle: `Professional ${c.title} Training Program by Edu Nexus`,
         description: `Comprehensive hands-on training course in ${c.title}.`,
         category: c.category,
         level: CourseLevel.INTERMEDIATE,

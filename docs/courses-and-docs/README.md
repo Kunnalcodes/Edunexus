@@ -1,6 +1,6 @@
 # Course and Academy Shared Documents
 
-Welcome! This folder is a dedicated space for sharing course descriptions, syllabus files, PDF guides, and documentations about Thread Security Academy courses.
+Welcome! This folder is a dedicated space for sharing course descriptions, syllabus files, PDF guides, and documentations about Edu Nexus Academy courses.
 
 ## How to use this folder:
 1. **Drop any course-related documents here**: You can add `.pdf`, `.txt`, `.md`, `.json`, or `.csv` files containing details about course modules, pricing, mentorship schedules, and academy structures.

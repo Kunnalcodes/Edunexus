@@ -16,7 +16,7 @@ export async function sendLabGradedEmail(
   data: LabGradedEmailData
 ): Promise<{ success: boolean; message?: string }> {
   const { studentName, studentEmail, labTitle, difficulty, score, feedback, mentorName, labId } = data;
-  const fromEmail = process.env.RESEND_FROM_EMAIL || 'Thread Security Education <noreply@threadsecurity.in>';
+  const fromEmail = process.env.RESEND_FROM_EMAIL || 'Edu Nexus Education <noreply@threadsecurity.in>';
   const apiKey = process.env.RESEND_API_KEY;
   const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://www.threadsecurity.in';
 
@@ -52,7 +52,7 @@ export async function sendLabGradedEmail(
       <body>
         <div class="container">
           <div class="header">
-            <div class="logo">⚡ THREAD SECURITY EDUCATION // OFFENSIVE LABS</div>
+            <div class="logo">⚡ Edu Nexus EDUCATION // OFFENSIVE LABS</div>
             <h1 class="title">Lab Evaluation Result Released</h1>
             <p class="subtitle">Cadet: <strong>${studentName}</strong> • Target: <strong>${labTitle}</strong></p>
           </div>
@@ -89,7 +89,7 @@ export async function sendLabGradedEmail(
           </div>
 
           <div class="footer">
-            Thread Security Education Academic Operations<br>
+            Edu Nexus Education Academic Operations<br>
             Cryptographically logged &amp; verified by TSE Faculty Console.
           </div>
         </div>

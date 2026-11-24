@@ -10,10 +10,6 @@ const nextConfig: NextConfig = {
     // Skip TypeScript typecheck during cloud builds to prevent OOM on memory-limited servers
     ignoreBuildErrors: true,
   },
-  eslint: {
-    // Skip ESLint during cloud builds
-    ignoreDuringBuilds: true,
-  },
   experimental: {
     webpackMemoryOptimizations: true,
     serverActions: {

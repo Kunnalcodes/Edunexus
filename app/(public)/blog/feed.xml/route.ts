@@ -51,7 +51,7 @@ export async function GET() {
         const description = escapeXml(b.excerpt || b.subtitle || '');
         const pubDate = (b.publishedAt || b.createdAt || new Date()).toUTCString();
         const category = escapeXml(b.category?.name || 'Cybersecurity');
-        const author = escapeXml(b.author?.user?.name || 'Thread Security Mentor');
+        const author = escapeXml(b.author?.user?.name || 'Edu Nexus Mentor');
 
         return `    <item>
       <title>${title}</title>
@@ -68,9 +68,9 @@ export async function GET() {
     const rssXml = `<?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Thread Security Research &amp; Cyber Blog</title>
+    <title>Edu Nexus Research &amp; Cyber Blog</title>
     <link>${APP_URL}/blog</link>
-    <description>Cutting-edge cybersecurity research, SOC analysis, adversary emulation, and technical writeups from Thread Security Education faculty.</description>
+    <description>Cutting-edge cybersecurity research, SOC analysis, adversary emulation, and technical writeups from Edu Nexus Education faculty.</description>
     <language>en-us</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <atom:link href="${APP_URL}/blog/feed.xml" rel="self" type="application/rss+xml" />

@@ -38,7 +38,7 @@ export async function getAuthorizedMentorProfile(userId: string) {
       data: {
         userId,
         title: 'Senior Cybersecurity Faculty',
-        company: 'Thread Security Education',
+        company: 'Edu Nexus Education',
         bio: 'Lead faculty mentor directing practical offensive security and SOC defense cohorts.',
         expertise: 'VAPT, SOC Defense, DevSecOps, Ethical Hacking',
       },
@@ -198,9 +198,9 @@ export async function getMentorAuthorizedStudents(
     const avgProgress =
       s.enrollments.length > 0
         ? Math.round(
-            s.enrollments.reduce((acc, e) => acc + e.progressPercent, 0) /
-              s.enrollments.length
-          )
+          s.enrollments.reduce((acc, e) => acc + e.progressPercent, 0) /
+          s.enrollments.length
+        )
         : 0;
 
     const lastActivity =
@@ -217,18 +217,18 @@ export async function getMentorAuthorizedStudents(
       tsId: s.tsIdentity?.tsId || 'N/A',
       batch: s.studentProfile?.batch
         ? {
-            id: s.studentProfile.batch.id,
-            code: s.studentProfile.batch.batchCode,
-            title: s.studentProfile.batch.title,
-            mentorName: s.studentProfile.batch.mentor?.user.name,
-          }
+          id: s.studentProfile.batch.id,
+          code: s.studentProfile.batch.batchCode,
+          title: s.studentProfile.batch.title,
+          mentorName: s.studentProfile.batch.mentor?.user.name,
+        }
         : null,
       course: s.enrollments[0]?.course
         ? {
-            id: s.enrollments[0].course.id,
-            title: s.enrollments[0].course.title,
-            slug: s.enrollments[0].course.slug,
-          }
+          id: s.enrollments[0].course.id,
+          title: s.enrollments[0].course.title,
+          slug: s.enrollments[0].course.slug,
+        }
         : null,
       attendancePercentage,
       totalSessionsAttended: presentCount,

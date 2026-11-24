@@ -57,7 +57,7 @@ export const MASTER_COURSES: MasterCourseData[] = [
     slug: 'cyber-security-course',
     title: 'Professional Cyber Security Course & Industrial Training (Ethical Hacking, VAPT & SOC)',
     subtitle: 'Comprehensive job-oriented cybersecurity training program. Master Ethical Hacking, VAPT, SOC Operations, Bug Bounty, Cloud Security, and Incident Response with 100% hands-on sandboxed labs in Jalandhar, Punjab & Online.',
-    description: 'Thread Security Education’s flagship Cyber Security Course is designed for beginners, engineering students (BTech, BCA, MCA), freshers, and working professionals looking to launch a high-growth career in cybersecurity. Featuring 45-Day Summer Training, 6-Month Industrial Training & Internship, and Full-Stack Career Accelerator tracks with CEH v13, CompTIA Security+, and OSCP exam preparation, live sandboxed cyber range labs, 1-on-1 expert mentorship, and 100% placement support in Jalandhar, Punjab and across India.',
+    description: 'Edu Nexus Education’s flagship Cyber Security Course is designed for beginners, engineering students (BTech, BCA, MCA), freshers, and working professionals looking to launch a high-growth career in cybersecurity. Featuring 45-Day Summer Training, 6-Month Industrial Training & Internship, and Full-Stack Career Accelerator tracks with CEH v13, CompTIA Security+, and OSCP exam preparation, live sandboxed cyber range labs, 1-on-1 expert mentorship, and 100% placement support in Jalandhar, Punjab and across India.',
     track: 'cyber',
     category: 'Complete Cyber Security & Defense',
     level: 'Beginner',
@@ -102,7 +102,7 @@ export const MASTER_COURSES: MasterCourseData[] = [
     mentor: {
       name: 'Kunal Singh',
       role: 'Principal Security Architect & Offensive Operations Lead',
-      company: 'Thread Security Education',
+      company: 'Edu Nexus Education',
       bio: 'Over a decade leading enterprise penetration testing, red teaming, and threat modeling for global fintech and SaaS corporations. Certified ethical hacker and senior security trainer.',
     },
     modules: [
@@ -226,7 +226,7 @@ export const MASTER_COURSES: MasterCourseData[] = [
       },
       {
         q: 'Does this course prepare me for CEH, CompTIA Security+, and OSCP certifications?',
-        a: 'Yes. The syllabus is mapped directly to EC-Council CEH v13, CompTIA Security+ (SY0-701), and offensive security standards (OSCP/eJPT). You will also receive an official, cryptographically verifiable TS-ID certificate from Thread Security Education.',
+        a: 'Yes. The syllabus is mapped directly to EC-Council CEH v13, CompTIA Security+ (SY0-701), and offensive security standards (OSCP/eJPT). You will also receive an official, cryptographically verifiable TS-ID certificate from Edu Nexus Education.',
       },
       {
         q: 'What placement support is provided after completing the course?',
@@ -259,7 +259,7 @@ export const MASTER_COURSES: MasterCourseData[] = [
     mentor: {
       name: 'Kunal Singh',
       role: 'Lead Security Architect & Offensive Operations',
-      company: 'Thread Security Education',
+      company: 'Edu Nexus Education',
       bio: '10+ years conducting enterprise penetration testing, red teaming, and threat modeling for global fintech and SaaS platforms.',
     },
     modules: [
@@ -326,7 +326,7 @@ export const MASTER_COURSES: MasterCourseData[] = [
     mentor: {
       name: 'Vikramaditya Sharma',
       role: 'Principal SOC Engineer & Incident Commander',
-      company: 'Thread Security Education',
+      company: 'Edu Nexus Education',
       bio: 'Former Lead Incident Responder managing 24/7 global defense operations, triage, and threat eradication.',
     },
     modules: [
@@ -382,7 +382,7 @@ export const MASTER_COURSES: MasterCourseData[] = [
     mentor: {
       name: 'Rohan Mehta',
       role: 'Cloud Security Architect',
-      company: 'Thread Security Education',
+      company: 'Edu Nexus Education',
       bio: 'Architecting secure multi-region cloud infrastructures and automated compliance pipelines for Fortune 500 organizations.',
     },
     modules: [
@@ -428,7 +428,7 @@ export const MASTER_COURSES: MasterCourseData[] = [
     mentor: {
       name: 'Kunal Singh',
       role: 'Offensive Security Lead',
-      company: 'Thread Security Education',
+      company: 'Edu Nexus Education',
       bio: 'Certified Red Teamer with hundreds of successful domain compromise engagements across global corporate networks.',
     },
     modules: [
@@ -474,7 +474,7 @@ export const MASTER_COURSES: MasterCourseData[] = [
     mentor: {
       name: 'Rohan Mehta',
       role: 'Senior Mobile Security Researcher',
-      company: 'Thread Security Education',
+      company: 'Edu Nexus Education',
       bio: 'Specialist in mobile application vulnerabilities and zero-day discoveries in commercial iOS and Android applications.',
     },
     modules: [
@@ -519,7 +519,7 @@ export const MASTER_COURSES: MasterCourseData[] = [
     mentor: {
       name: 'Kunal Singh',
       role: 'Lead Security Architect',
-      company: 'Thread Security Education',
+      company: 'Edu Nexus Education',
       bio: 'Advising engineering teams on resilient microservice architectures and zero-trust API gateways.',
     },
     modules: [
@@ -563,7 +563,7 @@ export const MASTER_COURSES: MasterCourseData[] = [
     mentor: {
       name: 'Vikramaditya Sharma',
       role: 'Exploit Developer & Reverse Engineer',
-      company: 'Thread Security Education',
+      company: 'Edu Nexus Education',
       bio: 'Low-level vulnerability researcher discovering CVEs in enterprise operating systems and networking firmware.',
     },
     modules: [
@@ -607,7 +607,7 @@ export const MASTER_COURSES: MasterCourseData[] = [
     mentor: {
       name: 'Rohan Mehta',
       role: 'Critical Infrastructure Security Consultant',
-      company: 'Thread Security Education',
+      company: 'Edu Nexus Education',
       bio: 'Advising power generation, water treatment, and manufacturing facilities on air-gapped industrial defense.',
     },
     modules: [
@@ -653,7 +653,7 @@ export const MASTER_COURSES: MasterCourseData[] = [
     mentor: {
       name: 'Ananya Roy',
       role: 'Head of AI Vulnerability Research',
-      company: 'Thread Security Education',
+      company: 'Edu Nexus Education',
       bio: 'Pioneering researcher specializing in adversarial prompt injection and safety guardrails for production enterprise models.',
     },
     modules: [
@@ -697,7 +697,7 @@ export const MASTER_COURSES: MasterCourseData[] = [
     mentor: {
       name: 'Harpreet Kaur',
       role: 'Senior AI Systems Engineer',
-      company: 'Thread Security Education',
+      company: 'Edu Nexus Education',
       bio: 'Building enterprise tool-using agent fleets and high-concurrency LLM inference microservices.',
     },
     modules: [
@@ -741,7 +741,7 @@ export const MASTER_COURSES: MasterCourseData[] = [
     mentor: {
       name: 'Piya Kohli',
       role: 'AI Security Specialist',
-      company: 'Thread Security Education',
+      company: 'Edu Nexus Education',
       bio: 'Specialist in adversarial robustness testing and secure lifecycle management for deep learning neural networks.',
     },
     modules: [
@@ -785,7 +785,7 @@ export const MASTER_COURSES: MasterCourseData[] = [
     mentor: {
       name: 'Ananya Roy',
       role: 'AI Defense Lead',
-      company: 'Thread Security Education',
+      company: 'Edu Nexus Education',
       bio: 'Leading vulnerability assessments on production vector search architectures and corporate knowledge engines.',
     },
     modules: [
@@ -829,7 +829,7 @@ export const MASTER_COURSES: MasterCourseData[] = [
     mentor: {
       name: 'Harpreet Kaur',
       role: 'AI Governance Director',
-      company: 'Thread Security Education',
+      company: 'Edu Nexus Education',
       bio: 'Advising healthcare and banking institutions on responsible AI deployments and compliance standards.',
     },
     modules: [
@@ -873,7 +873,7 @@ export const MASTER_COURSES: MasterCourseData[] = [
     mentor: {
       name: 'Piya Kohli',
       role: 'Multimodal AI Scientist',
-      company: 'Thread Security Education',
+      company: 'Edu Nexus Education',
       bio: 'Leading computer vision research on adversarial image robustness and synthetic media authentication.',
     },
     modules: [
@@ -917,7 +917,7 @@ export const MASTER_COURSES: MasterCourseData[] = [
     mentor: {
       name: 'Ananya Roy',
       role: 'Head of AI Vulnerability Research',
-      company: 'Thread Security Education',
+      company: 'Edu Nexus Education',
       bio: 'Researching privacy-preserving machine learning, differential privacy budgeting, and cryptographic enclaves.',
     },
     modules: [
@@ -961,7 +961,7 @@ export const MASTER_COURSES: MasterCourseData[] = [
     mentor: {
       name: 'Harpreet Kaur',
       role: 'Senior AI Engineer',
-      company: 'Thread Security Education',
+      company: 'Edu Nexus Education',
       bio: 'Optimizing high-concurrency LLM inference fleets and embedded edge deployments for real-time defense applications.',
     },
     modules: [

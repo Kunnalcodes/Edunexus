@@ -9,13 +9,13 @@ export default function NotFound() {
       <div className="absolute -top-40 -left-40 w-96 h-96 bg-[#C6FF34]/15 rounded-full blur-[120px] pointer-events-none animate-pulse" />
       <div className="absolute top-1/2 -right-40 w-[450px] h-[450px] bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute -bottom-40 left-1/3 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[160px] pointer-events-none" />
-      
+
       {/* Cyber Grid Background */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[linear-gradient(to_right,#C6FF34_1px,transparent_1px),linear-gradient(to_bottom,#C6FF34_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
 
       {/* ── LIQUID GLASS CARD CONTAINER ── */}
       <div className="relative z-10 max-w-2xl w-full mx-auto p-8 sm:p-12 rounded-[2.5rem] bg-gradient-to-b from-white/[0.08] via-white/[0.03] to-white/[0.01] border border-white/15 shadow-[0_8px_32px_0_rgba(0,0,0,0.5),inset_0_1px_1px_0_rgba(255,255,255,0.2)] backdrop-blur-2xl text-center space-y-8 overflow-hidden group">
-        
+
         {/* Specular Liquid Light Shimmer Effect */}
         <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-3/4 h-24 bg-gradient-to-b from-[#C6FF34]/20 to-transparent blur-2xl pointer-events-none" />
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent pointer-events-none" />
@@ -49,10 +49,10 @@ export default function NotFound() {
           <Link href="/">
             <Button className="bg-[#C6FF34] hover:bg-[#b2f218] text-black font-bold font-mono text-xs px-6 py-3 rounded-2xl flex items-center gap-2 shadow-[0_0_25px_rgba(198,255,52,0.3)] hover:shadow-[0_0_35px_rgba(198,255,52,0.45)] transition-all cursor-pointer">
               <ArrowLeft className="w-4 h-4" aria-hidden="true" />
-              <span>Return to Thread Security Education</span>
+              <span>Return to Edu Nexus Education</span>
             </Button>
           </Link>
-          
+
           <Link href="/courses">
             <Button variant="outline" className="border-white/15 bg-white/[0.05] text-white hover:bg-white/[0.12] hover:border-white/30 font-mono text-xs px-5 py-3 rounded-2xl flex items-center gap-2 backdrop-blur-md transition-all cursor-pointer">
               <BookOpen className="w-3.5 h-3.5 text-[#C6FF34]" aria-hidden="true" />

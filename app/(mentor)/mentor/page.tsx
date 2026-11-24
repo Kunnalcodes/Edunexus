@@ -116,7 +116,7 @@ export default async function MentorDashboardPage() {
               FACULTY PORTAL
             </span>
             <span className="text-xs text-slate-500 font-medium">
-              Thread Security
+              Edu Nexus
             </span>
           </div>
 
@@ -268,11 +268,10 @@ export default async function MentorDashboardPage() {
                       </div>
 
                       <span
-                        className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
-                          hasRecords
+                        className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${hasRecords
                             ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
                             : 'bg-amber-50 text-amber-700 border-amber-200'
-                        }`}
+                          }`}
                       >
                         {hasRecords ? 'ATTENDANCE LOGGED' : 'PENDING ATTENDANCE'}
                       </span>

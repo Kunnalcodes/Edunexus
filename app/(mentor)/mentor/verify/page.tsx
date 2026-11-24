@@ -3,7 +3,7 @@ import { getSession, hasMentorClearance } from '@/lib/auth/session';
 import { MentorVerifyClient } from './mentor-verify-client';
 
 export const metadata = {
-  title: 'Mentor Faculty Clearance Verification | Thread Security Education',
+  title: 'Mentor Faculty Clearance Verification | Edu Nexus Education',
   description: 'Cryptographic security challenge for faculty mentors.',
 };
 

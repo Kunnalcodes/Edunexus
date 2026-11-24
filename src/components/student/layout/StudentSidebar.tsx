@@ -83,7 +83,7 @@ export function StudentSidebar({ student }: StudentSidebarProps) {
             <div className="relative shrink-0">
               <Image
                 src="/logos/TSE Logo Nav.svg"
-                alt="Thread Security Logo"
+                alt="Edu Nexus Logo"
                 width={32}
                 height={32}
                 unoptimized
@@ -94,7 +94,7 @@ export function StudentSidebar({ student }: StudentSidebarProps) {
             {!collapsed && (
               <div className="flex flex-col">
                 <span className="font-mono text-xs font-bold tracking-wider text-white uppercase whitespace-nowrap">
-                  THREAD SECURITY
+                  Edu Nexus
                 </span>
                 <span className="font-mono text-[9px] text-purple-400 tracking-widest uppercase font-semibold">
                   EDUCATION TERMINAL

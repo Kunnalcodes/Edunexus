@@ -50,13 +50,13 @@ const PRESET_PAGES = [
   { url: 'https://www.threadsecurity.in/courses/soc-analyst-mastery', topic: 'SOC Analyst 2.0 Mastery Masterclass', keywords: 'soc analyst course, blue team certification, siem incident response' },
   { url: 'https://www.threadsecurity.in/courses/red-team-ops', topic: 'Red Team Offensive Operations Lab', keywords: 'red team course, ethical hacking certification, penetration testing labs' },
   { url: 'https://www.threadsecurity.in/blog/reverse-engineering-malware-ghidra', topic: 'Reverse Engineering Malware with Ghidra', keywords: 'malware analysis tutorial, ghidra reverse engineering, disassemble malware' },
-  { url: 'https://www.threadsecurity.in/', topic: 'Thread Security Education Homepage', keywords: 'cybersecurity education, ethical hacking certification india, practical cyber labs' },
+  { url: 'https://www.threadsecurity.in/', topic: 'Edu Nexus Education Homepage', keywords: 'cybersecurity education, ethical hacking certification india, practical cyber labs' },
   { url: 'https://www.threadsecurity.in/workshops', topic: 'Hands-on Cybersecurity Workshops', keywords: 'cybersecurity workshops, free ethical hacking bootcamps, live threat hunting' },
 ];
 
 export default function AdminSeoConsolePage() {
   const [activeTab, setActiveTab] = useState<'AI_METADATA' | 'TELEMETRY' | 'SEO_AUDIT' | 'TOPIC_CLUSTERS'>('AI_METADATA');
-  
+
   // Credentials Diagnostic state
   const [credStatus, setCredStatus] = useState<any>(null);
   const [showCredGuide, setShowCredGuide] = useState(false);
@@ -65,7 +65,7 @@ export default function AdminSeoConsolePage() {
   const [days, setDays] = useState(28);
   const [loading, setLoading] = useState(true);
   const [telemetry, setTelemetry] = useState<any>(null);
-  
+
   // Instant Indexing state
   const [indexUrl, setIndexUrl] = useState('');
   const [indexAction, setIndexAction] = useState<'URL_UPDATED' | 'URL_DELETED'>('URL_UPDATED');
@@ -272,7 +272,7 @@ export default function AdminSeoConsolePage() {
             <span className="p-1 rounded-md bg-violet-100 text-violet-700">
               <Globe className="w-3.5 h-3.5" />
             </span>
-            <span>Thread Security Education • Rank #1 SEO & Search Console Engine</span>
+            <span>Edu Nexus Education • Rank #1 SEO & Search Console Engine</span>
           </div>
           <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-violet-950">
             SEO & Search Analytics Command Center
@@ -287,11 +287,10 @@ export default function AdminSeoConsolePage() {
           {/* Credentials Status Pill */}
           <button
             onClick={() => setShowCredGuide(!showCredGuide)}
-            className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold border transition shadow-sm ${
-              credStatus?.isConfigured
+            className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold border transition shadow-sm ${credStatus?.isConfigured
                 ? 'bg-emerald-50 text-emerald-800 border-emerald-200 hover:bg-emerald-100'
                 : 'bg-amber-50 text-amber-900 border-amber-300 hover:bg-amber-100'
-            }`}
+              }`}
           >
             <Key className="w-3.5 h-3.5" />
             <span>
@@ -372,11 +371,10 @@ export default function AdminSeoConsolePage() {
       <div className="flex flex-wrap items-center gap-2 border-b border-violet-200/80 pb-2">
         <button
           onClick={() => setActiveTab('AI_METADATA')}
-          className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition shadow-sm ${
-            activeTab === 'AI_METADATA'
+          className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition shadow-sm ${activeTab === 'AI_METADATA'
               ? 'bg-violet-600 text-white shadow-violet-500/25 ring-2 ring-violet-400/20'
               : 'bg-white text-violet-800 hover:bg-violet-100/70 border border-violet-200'
-          }`}
+            }`}
         >
           <Sparkles className="w-4 h-4 text-amber-300" />
           <span>Vertex AI Meta Title &amp; Description Engine</span>
@@ -387,11 +385,10 @@ export default function AdminSeoConsolePage() {
 
         <button
           onClick={() => setActiveTab('TELEMETRY')}
-          className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition shadow-sm ${
-            activeTab === 'TELEMETRY'
+          className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition shadow-sm ${activeTab === 'TELEMETRY'
               ? 'bg-violet-600 text-white shadow-violet-500/25'
               : 'bg-white text-violet-800 hover:bg-violet-100/70 border border-violet-200'
-          }`}
+            }`}
         >
           <BarChart3 className="w-4 h-4" />
           <span>Search Console Telemetry &amp; Indexing</span>
@@ -402,11 +399,10 @@ export default function AdminSeoConsolePage() {
             setActiveTab('SEO_AUDIT');
             if (!auditData) runSeoAudit();
           }}
-          className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition shadow-sm ${
-            activeTab === 'SEO_AUDIT'
+          className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition shadow-sm ${activeTab === 'SEO_AUDIT'
               ? 'bg-violet-600 text-white shadow-violet-500/25'
               : 'bg-white text-violet-800 hover:bg-violet-100/70 border border-violet-200'
-          }`}
+            }`}
         >
           <ShieldCheck className="w-4 h-4" />
           <span>Technical SEO Health Audit</span>
@@ -414,11 +410,10 @@ export default function AdminSeoConsolePage() {
 
         <button
           onClick={() => setActiveTab('TOPIC_CLUSTERS')}
-          className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition shadow-sm ${
-            activeTab === 'TOPIC_CLUSTERS'
+          className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition shadow-sm ${activeTab === 'TOPIC_CLUSTERS'
               ? 'bg-violet-600 text-white shadow-violet-500/25'
               : 'bg-white text-violet-800 hover:bg-violet-100/70 border border-violet-200'
-          }`}
+            }`}
         >
           <Layers className="w-4 h-4" />
           <span>Rank #1 Topic Clusters &amp; Interlinking</span>
@@ -469,14 +464,12 @@ export default function AdminSeoConsolePage() {
                     <button
                       type="button"
                       onClick={() => setContinuousMode(!continuousMode)}
-                      className={`relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
-                        continuousMode ? 'bg-violet-600' : 'bg-slate-300'
-                      }`}
+                      className={`relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${continuousMode ? 'bg-violet-600' : 'bg-slate-300'
+                        }`}
                     >
                       <span
-                        className={`pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${
-                          continuousMode ? 'translate-x-4' : 'translate-x-0'
-                        }`}
+                        className={`pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${continuousMode ? 'translate-x-4' : 'translate-x-0'
+                          }`}
                       />
                     </button>
                   </div>
@@ -493,11 +486,10 @@ export default function AdminSeoConsolePage() {
                         key={idx}
                         type="button"
                         onClick={() => handleSelectPreset(preset)}
-                        className={`px-2.5 py-1 rounded-lg text-[11px] font-medium transition border ${
-                          targetUrl === preset.url
+                        className={`px-2.5 py-1 rounded-lg text-[11px] font-medium transition border ${targetUrl === preset.url
                             ? 'bg-violet-100 text-violet-900 border-violet-300 font-semibold'
                             : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-violet-50'
-                        }`}
+                          }`}
                       >
                         {preset.topic.length > 22 ? preset.topic.substring(0, 20) + '...' : preset.topic}
                       </button>
@@ -614,7 +606,7 @@ export default function AdminSeoConsolePage() {
                     <div className="w-4 h-4 rounded-full bg-violet-600 text-white flex items-center justify-center text-[10px] font-black">
                       T
                     </div>
-                    <span className="font-medium text-slate-800">Thread Security Education</span>
+                    <span className="font-medium text-slate-800">Edu Nexus Education</span>
                     <span className="text-slate-400">›</span>
                     <span className="truncate max-w-xs text-slate-500 font-mono text-[11px]">
                       {targetUrl.replace('https://', '')}
@@ -623,7 +615,7 @@ export default function AdminSeoConsolePage() {
 
                   {/* Title (Google Blue) */}
                   <div className="text-lg md:text-xl font-medium text-[#1a0dab] hover:underline cursor-pointer leading-snug">
-                    {currentVariant?.metaTitle || `${targetTopic} | Thread Security`}
+                    {currentVariant?.metaTitle || `${targetTopic} | Edu Nexus`}
                   </div>
 
                   {/* Description */}
@@ -643,13 +635,12 @@ export default function AdminSeoConsolePage() {
                     </div>
                     <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
                       <div
-                        className={`h-full transition-all ${
-                          currentVariant?.metaTitleLength > 60
+                        className={`h-full transition-all ${currentVariant?.metaTitleLength > 60
                             ? 'bg-rose-500'
                             : currentVariant?.metaTitleLength >= 45
-                            ? 'bg-emerald-500'
-                            : 'bg-amber-400'
-                        }`}
+                              ? 'bg-emerald-500'
+                              : 'bg-amber-400'
+                          }`}
                         style={{ width: `${Math.min(100, ((currentVariant?.metaTitleLength || 0) / 60) * 100)}%` }}
                       />
                     </div>
@@ -667,13 +658,12 @@ export default function AdminSeoConsolePage() {
                     </div>
                     <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
                       <div
-                        className={`h-full transition-all ${
-                          currentVariant?.metaDescriptionLength > 160
+                        className={`h-full transition-all ${currentVariant?.metaDescriptionLength > 160
                             ? 'bg-rose-500'
                             : currentVariant?.metaDescriptionLength >= 135
-                            ? 'bg-emerald-500'
-                            : 'bg-amber-400'
-                        }`}
+                              ? 'bg-emerald-500'
+                              : 'bg-amber-400'
+                          }`}
                         style={{ width: `${Math.min(100, ((currentVariant?.metaDescriptionLength || 0) / 160) * 100)}%` }}
                       />
                     </div>
@@ -696,11 +686,10 @@ export default function AdminSeoConsolePage() {
                     <div
                       key={v.id}
                       onClick={() => setSelectedVariantId(v.id)}
-                      className={`rounded-2xl p-5 border cursor-pointer transition space-y-3 ${
-                        selectedVariantId === v.id
+                      className={`rounded-2xl p-5 border cursor-pointer transition space-y-3 ${selectedVariantId === v.id
                           ? 'bg-violet-50/80 border-violet-400 shadow-md ring-2 ring-violet-300/40'
                           : 'bg-white border-violet-100 hover:border-violet-200 shadow-sm'
-                      }`}
+                        }`}
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
@@ -919,11 +908,10 @@ export default function AdminSeoConsolePage() {
 
                 {indexResponse && (
                   <div
-                    className={`rounded-xl p-3 text-xs border ${
-                      indexResponse.success
+                    className={`rounded-xl p-3 text-xs border ${indexResponse.success
                         ? 'bg-emerald-50 border-emerald-200 text-emerald-800'
                         : 'bg-rose-50 border-rose-200 text-rose-800'
-                    }`}
+                      }`}
                   >
                     {indexResponse.message}
                   </div>

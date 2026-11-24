@@ -5,7 +5,7 @@ import { getAdminTasksService } from '@/server/services/task.service';
 import { TasksClient } from '@/app/(admin)/admin/tasks/tasks-client';
 
 export const metadata = {
-  title: 'Task Allocation | Thread Security Admin',
+  title: 'Task Allocation | Edu Nexus Admin',
   description: 'Manage and dispatch CSM, SEO, Content, and Academic Operations tasks to faculty.',
 };
 

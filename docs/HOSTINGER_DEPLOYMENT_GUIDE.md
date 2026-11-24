@@ -1,4 +1,4 @@
-# Hostinger Deployment Guide for Thread Security Education LMS
+# Hostinger Deployment Guide for Edu Nexus Education LMS
 
 This repository has been verified and pre-configured for deployment on **Hostinger**.
 

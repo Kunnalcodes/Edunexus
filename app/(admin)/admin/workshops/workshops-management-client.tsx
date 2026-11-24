@@ -224,13 +224,13 @@ export function WorkshopsManagementClient({
       {/* Workshops Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {workshops.map((ws) => {
-          const instructorName = ws.instructor?.name || ws.instructorName || 'Thread Security Faculty Lead';
+          const instructorName = ws.instructor?.name || ws.instructorName || 'Edu Nexus Faculty Lead';
           const instructorRole = ws.instructor?.role || ws.instructorRole || 'Senior Security Instructor';
           const highlightsList = Array.isArray(ws.highlights)
             ? ws.highlights
             : typeof ws.highlights === 'string'
-            ? JSON.parse(ws.highlights || '[]')
-            : [];
+              ? JSON.parse(ws.highlights || '[]')
+              : [];
 
           return (
             <Card
@@ -406,7 +406,7 @@ export function WorkshopsManagementClient({
                   <label className="block text-slate-600 text-[11px] font-medium mb-1">Lead Instructor</label>
                   <select
                     name="instructorName"
-                    defaultValue={mentors[0]?.user?.name || 'Thread Security Faculty Lead'}
+                    defaultValue={mentors[0]?.user?.name || 'Edu Nexus Faculty Lead'}
                     className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-violet-500"
                   >
                     {mentors.map((m) => (
@@ -414,7 +414,7 @@ export function WorkshopsManagementClient({
                         {m.user?.name || m.name}
                       </option>
                     ))}
-                    <option value="Thread Security Faculty Lead">Thread Security Faculty Lead</option>
+                    <option value="Edu Nexus Faculty Lead">Edu Nexus Faculty Lead</option>
                   </select>
                 </div>
 
@@ -540,7 +540,7 @@ export function WorkshopsManagementClient({
                   <label className="block text-slate-600 text-[11px] font-medium mb-1">Lead Instructor</label>
                   <select
                     name="instructorName"
-                    defaultValue={editingWorkshop.instructor?.name || editingWorkshop.instructorName || 'Thread Security Faculty Lead'}
+                    defaultValue={editingWorkshop.instructor?.name || editingWorkshop.instructorName || 'Edu Nexus Faculty Lead'}
                     className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-violet-500"
                   >
                     {mentors.map((m) => (
@@ -548,7 +548,7 @@ export function WorkshopsManagementClient({
                         {m.user?.name || m.name}
                       </option>
                     ))}
-                    <option value="Thread Security Faculty Lead">Thread Security Faculty Lead</option>
+                    <option value="Edu Nexus Faculty Lead">Edu Nexus Faculty Lead</option>
                   </select>
                 </div>
 
@@ -599,8 +599,8 @@ export function WorkshopsManagementClient({
                       Array.isArray(editingWorkshop.highlights)
                         ? editingWorkshop.highlights.join('\n')
                         : typeof editingWorkshop.highlights === 'string'
-                        ? JSON.parse(editingWorkshop.highlights || '[]').join('\n')
-                        : ''
+                          ? JSON.parse(editingWorkshop.highlights || '[]').join('\n')
+                          : ''
                     }
                     className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2 text-xs focus:outline-none focus:border-violet-500 resize-none"
                   />

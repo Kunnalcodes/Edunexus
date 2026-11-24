@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { AlertTriangle, ShieldAlert, Award, Briefcase, FileCheck } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Disclaimer & Educational Notice | Thread Security Education',
+  title: 'Disclaimer & Educational Notice | Edu Nexus Education',
   description:
-    'Legal and educational disclaimer regarding the defensive ethical hacking curriculum, certification validity, and placement assistance at Thread Security Education.',
+    'Legal and educational disclaimer regarding the defensive ethical hacking curriculum, certification validity, and placement assistance at Edu Nexus Education.',
   alternates: {
     canonical: 'https://threadsecurity.in/disclaimer',
   },
@@ -15,7 +15,7 @@ export default function DisclaimerPage() {
   return (
     <div className="bg-white min-h-screen text-slate-800 font-sans pt-12 pb-24">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Header */}
         <div className="border-b border-slate-200 pb-8 mb-10">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-slate-800 text-xs font-semibold mb-4">
@@ -37,7 +37,7 @@ export default function DisclaimerPage() {
             <h2 className="text-lg font-bold text-slate-950">1. Educational &amp; Defensive Purpose Only</h2>
             <div className="p-4 rounded-xl bg-amber-50 border border-amber-200 text-amber-950">
               <p className="text-xs leading-relaxed">
-                All concepts, methodologies, demonstrations, automated security tools, scripts, and vulnerability assessments presented by Thread Security Education (TSE) are designed strictly and solely for defensive cybersecurity education, ethical penetration testing, and academic learning within isolated sandbox environments.
+                All concepts, methodologies, demonstrations, automated security tools, scripts, and vulnerability assessments presented by Edu Nexus Education (TSE) are designed strictly and solely for defensive cybersecurity education, ethical penetration testing, and academic learning within isolated sandbox environments.
               </p>
             </div>
             <p>
@@ -48,7 +48,7 @@ export default function DisclaimerPage() {
           <section className="space-y-3">
             <h2 className="text-lg font-bold text-slate-950">2. Career &amp; Placement Support Disclaimer</h2>
             <p>
-              While Thread Security Education maintains an industry-leading 94% placement track record through extensive resume refinement, mock interviews, and corporate campus drives, TSE does not guarantee employment or specific salary figures. Hiring decisions are made solely at the discretion of independent third-party employers.
+              While Edu Nexus Education maintains an industry-leading 94% placement track record through extensive resume refinement, mock interviews, and corporate campus drives, TSE does not guarantee employment or specific salary figures. Hiring decisions are made solely at the discretion of independent third-party employers.
             </p>
           </section>
 

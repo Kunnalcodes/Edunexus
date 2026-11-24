@@ -31,13 +31,13 @@ export const metadata: Metadata = {
     'cyber security industrial training for BCA students',
     'cybersecurity workshops',
     'ethical hacking summer training',
-    'Thread Security Education',
+    'Edu Nexus Education',
   ],
   alternates: {
     canonical: `${APP_URL}/workshops`,
   },
   openGraph: {
-    title: 'Cybersecurity Workshops, 45 Days Summer Training & 6 Month Internships | Thread Security Education',
+    title: 'Cybersecurity Workshops, 45 Days Summer Training & 6 Month Internships | Edu Nexus Education',
     description:
       'Enroll in accredited 45 days cyber security summer training and 6 months industrial internships in Jalandhar, Punjab & Online.',
     url: `${APP_URL}/workshops`,
@@ -47,13 +47,13 @@ export const metadata: Metadata = {
         url: `${APP_URL}/images/og-thread-security-education.png`,
         width: 1200,
         height: 630,
-        alt: 'Cybersecurity Workshops & Industrial Training — Thread Security Education',
+        alt: 'Cybersecurity Workshops & Industrial Training — Edu Nexus Education',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Cybersecurity Workshops & 45-Day / 6-Month Internships | Thread Security Education',
+    title: 'Cybersecurity Workshops & 45-Day / 6-Month Internships | Edu Nexus Education',
     description:
       'Accredited 45 days summer training and 6 months industrial internships with live sandboxed labs and university credit letters.',
     images: [`${APP_URL}/images/og-thread-security-education.png`],
@@ -78,7 +78,7 @@ async function getWorkshopsOnServer(): Promise<WorkshopItem[]> {
         ...ws,
         highlights: typeof ws.highlights === 'string' ? JSON.parse(ws.highlights) : ws.highlights,
         instructor: {
-          name: ws.instructorName || 'Thread Security Lead',
+          name: ws.instructorName || 'Edu Nexus Lead',
           role: ws.instructorRole || 'Senior Security Instructor',
         },
       }));

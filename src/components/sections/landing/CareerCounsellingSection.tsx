@@ -56,7 +56,7 @@ export function CareerCounsellingSection() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[250px] h-[250px] bg-violet-600/10 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Contained Card Layout */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -69,7 +69,7 @@ export function CareerCounsellingSection() {
           <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-violet-500/30 to-transparent" />
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-stretch">
-            
+
             {/* Left Content Column */}
             <div className="lg:col-span-7 p-6 sm:p-10 flex flex-col justify-center space-y-4 relative z-20">
               <div className="space-y-2.5">
@@ -87,7 +87,7 @@ export function CareerCounsellingSection() {
                 </h2>
 
                 <p className="text-sm sm:text-base text-slate-300 font-normal leading-relaxed max-w-xl">
-                  Upskill & Upgrade your career with Thread Security Education at your own pace. Speak to our expert career counsellors to map your journey in Cybersecurity & AI.
+                  Upskill & Upgrade your career with Edu Nexus Education at your own pace. Speak to our expert career counsellors to map your journey in Cybersecurity & AI.
                 </p>
               </div>
 
@@ -105,12 +105,12 @@ export function CareerCounsellingSection() {
 
                   <DialogContent className="max-w-4xl p-0 overflow-hidden bg-white text-slate-900 border-none sm:rounded-3xl shadow-2xl">
                     <div className="grid grid-cols-1 md:grid-cols-12 items-stretch min-h-[520px]">
-                      
+
                       {/* Left Column (Charcoal / Black Brand Card) */}
                       <div className="md:col-span-5 bg-gradient-to-br from-[#0c0c14] via-[#09090f] to-[#040408] p-8 text-white flex flex-col justify-between relative overflow-hidden">
                         {/* Overlay pattern background */}
                         <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]" />
-                        
+
                         {/* Brand Logo/Header */}
                         <div className="relative z-10 flex items-center gap-2">
                           <span className="font-semibold tracking-wider text-lg">THREAD</span>
@@ -152,7 +152,7 @@ export function CareerCounsellingSection() {
 
                       {/* Right Column (The Premium Multi-step Form) */}
                       <div className="md:col-span-7 p-8 sm:p-10 flex flex-col justify-center bg-white">
-                        
+
                         {!isSubmitted ? (
                           <>
                             {step === 1 ? (
@@ -315,14 +315,14 @@ export function CareerCounsellingSection() {
 
             {/* Right Image/Visual Column with Skew Diagonal cut */}
             <div className="lg:col-span-5 relative min-h-[220px] lg:min-h-full overflow-hidden">
-              
+
               {/* The Skewed slash divider overlay block to separate image from text */}
               <div className="absolute inset-y-0 -left-6 w-16 bg-[#0f0b2a] transform -skew-x-12 z-20 hidden lg:block border-r border-violet-500/15" />
-              
+
               {/* Grayscale overlay & student image */}
               <div className="absolute inset-0 bg-[#0d0a1b]/40 mix-blend-multiply z-10" />
               <div className="absolute inset-0 bg-gradient-to-r from-[#0f0b2a] via-[#0f0b2a]/30 to-transparent z-10" />
-              
+
               <Image
                 src={getCloudinaryAssetUrl('/images/student-counselling.jpg')}
                 alt="Student analyzing tech career path options"

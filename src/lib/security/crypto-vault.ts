@@ -1,7 +1,7 @@
 import crypto from 'crypto';
 
 /**
- * Thread Security Education - Cryptographic Security Vault
+ * Edu Nexus Education - Cryptographic Security Vault
  * Implements salted Base64 cryptographic hashing (PBKDF2-SHA256) for all passkeys and secret keys.
  * Zero plaintext secrets or passkeys are hardcoded in application logic.
  */

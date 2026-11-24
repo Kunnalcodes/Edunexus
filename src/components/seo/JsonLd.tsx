@@ -19,8 +19,8 @@ export function OrganizationJsonLd() {
   const schema = {
     '@context': 'https://schema.org',
     '@type': ['EducationalOrganization', 'Organization'],
-    name: 'Thread Security Education',
-    alternateName: ['TSE', 'Thread Security Education Institute'],
+    name: 'Edu Nexus Education',
+    alternateName: ['TSE', 'Edu Nexus Education Institute'],
     url: APP_URL,
     logo: `${APP_URL}/icon-512.png`,
     image: `${APP_URL}/images/og-thread-security-education.png`,
@@ -73,8 +73,8 @@ export function WebSiteJsonLd() {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'Thread Security Education',
-    alternateName: 'Thread Security Training & Education Portal',
+    name: 'Edu Nexus Education',
+    alternateName: 'Edu Nexus Training & Education Portal',
     url: APP_URL,
     potentialAction: {
       '@type': 'SearchAction',
@@ -240,7 +240,7 @@ export function CourseJsonLd({
     url: courseUrl,
     provider: {
       '@type': 'EducationalOrganization',
-      name: 'Thread Security Education',
+      name: 'Edu Nexus Education',
       sameAs: APP_URL,
       logo: `${APP_URL}/icon-512.png`,
     },
@@ -268,7 +268,7 @@ export function CourseJsonLd({
       name: mentorName,
       worksFor: {
         '@type': 'EducationalOrganization',
-        name: 'Thread Security Education',
+        name: 'Edu Nexus Education',
       },
     },
     hasCourseInstance: {
@@ -308,7 +308,7 @@ export function CourseListJsonLd({
         url: c.url.startsWith('http') ? c.url : `${APP_URL}${c.url}`,
         provider: {
           '@type': 'Organization',
-          name: 'Thread Security Education',
+          name: 'Edu Nexus Education',
           sameAs: APP_URL,
         },
       },
@@ -343,7 +343,7 @@ export function ArticleJsonLd({
   slug,
   publishedTime,
   modifiedTime,
-  authorName = 'Thread Security Mentor',
+  authorName = 'Edu Nexus Mentor',
   authorRole = 'Cybersecurity Mentor & Research Lead',
   imageUrl,
   category,
@@ -364,7 +364,7 @@ export function ArticleJsonLd({
     },
     inLanguage: 'en-IN',
     articleSection: category || 'Cybersecurity Research',
-    keywords: keywords && keywords.length > 0 ? keywords.join(', ') : 'Cybersecurity, Threat Intelligence, Thread Security',
+    keywords: keywords && keywords.length > 0 ? keywords.join(', ') : 'Cybersecurity, Threat Intelligence, Edu Nexus',
     wordCount: wordCount || undefined,
     datePublished: publishedTime || new Date().toISOString(),
     dateModified: modifiedTime || publishedTime || new Date().toISOString(),
@@ -374,13 +374,13 @@ export function ArticleJsonLd({
       jobTitle: authorRole,
       worksFor: {
         '@type': 'EducationalOrganization',
-        name: 'Thread Security Education',
+        name: 'Edu Nexus Education',
         url: APP_URL,
       },
     },
     publisher: {
       '@type': 'EducationalOrganization',
-      name: 'Thread Security Education',
+      name: 'Edu Nexus Education',
       url: APP_URL,
       logo: {
         '@type': 'ImageObject',
@@ -426,7 +426,7 @@ export function VideoObjectJsonLd({
     ...(embedUrl ? { embedUrl } : {}),
     publisher: {
       '@type': 'EducationalOrganization',
-      name: 'Thread Security Education',
+      name: 'Edu Nexus Education',
       logo: {
         '@type': 'ImageObject',
         url: `${APP_URL}/logos/TSE%20Logo%20Dark.svg`,

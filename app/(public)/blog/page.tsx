@@ -9,20 +9,20 @@ const APP_URL = getSiteUrl();
 
 export const metadata: Metadata = {
   title: 'Cybersecurity & AI Research Blog | Technical Perspectives & Tutorials',
-  description: 'Explore technical insights, vulnerability research, AI threat detection, and security engineering perspectives authored by Thread Security Education faculty.',
+  description: 'Explore technical insights, vulnerability research, AI threat detection, and security engineering perspectives authored by Edu Nexus Education faculty.',
   keywords: [
     'Cybersecurity Blog',
     'Vulnerability Research',
     'AI Threat Detection',
     'Ethical Hacking Tutorials',
     'SOC Engineering Insights',
-    'Thread Security Education',
+    'Edu Nexus Education',
   ],
   alternates: {
     canonical: `${APP_URL}/blog`,
   },
   openGraph: {
-    title: 'Cybersecurity & AI Research Blog | Thread Security Education',
+    title: 'Cybersecurity & AI Research Blog | Edu Nexus Education',
     description: 'Explore technical insights, vulnerability research, and security engineering perspectives.',
     url: `${APP_URL}/blog`,
     type: 'website',
@@ -31,13 +31,13 @@ export const metadata: Metadata = {
         url: `${APP_URL}/logos/TSE%20Logo%20Dark.svg`,
         width: 1200,
         height: 630,
-        alt: 'Thread Security Research Blog',
+        alt: 'Edu Nexus Research Blog',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Cybersecurity & AI Research Blog | Thread Security Education',
+    title: 'Cybersecurity & AI Research Blog | Edu Nexus Education',
     description: 'Explore technical insights, vulnerability research, and AI threat detection.',
     images: [`${APP_URL}/logos/TSE%20Logo%20Dark.svg`],
   },

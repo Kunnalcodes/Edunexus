@@ -299,9 +299,9 @@
     "cloudinaryUrl": "https://res.cloudinary.com/qliovzms/image/upload/v1791198752/threads-lms/images/deep-learning-engineer.jpg",
     "publicId": "threads-lms/images/deep-learning-engineer"
   },
-  "/images/thread security footer.svg": {
-    "localPath": "/images/thread security footer.svg",
-    "relativePath": "images/thread security footer.svg",
+  "/images/Edu Nexus footer.svg": {
+    "localPath": "/images/Edu Nexus footer.svg",
+    "relativePath": "images/Edu Nexus footer.svg",
     "cloudinaryUrl": "https://res.cloudinary.com/qliovzms/image/upload/v1791198753/threads-lms/images/thread_security_footer.svg",
     "publicId": "threads-lms/images/thread_security_footer"
   }

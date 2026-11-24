@@ -5,7 +5,7 @@ Place static website assets (images, logos, icons, fonts, PDFs) in this director
 ## Recommended Sub-folders
 
 - `public/images/` — Hero images, course banners, background graphics
-- `public/logos/` — Thread Security brand logos, partner logos, badges
+- `public/logos/` — Edu Nexus brand logos, partner logos, badges
 - `public/icons/` — Custom SVG icons, favicons
 - `public/fonts/` — Custom font files (if not loaded via Next.js Google Fonts)
 

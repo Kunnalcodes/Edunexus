@@ -1,5 +1,5 @@
 import { PublicNavbar } from '@/components/navigation/PublicNavbar';
-import { PublicFooter } from '@/components/navigation/PublicFooter';
+import { EdunexusFooter } from '@/components/navigation/EdunexusFooter';
 
 export default function PublicLayout({
   children,
@@ -10,7 +10,7 @@ export default function PublicLayout({
     <div className="flex flex-col min-h-screen">
       <PublicNavbar />
       <main className="flex-1">{children}</main>
-      <PublicFooter />
+      <EdunexusFooter />
     </div>
   );
 }

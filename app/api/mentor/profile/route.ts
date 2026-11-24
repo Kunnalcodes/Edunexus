@@ -27,7 +27,7 @@ export async function GET() {
         data: {
           userId: user.id,
           title: 'Security Mentor',
-          company: 'Thread Security',
+          company: 'Edu Nexus',
           bio: 'Cybersecurity Instructor & Content Author',
           expertise: 'Threat Intelligence & Security Engineering',
         },
@@ -119,7 +119,7 @@ export async function PATCH(req: NextRequest) {
         data: {
           userId: session.userId,
           title: title || 'Faculty Mentor',
-          company: company || 'Thread Security',
+          company: company || 'Edu Nexus',
           bio: bio || 'Cybersecurity Instructor & Content Author',
           expertise: expertise || 'Threat Intelligence, SOC & Web Security',
           linkedinUrl: linkedinUrl || null,

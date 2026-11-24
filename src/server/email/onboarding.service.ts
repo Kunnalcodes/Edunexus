@@ -35,7 +35,7 @@ export async function sendStudentOnboardingEmail({
   const cleanTarget = toEmail.trim().toLowerCase();
   const apiKey = process.env.RESEND_API_KEY;
 
-  const verifiedSender = 'Thread Security Education <edu@threadsecurity.in>';
+  const verifiedSender = 'Edu Nexus Education <edu@threadsecurity.in>';
   const fromEmail =
     process.env.RESEND_FROM_EMAIL && !process.env.RESEND_FROM_EMAIL.includes('onboarding@resend.dev')
       ? process.env.RESEND_FROM_EMAIL
@@ -47,7 +47,7 @@ export async function sendStudentOnboardingEmail({
       <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Welcome to Thread Security Academy</title>
+        <title>Welcome to Edu Nexus Academy</title>
         <style>
           body {
             margin: 0;
@@ -152,7 +152,7 @@ export async function sendStudentOnboardingEmail({
           <div class="container">
             <div class="header">
               <span class="badge">Official Student Onboarding</span>
-              <h1 class="title">Welcome to Thread Security Academy</h1>
+              <h1 class="title">Welcome to Edu Nexus Academy</h1>
               <p style="margin: 0; color: #475569; font-size: 14px; line-height: 1.5;">
                 Hello <strong>${studentName}</strong>, your cybersecurity student account has been created by your faculty mentor.
               </p>
@@ -176,9 +176,8 @@ export async function sendStudentOnboardingEmail({
                     ${cleanTarget}
                   </td>
                 </tr>
-                ${
-                  tempPassword
-                    ? `<tr>
+                ${tempPassword
+      ? `<tr>
                         <td style="padding: 12px 16px; font-size: 13px; color: #64748b; font-weight: 500; width: 42%; vertical-align: middle; border-bottom: 1px solid #edf2f7; text-align: left;">
                           Temporary Access Password
                         </td>
@@ -186,11 +185,10 @@ export async function sendStudentOnboardingEmail({
                           <span style="display: inline-block; background-color: #0f172a; color: #ffffff; padding: 4px 10px; border-radius: 6px; font-family: monospace; font-size: 12px; font-weight: 700;">${tempPassword}</span>
                         </td>
                       </tr>`
-                    : ''
-                }
-                ${
-                  batchCode
-                    ? `<tr>
+      : ''
+    }
+                ${batchCode
+      ? `<tr>
                         <td style="padding: 12px 16px; font-size: 13px; color: #64748b; font-weight: 500; width: 42%; vertical-align: middle; border-bottom: 1px solid #edf2f7; text-align: left;">
                           Assigned Cohort Batch
                         </td>
@@ -198,11 +196,10 @@ export async function sendStudentOnboardingEmail({
                           ${batchCode}
                         </td>
                       </tr>`
-                    : ''
-                }
-                ${
-                  courseTitle
-                    ? `<tr>
+      : ''
+    }
+                ${courseTitle
+      ? `<tr>
                         <td style="padding: 12px 16px; font-size: 13px; color: #64748b; font-weight: 500; width: 42%; vertical-align: middle; border-bottom: 1px solid #edf2f7; text-align: left;">
                           Curriculum Track
                         </td>
@@ -210,11 +207,10 @@ export async function sendStudentOnboardingEmail({
                           ${courseTitle}
                         </td>
                       </tr>`
-                    : ''
-                }
-                ${
-                  mentorName
-                    ? `<tr>
+      : ''
+    }
+                ${mentorName
+      ? `<tr>
                         <td style="padding: 12px 16px; font-size: 13px; color: #64748b; font-weight: 500; width: 42%; vertical-align: middle; text-align: left;">
                           Faculty Lead
                         </td>
@@ -222,8 +218,8 @@ export async function sendStudentOnboardingEmail({
                           ${mentorName}
                         </td>
                       </tr>`
-                    : ''
-                }
+      : ''
+    }
               </table>
 
               <p style="font-size: 13px; color: #64748b; line-height: 1.5; margin: 0 0 20px 0;">
@@ -236,7 +232,7 @@ export async function sendStudentOnboardingEmail({
             </div>
 
             <div class="footer">
-              <p style="margin: 0 0 4px 0;">Thread Security Education • Practical Cybersecurity Training</p>
+              <p style="margin: 0 0 4px 0;">Edu Nexus Education • Practical Cybersecurity Training</p>
               <p style="margin: 0; font-size: 11px; color: #94a3b8;">If you did not expect this enrollment, please contact support@threadsecurity.in</p>
             </div>
           </div>
@@ -257,7 +253,7 @@ export async function sendStudentOnboardingEmail({
         body: JSON.stringify({
           from: fromEmail,
           to: [cleanTarget],
-          subject: `Welcome to Thread Security Academy — Credentials for ${studentName} (${tsId})`,
+          subject: `Welcome to Edu Nexus Academy — Credentials for ${studentName} (${tsId})`,
           html: htmlContent,
         }),
       });
@@ -288,7 +284,7 @@ export async function sendStudentOnboardingEmail({
       await transporter.sendMail({
         from: fromEmail,
         to: cleanTarget,
-        subject: `Welcome to Thread Security Academy — Credentials for ${studentName} (${tsId})`,
+        subject: `Welcome to Edu Nexus Academy — Credentials for ${studentName} (${tsId})`,
         html: htmlContent,
       });
 
@@ -333,7 +329,7 @@ export async function sendFacultyOnboardingEmail({
   const cleanTarget = toEmail.trim().toLowerCase();
   const apiKey = process.env.RESEND_API_KEY;
 
-  const verifiedSender = 'Thread Security Education <edu@threadsecurity.in>';
+  const verifiedSender = 'Edu Nexus Education <edu@threadsecurity.in>';
   const fromEmail =
     process.env.RESEND_FROM_EMAIL && !process.env.RESEND_FROM_EMAIL.includes('onboarding@resend.dev')
       ? process.env.RESEND_FROM_EMAIL
@@ -345,7 +341,7 @@ export async function sendFacultyOnboardingEmail({
       <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Welcome to Thread Security Faculty</title>
+        <title>Welcome to Edu Nexus Faculty</title>
         <style>
           body {
             margin: 0;
@@ -446,7 +442,7 @@ export async function sendFacultyOnboardingEmail({
             </div>
             <div class="content">
               <p style="font-size: 14px; color: #334155; line-height: 1.6; margin: 0 0 16px 0;">
-                Your faculty account has been provisioned on the Thread Security Education platform. You can now access your Faculty Workspace to lead live lecture sessions, manage assigned batches, review student attendance, and evaluate practical lab submissions.
+                Your faculty account has been provisioned on the Edu Nexus Education platform. You can now access your Faculty Workspace to lead live lecture sessions, manage assigned batches, review student attendance, and evaluate practical lab submissions.
               </p>
 
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%; border-collapse: separate; border-spacing: 0; background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; margin: 24px 0; overflow: hidden;">
@@ -525,7 +521,7 @@ export async function sendFacultyOnboardingEmail({
               </div>
             </div>
             <div class="footer">
-              <p style="margin: 0;">Thread Security Education • Faculty Administration</p>
+              <p style="margin: 0;">Edu Nexus Education • Faculty Administration</p>
             </div>
           </div>
         </div>
@@ -617,7 +613,7 @@ export async function sendStaffOrAdminOnboardingEmail({
   const cleanTarget = toEmail.trim().toLowerCase();
   const apiKey = process.env.RESEND_API_KEY;
 
-  const verifiedSender = 'Thread Security Education <edu@threadsecurity.in>';
+  const verifiedSender = 'Edu Nexus Education <edu@threadsecurity.in>';
   const fromEmail =
     process.env.RESEND_FROM_EMAIL && !process.env.RESEND_FROM_EMAIL.includes('onboarding@resend.dev')
       ? process.env.RESEND_FROM_EMAIL
@@ -627,17 +623,17 @@ export async function sendStaffOrAdminOnboardingEmail({
     role === 'SECURITY_ADMIN'
       ? 'Security Administrator'
       : role === 'SUPER_ADMIN'
-      ? 'Super Administrator'
-      : role === 'CONTENT_MANAGER'
-      ? 'Content Manager'
-      : 'Academic Operations Staff';
+        ? 'Super Administrator'
+        : role === 'CONTENT_MANAGER'
+          ? 'Content Manager'
+          : 'Academic Operations Staff';
 
   const badgeText =
     role === 'SECURITY_ADMIN'
       ? 'Security Clearance'
       : role === 'SUPER_ADMIN'
-      ? 'Master Admin Access'
-      : 'Staff Appointment';
+        ? 'Master Admin Access'
+        : 'Staff Appointment';
 
   const htmlContent = `
     <!DOCTYPE html>
@@ -645,7 +641,7 @@ export async function sendStaffOrAdminOnboardingEmail({
       <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Thread Security — Account Provisioning & Security Keys</title>
+        <title>Edu Nexus — Account Provisioning & Security Keys</title>
         <style>
           body {
             margin: 0;
@@ -732,7 +728,7 @@ export async function sendStaffOrAdminOnboardingEmail({
             </div>
             <div class="content">
               <p style="font-size: 14px; color: #334155; line-height: 1.6; margin: 0 0 16px 0;">
-                Your account has been officially provisioned as <strong>${roleTitle}</strong> on the Thread Security Education platform. Please find your role-specific security credentials and access keys below.
+                Your account has been officially provisioned as <strong>${roleTitle}</strong> on the Edu Nexus Education platform. Please find your role-specific security credentials and access keys below.
               </p>
 
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%; border-collapse: separate; border-spacing: 0; background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; margin: 24px 0; overflow: hidden;">
@@ -807,7 +803,7 @@ export async function sendStaffOrAdminOnboardingEmail({
               </div>
             </div>
             <div class="footer">
-              Thread Security Operations &bull; Automated Access &amp; Identity Provisioning
+              Edu Nexus Operations &bull; Automated Access &amp; Identity Provisioning
             </div>
           </div>
         </div>
@@ -827,7 +823,7 @@ export async function sendStaffOrAdminOnboardingEmail({
         body: JSON.stringify({
           from: fromEmail,
           to: [cleanTarget],
-          subject: `Thread Security — ${roleTitle} Clearance & Credentials for ${name} (${tsId})`,
+          subject: `Edu Nexus — ${roleTitle} Clearance & Credentials for ${name} (${tsId})`,
           html: htmlContent,
         }),
       });
@@ -856,7 +852,7 @@ export async function sendStaffOrAdminOnboardingEmail({
       await transporter.sendMail({
         from: fromEmail,
         to: cleanTarget,
-        subject: `Thread Security — ${roleTitle} Clearance & Credentials for ${name} (${tsId})`,
+        subject: `Edu Nexus — ${roleTitle} Clearance & Credentials for ${name} (${tsId})`,
         html: htmlContent,
       });
 

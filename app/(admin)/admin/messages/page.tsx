@@ -5,7 +5,7 @@ import { getAdminConversationsService } from '@/server/services/message.service'
 import { MessagesClient } from './messages-client';
 
 export const metadata = {
-  title: 'Faculty & Student Messaging | Thread Security Admin',
+  title: 'Faculty & Student Messaging | Edu Nexus Admin',
   description: 'Two-way internal communications and operational directives with mentors and students.',
 };
 

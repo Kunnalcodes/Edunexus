@@ -15,7 +15,7 @@ export function generateCourseJsonLd(course: {
     description: course.description,
     provider: {
       '@type': 'Organization',
-      name: 'Thread Security Education',
+      name: 'Edu Nexus Education',
       sameAs: baseUrl,
     },
     educationalLevel: course.level,
@@ -48,7 +48,7 @@ export function generateWorkshopJsonLd(workshop: {
     startDate: new Date(workshop.date).toISOString(),
     organizer: {
       '@type': 'Organization',
-      name: 'Thread Security Education',
+      name: 'Edu Nexus Education',
       url: baseUrl,
     },
     performer: {
@@ -64,7 +64,7 @@ export function generateOrganizationJsonLd() {
   return {
     '@context': 'https://schema.org',
     '@type': 'EducationalOrganization',
-    name: 'Thread Security Education',
+    name: 'Edu Nexus Education',
     url: baseUrl,
     logo: `${baseUrl}/images/tse-logo.png`,
     sameAs: [

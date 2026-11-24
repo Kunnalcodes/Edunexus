@@ -477,7 +477,7 @@ function App() {
       'project', 'capstone', 'portfolio', 'placement', 'career', 'job', 'hiring',
       'industry', 'standard', 'certificate', 'lab', 'dashboard',
       'fee', 'price', 'cost', 'enroll', 'register', 'join', 'admission', 'apply',
-      'threadsecurity', 'thread security', 'ts', 'what', 'how', 'tell me', 'show me',
+      'threadsecurity', 'Edu Nexus', 'ts', 'what', 'how', 'tell me', 'show me',
       'explain', 'difference', 'compare', 'best', 'which', 'help', 'info', 'about'
     ];
 
@@ -627,36 +627,36 @@ function App() {
               ) : (
                 <>{msg.text}
 
-                {/* course-level actions as .duration-link spans */}
-                {msg.actions && msg.actions.length > 0 && (
-                  <div className="reply-actions duration-actions">
-                    {msg.actions.map((action) => (
-                      <span
-                        key={`${msg.id}-${action.label}`}
-                        className="duration-link"
-                        role="button"
-                        tabIndex={0}
-                        onClick={() => {
-                          if (action.type === 'course') {
-                            const reply = buildCourseDetailMessage(action.domain, action.duration, action.courseName);
-                            setMessages((prev) => [...prev, reply]);
-                          }
-                        }}
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter' || e.key === ' ') {
-                            e.preventDefault();
+                  {/* course-level actions as .duration-link spans */}
+                  {msg.actions && msg.actions.length > 0 && (
+                    <div className="reply-actions duration-actions">
+                      {msg.actions.map((action) => (
+                        <span
+                          key={`${msg.id}-${action.label}`}
+                          className="duration-link"
+                          role="button"
+                          tabIndex={0}
+                          onClick={() => {
                             if (action.type === 'course') {
                               const reply = buildCourseDetailMessage(action.domain, action.duration, action.courseName);
                               setMessages((prev) => [...prev, reply]);
                             }
-                          }
-                        }}
-                      >
-                        {action.label}
-                      </span>
-                    ))}
-                  </div>
-                )}</>
+                          }}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                              e.preventDefault();
+                              if (action.type === 'course') {
+                                const reply = buildCourseDetailMessage(action.domain, action.duration, action.courseName);
+                                setMessages((prev) => [...prev, reply]);
+                              }
+                            }
+                          }}
+                        >
+                          {action.label}
+                        </span>
+                      ))}
+                    </div>
+                  )}</>
               )}
 
               {/* Suggestion chips remain as pill buttons */}
@@ -697,7 +697,7 @@ function App() {
         />
         <button type="submit" disabled={isTyping || !input.trim()}>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2.01 21L23 12L2.01 3L2 10L17 12L2 14L2.01 21Z" fill="currentColor"/>
+            <path d="M2.01 21L23 12L2.01 3L2 10L17 12L2 14L2.01 21Z" fill="currentColor" />
           </svg>
         </button>
       </form>

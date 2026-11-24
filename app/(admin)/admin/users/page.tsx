@@ -4,7 +4,7 @@ import { redirect } from 'next/navigation';
 import { UsersDirectoryClient, UserRecord } from './users-directory-client';
 
 export const metadata = {
-  title: 'Unified Users Directory | Thread Security Admin',
+  title: 'Unified Users Directory | Edu Nexus Admin',
   description: 'Manage all students, guests, faculty mentors, and admin accounts.',
 };
 

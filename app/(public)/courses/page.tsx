@@ -32,13 +32,13 @@ export const metadata: Metadata = {
     'CompTIA Security+ training',
     'OSCP training',
     'hands-on cybersecurity course',
-    'Thread Security Education',
+    'Edu Nexus Education',
   ],
   alternates: {
     canonical: `${APP_URL}/courses`,
   },
   openGraph: {
-    title: 'Cyber Security Courses & Training Programs | Thread Security Education',
+    title: 'Cyber Security Courses & Training Programs | Edu Nexus Education',
     description:
       'Explore industry-recognized cyber security courses, 45 days summer training, and 6 months industrial internships in Jalandhar, Punjab & Online. 100% hands-on sandboxed labs.',
     url: `${APP_URL}/courses`,
@@ -48,13 +48,13 @@ export const metadata: Metadata = {
         url: `${APP_URL}/images/og-thread-security-education.png`,
         width: 1200,
         height: 630,
-        alt: 'Cyber Security Courses Catalogue — Thread Security Education',
+        alt: 'Cyber Security Courses Catalogue — Edu Nexus Education',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Cyber Security Courses & Training Programs | Thread Security Education',
+    title: 'Cyber Security Courses & Training Programs | Edu Nexus Education',
     description:
       'Explore 17 practical, mentor-led masterclasses across Cybersecurity and AI with 100% hands-on labs and placement support.',
     images: [`${APP_URL}/images/og-thread-security-education.png`],

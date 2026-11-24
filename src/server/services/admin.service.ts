@@ -15,7 +15,7 @@ import { RoleType } from '@prisma/client';
  */
 export async function getNextSuggestedTSID(track: StudentTrack = 'CYBER'): Promise<string> {
   const prefix = track === 'AI' ? 'TS-A' : 'TS-C';
-  
+
   const allIdentities = await prisma.tSIdentity.findMany({
     select: { tsId: true },
   });
@@ -883,8 +883,8 @@ export async function getNextSuggestedStaffOrAdminID(
     role === 'SECURITY_ADMIN'
       ? 'TS-SEC'
       : role === 'SUPER_ADMIN'
-      ? 'TS-ADM'
-      : 'TS-STF';
+        ? 'TS-ADM'
+        : 'TS-STF';
 
   const allIdentities = await prisma.tSIdentity.findMany({
     where: { tsId: { startsWith: prefix } },
@@ -1028,9 +1028,9 @@ export async function createUserService({
         data: {
           userId: user.id,
           title: department || 'Faculty Mentor',
-          company: 'Thread Security',
+          company: 'Edu Nexus',
           expertise: department || 'Cybersecurity & Systems',
-          bio: 'Faculty mentor & research guide at Thread Security Education.',
+          bio: 'Faculty mentor & research guide at Edu Nexus Education.',
         },
       });
       if (batchId) {
@@ -1191,7 +1191,7 @@ export async function updateUserService(userId: string, data: UpdateUserInput) {
       data: {
         userId,
         title: 'Faculty Mentor',
-        company: 'Thread Security',
+        company: 'Edu Nexus',
         expertise: 'Cybersecurity & Systems',
         bio: 'Faculty mentor profile.',
       },

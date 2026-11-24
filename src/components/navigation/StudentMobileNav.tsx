@@ -74,7 +74,7 @@ export function StudentMobileNav({ tsId, studentName }: StudentMobileNavProps) {
                   <Link href="/" onClick={() => setDrawerOpen(false)}>
                     <Image
                       src="/logos/TSE Logo Nav.svg"
-                      alt="Thread Security Education"
+                      alt="Edu Nexus Education"
                       width={32}
                       height={32}
                       unoptimized

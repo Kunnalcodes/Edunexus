@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { Shield, Lock, FileText, CheckCircle2, Mail, Phone, MapPin } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | Thread Security Education',
+  title: 'Privacy Policy | Edu Nexus Education',
   description:
-    'Learn how Thread Security Education collects, uses, protects, and handles your personal information, student credentials, and learning analytics.',
+    'Learn how Edu Nexus Education collects, uses, protects, and handles your personal information, student credentials, and learning analytics.',
   alternates: {
     canonical: 'https://threadsecurity.in/privacy-policy',
   },
@@ -15,7 +15,7 @@ export default function PrivacyPolicyPage() {
   return (
     <div className="bg-white min-h-screen text-slate-800 font-sans pt-12 pb-24">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Header */}
         <div className="border-b border-slate-200 pb-8 mb-10">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold mb-4">
@@ -32,11 +32,11 @@ export default function PrivacyPolicyPage() {
 
         {/* Content Body */}
         <div className="space-y-10 text-sm leading-relaxed text-slate-700">
-          
+
           <section className="space-y-3">
             <h2 className="text-lg font-bold text-slate-950">1. Introduction</h2>
             <p>
-              Thread Security Education (&quot;TSE&quot;, &quot;we&quot;, &quot;our&quot;, or &quot;us&quot;) operates the training platform, live cyber sandboxed labs, assessment management system, and verified TS-ID credentialing services available at threadsecurity.in. We are committed to safeguarding the privacy and security of our students, applicants, website visitors, and institutional partners.
+              Edu Nexus Education (&quot;TSE&quot;, &quot;we&quot;, &quot;our&quot;, or &quot;us&quot;) operates the training platform, live cyber sandboxed labs, assessment management system, and verified TS-ID credentialing services available at threadsecurity.in. We are committed to safeguarding the privacy and security of our students, applicants, website visitors, and institutional partners.
             </p>
             <p>
               This Privacy Policy explains how we collect, process, store, and disclose your personal and academic data when you register for courses, attend masterclasses, take assessments, or use our sandboxed environments.
@@ -138,7 +138,7 @@ export default function PrivacyPolicyPage() {
               </div>
               <div className="flex items-start gap-2 text-slate-800">
                 <MapPin className="w-4 h-4 text-purple-700 shrink-0 mt-0.5" />
-                <span>Thread Security Education, 3rd Floor, Vasal Mall, Opposite Hotel President, Police Line, Jalandhar, Punjab 144001</span>
+                <span>Edu Nexus Education, 3rd Floor, Vasal Mall, Opposite Hotel President, Police Line, Jalandhar, Punjab 144001</span>
               </div>
             </div>
           </section>

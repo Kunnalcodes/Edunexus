@@ -3,7 +3,7 @@ Brochure Content
 
 
 About: -
-Thread Security is an enterprise-class technology services company with a special focus on cybersecurity, Applied research, and professional training. Founded with the conviction that practical skills and industry. With knowledge as the benchmark of professional excellence, Thread Security applies the same level of rigor in enterprise applications.
+Edu Nexus is an enterprise-class technology services company with a special focus on cybersecurity, Applied research, and professional training. Founded with the conviction that practical skills and industry. With knowledge as the benchmark of professional excellence, Edu Nexus applies the same level of rigor in enterprise applications.
 From designing and delivering its education programs to security engagements. We serve enterprise, government and academic clients. This breadth of social interactions, and enhanced by active learning exposure directly influences the way we organize learning, which is based on real environments, social interactions, and active learning, practitioners, and by measurable results.
 Our Vision and Mission are to develop technically competent and future oriented individuals Throughout the workforce in the new technology areas. And to provide focused, industry relevant training that develops student into professionals who are able to distinguish them from the get-go, contributing.
 
@@ -56,8 +56,8 @@ Media:  content personalization and digital effects.
 
 
 
-Why is it better to use Thread Security for AI?
-Thread Security didn't start as an education provider — we started by solving real technical problems for enterprise and government clients. That work is the foundation of what we teach. You're learning from people who answer to outcomes, not just curriculum.
+Why is it better to use Edu Nexus for AI?
+Edu Nexus didn't start as an education provider — we started by solving real technical problems for enterprise and government clients. That work is the foundation of what we teach. You're learning from people who answer to outcomes, not just curriculum.
  Practical, Application-Driven Approach
  We don't teach AI as a subject. We teach it as a tool you use — on real problems, in real conditions, the way it's applied in active enterprise environments.
  Instructors Who've Done the Work
@@ -70,7 +70,7 @@ Transparent Reporting
 No vague updates. Institutional partners get clear, regular visibility into cohort performance and outcomes.
 Backed by Real Stakes
 Our credibility isn't built on classroom theory. It's tested in enterprise and government engagements where outcomes matter — and that standard carries directly into how we train.
-Thread Security does not simply deliver training. We take responsibility for learning outcomes
+Edu Nexus does not simply deliver training. We take responsibility for learning outcomes
 
 
 
@@ -145,8 +145,8 @@ By the end of the program, you will be able to:
 * Build, configure, and troubleshoot systems like a professional
 * Take a project from requirement to finished solution
 * Walk into a technical role without the usual learning curve
-Not just this, choosing thread security is a whole package for you to kick start your journey. Tell you why? Apart from the technical we will ensure your complete personality development
-Thread Security provides structured professional development support as part of its programs so that learners will not only be technically capable, but professionally prepared. These are not additional services but are a part of the learning process.
+Not just this, choosing Edu Nexus is a whole package for you to kick start your journey. Tell you why? Apart from the technical we will ensure your complete personality development
+Edu Nexus provides structured professional development support as part of its programs so that learners will not only be technically capable, but professionally prepared. These are not additional services but are a part of the learning process.
 PDP includes:
 1.         Personality Development
 2.         Business Communication Skills
@@ -570,13 +570,13 @@ TS pvt ltd Previous
 ABOUT OUR COMPANY
 WHO WE ARE
 Built to Protect. Designed to Last.
-Thread Security is an enterprise cybersecurity organization founded on a single conviction: Security cannot be a compromise. We exist to protect the organizations, infrastructure, and data that modern economies depend on — and we do it without shortcuts, without black-box solutions, and without the kind of overconfidence that leaves systems exposed.
+Edu Nexus is an enterprise cybersecurity organization founded on a single conviction: Security cannot be a compromise. We exist to protect the organizations, infrastructure, and data that modern economies depend on — and we do it without shortcuts, without black-box solutions, and without the kind of overconfidence that leaves systems exposed.
 What sets us apart is not just technical depth — it is how we work. We bring top offensive security skills and clear methodologies, providing our clients a full picture of our findings, what they mean, and what they should do about it. All engagements are based on accountability and measurable results—from penetration testing to long-term security strategy. We collaborate with businesses, government agencies, and tech firms in industries where "no fails" is the motto.
 Our team is composed of practitioners who have experience in offensive security, red teaming, cloud security, enterprise risk management and security architecture, all of which operate in the same environments as we are protecting. Our Promise We are not only detecting threats, we are preventing them, before they get to your systems!
 Not only do we react, we bolster your posture so you have less for the next threat to work with. We don't just secure systems — We safeguard the continuity, reputation and future of your organization.
 OUR VISION & MISSION WHAT DRIVES US
  Uncompromising Security. Transparent Practice.
-Thread Security was born to offer practical, uncompromising security to organizations that simply cannot afford downtime, data loss or reputational damage. We don't use jargon or esoteric processes. From the ground up, we implement robust technical expertise and make processes transparent to secure infrastructure and hold it in place as threats change.
+Edu Nexus was born to offer practical, uncompromising security to organizations that simply cannot afford downtime, data loss or reputational damage. We don't use jargon or esoteric processes. From the ground up, we implement robust technical expertise and make processes transparent to secure infrastructure and hold it in place as threats change.
 Vision
 Where organisations can be confident that their digital infrastructure is protected by people who are truly prepared to do the job. Mission Provide practical, uncompromising cyber security solutions using a strong technical approach and open dialogue – safeguarding what is important to our clients.
 COMPANY OBJECTIVES
@@ -592,7 +592,7 @@ Provide organizations with the security foundation they need to grow, innovate a
 5. Build Long-Term Resilience
 Do more than just respond to incidents — develop security postures that grow over time.
 6. Deliver Transparency
-Give clients full transparency into findings, risk and remediation - no black boxes and no ambiguity. Why choose Thread Security?
+Give clients full transparency into findings, risk and remediation - no black boxes and no ambiguity. Why choose Edu Nexus?
 OUR DIFFERENTIATORS
 Security That's Verifiable. A Future Without Tolerance.
 This is because we do our work not out of marketing, but because it stands the test of time. We apply this kind of technical rigour that is found in the real environment of opposition, and we are transparent so that our clients can know exactly what they are getting.
@@ -608,7 +608,7 @@ Research-Driven Intelligence
 The methods and knowledge are driven by active security research to keep pace with the changing threat landscape. We are held to measurable results — NOT activity measures. All engagements conclude with a more secure and robust security position.
 OUR SERVICES: WHAT WE DELIVER
 Comprehensive Security. Designed for: Your Environment.
- From vulnerability discovery and active threat testing to security in the cloud, compliance and long-term strategic advice, Thread Security's service offerings address all aspects of enterprise security. All services are provided by practitioners who have first-hand experience in their field.
+ From vulnerability discovery and active threat testing to security in the cloud, compliance and long-term strategic advice, Edu Nexus's service offerings address all aspects of enterprise security. All services are provided by practitioners who have first-hand experience in their field.
 1. Penetration Testing
 Real-world attacks are simulated to find and exploit vulnerabilities before they can be done by attackers. Documented, structured and scoped.
 2. Vulnerability Assessment Ongoing scanning and risk assessment to identify, categorize and rank security vulnerabilities throughout the environment.
@@ -619,7 +619,7 @@ Real-world attacks are simulated to find and exploit vulnerabilities before they
 OUR SECURITY PROCESS
 How We Work
 Structured Approach, Continuous Protection.
-No matter what, each Thread Security engagement is based on a repeatable and structured methodology, meaning nothing is being overlooked, nothing is being assumed and every finding is actionable. We link to you from the outset and keep you informed throughout the process, from the beginning workscope to the end of remediation works.
+No matter what, each Edu Nexus engagement is based on a repeatable and structured methodology, meaning nothing is being overlooked, nothing is being assumed and every finding is actionable. We link to you from the outset and keep you informed throughout the process, from the beginning workscope to the end of remediation works.
 1. Assess
 We start by getting to know you and your surroundings: the systems, your risk level, your priorities, and your limitations.
 2. Identify
@@ -643,7 +643,7 @@ All engagements are outscoped, authorized, and fought under formal rules of enga
 CERTIFICATIONS & STANDARDS
 OUR STANDARDS
 In keeping with the Global Best Practice.
-The operations and methodologies of Thread Security are geared towards prevailing international security standards and frameworks. This allows our work to align to the compliance and governance requirements of enterprise and government clients, and aligns our processes to be audit ready, audit consistent and audit defensible.
+The operations and methodologies of Edu Nexus are geared towards prevailing international security standards and frameworks. This allows our work to align to the compliance and governance requirements of enterprise and government clients, and aligns our processes to be audit ready, audit consistent and audit defensible.
 ISO 27001
 The world standard for managing information security risks: Information Security Management System. SOC 2 Type II
 The security, availability and confidentiality controls are carried out independently over time.
@@ -658,17 +658,17 @@ We apply the NIST Cybersecurity Framework as we offer security consulting and se
 BRANDS WE PROTECT
 OUR CLIENTS
 A company trusted across the industries and sectors.
-Thread Security supports enterprises in IT, financial, cloud and digital commerce. You have issues you don't want to mess around with and the solution is to trust us to take care of your most important systems.
+Edu Nexus supports enterprises in IT, financial, cloud and digital commerce. You have issues you don't want to mess around with and the solution is to trust us to take care of your most important systems.
 [LOGO]
 Microsoft  ·  AWS  ·  Google  ·  Oracle  ·  VMware  ·  Adobe  ·  PayPal  ·  IBM  ·  SAP  ·  Dell  ·  Intel  ·  Cisco
 OUR TEAM
 LEADERSHIP
 Security applied by the Professionals.
-Led by practitioners and not boardroom experts, Thread Security has made it their mission to bring the best expertise in the field to enhance these critical processes. Our Leadership team combines great technical skill with a great vision and they are equally committed to what you call "Security in Action".
+Led by practitioners and not boardroom experts, Edu Nexus has made it their mission to bring the best expertise in the field to enhance these critical processes. Our Leadership team combines great technical skill with a great vision and they are equally committed to what you call "Security in Action".
 Vishal Kumar  —  Founder & CEO
-Vishal guides Thread Security with a sure and steadfast idea – STARTING SECURITY from a practical expanse, transparent and ready for the real world. He has deep experience in offensive security, red teaming, enterprise risk and how to test, document and continually question security.  Throughout his tenure at Thread Security, the company has gained technical credibility and earned the trust of its clients.
+Vishal guides Edu Nexus with a sure and steadfast idea – STARTING SECURITY from a practical expanse, transparent and ready for the real world. He has deep experience in offensive security, red teaming, enterprise risk and how to test, document and continually question security.  Throughout his tenure at Edu Nexus, the company has gained technical credibility and earned the trust of its clients.
 Mr. Sujal Tiwari — Chief Technology Officer
-Sujal heads product development, engineering and security architecture at Thread Security, guiding technological direction. He brings technical excellence and rigor to all engagements through his background in offensive research and cybersecurity.  His expertise is in creating large-scale, resilient security solutions to meet the shifting needs of enterprise customers and effectively respond to a dynamic threat environment.
+Sujal heads product development, engineering and security architecture at Edu Nexus, guiding technological direction. He brings technical excellence and rigor to all engagements through his background in offensive research and cybersecurity.  His expertise is in creating large-scale, resilient security solutions to meet the shifting needs of enterprise customers and effectively respond to a dynamic threat environment.
 The Leadership in Knowledge-based. Focused on Security.
 BY THE NUMBERS: OUR TRACK RECORD
 Providing Measurable Security Outcomes.
@@ -687,19 +687,19 @@ TSE Profile
 
 
 
-Thread Security Education
+Edu Nexus Education
 Building the Workforce That Secures Tomorrow.
  
 WHO WE ARE
 Where Industry Knowledge Becomes Professional Capability.
-Thread Security Education is the dedicated learning and professional development division of the Thread Security established to address a gap that most training providers do not. It is the distance between what institutions teach and what industry actually demands.
-We are not a traditional training company. We are a practitioner-led education organisation built on the same technical foundations that Thread Security has applied in enterprise and government security engagements. That foundation is what makes our programs different our curriculum is not designed from the outside looking in. It is designed by people who have operated inside the environments our learners are preparing to enter.
-Thread Security Education partners with corporate HR and L&D teams, universities, engineering institutions, and government bodies to deliver structured programs in cybersecurity, artificial intelligence and allied technology disciplines alongside fellowships, industry projects, and applied learning experiences that connect learners directly to professional practice.
+Edu Nexus Education is the dedicated learning and professional development division of the Edu Nexus established to address a gap that most training providers do not. It is the distance between what institutions teach and what industry actually demands.
+We are not a traditional training company. We are a practitioner-led education organisation built on the same technical foundations that Edu Nexus has applied in enterprise and government security engagements. That foundation is what makes our programs different our curriculum is not designed from the outside looking in. It is designed by people who have operated inside the environments our learners are preparing to enter.
+Edu Nexus Education partners with corporate HR and L&D teams, universities, engineering institutions, and government bodies to deliver structured programs in cybersecurity, artificial intelligence and allied technology disciplines alongside fellowships, industry projects, and applied learning experiences that connect learners directly to professional practice.
  
 OUR VISION & MISSION
 WHAT DRIVES US
 Closing the Gap Between Learning and Professional Practice.
-Thread Security Education was established with a single conviction: professional capability in technology cannot be built through passive instruction. It is built through structured, practitioner-led learning that is grounded in how the industry actually operates.
+Edu Nexus Education was established with a single conviction: professional capability in technology cannot be built through passive instruction. It is built through structured, practitioner-led learning that is grounded in how the industry actually operates.
 Our Vision
 To be the most trusted industry-aligned education partner for organisations building technically capable, professionally prepared technology workforces.
 Our Mission
@@ -712,14 +712,14 @@ OUR OBJECTIVES
 5.     Demonstrate institutional training value.
 WHAT WE OFFER
 From Classrooms to Clients
-Thread Security Education's programs span the full spectrum of in-demand technology disciplines from cybersecurity to artificial. Each program is structured around a consistent aim of industry-aligned curriculum, hands-on implementation, project-based learning, and measurable outcomes.
+Edu Nexus Education's programs span the full spectrum of in-demand technology disciplines from cybersecurity to artificial. Each program is structured around a consistent aim of industry-aligned curriculum, hands-on implementation, project-based learning, and measurable outcomes.
 -----------------------Training Programs will be added here ---------------------------------------
  
 Fellowship & Industry Projects
 Industry Fellowships
 Structured fellowship programs that place learners within real industry contexts working on defined problems, under practitioner mentorship, and producing documented outcomes that demonstrate applied capability to employers.
 Industry Projects
-Applied project engagements where cohorts work on real organisational briefs scoped by Thread Security Education in collaboration with corporate and institutional partners. Learners deliver working solutions, not academic submissions.
+Applied project engagements where cohorts work on real organisational briefs scoped by Edu Nexus Education in collaboration with corporate and institutional partners. Learners deliver working solutions, not academic submissions.
 Corporate Training Engagements
 Custom-designed programs for HR and L&D teams seeking to upskill existing workforces in defined technology domains structured around the organisation's specific roles, tools, and operational environment.
 Certification Preparation
@@ -758,7 +758,7 @@ Our documentation, reporting, and delivery standards are structured to meet the 
  
 WHAT YOU WILL GAIN
 You Arrive with Curiosity. You Leave with Capability.
-1.     By the end of any Thread Security Education program, learners will be able to:
+1.     By the end of any Edu Nexus Education program, learners will be able to:
 2.     Apply core techniques to real problems Not just explain them in theory
 3.     Work confidently with industry-standard tools, actively used by professionals in the fields.
 4.     Build, configure, and troubleshoot systems the way professionals do.
@@ -784,14 +784,14 @@ Outcomes That Speak for Themselves.
 OUR LEADERS
 Leadership Grounded in Expertise. Focused on Outcomes.
 Vishal Kumar [Founder & CEO]
-Mr. Vishal leads Thread Security Education with the conviction that professional capability must be built on real-world foundations. With deep expertise in offensive security, red teaming, and enterprise risk and a track record of delivering security programs for enterprise and government clients. This brings the same standard of rigour to education that he has applied in active security engagements.  Under his leadership, Thread Security Education is built not around what is easy to teach, but around what professionals actually need to perform
+Mr. Vishal leads Edu Nexus Education with the conviction that professional capability must be built on real-world foundations. With deep expertise in offensive security, red teaming, and enterprise risk and a track record of delivering security programs for enterprise and government clients. This brings the same standard of rigour to education that he has applied in active security engagements.  Under his leadership, Edu Nexus Education is built not around what is easy to teach, but around what professionals actually need to perform
 Sujal Tiwari [Chief Technology Officer]
-Mr. Sujal brings a strong background in cybersecurity, offensive research, and security architecture to Thread Security Education's program design. His focus on scalable, technically rigorous systems directly shapes how programs are structured ensuring that curriculum reflects the current state of the field and that delivery standards hold up as program scale increases. His presence has made a huge impact on hundreds of students who are shaping their lives ahead.
+Mr. Sujal brings a strong background in cybersecurity, offensive research, and security architecture to Edu Nexus Education's program design. His focus on scalable, technically rigorous systems directly shapes how programs are structured ensuring that curriculum reflects the current state of the field and that delivery standards hold up as program scale increases. His presence has made a huge impact on hundreds of students who are shaping their lives ahead.
  
 PARTNER WITH US
 Let's Build Your Workforce Together.
-Thread Security Education welcomes conversations with corporate HR and L&D teams, universities, engineering institutions, and government bodies seeking a credible, outcomes-driven training partner. We are available to discuss program requirements, cohort structures, fellowship engagements, and institutional partnerships.
-Whether you are looking to upskill an existing team, build a structured training program from scratch, or explore fellowship and industry project opportunities for your institution Thread Security Education is ready to engage.
+Edu Nexus Education welcomes conversations with corporate HR and L&D teams, universities, engineering institutions, and government bodies seeking a credible, outcomes-driven training partner. We are available to discuss program requirements, cohort structures, fellowship engagements, and institutional partnerships.
+Whether you are looking to upskill an existing team, build a structured training program from scratch, or explore fellowship and industry project opportunities for your institution Edu Nexus Education is ready to engage.
 Reach out. Let's begin.
  
 CONTACT DETAILS

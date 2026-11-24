@@ -314,7 +314,7 @@ export function TechnologiesExposureSection() {
                   <div className="relative w-16 h-16 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full bg-[#060a07] border-2 border-[#C6FF34] shadow-[0_0_35px_rgba(198,255,52,0.4)] flex items-center justify-center p-3 sm:p-4 overflow-hidden group">
                     <Image
                       src="/logos/herofill.svg"
-                      alt="Thread Security Core"
+                      alt="Edu Nexus Core"
                       width={160}
                       height={160}
                       unoptimized
@@ -334,11 +334,10 @@ export function TechnologiesExposureSection() {
                   return (
                     <div
                       key={milestone.tier}
-                      className={`relative p-1.5 sm:p-2.5 rounded-lg border transition-all duration-300 ${
-                        isReached
+                      className={`relative p-1.5 sm:p-2.5 rounded-lg border transition-all duration-300 ${isReached
                           ? 'bg-black/60 border-[#C6FF34]/50 shadow-[0_0_12px_rgba(198,255,52,0.15)]'
                           : 'bg-black/30 border-white/[0.06] opacity-40'
-                      }`}
+                        }`}
                     >
                       <div className="flex items-center justify-between gap-1 mb-0.5">
                         <span className={`text-[9px] sm:text-[10px] font-mono font-bold ${isReached ? 'text-[#C6FF34]' : 'text-zinc-500'}`}>
@@ -546,17 +545,15 @@ function MarqueeTechBadge({
     <div
       onMouseEnter={onHover}
       onMouseLeave={onLeave}
-      className={`group relative flex items-center gap-3 px-3.5 py-2.5 rounded-2xl cursor-pointer transition-all duration-300 ${
-        isHovered
+      className={`group relative flex items-center gap-3 px-3.5 py-2.5 rounded-2xl cursor-pointer transition-all duration-300 ${isHovered
           ? 'bg-zinc-900 border-[#C6FF34] shadow-[0_0_25px_rgba(198,255,52,0.35)] scale-105 z-30'
           : 'bg-zinc-950/80 border-white/10 hover:border-[#C6FF34]/60 hover:bg-zinc-900/90'
-      } border backdrop-blur-md select-none shrink-0`}
+        } border backdrop-blur-md select-none shrink-0`}
     >
       {/* Icon Medallion */}
       <div
-        className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white p-1.5 flex items-center justify-center shrink-0 shadow-md transition-transform duration-300 ${
-          isHovered ? 'scale-110 shadow-[0_0_15px_rgba(198,255,52,0.5)]' : 'group-hover:scale-105'
-        }`}
+        className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white p-1.5 flex items-center justify-center shrink-0 shadow-md transition-transform duration-300 ${isHovered ? 'scale-110 shadow-[0_0_15px_rgba(198,255,52,0.5)]' : 'group-hover:scale-105'
+          }`}
       >
         {tech.iconSrc ? (
           <img

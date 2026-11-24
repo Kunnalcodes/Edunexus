@@ -58,7 +58,7 @@ export async function generateMetadata({
     };
   }
 
-  const title = `${course.title} | Thread Security Education`;
+  const title = `${course.title} | Edu Nexus Education`;
   const description = course.description || course.subtitle;
   const canonicalUrl = `${APP_URL}/courses/${slug}`;
 
@@ -82,7 +82,7 @@ export async function generateMetadata({
     'CEH certification course',
     'CompTIA Security+ training',
     'OSCP training',
-    'Thread Security Education',
+    'Edu Nexus Education',
     'Verified TS-ID Certification',
   ];
 
@@ -98,13 +98,13 @@ export async function generateMetadata({
       description,
       url: canonicalUrl,
       type: 'website',
-      siteName: 'Thread Security Education',
+      siteName: 'Edu Nexus Education',
       images: [
         {
           url: `${APP_URL}/images/og-thread-security-education.png`,
           width: 1200,
           height: 630,
-          alt: `${course.title} — Thread Security Education`,
+          alt: `${course.title} — Edu Nexus Education`,
         },
       ],
     },
@@ -173,7 +173,7 @@ export default async function CourseDetailPage({
     mentor: {
       name: dbCourse?.mentor?.user?.name || fallback?.mentor?.name || 'Kunal Singh',
       role: dbCourse?.mentor?.title || fallback?.mentor?.role || 'Lead Security Architect',
-      company: dbCourse?.mentor?.company || fallback?.mentor?.company || 'Thread Security Education',
+      company: dbCourse?.mentor?.company || fallback?.mentor?.company || 'Edu Nexus Education',
       bio: dbCourse?.mentor?.bio || fallback?.mentor?.bio || 'Senior security practitioner with enterprise assessment experience.',
     },
     faqs: fallback?.faqs || [
@@ -187,7 +187,7 @@ export default async function CourseDetailPage({
 
   return (
     <div className="bg-[#05070D] min-h-screen text-white font-sans selection:bg-lime-400 selection:text-black">
-      
+
       {/* ── JSON-LD STRUCTURED DATA (COURSE + BREADCRUMBS) ── */}
       <CourseJsonLd
         name={course.title}
@@ -242,23 +242,21 @@ export default async function CourseDetailPage({
       <header className="bg-gradient-to-b from-[#080E14] via-[#05070D] to-[#05070D] pt-12 pb-16 border-b border-slate-800/80 relative overflow-hidden">
         {/* Background ambient lighting */}
         <div
-          className={`absolute top-0 right-1/4 w-[600px] h-[400px] rounded-full blur-[140px] pointer-events-none ${
-            isCyber ? 'bg-lime-500/10' : 'bg-purple-500/10'
-          }`}
+          className={`absolute top-0 right-1/4 w-[600px] h-[400px] rounded-full blur-[140px] pointer-events-none ${isCyber ? 'bg-lime-500/10' : 'bg-purple-500/10'
+            }`}
         />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-            
+
             {/* Left Col: Badges, Title, Subtitle, Highlights */}
             <div className="lg:col-span-8 space-y-6 text-left">
               <div className="flex flex-wrap items-center gap-3">
                 <span
-                  className={`px-3.5 py-1 rounded-lg text-xs font-mono font-black uppercase tracking-wider border ${
-                    isCyber
+                  className={`px-3.5 py-1 rounded-lg text-xs font-mono font-black uppercase tracking-wider border ${isCyber
                       ? 'bg-lime-950/80 text-lime-300 border-lime-500/60'
                       : 'bg-purple-950/80 text-purple-300 border-purple-500/60'
-                  }`}
+                    }`}
                 >
                   {course.category}
                 </span>
@@ -318,11 +316,10 @@ export default async function CourseDetailPage({
             <div className="lg:col-span-4">
               <aside
                 aria-label="Course Enrollment"
-                className={`p-6 sm:p-7 rounded-3xl border text-left shadow-2xl relative overflow-hidden ${
-                  isCyber
+                className={`p-6 sm:p-7 rounded-3xl border text-left shadow-2xl relative overflow-hidden ${isCyber
                     ? 'bg-gradient-to-br from-[#0c1a10] via-[#08120b] to-[#040805] border-lime-500/40 shadow-[0_0_35px_-5px_rgba(163,230,53,0.3)]'
                     : 'bg-gradient-to-br from-[#1a0c2e] via-[#10071f] to-[#07030f] border-purple-500/40 shadow-[0_0_35px_-5px_rgba(168,85,247,0.3)]'
-                }`}
+                  }`}
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
@@ -362,11 +359,10 @@ export default async function CourseDetailPage({
                   <div className="pt-4 space-y-2.5">
                     <Link href="/contact?topic=enrollment" className="block">
                       <button
-                        className={`w-full py-3.5 px-4 rounded-2xl font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg transition-all cursor-pointer ${
-                          isCyber
+                        className={`w-full py-3.5 px-4 rounded-2xl font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg transition-all cursor-pointer ${isCyber
                             ? 'bg-gradient-to-r from-lime-500 via-lime-400 to-emerald-400 hover:from-lime-400 hover:to-emerald-300 text-slate-950 shadow-[0_0_20px_rgba(163,230,53,0.4)]'
                             : 'bg-gradient-to-r from-purple-500 via-fuchsia-500 to-indigo-500 hover:from-purple-400 hover:to-fuchsia-400 text-white shadow-[0_0_20px_rgba(168,85,247,0.4)]'
-                        }`}
+                          }`}
                       >
                         <span>Enroll in Upcoming Batch</span>
                         <ArrowRight className="w-4 h-4" />
@@ -391,7 +387,7 @@ export default async function CourseDetailPage({
 
       {/* ── COURSE BODY (OVERVIEW, CURRICULUM, LABS, MENTOR, FAQS) ── */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
-        
+
         {/* Section 1: Overview & Learning Outcomes */}
         <section aria-labelledby="overview-heading" className="space-y-6 text-left">
           <div className="space-y-2">
@@ -483,11 +479,10 @@ export default async function CourseDetailPage({
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800/80 pb-3">
                   <div className="flex items-center gap-3">
                     <span
-                      className={`px-2.5 py-1 rounded-lg text-xs font-mono font-black ${
-                        isCyber
+                      className={`px-2.5 py-1 rounded-lg text-xs font-mono font-black ${isCyber
                           ? 'bg-lime-950 text-lime-400 border border-lime-500/40'
                           : 'bg-purple-950 text-purple-400 border border-purple-500/40'
-                      }`}
+                        }`}
                     >
                       MODULE {String(idx + 1).padStart(2, '0')}
                     </span>
@@ -629,11 +624,10 @@ export default async function CourseDetailPage({
         {/* Section 6: Bottom CTA Banner */}
         <section
           aria-labelledby="cta-heading"
-          className={`p-8 sm:p-12 rounded-3xl border text-center space-y-6 ${
-            isCyber
+          className={`p-8 sm:p-12 rounded-3xl border text-center space-y-6 ${isCyber
               ? 'bg-gradient-to-r from-[#0c1a10] via-[#07120a] to-[#040805] border-lime-500/40'
               : 'bg-gradient-to-r from-[#1a0c2e] via-[#10071f] to-[#07030f] border-purple-500/40'
-          }`}
+            }`}
         >
           <h2 id="cta-heading" className="text-2xl sm:text-4xl font-black uppercase text-white">
             Ready to Master {course.title}?
@@ -644,11 +638,10 @@ export default async function CourseDetailPage({
           <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
             <Link href="/contact?topic=enrollment">
               <button
-                className={`py-3.5 px-8 rounded-2xl font-black text-xs sm:text-sm flex items-center gap-2 shadow-xl transition-all cursor-pointer ${
-                  isCyber
+                className={`py-3.5 px-8 rounded-2xl font-black text-xs sm:text-sm flex items-center gap-2 shadow-xl transition-all cursor-pointer ${isCyber
                     ? 'bg-lime-400 hover:bg-lime-300 text-black shadow-[0_0_25px_rgba(163,230,53,0.4)]'
                     : 'bg-purple-500 hover:bg-purple-400 text-white shadow-[0_0_25px_rgba(168,85,247,0.4)]'
-                }`}
+                  }`}
               >
                 <span>Apply for Cohort Admission</span>
                 <ArrowRight className="w-4 h-4" />

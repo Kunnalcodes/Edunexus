@@ -32,7 +32,7 @@ export async function sendOtpEmail({
   const apiKey = process.env.RESEND_API_KEY;
 
   // Use verified domain sender (threadsecurity.in is verified in Resend)
-  const verifiedSender = 'Thread Security Education <edu@threadsecurity.in>';
+  const verifiedSender = 'Edu Nexus Education <edu@threadsecurity.in>';
   const fromEmail =
     process.env.RESEND_FROM_EMAIL && !process.env.RESEND_FROM_EMAIL.includes('onboarding@resend.dev')
       ? process.env.RESEND_FROM_EMAIL
@@ -45,7 +45,7 @@ export async function sendOtpEmail({
       <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Your Verification Code — Thread Security</title>
+        <title>Your Verification Code — Edu Nexus</title>
         <style>
           body {
             margin: 0;
@@ -182,7 +182,7 @@ export async function sendOtpEmail({
             <div class="brand-header">
               <div>
                 <span class="brand-pill">AUTHENTICATION GATEWAY</span>
-                <div class="brand-title">THREAD SECURITY EDUCATION</div>
+                <div class="brand-title">Edu Nexus EDUCATION</div>
               </div>
             </div>
 
@@ -207,13 +207,13 @@ export async function sendOtpEmail({
                 <span class="meta-target">${cleanTarget}</span>
               </div>
               <div style="font-size: 11px; color: #94a3b8; margin-top: 6px;">
-                Never share this code with anyone. Thread Security staff will never ask for your verification code.
+                Never share this code with anyone. Edu Nexus staff will never ask for your verification code.
               </div>
             </div>
 
             <!-- Minimal Footer -->
             <div class="footer">
-              <span class="footer-brand">Thread Security Education</span><br>
+              <span class="footer-brand">Edu Nexus Education</span><br>
               Cybersecurity Academy • Official Identity Services<br>
               <a href="https://www.threadsecurity.in" target="_blank">www.threadsecurity.in</a>
             </div>
@@ -240,7 +240,7 @@ export async function sendOtpEmail({
       const info = await transporter.sendMail({
         from: process.env.SMTP_FROM || fromEmail,
         to: cleanTarget,
-        subject: `[${code}] Thread Security Access Code`,
+        subject: `[${code}] Edu Nexus Access Code`,
         html: htmlContent,
       });
 
@@ -264,7 +264,7 @@ export async function sendOtpEmail({
       body: JSON.stringify({
         from: fromEmail,
         to: [cleanTarget],
-        subject: `[${code}] Thread Security Access Code`,
+        subject: `[${code}] Edu Nexus Access Code`,
         html: htmlContent,
       }),
     });

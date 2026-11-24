@@ -468,7 +468,7 @@ export function AssignmentsManagerClient({
                     <div className="relative z-10 space-y-1">
                       <div className="flex items-center gap-2">
                         <span className="font-extrabold tracking-wider text-base text-white">
-                          THREAD SECURITY
+                          Edu Nexus
                         </span>
                         <span className="text-[10px] bg-violet-500/25 text-violet-300 px-2 py-0.5 rounded uppercase font-bold tracking-widest border border-violet-400/30">
                           FACULTY
@@ -505,11 +505,10 @@ export function AssignmentsManagerClient({
                               key={idx}
                               type="button"
                               onClick={() => setActiveTipIndex(idx)}
-                              className={`h-1.5 rounded-full transition-all ${
-                                idx === activeTipIndex
+                              className={`h-1.5 rounded-full transition-all ${idx === activeTipIndex
                                   ? 'w-4 bg-violet-400'
                                   : 'w-1.5 bg-white/30'
-                              }`}
+                                }`}
                             />
                           ))}
                         </div>
@@ -562,9 +561,8 @@ export function AssignmentsManagerClient({
                         {[1, 2, 3].map((step) => (
                           <div
                             key={step}
-                            className={`h-1.5 rounded-full transition-all ${
-                              step <= createStep ? 'bg-violet-600' : 'bg-slate-100'
-                            }`}
+                            className={`h-1.5 rounded-full transition-all ${step <= createStep ? 'bg-violet-600' : 'bg-slate-100'
+                              }`}
                           />
                         ))}
                       </div>
@@ -778,22 +776,20 @@ export function AssignmentsManagerClient({
                               <button
                                 type="button"
                                 onClick={() => setGradingType('NUMBER')}
-                                className={`py-2 px-3 rounded-xl border text-xs font-semibold transition-all cursor-pointer ${
-                                  gradingType === 'NUMBER'
+                                className={`py-2 px-3 rounded-xl border text-xs font-semibold transition-all cursor-pointer ${gradingType === 'NUMBER'
                                     ? 'bg-violet-600 text-white border-violet-600 shadow-xs'
                                     : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
-                                }`}
+                                  }`}
                               >
                                 Number-Based Score
                               </button>
                               <button
                                 type="button"
                                 onClick={() => setGradingType('GRADE')}
-                                className={`py-2 px-3 rounded-xl border text-xs font-semibold transition-all cursor-pointer ${
-                                  gradingType === 'GRADE'
+                                className={`py-2 px-3 rounded-xl border text-xs font-semibold transition-all cursor-pointer ${gradingType === 'GRADE'
                                     ? 'bg-violet-600 text-white border-violet-600 shadow-xs'
                                     : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
-                                }`}
+                                  }`}
                               >
                                 Letter Grade (S-F)
                               </button>
@@ -810,11 +806,10 @@ export function AssignmentsManagerClient({
                                       key={scale}
                                       type="button"
                                       onClick={() => setNumberMaxScore(scale)}
-                                      className={`py-1.5 rounded-lg border text-xs font-semibold transition-all cursor-pointer ${
-                                        numberMaxScore === scale
+                                      className={`py-1.5 rounded-lg border text-xs font-semibold transition-all cursor-pointer ${numberMaxScore === scale
                                           ? 'bg-violet-600 text-white border-violet-600'
                                           : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'
-                                      }`}
+                                        }`}
                                     >
                                       0 - {scale}
                                     </button>
@@ -887,11 +882,10 @@ export function AssignmentsManagerClient({
                                   if (f) processSelectedFile(f);
                                 }}
                                 onClick={() => fileInputRef.current?.click()}
-                                className={`border-2 border-dashed rounded-xl p-4 text-center cursor-pointer transition-all ${
-                                  isDraggingFile
+                                className={`border-2 border-dashed rounded-xl p-4 text-center cursor-pointer transition-all ${isDraggingFile
                                     ? 'border-violet-600 bg-violet-50'
                                     : 'border-slate-200 bg-slate-50/50 hover:border-slate-300'
-                                }`}
+                                  }`}
                               >
                                 <Upload className="w-5 h-5 mx-auto mb-1 text-slate-400" />
                                 <div className="text-xs text-slate-900">
@@ -1017,11 +1011,10 @@ export function AssignmentsManagerClient({
             <button
               key={filter}
               onClick={() => setStatusFilter(filter)}
-              className={`px-3 py-1.5 rounded-lg text-[11px] font-semibold transition-all cursor-pointer ${
-                statusFilter === filter
+              className={`px-3 py-1.5 rounded-lg text-[11px] font-semibold transition-all cursor-pointer ${statusFilter === filter
                   ? 'bg-white text-violet-700 font-bold shadow-xs'
                   : 'text-slate-600 hover:text-slate-900'
-              }`}
+                }`}
             >
               {filter}
             </button>
@@ -1091,11 +1084,10 @@ export function AssignmentsManagerClient({
                     </div>
 
                     <span
-                      className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wider uppercase shrink-0 border ${
-                        isDeadlinePassed
+                      className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wider uppercase shrink-0 border ${isDeadlinePassed
                           ? 'bg-red-50 text-red-600 border-red-200'
                           : 'bg-emerald-50 text-emerald-700 border-emerald-200'
-                      }`}
+                        }`}
                     >
                       {isDeadlinePassed ? 'Locked / Overdue' : 'Active & Accepting'}
                     </span>
@@ -1265,11 +1257,10 @@ export function AssignmentsManagerClient({
                     return (
                       <div
                         key={student.id}
-                        className={`p-4 rounded-2xl border transition-all ${
-                          isBeingGraded
+                        className={`p-4 rounded-2xl border transition-all ${isBeingGraded
                             ? 'bg-violet-50/40 border-violet-300 ring-2 ring-violet-500/20'
                             : 'bg-slate-50/70 border-slate-200 hover:border-slate-300'
-                        }`}
+                          }`}
                       >
                         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                           <div className="flex items-center gap-3">
@@ -1291,19 +1282,16 @@ export function AssignmentsManagerClient({
                             {isGraded ? (
                               <div className="flex items-center gap-2">
                                 <span
-                                  className={`px-2.5 py-1 rounded-full text-[11px] font-bold border ${
-                                    submission?.isPassing
+                                  className={`px-2.5 py-1 rounded-full text-[11px] font-bold border ${submission?.isPassing
                                       ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
                                       : 'bg-red-50 text-red-600 border-red-200'
-                                  }`}
+                                    }`}
                                 >
                                   {currentReview.gradingType === 'NUMBER'
-                                    ? `SCORE: ${submission?.score}/${currentReview.numberMaxScore} (${
-                                        submission?.isPassing ? 'PASS' : 'FAIL'
-                                      })`
-                                    : `GRADE: ${submission?.grade} (${
-                                        submission?.isPassing ? 'PASS' : 'FAIL'
-                                      })`}
+                                    ? `SCORE: ${submission?.score}/${currentReview.numberMaxScore} (${submission?.isPassing ? 'PASS' : 'FAIL'
+                                    })`
+                                    : `GRADE: ${submission?.grade} (${submission?.isPassing ? 'PASS' : 'FAIL'
+                                    })`}
                                 </span>
                               </div>
                             ) : isSubmitted ? (
@@ -1330,24 +1318,23 @@ export function AssignmentsManagerClient({
                                   setGradeInput(submission?.grade || 'A');
                                   setScoreInput(
                                     submission?.score ??
-                                      (currentReview.numberMaxScore
-                                        ? currentReview.numberMaxScore * 0.8
-                                        : 80)
+                                    (currentReview.numberMaxScore
+                                      ? currentReview.numberMaxScore * 0.8
+                                      : 80)
                                   );
                                   setRemarksInput(submission?.remarks || '');
                                 }
                               }}
-                              className={`text-xs font-medium px-3.5 py-1.5 rounded-xl transition-all cursor-pointer ${
-                                isBeingGraded
+                              className={`text-xs font-medium px-3.5 py-1.5 rounded-xl transition-all cursor-pointer ${isBeingGraded
                                   ? 'bg-slate-200 text-slate-800'
                                   : 'bg-violet-600 hover:bg-violet-700 text-white shadow-xs'
-                              }`}
+                                }`}
                             >
                               {isBeingGraded
                                 ? 'Close Drawer'
                                 : isGraded
-                                ? 'Update Grade'
-                                : 'Grade Submission'}
+                                  ? 'Update Grade'
+                                  : 'Grade Submission'}
                             </Button>
                           </div>
                         </div>
@@ -1422,7 +1409,7 @@ export function AssignmentsManagerClient({
                                       %
                                     </span>
                                     {scoreInput <
-                                    (currentReview.numberMaxScore || 100) * 0.25 ? (
+                                      (currentReview.numberMaxScore || 100) * 0.25 ? (
                                       <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-red-50 text-red-600 border border-red-200">
                                         FAIL (&lt;25%)
                                       </span>
@@ -1453,13 +1440,12 @@ export function AssignmentsManagerClient({
                                       key={g}
                                       type="button"
                                       onClick={() => setGradeInput(g)}
-                                      className={`py-2 rounded-xl border text-xs font-semibold transition-all cursor-pointer ${
-                                        gradeInput === g
+                                      className={`py-2 rounded-xl border text-xs font-semibold transition-all cursor-pointer ${gradeInput === g
                                           ? g === 'F'
                                             ? 'bg-red-600 text-white border-red-600 shadow-xs'
                                             : 'bg-violet-600 text-white border-violet-600 shadow-xs'
                                           : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
-                                      }`}
+                                        }`}
                                     >
                                       Grade {g} {g === 'F' ? '(Fail)' : ''}
                                     </button>

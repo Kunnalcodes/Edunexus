@@ -76,11 +76,11 @@ export function SEOPanel({
     ? title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '').slice(0, 45)
     : 'article-slug';
 
-  const previewTitle = metaTitle || (title ? `${title} | Thread Security Education` : 'Article Title | Thread Security');
+  const previewTitle = metaTitle || (title ? `${title} | Edu Nexus Education` : 'Article Title | Edu Nexus');
   const previewDescription =
     metaDescription ||
     subtitle ||
-    (textContent.slice(0, 150) ? `${textContent.slice(0, 150)}...` : 'Comprehensive cybersecurity research and practical editorial from Thread Security Education.');
+    (textContent.slice(0, 150) ? `${textContent.slice(0, 150)}...` : 'Comprehensive cybersecurity research and practical editorial from Edu Nexus Education.');
 
   // Advanced Google Ranking Checks
   const checks = [
@@ -147,7 +147,7 @@ export function SEOPanel({
     if (!kw) kw = 'Cybersecurity Research';
 
     // Generate optimal title (45-60 chars)
-    let generatedTitle = title ? `${title} | TSE` : `${kw} Guide | Thread Security`;
+    let generatedTitle = title ? `${title} | TSE` : `${kw} Guide | Edu Nexus`;
     if (generatedTitle.length > 60) {
       generatedTitle = generatedTitle.slice(0, 57).trim() + '...';
     }
@@ -155,7 +155,7 @@ export function SEOPanel({
     // Generate optimal description (130-155 chars)
     let generatedDesc = subtitle || textContent.slice(0, 140);
     if (!generatedDesc || generatedDesc.length < 50) {
-      generatedDesc = `Explore in-depth technical analysis and best practices on ${kw}. Practical cybersecurity insights by Thread Security Education faculty.`;
+      generatedDesc = `Explore in-depth technical analysis and best practices on ${kw}. Practical cybersecurity insights by Edu Nexus Education faculty.`;
     } else if (!generatedDesc.toLowerCase().includes(kw.toLowerCase())) {
       generatedDesc = `${kw}: ${generatedDesc}`;
     }
@@ -201,16 +201,14 @@ export function SEOPanel({
           <div className="flex items-center gap-2">
             <div className="w-20 bg-white/10 h-2.5 rounded-full overflow-hidden">
               <div
-                className={`h-full transition-all duration-500 ${
-                  seoScore >= 80 ? 'bg-[#C6FF34]' : seoScore >= 50 ? 'bg-amber-400' : 'bg-rose-500'
-                }`}
+                className={`h-full transition-all duration-500 ${seoScore >= 80 ? 'bg-[#C6FF34]' : seoScore >= 50 ? 'bg-amber-400' : 'bg-rose-500'
+                  }`}
                 style={{ width: `${seoScore}%` }}
               />
             </div>
             <span
-              className={`text-xs font-mono font-bold px-2 py-0.5 rounded ${
-                seoScore >= 80 ? 'bg-[#C6FF34]/20 text-[#C6FF34]' : seoScore >= 50 ? 'bg-amber-500/20 text-amber-400' : 'bg-rose-500/20 text-rose-400'
-              }`}
+              className={`text-xs font-mono font-bold px-2 py-0.5 rounded ${seoScore >= 80 ? 'bg-[#C6FF34]/20 text-[#C6FF34]' : seoScore >= 50 ? 'bg-amber-500/20 text-amber-400' : 'bg-rose-500/20 text-rose-400'
+                }`}
             >
               {seoScore}%
             </span>
@@ -271,7 +269,7 @@ export function SEOPanel({
                 <div className="w-4 h-4 rounded-full bg-white/10 flex items-center justify-center text-[8px] font-bold text-[#C6FF34]">
                   TS
                 </div>
-                <span className="text-slate-300 font-medium">Thread Security Education</span>
+                <span className="text-slate-300 font-medium">Edu Nexus Education</span>
                 <span className="text-slate-500 inline-flex items-center gap-1">
                   <ChevronRight className="w-3 h-3 text-slate-500" /> blog <ChevronRight className="w-3 h-3 text-slate-500" /> {simulatedSlug}
                 </span>
@@ -311,13 +309,12 @@ export function SEOPanel({
             <div className="space-y-1.5">
               <div className="flex justify-between text-[10px]">
                 <label className="text-slate-300 font-bold uppercase">Google Meta Title (40–60 chars)</label>
-                <span className={`font-mono font-bold ${
-                  metaTitle.length >= 40 && metaTitle.length <= 60
+                <span className={`font-mono font-bold ${metaTitle.length >= 40 && metaTitle.length <= 60
                     ? 'text-[#C6FF34]'
                     : metaTitle.length > 60
-                    ? 'text-rose-400'
-                    : 'text-amber-400'
-                }`}>
+                      ? 'text-rose-400'
+                      : 'text-amber-400'
+                  }`}>
                   {metaTitle.length}/60 chars
                 </span>
               </div>
@@ -338,13 +335,12 @@ export function SEOPanel({
             <div className="space-y-1.5">
               <div className="flex justify-between text-[10px]">
                 <label className="text-slate-300 font-bold uppercase">Google Meta Description (120–158 chars)</label>
-                <span className={`font-mono font-bold ${
-                  metaDescription.length >= 120 && metaDescription.length <= 158
+                <span className={`font-mono font-bold ${metaDescription.length >= 120 && metaDescription.length <= 158
                     ? 'text-[#C6FF34]'
                     : metaDescription.length > 158
-                    ? 'text-rose-400'
-                    : 'text-amber-400'
-                }`}>
+                      ? 'text-rose-400'
+                      : 'text-amber-400'
+                  }`}>
                   {metaDescription.length}/158 chars
                 </span>
               </div>
@@ -440,11 +436,10 @@ export function SEOPanel({
               {checks.map((item) => (
                 <div
                   key={item.id}
-                  className={`p-2.5 rounded-xl border flex items-start gap-2.5 transition-colors ${
-                    item.passed
+                  className={`p-2.5 rounded-xl border flex items-start gap-2.5 transition-colors ${item.passed
                       ? 'bg-emerald-950/20 border-emerald-500/30 text-emerald-300'
                       : 'bg-rose-950/20 border-rose-500/30 text-rose-300'
-                  }`}
+                    }`}
                 >
                   {item.passed ? (
                     <CheckCircle2 className="w-4 h-4 text-[#C6FF34] shrink-0 mt-0.5" />

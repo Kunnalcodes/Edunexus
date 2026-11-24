@@ -856,7 +856,7 @@ model Workshop {
   driveUrl        String?  // Google Drive or Cloud Storage link for uploaded image backup
   linkedinUrl     String
   registrationUrl String?
-  instructorName  String   @default("Thread Security Lead")
+  instructorName  String   @default("Edu Nexus Lead")
   instructorRole  String   @default("Senior Security Instructor")
   description     String
   highlights      String   // JSON string array of key highlights

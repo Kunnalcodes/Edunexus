@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { Cookie, Shield, Check, Info } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Cookie Policy | Thread Security Education',
+  title: 'Cookie Policy | Edu Nexus Education',
   description:
-    'Read about the cookies and browser storage technologies used by Thread Security Education for authentication, assessment proctoring, and platform analytics.',
+    'Read about the cookies and browser storage technologies used by Edu Nexus Education for authentication, assessment proctoring, and platform analytics.',
   alternates: {
     canonical: 'https://threadsecurity.in/cookie-policy',
   },
@@ -15,7 +15,7 @@ export default function CookiePolicyPage() {
   return (
     <div className="bg-white min-h-screen text-slate-800 font-sans pt-12 pb-24">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Header */}
         <div className="border-b border-slate-200 pb-8 mb-10">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-50 border border-amber-200 text-amber-900 text-xs font-semibold mb-4">
@@ -42,8 +42,8 @@ export default function CookiePolicyPage() {
 
           <section className="space-y-3">
             <h2 className="text-lg font-bold text-slate-950">2. Types of Cookies We Use</h2>
-            <p>Thread Security Education uses cookies strictly categorized into the following purposes:</p>
-            
+            <p>Edu Nexus Education uses cookies strictly categorized into the following purposes:</p>
+
             <div className="space-y-4 pt-2">
               <div className="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
                 <div className="flex items-center justify-between mb-1.5">
@@ -80,7 +80,7 @@ export default function CookiePolicyPage() {
           <section className="space-y-3">
             <h2 className="text-lg font-bold text-slate-950">3. Technical Security of Our Cookies</h2>
             <p>
-              In alignment with industry-leading cybersecurity engineering practices, all sensitive cookies issued by Thread Security Education include the following protection flags:
+              In alignment with industry-leading cybersecurity engineering practices, all sensitive cookies issued by Edu Nexus Education include the following protection flags:
             </p>
             <ul className="list-disc pl-5 space-y-1 text-slate-600 font-mono text-xs">
               <li><strong className="text-slate-900 font-sans">HttpOnly:</strong> Blocks malicious client-side JavaScript from accessing session data (mitigating XSS).</li>

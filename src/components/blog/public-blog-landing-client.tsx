@@ -65,7 +65,7 @@ export function PublicBlogLandingClient({
         <div className="max-w-7xl mx-auto px-4 md:px-8 text-center space-y-6">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-[#C6FF34]">
             <Sparkles className="w-3.5 h-3.5" />
-            THREAD SECURITY RESEARCH & INSIGHTS
+            Edu Nexus RESEARCH & INSIGHTS
           </div>
 
           <h1 className="text-4xl md:text-6xl font-black tracking-tight text-white max-w-4xl mx-auto font-serif leading-tight">
@@ -73,7 +73,7 @@ export function PublicBlogLandingClient({
           </h1>
 
           <p className="text-base md:text-lg text-slate-400 font-sans max-w-2xl mx-auto leading-relaxed">
-            Explore technical knowledge, cybersecurity research, AI threat detection, and industry perspectives authored by Thread Security leads.
+            Explore technical knowledge, cybersecurity research, AI threat detection, and industry perspectives authored by Edu Nexus leads.
           </p>
 
           {/* Search Bar */}
@@ -99,11 +99,10 @@ export function PublicBlogLandingClient({
           <div className="flex flex-wrap items-center justify-center gap-2 pt-4">
             <button
               onClick={() => handleCategorySelect('')}
-              className={`px-4 py-1.5 rounded-full text-xs font-mono transition-all ${
-                !currentCategory
+              className={`px-4 py-1.5 rounded-full text-xs font-mono transition-all ${!currentCategory
                   ? 'bg-white text-black font-bold shadow-lg'
                   : 'bg-white/5 text-slate-400 hover:text-white hover:bg-white/10 border border-white/10'
-              }`}
+                }`}
             >
               All Topics
             </button>
@@ -111,11 +110,10 @@ export function PublicBlogLandingClient({
               <button
                 key={cat.id}
                 onClick={() => handleCategorySelect(cat.slug)}
-                className={`px-4 py-1.5 rounded-full text-xs font-mono transition-all ${
-                  currentCategory === cat.slug
+                className={`px-4 py-1.5 rounded-full text-xs font-mono transition-all ${currentCategory === cat.slug
                     ? 'bg-[#C6FF34] text-black font-bold shadow-lg shadow-[#C6FF34]/10'
                     : 'bg-white/5 text-slate-400 hover:text-white hover:bg-white/10 border border-white/10'
-                }`}
+                  }`}
               >
                 {cat.name} ({cat._count?.blogs || 0})
               </button>
@@ -131,7 +129,7 @@ export function PublicBlogLandingClient({
             <BookOpen className="w-12 h-12 text-slate-600 mx-auto" />
             <h3 className="text-lg font-bold font-mono text-white">No Blog Articles Published Yet</h3>
             <p className="text-xs text-[#94a3b8] font-mono max-w-md mx-auto">
-              Check back soon for latest cybersecurity whitepapers and vulnerability research from Thread Security faculty.
+              Check back soon for latest cybersecurity whitepapers and vulnerability research from Edu Nexus faculty.
             </p>
           </div>
         ) : (
@@ -261,7 +259,7 @@ export function PublicBlogLandingClient({
                   </div>
 
                   <div className="pt-3 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-slate-400">
-                    <span>Thread Security Research Stream</span>
+                    <span>Edu Nexus Research Stream</span>
                     <Link href="/courses" className="text-[#C6FF34] hover:underline flex items-center gap-1 font-bold">
                       Explore Labs →
                     </Link>

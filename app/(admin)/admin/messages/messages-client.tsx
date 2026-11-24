@@ -172,7 +172,7 @@ export function MessagesClient({
     startTransition(async () => {
       const res = await sendAdminMessageAction(
         recipient.id,
-        `Hello ${recipient.name || 'Member'}, this is the Thread Security Academic Command Center.`
+        `Hello ${recipient.name || 'Member'}, this is the Edu Nexus Academic Command Center.`
       );
       if (res.success && res.data) {
         setIsNewChatOpen(false);
@@ -263,11 +263,10 @@ export function MessagesClient({
                   <button
                     key={c.id}
                     onClick={() => handleSelectConversation(c.id)}
-                    className={`w-full text-left p-3.5 flex items-start gap-3 transition-colors ${
-                      isSelected
+                    className={`w-full text-left p-3.5 flex items-start gap-3 transition-colors ${isSelected
                         ? 'bg-emerald-950/20 border-l-2 border-emerald-500'
                         : 'hover:bg-slate-900/60'
-                    }`}
+                      }`}
                   >
                     <div className="w-9 h-9 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-emerald-400 font-bold text-xs shrink-0">
                       {other.name?.substring(0, 2).toUpperCase() || 'M'}
@@ -339,11 +338,10 @@ export function MessagesClient({
                         className={`flex flex-col ${isMe ? 'items-end' : 'items-start'}`}
                       >
                         <div
-                          className={`max-w-[75%] rounded-2xl px-4 py-2.5 text-xs shadow-md ${
-                            isMe
+                          className={`max-w-[75%] rounded-2xl px-4 py-2.5 text-xs shadow-md ${isMe
                               ? 'bg-emerald-600 text-slate-950 font-medium rounded-tr-none'
                               : 'bg-slate-800/90 text-white rounded-tl-none border border-slate-700/60'
-                          }`}
+                            }`}
                         >
                           <p className="whitespace-pre-wrap leading-relaxed">{m.content}</p>
                         </div>

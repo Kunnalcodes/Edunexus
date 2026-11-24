@@ -51,7 +51,7 @@ const DEFAULT_ITEMS: DepthCarouselItem[] = [
     image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1200&auto=format&fit=crop',
     alt: 'Cloud Security Bootcamp',
     title: 'eBPF & Cloud Native Guardrails',
-    subtitle: 'Thread Security Innovation Hub',
+    subtitle: 'Edu Nexus Innovation Hub',
     date: 'Jul 22, 2026',
     linkedinUrl: 'https://www.linkedin.com/company/thread-security/',
   },

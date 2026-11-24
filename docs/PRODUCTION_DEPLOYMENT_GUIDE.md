@@ -1,4 +1,4 @@
-# Thread Security Education (TSE) LMS — Production Deployment Manual
+# Edu Nexus Education (TSE) LMS — Production Deployment Manual
 **Target Platforms**: Hostinger (VPS / Node.js Application Manager) & Render (Web Services)
 
 ---
@@ -50,7 +50,7 @@ Configure these in your Render or Hostinger Environment Manager:
 | `GOOGLE_CLIENT_ID` | OAuth Client ID | `your-google-client-id.apps.googleusercontent.com` |
 | `GOOGLE_CLIENT_SECRET` | OAuth Client Secret | `GOCSPX-your-oauth-secret` |
 | `RESEND_API_KEY` | Resend email key | `re_your_resend_api_key` |
-| `RESEND_FROM_EMAIL` | Outbound email sender | `Thread Security Education <onboarding@resend.dev>` |
+| `RESEND_FROM_EMAIL` | Outbound email sender | `Edu Nexus Education <onboarding@resend.dev>` |
 | `FACULTY_NOTIFY_EMAIL` | Faculty alert receiver | `faculty@yourdomain.com` |
 | `ADMIN_PASSKEY` | Admin bypass passkey | `your-secure-admin-passkey` |
 | `ADMIN_SECRET_KEY` | Admin verification key | `your-secure-admin-secret-key` |

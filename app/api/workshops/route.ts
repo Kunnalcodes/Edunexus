@@ -89,7 +89,7 @@ const initialSeedWorkshops = [
   {
     id: 'ebpf-kernel-security-2026',
     title: 'eBPF & Linux Kernel Threat Detection Masterclass',
-    subtitle: 'Thread Security Innovation Hub • Cloud Native Runtime Security',
+    subtitle: 'Edu Nexus Innovation Hub • Cloud Native Runtime Security',
     category: 'Cloud & eBPF',
     date: 'Sept 24, 2026',
     time: '6:00 PM - 9:00 PM IST',
@@ -200,7 +200,7 @@ export async function GET() {
       ...ws,
       highlights: typeof ws.highlights === 'string' ? JSON.parse(ws.highlights) : ws.highlights,
       instructor: {
-        name: ws.instructorName || 'Thread Security Lead',
+        name: ws.instructorName || 'Edu Nexus Lead',
         role: ws.instructorRole || 'Senior Security Instructor',
       },
     }));
@@ -213,7 +213,7 @@ export async function GET() {
       ...ws,
       highlights: typeof ws.highlights === 'string' ? JSON.parse(ws.highlights) : ws.highlights,
       instructor: {
-        name: ws.instructorName || 'Thread Security Lead',
+        name: ws.instructorName || 'Edu Nexus Lead',
         role: ws.instructorRole || 'Senior Security Instructor',
       },
     }));
@@ -256,11 +256,11 @@ export async function POST(req: Request) {
       );
     }
 
-    const cleanSubtitle = sanitizeText(subtitle, 300) || 'Thread Security Masterclass Series';
+    const cleanSubtitle = sanitizeText(subtitle, 300) || 'Edu Nexus Masterclass Series';
     const cleanCategory = sanitizeText(category, 100) || 'Red Teaming';
     const cleanTime = sanitizeText(time, 100) || '6:00 PM - 9:00 PM IST';
     const cleanDescription = sanitizeText(description, 2000) || 'Specialized interactive cybersecurity workshop with live hands-on sandboxed labs.';
-    
+
     // Sanitize URLs against XSS & JavaScript protocols
     const cleanImage = sanitizeUrl(image, true) || 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=1200&auto=format&fit=crop';
     const cleanDriveUrl = sanitizeUrl(driveUrl);
@@ -288,7 +288,7 @@ export async function POST(req: Request) {
           driveUrl: cleanDriveUrl,
           linkedinUrl: cleanLinkedinUrl,
           registrationUrl: cleanRegistrationUrl,
-          instructorName: 'Thread Security Lead',
+          instructorName: 'Edu Nexus Lead',
           instructorRole: 'Senior Security Instructor',
           description: cleanDescription,
           highlights: JSON.stringify(cleanHighlightsArray),
@@ -310,7 +310,7 @@ export async function POST(req: Request) {
         driveUrl: cleanDriveUrl,
         linkedinUrl: cleanLinkedinUrl,
         registrationUrl: cleanRegistrationUrl,
-        instructorName: 'Thread Security Lead',
+        instructorName: 'Edu Nexus Lead',
         instructorRole: 'Senior Security Instructor',
         description: cleanDescription,
         highlights: JSON.stringify(cleanHighlightsArray),
@@ -437,7 +437,7 @@ export async function PUT(req: Request) {
           driveUrl: cleanDriveUrl,
           linkedinUrl: cleanLinkedinUrl,
           registrationUrl: cleanRegistrationUrl,
-          instructorName: 'Thread Security Lead',
+          instructorName: 'Edu Nexus Lead',
           instructorRole: 'Senior Security Instructor',
           description: cleanDescription,
           highlights: JSON.stringify(cleanHighlightsArray),

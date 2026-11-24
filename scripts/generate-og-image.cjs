@@ -4,12 +4,12 @@ const sharp = require('sharp');
 async function generateOgImage() {
   const width = 1200;
   const height = 630;
-  
+
   // Load the transparent shield
   const shieldTrimmed = await sharp('scripts/shield_transparent.png').trim().toBuffer();
   // Resize shield to height 450px
   const shieldResized = await sharp(shieldTrimmed).resize({ height: 450, fit: 'inside' }).toBuffer();
-  
+
   // Vector SVG overlay without problematic emoji characters
   const textSvg = `
   <svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">
@@ -63,7 +63,7 @@ async function generateOgImage() {
 
     <!-- Brand Title -->
     <text x="470" y="165" fill="#FFFFFF" font-family="'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="46" font-weight="900" letter-spacing="-0.5">
-      THREAD SECURITY
+      Edu Nexus
     </text>
     <text x="470" y="224" fill="url(#glowGrad)" font-family="'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="46" font-weight="900" letter-spacing="-0.5">
       EDUCATION

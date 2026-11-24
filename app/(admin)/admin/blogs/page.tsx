@@ -5,7 +5,7 @@ import { AdminBlogDashboardClient } from '@/components/admin/blog/AdminBlogDashb
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Blog Moderation & Editorial Hub | Thread Security Admin',
+  title: 'Blog Moderation & Editorial Hub | Edu Nexus Admin',
   description: 'Review, moderate, and approve faculty research publications before public release.',
 };
 

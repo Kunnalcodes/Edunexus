@@ -57,7 +57,7 @@ const initialWorkshops: WorkshopItem[] = [
   {
     id: 'ebpf-kernel-security-2026',
     title: 'eBPF & Linux Kernel Threat Detection Masterclass',
-    subtitle: 'Thread Security Innovation Hub • Cloud Native Runtime Security',
+    subtitle: 'Edu Nexus Innovation Hub • Cloud Native Runtime Security',
     category: 'Cloud & eBPF',
     date: 'Sept 24, 2026',
     time: '6:00 PM - 9:00 PM IST',
@@ -233,7 +233,7 @@ export function WorkshopGalleryClient({ userRole, initialWorkshops: serverInitia
           setWorkshopsList(data.workshops);
           try {
             localStorage.setItem('thread_workshops_data', JSON.stringify(data.workshops));
-          } catch (e) {}
+          } catch (e) { }
         }
       })
       .catch((err) => {
@@ -246,7 +246,7 @@ export function WorkshopGalleryClient({ userRole, initialWorkshops: serverInitia
               setWorkshopsList(parsed);
             }
           }
-        } catch (e) {}
+        } catch (e) { }
       });
   }, []);
 
@@ -261,7 +261,7 @@ export function WorkshopGalleryClient({ userRole, initialWorkshops: serverInitia
   const [selectedCategory, setSelectedCategory] = useState<string>('All Workshops');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [activeCarouselIdx, setActiveCarouselIdx] = useState<number>(0);
-  
+
   // Pagination State for Workshop Directory
   const [currentPage, setCurrentPage] = useState<number>(1);
   const itemsPerPage = 4;
@@ -367,7 +367,7 @@ export function WorkshopGalleryClient({ userRole, initialWorkshops: serverInitia
     if (!newTitle || !newDate) return;
 
     const cleanTitle = sanitizeInputText(newTitle);
-    const cleanSubtitle = sanitizeInputText(newSubtitle || 'Thread Security Masterclass Series');
+    const cleanSubtitle = sanitizeInputText(newSubtitle || 'Edu Nexus Masterclass Series');
     const cleanDate = sanitizeInputText(newDate);
     const cleanTime = sanitizeInputText(newTime);
     const cleanDescription = sanitizeInputText(newDescription);
@@ -416,19 +416,19 @@ export function WorkshopGalleryClient({ userRole, initialWorkshops: serverInitia
             workshopsList.map((ws) =>
               ws.id === editingWorkshopId
                 ? {
-                    ...ws,
-                    title: cleanTitle,
-                    subtitle: cleanSubtitle || ws.subtitle,
-                    category: newCategory,
-                    date: cleanDate,
-                    time: cleanTime,
-                    image: cleanImage || ws.image,
-                    driveUrl: cleanDrive || ws.driveUrl,
-                    linkedinUrl: cleanLinkedin || ws.linkedinUrl,
-                    registrationUrl: cleanReg || ws.registrationUrl,
-                    description: cleanDescription || ws.description,
-                    highlights: [cleanH1 || ws.highlights[0], cleanH2 || ws.highlights[1]].filter(Boolean),
-                  }
+                  ...ws,
+                  title: cleanTitle,
+                  subtitle: cleanSubtitle || ws.subtitle,
+                  category: newCategory,
+                  date: cleanDate,
+                  time: cleanTime,
+                  image: cleanImage || ws.image,
+                  driveUrl: cleanDrive || ws.driveUrl,
+                  linkedinUrl: cleanLinkedin || ws.linkedinUrl,
+                  registrationUrl: cleanReg || ws.registrationUrl,
+                  description: cleanDescription || ws.description,
+                  highlights: [cleanH1 || ws.highlights[0], cleanH2 || ws.highlights[1]].filter(Boolean),
+                }
                 : ws
             )
           );
@@ -446,7 +446,7 @@ export function WorkshopGalleryClient({ userRole, initialWorkshops: serverInitia
             driveUrl: cleanDrive || undefined,
             linkedinUrl: cleanLinkedin || 'https://www.linkedin.com/company/thread-security/',
             registrationUrl: cleanReg || '/contact?topic=workshop-registration',
-            instructor: { name: 'Thread Security Lead', role: 'Senior Security Instructor' },
+            instructor: { name: 'Edu Nexus Lead', role: 'Senior Security Instructor' },
             description: cleanDescription || 'Specialized interactive cybersecurity workshop with live hands-on sandboxed labs.',
             highlights: [cleanH1 || 'Hands-on lab access', cleanH2 || 'Verifiable Certificate'],
             attendeesCount: 280,
@@ -497,7 +497,7 @@ export function WorkshopGalleryClient({ userRole, initialWorkshops: serverInitia
 
   return (
     <div className="min-h-screen bg-[#faf8ff] text-slate-900 selection:bg-purple-600 selection:text-white pt-16 pb-24 relative overflow-hidden font-sans">
-      
+
       {/* ── LARGE GRID LIGHT VIOLET & WHITE AMBIENT BACKGROUND ── */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[750px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-purple-300/40 via-fuchsia-200/20 to-transparent pointer-events-none z-0" />
       <div className="absolute inset-0 opacity-[0.06] pointer-events-none bg-[linear-gradient(to_right,#a855f7_1px,transparent_1px),linear-gradient(to_bottom,#a855f7_1px,transparent_1px)] [background-size:64px_64px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] z-0" />
@@ -510,8 +510,8 @@ export function WorkshopGalleryClient({ userRole, initialWorkshops: serverInitia
               userRole === 'SUPER_ADMIN' || userRole === 'ACADEMIC_ADMIN' || userRole === 'SECURITY_ADMIN'
                 ? '/admin'
                 : userRole === 'MENTOR'
-                ? '/mentor'
-                : '/student'
+                  ? '/mentor'
+                  : '/student'
             }
             className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-purple-50 border border-purple-200 hover:border-purple-400 text-purple-700 hover:text-purple-900 transition-all font-bold shadow-xs cursor-pointer"
           >
@@ -596,7 +596,7 @@ export function WorkshopGalleryClient({ userRole, initialWorkshops: serverInitia
           </div>
 
           <div className="flex flex-col lg:flex-row items-center gap-8">
-            
+
             {/* Left: Depth Carousel Container */}
             <div className="w-full lg:w-3/5 h-[420px] relative bg-purple-950 rounded-2xl overflow-hidden shadow-xl p-2 border border-purple-300/40">
               <DepthCarousel
@@ -734,19 +734,17 @@ export function WorkshopGalleryClient({ userRole, initialWorkshops: serverInitia
               return (
                 <div
                   key={ws.id}
-                  className={`p-6 rounded-2xl border shadow-md flex flex-col justify-between transition-all ${
-                    idx === 0
+                  className={`p-6 rounded-2xl border shadow-md flex flex-col justify-between transition-all ${idx === 0
                       ? 'bg-gradient-to-b from-purple-900 via-indigo-950 to-slate-900 text-white border-purple-400/40 shadow-[0_10px_30px_rgba(147,51,234,0.15)]'
                       : 'bg-white border-purple-200/80 text-slate-900 hover:border-purple-400 shadow-xs hover:shadow-md'
-                  }`}
+                    }`}
                 >
                   <div className="space-y-3">
                     <div className="flex items-center justify-between gap-2">
-                      <span className={`px-2.5 py-1 rounded-md text-[10px] font-mono font-bold uppercase ${
-                        idx === 0
+                      <span className={`px-2.5 py-1 rounded-md text-[10px] font-mono font-bold uppercase ${idx === 0
                           ? 'bg-purple-400/20 border border-purple-400/30 text-purple-200'
                           : 'bg-purple-100 border border-purple-200 text-purple-800'
-                      }`}>
+                        }`}>
                         EN ROUTE • {ws.date}
                       </span>
 
@@ -775,27 +773,24 @@ export function WorkshopGalleryClient({ userRole, initialWorkshops: serverInitia
                     <p className={`text-xs leading-relaxed ${idx === 0 ? 'text-purple-200/80' : 'text-slate-600'}`}>{ws.description}</p>
                   </div>
 
-                  <div className={`pt-4 border-t mt-4 flex items-center justify-between text-xs font-mono ${
-                    idx === 0 ? 'border-purple-800/60' : 'border-purple-100'
-                  }`}>
+                  <div className={`pt-4 border-t mt-4 flex items-center justify-between text-xs font-mono ${idx === 0 ? 'border-purple-800/60' : 'border-purple-100'
+                    }`}>
                     <span className={`truncate max-w-[140px] font-bold ${idx === 0 ? 'text-purple-300' : 'text-purple-700'}`}>{ws.subtitle}</span>
                     {isExternal ? (
                       <a
                         href={sanitizeSafeUrl(regTarget)}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`font-bold transition-colors inline-flex items-center gap-1 ${
-                          idx === 0 ? 'text-white hover:text-purple-200' : 'text-purple-700 hover:text-purple-900'
-                        }`}
+                        className={`font-bold transition-colors inline-flex items-center gap-1 ${idx === 0 ? 'text-white hover:text-purple-200' : 'text-purple-700 hover:text-purple-900'
+                          }`}
                       >
                         <span>RSVP SPOT →</span>
                       </a>
                     ) : (
                       <Link
                         href={regTarget}
-                        className={`font-bold transition-colors inline-flex items-center gap-1 ${
-                          idx === 0 ? 'text-white hover:text-purple-200' : 'text-purple-700 hover:text-purple-900'
-                        }`}
+                        className={`font-bold transition-colors inline-flex items-center gap-1 ${idx === 0 ? 'text-white hover:text-purple-200' : 'text-purple-700 hover:text-purple-900'
+                          }`}
                       >
                         <span>RSVP SPOT →</span>
                       </Link>
@@ -814,11 +809,10 @@ export function WorkshopGalleryClient({ userRole, initialWorkshops: serverInitia
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
-                  selectedCategory === category
+                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${selectedCategory === category
                     ? 'bg-gradient-to-r from-purple-600 via-fuchsia-600 to-indigo-600 text-white shadow-[0_4px_15px_rgba(147,51,234,0.3)]'
                     : 'bg-white text-slate-600 hover:text-purple-900 border border-purple-200/80 hover:border-purple-400 shadow-xs'
-                }`}
+                  }`}
               >
                 {category}
               </button>
@@ -1011,11 +1005,10 @@ export function WorkshopGalleryClient({ userRole, initialWorkshops: serverInitia
                   <button
                     key={pageNum}
                     onClick={() => setCurrentPage(pageNum)}
-                    className={`w-8 h-8 rounded-xl font-bold transition-all text-xs cursor-pointer ${
-                      currentPage === pageNum
+                    className={`w-8 h-8 rounded-xl font-bold transition-all text-xs cursor-pointer ${currentPage === pageNum
                         ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-xs'
                         : 'bg-white border border-purple-200 text-slate-600 hover:bg-purple-50'
-                    }`}
+                      }`}
                   >
                     {pageNum}
                   </button>
@@ -1048,7 +1041,7 @@ export function WorkshopGalleryClient({ userRole, initialWorkshops: serverInitia
                 className="bg-white border border-pink-200/80 rounded-3xl shadow-2xl max-w-4xl w-full p-0 overflow-hidden text-slate-900 relative"
               >
                 <div className="grid grid-cols-1 md:grid-cols-12 items-stretch min-h-[520px]">
-                  
+
                   {/* Left Column (Brand & Step Navigation Sidebar - Dark Charcoal / Purple & Pink) */}
                   <div className="md:col-span-5 bg-gradient-to-br from-[#120722] via-[#1c0b32] to-[#0a0314] p-6 sm:p-8 text-white flex flex-col justify-between relative overflow-hidden">
                     {/* Subtle dot pattern overlay */}
@@ -1058,7 +1051,7 @@ export function WorkshopGalleryClient({ userRole, initialWorkshops: serverInitia
                     <div className="relative z-10 space-y-2">
                       <div className="flex items-center gap-2">
                         <span className="w-2.5 h-2.5 rounded-full bg-pink-500 animate-pulse" />
-                        <span className="font-mono text-xs font-bold text-pink-300 tracking-wider">THREAD SECURITY EDUCATION</span>
+                        <span className="font-mono text-xs font-bold text-pink-300 tracking-wider">Edu Nexus EDUCATION</span>
                         <span className="text-[10px] bg-pink-500/20 text-pink-300 border border-pink-500/30 px-2 py-0.5 rounded font-mono font-bold uppercase">
                           SUPER ADMIN
                         </span>
@@ -1078,45 +1071,39 @@ export function WorkshopGalleryClient({ userRole, initialWorkshops: serverInitia
                       <button
                         type="button"
                         onClick={() => setModalStep(1)}
-                        className={`w-full flex items-center gap-3 p-2.5 rounded-xl transition-all text-left cursor-pointer ${
-                          modalStep === 1
+                        className={`w-full flex items-center gap-3 p-2.5 rounded-xl transition-all text-left cursor-pointer ${modalStep === 1
                             ? 'bg-pink-500/20 text-pink-300 border border-pink-500/40 font-bold'
                             : 'text-slate-400 hover:text-white'
-                        }`}
+                          }`}
                       >
-                        <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs ${
-                          modalStep === 1 ? 'bg-pink-500 text-white font-bold' : 'bg-white/10 text-slate-300'
-                        }`}>1</span>
+                        <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs ${modalStep === 1 ? 'bg-pink-500 text-white font-bold' : 'bg-white/10 text-slate-300'
+                          }`}>1</span>
                         <span>Event Telemetry &amp; Schedule</span>
                       </button>
 
                       <button
                         type="button"
                         onClick={() => setModalStep(2)}
-                        className={`w-full flex items-center gap-3 p-2.5 rounded-xl transition-all text-left cursor-pointer ${
-                          modalStep === 2
+                        className={`w-full flex items-center gap-3 p-2.5 rounded-xl transition-all text-left cursor-pointer ${modalStep === 2
                             ? 'bg-pink-500/20 text-pink-300 border border-pink-500/40 font-bold'
                             : 'text-slate-400 hover:text-white'
-                        }`}
+                          }`}
                       >
-                        <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs ${
-                          modalStep === 2 ? 'bg-pink-500 text-white font-bold' : 'bg-white/10 text-slate-300'
-                        }`}>2</span>
+                        <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs ${modalStep === 2 ? 'bg-pink-500 text-white font-bold' : 'bg-white/10 text-slate-300'
+                          }`}>2</span>
                         <span>Media &amp; Cloud Drive Links</span>
                       </button>
 
                       <button
                         type="button"
                         onClick={() => setModalStep(3)}
-                        className={`w-full flex items-center gap-3 p-2.5 rounded-xl transition-all text-left cursor-pointer ${
-                          modalStep === 3
+                        className={`w-full flex items-center gap-3 p-2.5 rounded-xl transition-all text-left cursor-pointer ${modalStep === 3
                             ? 'bg-pink-500/20 text-pink-300 border border-pink-500/40 font-bold'
                             : 'text-slate-400 hover:text-white'
-                        }`}
+                          }`}
                       >
-                        <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs ${
-                          modalStep === 3 ? 'bg-pink-500 text-white font-bold' : 'bg-white/10 text-slate-300'
-                        }`}>3</span>
+                        <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs ${modalStep === 3 ? 'bg-pink-500 text-white font-bold' : 'bg-white/10 text-slate-300'
+                          }`}>3</span>
                         <span>RSVP Link &amp; Highlights</span>
                       </button>
                     </div>

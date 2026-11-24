@@ -14,7 +14,7 @@ interface HeroSectionProps {
 const heroFlipWords = [
   { text: 'Cybersecurity', className: 'text-[#65a30d]' },
   { text: 'Artificial Intelligence', className: 'text-[#7E3BED]' },
-  
+
 ];
 
 export function HeroSection({ totalCourses, totalLabs }: HeroSectionProps) {
@@ -40,7 +40,7 @@ export function HeroSection({ totalCourses, totalLabs }: HeroSectionProps) {
 
         {/* ── SUBTITLE ── */}
         <p className="text-sm sm:text-lg md:text-xl text-slate-600 max-w-4xl mx-auto mb-8 sm:mb-9 leading-relaxed font-sans font-medium">
-          Thread Security Education (TSE) is North Region&apos;s premier career launcher for Ethical Hacking, SOC Analytics, Cloud DevSecOps, and AI Security. Learn in 100% sandboxed live labs, receive 1-on-1 industry mentorship, and earn verified TS-ID student credentials.
+          Edu Nexus Education (TSE) is North Region&apos;s premier career launcher for Ethical Hacking, SOC Analytics, Cloud DevSecOps, and AI Security. Learn in 100% sandboxed live labs, receive 1-on-1 industry mentorship, and earn verified TS-ID student credentials.
         </p>
 
         {/* ── HIGH-CONVERTING CTA BUTTONS ── */}
@@ -100,7 +100,7 @@ export function HeroSection({ totalCourses, totalLabs }: HeroSectionProps) {
           <div className="relative w-full mx-auto transition-transform duration-700 ease-out hover:scale-[1.015]">
             <Image
               src="/images/TSE Design.svg"
-              alt="Thread Security Education AI and Cybersecurity LMS Platform Interface on Laptop"
+              alt="Edu Nexus Education AI and Cybersecurity LMS Platform Interface on Laptop"
               width={1724}
               height={1372}
               priority

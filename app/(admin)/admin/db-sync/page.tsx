@@ -14,7 +14,7 @@ import { redirect } from 'next/navigation';
 import { DBSyncClient } from './db-sync-client';
 
 export const metadata = {
-  title: 'Database Control & Live Sync Sheet | Thread Security Admin',
+  title: 'Database Control & Live Sync Sheet | Edu Nexus Admin',
   description: 'Real-time synchronization sheet for relational Prisma models and entities.',
 };
 

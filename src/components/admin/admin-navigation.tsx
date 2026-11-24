@@ -133,17 +133,17 @@ export function AdminNavigation({ user }: AdminNavigationProps) {
       <div className="space-y-4">
         {/* Brand Logo & Header */}
         <div className="flex items-center justify-between pb-3 border-b border-slate-800/80">
-          <Link href="/admin" className="flex items-center gap-3 group" title="Thread Security Admin Center">
+          <Link href="/admin" className="flex items-center gap-3 group" title="Edu Nexus Admin Center">
             <Image
               src="/logos/TSE Logo Nav.svg"
-              alt="Thread Security Education Logo"
+              alt="Edu Nexus Education Logo"
               width={34}
               height={34}
               unoptimized
               className="h-8 w-auto object-contain transition-transform group-hover:scale-105"
             />
             <div className="flex flex-col">
-              <span className="text-xs font-mono font-black tracking-wider text-white">THREAD SECURITY</span>
+              <span className="text-xs font-mono font-black tracking-wider text-white">Edu Nexus</span>
               <span className="text-[10px] font-mono text-emerald-400 font-bold tracking-widest flex items-center gap-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                 COMMAND CENTER
@@ -194,11 +194,10 @@ export function AdminNavigation({ user }: AdminNavigationProps) {
                     <Link
                       key={item.href}
                       href={item.href}
-                      className={`flex items-center justify-between px-3 py-2 rounded-xl transition-all ${
-                        active
+                      className={`flex items-center justify-between px-3 py-2 rounded-xl transition-all ${active
                           ? 'bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 font-bold shadow-[0_0_15px_rgba(16,185,129,0.15)]'
                           : 'text-slate-400 hover:text-slate-100 hover:bg-slate-850 hover:border-slate-800 border border-transparent font-medium'
-                      }`}
+                        }`}
                     >
                       <div className="flex items-center gap-2.5 truncate">
                         <Icon className={`w-4 h-4 shrink-0 ${active ? 'text-emerald-400' : 'text-slate-400'}`} />
@@ -206,11 +205,10 @@ export function AdminNavigation({ user }: AdminNavigationProps) {
                       </div>
                       <div className="flex items-center gap-1.5 shrink-0">
                         {item.badge && (
-                          <span className={`text-[9px] px-1.5 py-0.2 rounded font-mono font-extrabold ${
-                            item.badge === 'LIVE'
+                          <span className={`text-[9px] px-1.5 py-0.2 rounded font-mono font-extrabold ${item.badge === 'LIVE'
                               ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
                               : 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/30'
-                          }`}>
+                            }`}>
                             {item.badge}
                           </span>
                         )}
@@ -266,7 +264,7 @@ export function AdminNavigation({ user }: AdminNavigationProps) {
           <Link href="/admin" className="flex items-center gap-2">
             <Image
               src="/logos/TSE Logo Nav.svg"
-              alt="Thread Security Education"
+              alt="Edu Nexus Education"
               width={26}
               height={26}
               unoptimized

@@ -68,12 +68,12 @@ export function PublicFooter() {
 
   return (
     <footer className="relative bg-white text-slate-800 border-t border-slate-200/90 pt-16 pb-8 overflow-hidden font-sans">
-      
+
       {/* ── GIANT GRAY WATERMARK AT BACKGROUND (More Width, Less Height) ── */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-full max-w-[1720px] pointer-events-none select-none z-0 overflow-hidden flex items-end justify-center opacity-[0.1] grayscale">
         <Image
-          src={getCloudinaryAssetUrl('/images/thread security footer.svg')}
-          alt="Thread Security Background Watermark"
+          src={getCloudinaryAssetUrl('/images/Edu Nexus footer.svg')}
+          alt="Edu Nexus Background Watermark"
           width={1720}
           height={380}
           unoptimized
@@ -83,7 +83,7 @@ export function PublicFooter() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* ── STREAMLINED NEWSLETTER / UPDATES BANNER ── */}
         <div className="relative p-6 sm:p-8 rounded-3xl bg-slate-50 border border-slate-200/90 flex flex-col lg:flex-row items-center justify-between gap-6 mb-16 shadow-xs">
           <div className="flex items-center gap-4 w-full lg:w-auto">
@@ -112,11 +112,10 @@ export function PublicFooter() {
             <button
               type="submit"
               disabled={isSubscribed}
-              className={`inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-xs transition-all whitespace-nowrap cursor-pointer shrink-0 shadow-md ${
-                isSubscribed
+              className={`inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-xs transition-all whitespace-nowrap cursor-pointer shrink-0 shadow-md ${isSubscribed
                   ? 'bg-emerald-600 text-white'
                   : 'bg-slate-950 text-white hover:bg-slate-800'
-              }`}
+                }`}
             >
               {isSubscribed ? (
                 <>
@@ -135,7 +134,7 @@ export function PublicFooter() {
 
         {/* ── 5-COLUMN HIGH-IMPACT NAVIGATION GRID (Matching Reference Style) ── */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-8 mb-14">
-          
+
           {/* Column 1: Brand & Contact (Spans 4 cols on Desktop) */}
           <div className="lg:col-span-4 space-y-4">
             <Link href="/" className="inline-flex items-center gap-2.5 group">
@@ -143,14 +142,14 @@ export function PublicFooter() {
                 EDUNEXUS SMART LMS
               </span>
             </Link>
-            
+
             <p className="text-sm text-slate-600 leading-relaxed max-w-sm">
               Next-generation multi-tenant learning management system and smart academic platform. Delivering interactive virtual sandboxes, continuous evaluation telemetry, and verifiable credentials worldwide.
             </p>
 
             {/* Direct Contact Stack */}
             <div className="space-y-3 pt-1">
-              
+
               {/* Global Platform Notice */}
               <div className="flex items-start gap-2.5 text-xs text-slate-600 group max-w-sm">
                 <MapPin className="w-4 h-4 text-purple-600 shrink-0 mt-0.5" />
@@ -287,12 +286,12 @@ export function PublicFooter() {
             <ul className="space-y-2.5 text-xs">
               <li>
                 <Link href="/#about" className="text-slate-600 hover:text-slate-950 transition-colors">
-                  About Thread Security
+                  About Edu Nexus
                 </Link>
               </li>
               <li>
                 <Link href="/#why-us" className="text-slate-600 hover:text-slate-950 transition-colors">
-                  Why Thread Security
+                  Why Edu Nexus
                 </Link>
               </li>
               <li>
@@ -362,7 +361,7 @@ export function PublicFooter() {
         {/* ── GOVERNMENT RECOGNITIONS & ACCREDITATIONS SECTION ── */}
         <div className="pt-8 pb-8 border-t border-slate-200/90">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
-            
+
             {/* Left Header / Trust statement */}
             <div className="flex items-center gap-3.5 text-center sm:text-left">
               <div className="w-11 h-11 rounded-2xl bg-purple-50 border border-purple-200/80 text-purple-700 flex items-center justify-center shrink-0 shadow-2xs">
@@ -380,7 +379,7 @@ export function PublicFooter() {
 
             {/* Logo Badge Cards: DPIIT, ISO, MSME */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 w-full lg:w-auto">
-              
+
               {/* DPIIT Logo Card */}
               <div
                 className="group flex items-center gap-3 px-4 py-2.5 bg-slate-50/80 hover:bg-white rounded-2xl border border-slate-200/90 hover:border-purple-300 shadow-2xs hover:shadow-xs transition-all"
@@ -498,7 +497,7 @@ export function PublicFooter() {
         {/* ── BOTTOM COPYRIGHT & GLOBAL READINESS STRIP ── */}
         <div className="flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4 pt-3">
           <p>© 2026 EDUNEXUS. All rights reserved. Global Multi-Tenant Smart Learning Platform.</p>
-          
+
           <div className="flex items-center gap-4 sm:gap-6 flex-wrap justify-center">
             <span className="inline-flex items-center gap-1.5 text-slate-700">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />

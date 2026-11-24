@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { Scale, CheckCircle2, AlertTriangle, ShieldCheck, Mail, MapPin } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Terms & Conditions | Thread Security Education',
+  title: 'Terms & Conditions | Edu Nexus Education',
   description:
-    'Review the official terms of enrollment, academic honor code, sandboxed lab acceptable use policy, and verifiable certificate issuance guidelines for Thread Security Education.',
+    'Review the official terms of enrollment, academic honor code, sandboxed lab acceptable use policy, and verifiable certificate issuance guidelines for Edu Nexus Education.',
   alternates: {
     canonical: 'https://threadsecurity.in/terms',
   },
@@ -15,7 +15,7 @@ export default function TermsAndConditionsPage() {
   return (
     <div className="bg-white min-h-screen text-slate-800 font-sans pt-12 pb-24">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Header */}
         <div className="border-b border-slate-200 pb-8 mb-10">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-50 border border-purple-200 text-purple-900 text-xs font-semibold mb-4">
@@ -36,7 +36,7 @@ export default function TermsAndConditionsPage() {
           <section className="space-y-3">
             <h2 className="text-lg font-bold text-slate-950">1. Acceptance of Terms</h2>
             <p>
-              By accessing the website threadsecurity.in, enrolling in any training course, participating in sandboxed live labs, or undertaking assessments administered by Thread Security Education (&quot;TSE&quot;), you acknowledge that you have read, understood, and agreed to be legally bound by these Terms &amp; Conditions.
+              By accessing the website threadsecurity.in, enrolling in any training course, participating in sandboxed live labs, or undertaking assessments administered by Edu Nexus Education (&quot;TSE&quot;), you acknowledge that you have read, understood, and agreed to be legally bound by these Terms &amp; Conditions.
             </p>
           </section>
 
@@ -83,14 +83,14 @@ export default function TermsAndConditionsPage() {
           <section className="space-y-3">
             <h2 className="text-lg font-bold text-slate-950">5. TS-ID Certificate Issuance &amp; Verification</h2>
             <p>
-              Thread Security Education issues cryptographically verifiable TS-ID credentials upon satisfactory completion of curriculum modules, practical lab benchmarks, and required scores on exit assessments. TSE reserves the right to withhold or revoke credentials in cases of academic dishonesty or code of conduct violations.
+              Edu Nexus Education issues cryptographically verifiable TS-ID credentials upon satisfactory completion of curriculum modules, practical lab benchmarks, and required scores on exit assessments. TSE reserves the right to withhold or revoke credentials in cases of academic dishonesty or code of conduct violations.
             </p>
           </section>
 
           <section className="space-y-3">
             <h2 className="text-lg font-bold text-slate-950">6. Intellectual Property Rights</h2>
             <p>
-              All courseware, video lectures, lab blueprints, custom challenges, slide decks, and code examples provided during training are the proprietary intellectual property of Thread Security Education. Students are granted a personal, non-transferable, revocable license for individual learning only. Redistribution, re-recording, or commercial reuse is strictly prohibited.
+              All courseware, video lectures, lab blueprints, custom challenges, slide decks, and code examples provided during training are the proprietary intellectual property of Edu Nexus Education. Students are granted a personal, non-transferable, revocable license for individual learning only. Redistribution, re-recording, or commercial reuse is strictly prohibited.
             </p>
           </section>
 

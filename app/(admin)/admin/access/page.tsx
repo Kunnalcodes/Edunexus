@@ -5,7 +5,7 @@ import { UserCheck } from 'lucide-react';
 import { AccessInvitationsClient } from '@/app/(admin)/admin/access/access-invitations-client';
 
 export const metadata = {
-  title: 'Access Control & Invitations | Thread Security Admin',
+  title: 'Access Control & Invitations | Edu Nexus Admin',
   description: 'Generate single-use activation tokens, dispatch faculty and student setup links, and monitor token expiration.',
 };
 

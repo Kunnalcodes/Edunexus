@@ -1,6 +1,6 @@
-# Thread Security Education (TSE LMS) — Project Knowledge Base & System Architecture
+# Edu Nexus Education (TSE LMS) — Project Knowledge Base & System Architecture
 
-**Project Name:** Thread Security Education LMS (TSE LMS)  
+**Project Name:** Edu Nexus Education LMS (TSE LMS)  
 **Workspace:** `threads-edu`  
 **Repository Version:** 1.0.0 (Production Architecture)  
 **Primary Domain:** Cybersecurity Education, Penetration Testing & SOC Workforce Training  
@@ -10,7 +10,7 @@
 
 ## 1. Executive Summary & Purpose
 
-**Thread Security Education (TSE LMS)** is an enterprise-grade, SSR-first Learning Management System engineered specifically for cybersecurity training, offensive/defensive security certifications, hands-on vulnerability labs, and cohort-based batch learning.
+**Edu Nexus Education (TSE LMS)** is an enterprise-grade, SSR-first Learning Management System engineered specifically for cybersecurity training, offensive/defensive security certifications, hands-on vulnerability labs, and cohort-based batch learning.
 
 The platform bridges theoretical infosec education and real-world practical offensive/defensive operations by integrating:
 1. **Interactive Curriculum Delivery:** Multi-module video and technical document walkthroughs.

@@ -207,7 +207,7 @@ export async function createBlogDraft(authorUserId: string, title?: string) {
       data: {
         userId: user.id,
         title: 'Security Mentor',
-        company: 'Thread Security',
+        company: 'Edu Nexus',
         bio: 'Cybersecurity Instructor & Content Author',
         expertise: 'Threat Intelligence, SOC & Web Security',
       },
@@ -614,7 +614,7 @@ export async function getPublicBlogBySlug(slug: string) {
     db.blog.update({
       where: { id: blog.id },
       data: { viewCount: { increment: 1 } },
-    }).catch(() => {});
+    }).catch(() => { });
 
     return blog;
   } catch (error: any) {

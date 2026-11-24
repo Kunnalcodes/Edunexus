@@ -5,7 +5,7 @@ import { getAllBatchesService } from '@/server/services/batch.service';
 import { TimetableClient } from '@/app/(admin)/admin/timetable/timetable-client';
 
 export const metadata = {
-  title: 'Academic Timetable & Scheduling | Thread Security Admin',
+  title: 'Academic Timetable & Scheduling | Edu Nexus Admin',
   description: 'Conflict-free lecture scheduling, session calendar, and batch timetable coordination.',
 };
 

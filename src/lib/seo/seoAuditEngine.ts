@@ -27,9 +27,9 @@ export async function runFullSiteSeoAudit(): Promise<{
   // 1. Audit Master Courses
   for (const course of MASTER_COURSES) {
     const url = `/courses/${course.slug}`;
-    const metaTitle = `${course.title} | Thread Security Education`;
+    const metaTitle = `${course.title} | Edu Nexus Education`;
     const metaDesc = course.subtitle || course.description;
-    
+
     const warnings: string[] = [];
     let score = 100;
 
@@ -83,7 +83,7 @@ export async function runFullSiteSeoAudit(): Promise<{
       const url = `/blog/${blog.slug}`;
       const metaTitle = blog.seo?.metaTitle || blog.title;
       const metaDesc = blog.seo?.metaDescription || blog.excerpt || '';
-      
+
       const warnings: string[] = [];
       let score = 100;
 

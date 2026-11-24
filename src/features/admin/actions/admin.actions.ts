@@ -166,14 +166,14 @@ export async function createMentorAction(formData: FormData) {
   const name = (formData.get('name') as string)?.trim();
   const email = (formData.get('email') as string)?.trim();
   const title = (formData.get('title') as string)?.trim() || 'Security Instructor';
-  const company = (formData.get('company') as string)?.trim() || 'Thread Security Education';
+  const company = (formData.get('company') as string)?.trim() || 'Edu Nexus Education';
   const expertise = (formData.get('expertise') as string)?.trim() || 'Cybersecurity, VAPT';
   const bio = (formData.get('bio') as string)?.trim() || 'Lead instructor in offensive security.';
   const batchId = (formData.get('batchId') as string)?.trim() || undefined;
-  
+
   const rawBatchIds = formData.getAll('batchIds');
   const batchIds = rawBatchIds.length > 0 ? (rawBatchIds as string[]) : batchId ? [batchId] : undefined;
-  
+
   const rawCourseIds = formData.getAll('courseIds');
   const courseIds = rawCourseIds.length > 0 ? (rawCourseIds as string[]) : undefined;
 

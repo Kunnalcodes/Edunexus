@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { WorkshopsManagementClient } from '@/app/(admin)/admin/workshops/workshops-management-client';
 
 export const metadata = {
-  title: 'Workshops Command & Conduction | Thread Security Admin',
+  title: 'Workshops Command & Conduction | Edu Nexus Admin',
   description: 'Conduct live cybersecurity masterclasses, publish practical red teaming workshops, and track registrations.',
 };
 
@@ -40,7 +40,7 @@ export default async function AdminWorkshopsPage() {
       if (data.success && data.workshops) {
         workshops = data.workshops;
       }
-    } catch {}
+    } catch { }
   }
 
   // Fetch mentors roster so admin can assign real mentors as instructors

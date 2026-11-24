@@ -35,13 +35,13 @@ export default function UnauthorizedPage() {
           <Link href="/" className="w-full">
             <button className="w-full py-2.5 px-4 rounded-xl bg-white/[0.05] hover:bg-white/[0.08] text-zinc-300 text-xs flex items-center justify-center gap-2 transition-all border border-white/[0.08] cursor-pointer">
               <Home className="w-4 h-4" />
-              <span>Return to Thread Security Home</span>
+              <span>Return to Edu Nexus Home</span>
             </button>
           </Link>
         </div>
 
         <p className="text-[10px] text-zinc-600">
-          Thread Security Cyber Intelligence Academy &bull; Zero Trust RBAC Enforced
+          Edu Nexus Cyber Intelligence Academy &bull; Zero Trust RBAC Enforced
         </p>
       </div>
     </div>

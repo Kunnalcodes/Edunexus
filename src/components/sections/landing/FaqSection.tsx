@@ -23,7 +23,7 @@ const FAQ_DATA: FaqCategory[] = [
     icon: <GraduationCap className="w-4 h-4" />,
     items: [
       {
-        question: "What makes Thread Security's curriculum different from standard training programs?",
+        question: "What makes Edu Nexus's curriculum different from standard training programs?",
         answer: "Unlike theoretical bootcamps, our curriculum is 100% lab-first. You start attacking and defending live systems in sandboxed environments from day one. All modules are mapped directly to standard industry frameworks like OWASP Top 10 and MITRE ATT&CK.",
       },
       {
@@ -36,7 +36,7 @@ const FAQ_DATA: FaqCategory[] = [
       },
       {
         question: 'What kind of credentials will I receive upon graduation?',
-        answer: 'You will receive a TS-ID (Thread Security Identifier) verified credential. It is a secure digital record on our directory that lets employers cryptographically verify your lab accomplishments, progress, and capstone scores.',
+        answer: 'You will receive a TS-ID (Edu Nexus Identifier) verified credential. It is a secure digital record on our directory that lets employers cryptographically verify your lab accomplishments, progress, and capstone scores.',
       },
       {
         question: 'What is the fee structure and do you offer installment options?',
@@ -97,7 +97,7 @@ export function FaqSection() {
   return (
     <section id="faq" className="py-20 bg-slate-50/50 border-t border-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Header Section */}
         <div className="text-center mb-14">
           <span className="inline-flex items-center gap-2 text-xs font-medium tracking-[0.25em] uppercase text-violet-600 mb-4 font-mono">
@@ -113,7 +113,7 @@ export function FaqSection() {
 
         {/* Layout Grid */}
         <div className="flex flex-col md:flex-row gap-8 items-start">
-          
+
           {/* Sidebar Tabs */}
           <div className="w-full md:w-64 bg-white border border-slate-200/60 rounded-2xl p-4 flex flex-col gap-2 shadow-sm shrink-0">
             {FAQ_DATA.map((cat) => {
@@ -125,11 +125,10 @@ export function FaqSection() {
                     setActiveCategory(cat.id);
                     setExpandedIndex(null);
                   }}
-                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-sm transition-all duration-200 text-left ${
-                    isActive
+                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-sm transition-all duration-200 text-left ${isActive
                       ? 'bg-violet-50/70 text-violet-600 border-l-2 border-violet-600 pl-3.5'
                       : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
-                  }`}
+                    }`}
                 >
                   <span className={isActive ? 'text-violet-600' : 'text-slate-400'}>
                     {cat.icon}
@@ -155,12 +154,11 @@ export function FaqSection() {
                   >
                     <span className="pr-4 leading-snug">{item.question}</span>
                     <ChevronDown
-                      className={`w-4 h-4 text-slate-400 shrink-0 transition-transform duration-300 ${
-                        isExpanded ? 'rotate-180 text-violet-600' : ''
-                      }`}
+                      className={`w-4 h-4 text-slate-400 shrink-0 transition-transform duration-300 ${isExpanded ? 'rotate-180 text-violet-600' : ''
+                        }`}
                     />
                   </button>
-                  
+
                   <AnimatePresence initial={false}>
                     {isExpanded && (
                       <motion.div

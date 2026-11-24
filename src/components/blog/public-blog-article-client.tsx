@@ -135,19 +135,19 @@ export function PublicBlogArticleClient({ blog, relatedBlogs }: PublicBlogArticl
   const courseCta =
     categoryName.includes('soc') || categoryName.includes('threat')
       ? {
-          title: 'Certified SOC Analyst & Incident Response Masterclass',
-          desc: 'Gain 100+ hours of hands-on security operations center telemetry, Splunk, Elastic, and incident triaging with guaranteed career assistance.',
-          slug: 'cyber-security-course',
-          tag: 'FLAGSHIP INDUSTRY ACCREDITED',
-        }
+        title: 'Certified SOC Analyst & Incident Response Masterclass',
+        desc: 'Gain 100+ hours of hands-on security operations center telemetry, Splunk, Elastic, and incident triaging with guaranteed career assistance.',
+        slug: 'cyber-security-course',
+        tag: 'FLAGSHIP INDUSTRY ACCREDITED',
+      }
       : categoryName.includes('hack') || categoryName.includes('pen') || categoryName.includes('red')
-      ? {
+        ? {
           title: 'Practical Ethical Hacking & Penetration Testing Track',
           desc: 'Train with active red-team operators on network exploitation, privilege escalation, web vulnerabilities, and adversary emulation.',
           slug: 'cyber-security-course',
           tag: 'OFFENSIVE SECURITY',
         }
-      : {
+        : {
           title: 'End-to-End Cybersecurity Defense & Cloud Security Accelerator',
           desc: 'Master the technical pipeline from network packet analysis to enterprise Kubernetes security and SIEM detection engineering.',
           slug: 'cyber-security-course',
@@ -212,7 +212,7 @@ export function PublicBlogArticleClient({ blog, relatedBlogs }: PublicBlogArticl
                     </a>
                   )}
                 </p>
-                <p className="text-[10px] text-[#C6FF34]">{blog.author?.title || 'Thread Security Mentor'}</p>
+                <p className="text-[10px] text-[#C6FF34]">{blog.author?.title || 'Edu Nexus Mentor'}</p>
               </div>
             </div>
 
@@ -260,35 +260,30 @@ export function PublicBlogArticleClient({ blog, relatedBlogs }: PublicBlogArticl
                     <a
                       key={item.id}
                       href={`#${item.id}`}
-                      className={`group flex items-start gap-2.5 transition-all rounded-lg py-1.5 px-2 ${
-                        item.level === 2 ? 'ml-3 text-[11px]' : item.level === 3 ? 'ml-6 text-[10px]' : 'font-semibold'
-                      } ${
-                        isActive
+                      className={`group flex items-start gap-2.5 transition-all rounded-lg py-1.5 px-2 ${item.level === 2 ? 'ml-3 text-[11px]' : item.level === 3 ? 'ml-6 text-[10px]' : 'font-semibold'
+                        } ${isActive
                           ? 'text-[#C6FF34] font-bold bg-[#C6FF34]/10 shadow-sm'
                           : 'text-slate-400 hover:text-white hover:bg-white/5'
-                      }`}
+                        }`}
                     >
                       {/* Technical Cyber Bullet Indicator */}
                       <span className="shrink-0 mt-1 flex items-center justify-center">
                         {item.level === 1 ? (
                           <span
-                            className={`w-2 h-2 rounded-full transition-all ${
-                              isActive ? 'bg-[#C6FF34] ring-4 ring-[#C6FF34]/20 scale-110' : 'bg-[#C6FF34]/70 group-hover:bg-[#C6FF34]'
-                            }`}
+                            className={`w-2 h-2 rounded-full transition-all ${isActive ? 'bg-[#C6FF34] ring-4 ring-[#C6FF34]/20 scale-110' : 'bg-[#C6FF34]/70 group-hover:bg-[#C6FF34]'
+                              }`}
                           />
                         ) : item.level === 2 ? (
                           <span
-                            className={`w-1.5 h-1.5 rounded-full border transition-all ${
-                              isActive
+                            className={`w-1.5 h-1.5 rounded-full border transition-all ${isActive
                                 ? 'border-[#C6FF34] bg-[#C6FF34] ring-2 ring-[#C6FF34]/20'
                                 : 'border-slate-500 bg-transparent group-hover:border-slate-300'
-                            }`}
+                              }`}
                           />
                         ) : (
                           <span
-                            className={`w-1 h-1 rounded-sm transition-all ${
-                              isActive ? 'bg-[#C6FF34]' : 'bg-slate-600 group-hover:bg-slate-400'
-                            }`}
+                            className={`w-1 h-1 rounded-sm transition-all ${isActive ? 'bg-[#C6FF34]' : 'bg-slate-600 group-hover:bg-slate-400'
+                              }`}
                           />
                         )}
                       </span>
@@ -351,11 +346,9 @@ export function PublicBlogArticleClient({ blog, relatedBlogs }: PublicBlogArticl
                     <a
                       key={item.id}
                       href={`#${item.id}`}
-                      className={`flex items-center gap-2 truncate transition-colors py-1 ${
-                        item.level === 2 ? 'pl-3 text-[11px]' : item.level === 3 ? 'pl-5 text-[10px]' : 'font-semibold'
-                      } ${
-                        activeHeadingId === item.id ? 'text-[#C6FF34] font-bold' : 'text-slate-300 hover:text-white'
-                      }`}
+                      className={`flex items-center gap-2 truncate transition-colors py-1 ${item.level === 2 ? 'pl-3 text-[11px]' : item.level === 3 ? 'pl-5 text-[10px]' : 'font-semibold'
+                        } ${activeHeadingId === item.id ? 'text-[#C6FF34] font-bold' : 'text-slate-300 hover:text-white'
+                        }`}
                     >
                       <span className={`w-1.5 h-1.5 rounded-full ${activeHeadingId === item.id ? 'bg-[#C6FF34]' : 'bg-slate-500'}`} />
                       <span className="truncate">{item.text}</span>
@@ -441,7 +434,7 @@ export function PublicBlogArticleClient({ blog, relatedBlogs }: PublicBlogArticl
                       </span>
                     </div>
                     <p className="text-xs text-slate-400">
-                      {blog.author?.title || 'Senior Cybersecurity Mentor'} · {blog.author?.company || 'Thread Security'}
+                      {blog.author?.title || 'Senior Cybersecurity Mentor'} · {blog.author?.company || 'Edu Nexus'}
                     </p>
                   </div>
                 </div>

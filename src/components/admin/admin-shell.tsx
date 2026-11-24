@@ -156,11 +156,10 @@ export function AdminShell({ user, mentorsCount, headerActions, children }: Admi
                   key={item.href}
                   href={item.href}
                   title={compact ? item.name : undefined}
-                  className={`flex items-center ${compact ? 'justify-center px-2 py-2.5' : 'justify-between px-3 py-2'} rounded-xl transition-all ${
-                    active
+                  className={`flex items-center ${compact ? 'justify-center px-2 py-2.5' : 'justify-between px-3 py-2'} rounded-xl transition-all ${active
                       ? 'bg-violet-600/20 border border-violet-500/40 text-violet-300 font-semibold'
                       : 'text-neutral-300 hover:text-white hover:bg-neutral-900 border border-transparent'
-                  }`}
+                    }`}
                 >
                   <div className={`flex items-center gap-2.5 truncate ${compact ? 'justify-center' : ''}`}>
                     <Icon className={`w-4 h-4 shrink-0 ${active ? 'text-violet-400' : 'text-neutral-400'}`} />
@@ -200,13 +199,13 @@ export function AdminShell({ user, mentorsCount, headerActions, children }: Admi
           <Link href="/admin" className="flex items-center gap-2">
             <Image
               src="/logos/TSE Logo Nav.svg"
-              alt="Thread Security Education"
+              alt="Edu Nexus Education"
               width={24}
               height={24}
               unoptimized
               className="h-6 w-auto object-contain"
             />
-            <span className="text-xs font-bold tracking-tight text-white">Thread Security</span>
+            <span className="text-xs font-bold tracking-tight text-white">Edu Nexus</span>
           </Link>
         </div>
 
@@ -217,9 +216,8 @@ export function AdminShell({ user, mentorsCount, headerActions, children }: Admi
 
       {/* ── FIXED DESKTOP BLACK SIDEBAR ── */}
       <aside
-        className={`fixed top-0 left-0 bottom-0 h-screen z-40 bg-black text-white border-r border-neutral-900 hidden md:flex flex-col justify-between transition-all duration-300 p-4 ${
-          isCollapsed ? 'w-20' : 'w-64'
-        }`}
+        className={`fixed top-0 left-0 bottom-0 h-screen z-40 bg-black text-white border-r border-neutral-900 hidden md:flex flex-col justify-between transition-all duration-300 p-4 ${isCollapsed ? 'w-20' : 'w-64'
+          }`}
       >
         <div className="space-y-4">
           {/* Logo & Collapse Toggle */}
@@ -235,7 +233,7 @@ export function AdminShell({ user, mentorsCount, headerActions, children }: Admi
               />
               {!isCollapsed && (
                 <div className="flex flex-col truncate">
-                  <span className="text-xs font-bold tracking-wider text-white">THREAD SECURITY</span>
+                  <span className="text-xs font-bold tracking-wider text-white">Edu Nexus</span>
                   <span className="text-[10px] text-violet-400 font-medium">Admin Portal</span>
                 </div>
               )}
@@ -318,7 +316,7 @@ export function AdminShell({ user, mentorsCount, headerActions, children }: Admi
                       className="h-7 w-auto object-contain"
                     />
                     <div className="flex flex-col">
-                      <span className="text-xs font-bold tracking-wider text-white">THREAD SECURITY</span>
+                      <span className="text-xs font-bold tracking-wider text-white">Edu Nexus</span>
                       <span className="text-[10px] text-violet-400 font-medium">Admin Portal</span>
                     </div>
                   </div>

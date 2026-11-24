@@ -1,14 +1,14 @@
-# AI Chatbot Strategy & Research Analysis for Thread Security Education (TSE LMS)
+# AI Chatbot Strategy & Research Analysis for Edu Nexus Education (TSE LMS)
 
 **Document Version:** 1.0.0  
-**Target System:** Thread Security Education LMS  
+**Target System:** Edu Nexus Education LMS  
 **Target AI Engine:** "TSE Sentinel" (AI Cybersecurity Teaching Assistant & Operations Agent)  
 
 ---
 
 ## 1. Domain Context & Specific Requirements for TSE LMS
 
-In a high-stakes Cybersecurity Learning Management System like **Thread Security Education**, an AI chatbot is not merely a generic customer support widget. It functions as an **Active Socratic Lab Mentor, Concept Explainer, and Student Operations Assistant**.
+In a high-stakes Cybersecurity Learning Management System like **Edu Nexus Education**, an AI chatbot is not merely a generic customer support widget. It functions as an **Active Socratic Lab Mentor, Concept Explainer, and Student Operations Assistant**.
 
 ### Key Challenges in a Cybersecurity LMS:
 1. **CTF & Lab Integrity (Flag Leaking Prevention):** Students must NOT be able to trick or prompt-inject the AI into giving away CTF flags (`TSE{...}`) or exact exploit payloads.
@@ -84,7 +84,7 @@ The agent is empowered with scoped, read-only tools:
 
 ### C. Socratic Pedagogy & Anti-Cheat System Prompt
 ```markdown
-You are TSE Sentinel, the AI Cybersecurity Teaching Assistant for Thread Security Education.
+You are TSE Sentinel, the AI Cybersecurity Teaching Assistant for Edu Nexus Education.
 Your mission is to guide students to understand underlying cybersecurity concepts, protocols, and debugging techniques.
 
 RULES OF ENGAGEMENT:

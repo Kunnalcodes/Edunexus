@@ -102,8 +102,8 @@ export async function fetchSearchConsolePerformance(
     const totalClicks = queryRows.reduce((acc, curr) => acc + curr.clicks, 0);
     const totalImpressions = queryRows.reduce((acc, curr) => acc + curr.impressions, 0);
     const avgCtr = totalImpressions > 0 ? parseFloat(((totalClicks / totalImpressions) * 100).toFixed(2)) : 0;
-    const avgPosition = queryRows.length > 0 
-      ? parseFloat((queryRows.reduce((acc, curr) => acc + curr.position, 0) / queryRows.length).toFixed(1)) 
+    const avgPosition = queryRows.length > 0
+      ? parseFloat((queryRows.reduce((acc, curr) => acc + curr.position, 0) / queryRows.length).toFixed(1))
       : 0;
 
     return {
@@ -144,7 +144,7 @@ function getMockSearchPerformance(siteUrl: string, startDate: string, endDate: s
       { query: 'practical penetration testing masterclass', clicks: 1840, impressions: 29800, ctr: 6.17, position: 5.2 },
       { query: 'cloud security engineering architecture', clicks: 1420, impressions: 24500, ctr: 5.80, position: 6.9 },
       { query: 'malware reverse engineering course', clicks: 1120, impressions: 19400, ctr: 5.77, position: 7.5 },
-      { query: 'thread security education certificate', clicks: 980, impressions: 12400, ctr: 7.90, position: 1.8 },
+      { query: 'Edu Nexus education certificate', clicks: 980, impressions: 12400, ctr: 7.90, position: 1.8 },
     ],
     topPages: [
       { page: `${cleanWebUrl}/courses/cyber-threat-defense`, clicks: 4890, impressions: 72000, ctr: 6.79, position: 3.1 },

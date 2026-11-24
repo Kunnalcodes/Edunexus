@@ -168,7 +168,7 @@ export function MentorNavigation({ user, unreadNotificationsCount = 0 }: MentorN
                     className="h-7 w-auto"
                   />
                   <div>
-                    <span className="text-xs font-mono font-bold text-white block">THREAD SECURITY</span>
+                    <span className="text-xs font-mono font-bold text-white block">Edu Nexus</span>
                     <span className="text-[9px] font-mono text-purple-400 block">FACULTY PORTAL</span>
                   </div>
                 </div>
@@ -209,11 +209,10 @@ export function MentorNavigation({ user, unreadNotificationsCount = 0 }: MentorN
                           key={item.href}
                           href={item.href}
                           onClick={() => setMobileDrawerOpen(false)}
-                          className={`flex items-center justify-between px-3 py-2 rounded-xl text-xs font-mono transition-all ${
-                            active
+                          className={`flex items-center justify-between px-3 py-2 rounded-xl text-xs font-mono transition-all ${active
                               ? 'bg-purple-600 text-white font-bold shadow-md shadow-purple-600/30'
                               : 'text-zinc-300 hover:text-white hover:bg-white/[0.04]'
-                          }`}
+                            }`}
                         >
                           <div className="flex items-center gap-2.5">
                             <Icon className={`w-4 h-4 ${active ? 'text-white' : 'text-purple-400'}`} />
@@ -221,9 +220,8 @@ export function MentorNavigation({ user, unreadNotificationsCount = 0 }: MentorN
                           </div>
                           {item.badge && (
                             <span
-                              className={`px-1.5 py-0.2 rounded text-[9px] font-bold ${
-                                active ? 'bg-black text-purple-300' : 'bg-white/[0.1] text-zinc-300'
-                              }`}
+                              className={`px-1.5 py-0.2 rounded text-[9px] font-bold ${active ? 'bg-black text-purple-300' : 'bg-white/[0.1] text-zinc-300'
+                                }`}
                             >
                               {item.badge}
                             </span>
@@ -251,29 +249,27 @@ export function MentorNavigation({ user, unreadNotificationsCount = 0 }: MentorN
 
       {/* ── DESKTOP PERSISTENT COMMAND SIDEBAR (>= md) ── */}
       <aside
-        className={`bg-[#09090d] border-r border-white/[0.08] text-white hidden md:flex flex-col shrink-0 h-screen sticky top-0 z-40 select-none transition-all duration-300 ease-in-out ${
-          collapsed ? 'w-20' : 'w-64'
-        }`}
+        className={`bg-[#09090d] border-r border-white/[0.08] text-white hidden md:flex flex-col shrink-0 h-screen sticky top-0 z-40 select-none transition-all duration-300 ease-in-out ${collapsed ? 'w-20' : 'w-64'
+          }`}
       >
         {/* ── 1. PINNED TOP HEADER (Never scrolls away) ── */}
         <div
-          className={`p-4 pb-3 shrink-0 border-b transition-all duration-200 z-10 ${
-            isScrolled
+          className={`p-4 pb-3 shrink-0 border-b transition-all duration-200 z-10 ${isScrolled
               ? 'border-white/[0.12] bg-[#09090d]/95 backdrop-blur-xl shadow-[0_8px_20px_rgba(0,0,0,0.6)]'
               : 'border-white/[0.06] bg-[#09090d]'
-          } ${collapsed ? 'px-2.5' : 'px-4'}`}
+            } ${collapsed ? 'px-2.5' : 'px-4'}`}
         >
           {/* Brand Row + Collapse Toggle */}
           <div className="flex items-center justify-between gap-2 pb-3">
             <Link
               href="/mentor"
               className="flex items-center gap-2.5 overflow-hidden group min-w-0"
-              title="Thread Security Faculty Portal"
+              title="Edu Nexus Faculty Portal"
             >
               <div className="relative shrink-0">
                 <Image
                   src="/logos/TSE Logo Nav.svg"
-                  alt="Thread Security Logo"
+                  alt="Edu Nexus Logo"
                   width={32}
                   height={32}
                   unoptimized
@@ -284,7 +280,7 @@ export function MentorNavigation({ user, unreadNotificationsCount = 0 }: MentorN
               {!collapsed && (
                 <div className="flex flex-col min-w-0">
                   <span className="font-mono text-xs font-bold tracking-wider text-white uppercase truncate">
-                    THREAD SECURITY
+                    Edu Nexus
                   </span>
                   <span className="font-mono text-[9px] text-purple-400 tracking-widest uppercase font-semibold">
                     FACULTY PORTAL
@@ -316,9 +312,8 @@ export function MentorNavigation({ user, unreadNotificationsCount = 0 }: MentorN
         <div
           ref={scrollContainerRef}
           onScroll={handleScroll}
-          className={`flex-1 min-h-0 overflow-y-auto sidebar-scroll space-y-4 py-3 relative ${
-            collapsed ? 'px-2' : 'px-3'
-          }`}
+          className={`flex-1 min-h-0 overflow-y-auto sidebar-scroll space-y-4 py-3 relative ${collapsed ? 'px-2' : 'px-3'
+            }`}
           style={{
             overscrollBehavior: 'contain',
           }}
@@ -342,19 +337,16 @@ export function MentorNavigation({ user, unreadNotificationsCount = 0 }: MentorN
                       key={item.href}
                       href={item.href}
                       title={collapsed ? item.name : undefined}
-                      className={`flex items-center ${
-                        collapsed ? 'justify-center p-2.5' : 'justify-between px-3 py-2'
-                      } rounded-xl transition-all relative group ${
-                        active
+                      className={`flex items-center ${collapsed ? 'justify-center p-2.5' : 'justify-between px-3 py-2'
+                        } rounded-xl transition-all relative group ${active
                           ? 'bg-purple-600/15 text-white font-bold border border-purple-500/30 shadow-[0_2px_12px_rgba(168,85,247,0.15)]'
                           : 'text-zinc-400 hover:text-white hover:bg-white/[0.04]'
-                      }`}
+                        }`}
                     >
                       <div className="flex items-center gap-2.5 min-w-0">
                         <Icon
-                          className={`w-4 h-4 shrink-0 transition-transform group-hover:scale-110 ${
-                            active ? 'text-purple-400' : 'text-zinc-400 group-hover:text-zinc-200'
-                          }`}
+                          className={`w-4 h-4 shrink-0 transition-transform group-hover:scale-110 ${active ? 'text-purple-400' : 'text-zinc-400 group-hover:text-zinc-200'
+                            }`}
                         />
                         {!collapsed && <span className="truncate">{item.name}</span>}
                       </div>
@@ -385,9 +377,8 @@ export function MentorNavigation({ user, unreadNotificationsCount = 0 }: MentorN
 
         {/* ── 3. PINNED BOTTOM FOOTER (Never scrolls away) ── */}
         <div
-          className={`shrink-0 border-t border-white/[0.08] bg-[#09090d] space-y-2.5 ${
-            collapsed ? 'p-2' : 'p-3'
-          }`}
+          className={`shrink-0 border-t border-white/[0.08] bg-[#09090d] space-y-2.5 ${collapsed ? 'p-2' : 'p-3'
+            }`}
         >
           {/* Faculty Profile Card */}
           {!collapsed ? (
@@ -416,9 +407,8 @@ export function MentorNavigation({ user, unreadNotificationsCount = 0 }: MentorN
           <Link href="/login" className="block">
             <button
               title={collapsed ? 'Sign Out' : undefined}
-              className={`w-full py-2 rounded-xl text-zinc-400 hover:text-white hover:bg-white/[0.04] text-xs font-mono flex items-center ${
-                collapsed ? 'justify-center px-0' : 'justify-center gap-2 px-3'
-              } transition-colors cursor-pointer border border-transparent hover:border-white/[0.06]`}
+              className={`w-full py-2 rounded-xl text-zinc-400 hover:text-white hover:bg-white/[0.04] text-xs font-mono flex items-center ${collapsed ? 'justify-center px-0' : 'justify-center gap-2 px-3'
+                } transition-colors cursor-pointer border border-transparent hover:border-white/[0.06]`}
             >
               <LogOut className="w-3.5 h-3.5" />
               {!collapsed && <span>Sign Out</span>}

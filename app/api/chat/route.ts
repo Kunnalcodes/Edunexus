@@ -8,7 +8,7 @@ const ChatRequestSchema = z.object({
 });
 
 const SYSTEM_CONTEXT = `
-You are the official Thread Security Education (TSE) AI Educational Assistant.
+You are the official Edu Nexus Education (TSE) AI Educational Assistant.
 Your purpose is to assist students, professionals, and enterprise candidates exploring our Cybersecurity and AI curriculum tracks.
 Our tracks include:
 - AI: 45 Days (Python for AI, Data Analysis, Data Science, ML, Deep Learning), 6 Months (Foundational AI, Agentic AI & Intelligent Systems, AI Engineering, AI Infrastructure, AI Security).
@@ -131,7 +131,7 @@ export async function POST(req: NextRequest) {
     }
 
     // 5. Final Graceful Fallback
-    const fallbackText = `Thread Security Education offers premier hands-on tracks across **Offensive Security (Red Teaming, Ethical Hacking, VAPT)**, **Defensive Security (Blue Team, SOC Operations)**, and **Enterprise AI Systems (Agentic AI, LLMOps)**.\n\nTo speak directly with our senior instructors and discuss custom cohort schedules, please submit your request at [/contact](/contact).`;
+    const fallbackText = `Edu Nexus Education offers premier hands-on tracks across **Offensive Security (Red Teaming, Ethical Hacking, VAPT)**, **Defensive Security (Blue Team, SOC Operations)**, and **Enterprise AI Systems (Agentic AI, LLMOps)**.\n\nTo speak directly with our senior instructors and discuss custom cohort schedules, please submit your request at [/contact](/contact).`;
 
     return new NextResponse(fallbackText, {
       status: 200,

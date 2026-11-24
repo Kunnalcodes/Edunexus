@@ -14,7 +14,7 @@ export interface LeadAlertData {
 export async function sendFacultyLeadAlert(lead: LeadAlertData): Promise<{ success: boolean; message?: string }> {
   const facultyEmail = process.env.FACULTY_NOTIFY_EMAIL || 'threadsecurity@gmail.com';
   const apiKey = process.env.RESEND_API_KEY;
-  const fromEmail = process.env.RESEND_FROM_EMAIL || 'Thread Security Education <onboarding@resend.dev>';
+  const fromEmail = process.env.RESEND_FROM_EMAIL || 'Edu Nexus Education <onboarding@resend.dev>';
 
   const isHighIntent = lead.aiScore >= 75;
 
@@ -84,7 +84,7 @@ export async function sendFacultyLeadAlert(lead: LeadAlertData): Promise<{ succe
           </div>
 
           <div class="footer">
-            Thread Security Education — Faculty Lead Alert Engine<br>
+            Edu Nexus Education — Faculty Lead Alert Engine<br>
             Managed via GCP Vertex AI & Resend API
           </div>
         </div>

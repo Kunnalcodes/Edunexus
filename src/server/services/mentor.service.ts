@@ -35,7 +35,7 @@ export async function getMentorDashboardData(userId: string) {
         data: {
           userId,
           title: 'Senior Cybersecurity Instructor',
-          company: 'Thread Security Education',
+          company: 'Edu Nexus Education',
           bio: 'Lead Security Mentor specializing in VAPT and Offensive Security.',
           expertise: 'Cybersecurity, Penetration Testing, Bug Bounty',
         },

@@ -84,7 +84,7 @@ export default function CookieSettingsPage() {
   return (
     <div className="bg-white min-h-screen text-slate-800 font-sans pt-12 pb-24">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Header */}
         <div className="border-b border-slate-200 pb-8 mb-10">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-50 border border-amber-200 text-amber-900 text-xs font-semibold mb-4">
@@ -95,7 +95,7 @@ export default function CookieSettingsPage() {
             Cookie Settings &amp; Preferences
           </h1>
           <p className="text-sm text-slate-500 leading-relaxed">
-            Manage your cookie permissions across the Thread Security Education learning portal. Read our full{' '}
+            Manage your cookie permissions across the Edu Nexus Education learning portal. Read our full{' '}
             <Link href="/cookie-policy" className="text-purple-700 underline font-semibold">
               Cookie Policy
             </Link>{' '}

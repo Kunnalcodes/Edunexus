@@ -21,18 +21,18 @@ export function MethodologySection() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Header Section */}
         <div className="flex flex-col items-center justify-center text-center mb-12">
           <span className="text-sm sm:text-base md:text-lg font-medium tracking-[0.2em] sm:tracking-[0.25em] text-violet-700 uppercase font-sans">
             Why Choose Us
           </span>
           <div className="h-1 w-16 sm:w-20 mt-2.5 mb-6 rounded-full bg-violet-600 shadow-[0_0_12px_rgba(126,59,237,0.5)]" />
-          
+
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-slate-950 font-sans tracking-tight max-w-3xl mx-auto leading-tight mb-4">
             The Foundation Of Every Success Story
           </h2>
-          
+
           <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto font-medium leading-relaxed">
             Your journey from learning to landing a high-paying Cybersecurity & AI role — we guide you at every step.
           </p>
@@ -40,7 +40,7 @@ export function MethodologySection() {
 
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
-          
+
           {/* Card 1: Live & Interactive Sessions (Large - Row 1 Left) */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -73,7 +73,7 @@ export function MethodologySection() {
                 className="object-cover object-center group-hover/live:scale-105 transition-transform duration-700 filter brightness-[0.95] contrast-[1.03]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-              
+
               {/* Top Live Badge */}
               <div className="absolute top-3 left-3 z-10">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-[11px] font-semibold text-[#C6FF34] border border-[#C6FF34]/30 shadow-lg">
@@ -93,7 +93,7 @@ export function MethodologySection() {
                   </p>
                 </div>
                 <span className="hidden sm:inline-block px-2.5 py-1 rounded-lg bg-white/20 backdrop-blur-md text-[10px] uppercase font-bold tracking-wider text-white border border-white/20">
-                  Thread Security Education
+                  Edu Nexus Education
                 </span>
               </div>
             </div>
@@ -170,7 +170,7 @@ export function MethodologySection() {
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                   <span>Real In-Person &amp; Online Mentors</span>
                 </div>
-                <span className="text-[10px] text-violet-600 font-semibold">Thread Security Education</span>
+                <span className="text-[10px] text-violet-600 font-semibold">Edu Nexus Education</span>
               </div>
             </div>
           </motion.div>
@@ -241,13 +241,13 @@ export function MethodologySection() {
                   Growth: <span className="text-emerald-800 font-semibold">+42%</span>
                 </div>
               </div>
-              
+
               {/* Bar Chart Representation */}
               <div className="flex items-end justify-between h-[100px] pt-4 px-2">
                 {[24, 32, 41, 50, 58, 67, 75, 84, 91, 98].map((val, idx) => (
                   <div key={idx} className="w-[8%] bg-slate-200/60 rounded-t h-full flex flex-col justify-end">
-                    <div 
-                      className="bg-violet-600 rounded-t w-full transition-all duration-500" 
+                    <div
+                      className="bg-violet-600 rounded-t w-full transition-all duration-500"
                       style={{ height: `${val}%` }}
                     />
                   </div>
@@ -287,7 +287,7 @@ export function MethodologySection() {
                 <div className="absolute top-[15px] inset-x-4 h-1 bg-slate-200 z-0">
                   <div className="w-[85%] h-full bg-violet-600" />
                 </div>
-                
+
                 {[
                   { label: "Resume Audit", done: true },
                   { label: "Technical Prep", done: true },
@@ -295,13 +295,12 @@ export function MethodologySection() {
                   { label: "Job Offer", done: false, active: true },
                 ].map((step, idx) => (
                   <div key={idx} className="flex flex-col items-center text-center relative z-10">
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center border transition-all ${
-                      step.done 
-                        ? 'bg-violet-600 border-violet-600 text-white' 
-                        : step.active 
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center border transition-all ${step.done
+                        ? 'bg-violet-600 border-violet-600 text-white'
+                        : step.active
                           ? 'bg-[#C6FF34] border-[#C6FF34] text-black font-semibold animate-pulse'
                           : 'bg-white border-slate-200 text-slate-500'
-                    }`}>
+                      }`}>
                       {step.done ? <CheckCircle2 className="w-4 h-4" /> : <Sparkles className="w-4 h-4" />}
                     </div>
                     <span className="text-[9px] font-medium text-slate-600 mt-2 tracking-tight">{step.label}</span>

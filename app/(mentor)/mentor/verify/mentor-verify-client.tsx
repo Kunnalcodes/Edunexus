@@ -201,7 +201,7 @@ export function MentorVerifyClient({
             <span className="flex items-center gap-1">
               <Terminal className="w-3 h-3 text-purple-400" /> Audit Logged
             </span>
-            <span>Thread Security Education LMS</span>
+            <span>Edu Nexus Education LMS</span>
           </div>
         </div>
       </div>

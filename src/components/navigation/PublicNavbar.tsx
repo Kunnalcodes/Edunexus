@@ -21,12 +21,13 @@ import { LogoutButton } from '@/components/navigation/LogoutButton';
 import { MobileNavDrawer } from '@/components/navigation/MobileNavDrawer';
 
 const navItems = [
+  { name: 'Solutions', url: '/#solutions', icon: 'Sparkles' },
+  { name: 'Modules', url: '/#modules', icon: 'Layers' },
+  { name: 'How It Works', url: '/#how-it-works', icon: 'Workflow' },
+  { name: 'Roles', url: '/#roles', icon: 'Users' },
+  { name: 'Why Edunexus', url: '/#why-edunexus', icon: 'ShieldCheck' },
   { name: 'Courses', url: '/courses', icon: 'BookOpen' },
-  { name: 'Curriculum', url: '/#curriculum-roadmap', icon: 'Layers' },
-  { name: 'Projects', url: '/#projects', icon: 'BookOpen' },
-  // { name: 'Placements', url: '/placements', icon: 'Briefcase' },
-  { name: 'Workshops', url: '/workshops', icon: 'Sparkles' },  
-  { name: 'Contact Us', url: '/contact', icon: 'Phone' },
+  { name: 'Contact', url: '/contact', icon: 'Phone' },
 ];
 
 export async function PublicNavbar() {
@@ -39,13 +40,13 @@ export async function PublicNavbar() {
         <Link
           href="/"
           className="flex items-center gap-2 shrink-0"
-          title="EduNexus Smart Learning Platform"
+          title="EduNexus Smart Learning & Management Platform"
         >
           <span className="font-bold tracking-wider text-base sm:text-lg text-black uppercase">
             EDUNEXUS
           </span>
-          <span className="text-[11px] bg-indigo-100 border border-indigo-200/60 px-2 py-0.5 rounded-sm uppercase font-semibold tracking-widest text-indigo-900">
-            SMART LMS
+          <span className="text-[10px] bg-indigo-50 border border-indigo-200/80 px-2 py-0.5 rounded uppercase font-bold tracking-widest text-indigo-700">
+            ERP &middot; LMS
           </span>
         </Link>
 

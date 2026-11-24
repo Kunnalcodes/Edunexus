@@ -242,7 +242,7 @@ export function GlobalSearchModal({ isOpen, onClose }: GlobalSearchModalProps) {
         {/* Footer shortcuts */}
         <div className="p-3 bg-black/60 border-t border-white/[0.08] flex items-center justify-between text-[11px] font-mono text-zinc-500">
           <span>Navigate with Enter • ESC to dismiss</span>
-          <span>Thread Security Global Search</span>
+          <span>Edu Nexus Global Search</span>
         </div>
       </div>
     </div>

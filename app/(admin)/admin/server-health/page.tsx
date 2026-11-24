@@ -4,7 +4,7 @@ import { prisma } from '@/server/database/prisma';
 import { ServerHealthClient } from '@/app/(admin)/admin/server-health/server-health-client';
 
 export const metadata = {
-  title: 'System Telemetry & Server Health | Thread Security Admin',
+  title: 'System Telemetry & Server Health | Edu Nexus Admin',
   description: 'Live infrastructure telemetry, PostgreSQL connection latency, memory usage, and operational status.',
 };
 

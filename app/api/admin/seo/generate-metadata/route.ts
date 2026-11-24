@@ -50,7 +50,7 @@ CRITICAL GOOGLE RANK #1 ALGORITHMIC CONSTRAINTS:
    - STRICT LIMIT: 50 to 60 characters (never exceed 60 characters so it is never truncated on mobile or desktop SERPs).
    - Place primary focus keyword in the first 35 characters.
    - Include high-converting trust or emotional modifiers (e.g. 2026, Practical, Masterclass, Certified, Hands-on).
-   - End with: " | Thread Security"
+   - End with: " | Edu Nexus"
 2. Meta Description:
    - STRICT LIMIT: 140 to 158 characters (optimal sweet spot for Google search result snippets).
    - Must include primary keyword, secondary semantic LSI keyword, tangible benefit/USP (hands-on cyber labs, mentor-led), and clear Call To Action (Enroll now, Explore syllabus, Start lab).
@@ -67,7 +67,7 @@ Return ONLY valid JSON matching this exact structure:
       "id": "variant-high-ctr",
       "name": "High-CTR Commercial Magnet",
       "badge": "Highest Clicks",
-      "metaTitle": "Title here strictly under 60 chars | Thread Security",
+      "metaTitle": "Title here strictly under 60 chars | Edu Nexus",
       "metaDescription": "Description here strictly between 140 and 158 characters with action CTA.",
       "predictedCtr": 8.9,
       "serpRankPotential": "Top 3 Rank Target",
@@ -78,7 +78,7 @@ Return ONLY valid JSON matching this exact structure:
       "id": "variant-rank-one",
       "name": "Rank #1 Algorithmic Stacking",
       "badge": "Max Google Relevance",
-      "metaTitle": "Title here strictly under 60 chars | Thread Security",
+      "metaTitle": "Title here strictly under 60 chars | Edu Nexus",
       "metaDescription": "Description here strictly between 140 and 158 characters with action CTA.",
       "predictedCtr": 8.2,
       "serpRankPotential": "Rank #1 Target",
@@ -89,7 +89,7 @@ Return ONLY valid JSON matching this exact structure:
       "id": "variant-authoritative",
       "name": "Authoritative Masterclass Credential",
       "badge": "Enterprise Trust",
-      "metaTitle": "Title here strictly under 60 chars | Thread Security",
+      "metaTitle": "Title here strictly under 60 chars | Edu Nexus",
       "metaDescription": "Description here strictly between 140 and 158 characters with action CTA.",
       "predictedCtr": 7.8,
       "serpRankPotential": "High Trust / B2B",
@@ -126,12 +126,12 @@ Return ONLY valid JSON matching this exact structure:
           const rawText = geminiData?.candidates?.[0]?.content?.parts?.[0]?.text;
           if (rawText) {
             const parsed = JSON.parse(rawText);
-            
+
             // Format and validate lengths
             const validatedVariants: MetadataVariant[] = (parsed.variants || []).map((v: any, index: number) => {
-              const title = (v.metaTitle || `${topic} | Thread Security`).trim();
-              const desc = (v.metaDescription || `Explore ${topic} with practical labs and mentorship at Thread Security Education.`).trim();
-              
+              const title = (v.metaTitle || `${topic} | Edu Nexus`).trim();
+              const desc = (v.metaDescription || `Explore ${topic} with practical labs and mentorship at Edu Nexus Education.`).trim();
+
               return {
                 id: v.id || `variant-${index + 1}`,
                 name: v.name || `Optimized Strategy ${index + 1}`,
@@ -207,10 +207,10 @@ function generateProgrammaticMetadata(
       id: 'variant-high-ctr',
       name: 'High-CTR Commercial Magnet',
       badge: 'Highest Clicks',
-      metaTitle: `${cleanTopic} Course 2026 | Thread Security`.substring(0, 60),
+      metaTitle: `${cleanTopic} Course 2026 | Edu Nexus`.substring(0, 60),
       metaTitleLength: 0,
       metaTitleStatus: 'OPTIMAL',
-      metaDescription: `Master ${primaryKw} with 100% hands-on labs and 1-on-1 industry mentorship. Earn your verified certificate. Enroll today at Thread Security!`.substring(0, 158),
+      metaDescription: `Master ${primaryKw} with 100% hands-on labs and 1-on-1 industry mentorship. Earn your verified certificate. Enroll today at Edu Nexus!`.substring(0, 158),
       metaDescriptionLength: 0,
       metaDescriptionStatus: 'OPTIMAL',
       predictedCtr: 8.85,
@@ -222,7 +222,7 @@ function generateProgrammaticMetadata(
       id: 'variant-rank-one',
       name: 'Rank #1 Algorithmic Stacking',
       badge: 'Max Google Relevance',
-      metaTitle: `${cleanTopic} & ${secondaryKw} | Thread Security`.substring(0, 60),
+      metaTitle: `${cleanTopic} & ${secondaryKw} | Edu Nexus`.substring(0, 60),
       metaTitleLength: 0,
       metaTitleStatus: 'OPTIMAL',
       metaDescription: `Comprehensive ${primaryKw} training: practice real offensive security simulations, malware defense, and SOC workflows. Explore full syllabus now.`.substring(0, 158),
@@ -237,7 +237,7 @@ function generateProgrammaticMetadata(
       id: 'variant-authoritative',
       name: 'Authoritative Masterclass Credential',
       badge: 'Enterprise Trust',
-      metaTitle: `Practical ${cleanTopic} Masterclass | Thread Security`.substring(0, 60),
+      metaTitle: `Practical ${cleanTopic} Masterclass | Edu Nexus`.substring(0, 60),
       metaTitleLength: 0,
       metaTitleStatus: 'OPTIMAL',
       metaDescription: `Learn ${primaryKw} from active enterprise security architects. Hands-on virtual labs, live threat hunting, and career placement. Apply today.`.substring(0, 158),

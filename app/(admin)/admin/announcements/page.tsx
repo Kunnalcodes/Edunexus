@@ -6,7 +6,7 @@ import { getBroadcastAnalyticsService } from '@/server/services/notification.ser
 import { AnnouncementsClient } from './announcements-client';
 
 export const metadata = {
-  title: 'Announcements & Direct Messaging | Thread Security Admin',
+  title: 'Announcements & Direct Messaging | Edu Nexus Admin',
   description: 'Manage prior chats, send direct directives to mentors and students, and broadcast cohort announcements.',
 };
 

@@ -72,8 +72,8 @@ export function StudentLabInteractiveClient({
     initialFlagResult === 'success'
       ? { text: 'Flag verified and attempt recorded successfully! 100/100 points awarded.', type: 'success' }
       : initialFlagResult === 'error'
-      ? { text: 'Incorrect flag. Please re-examine your exploit output payload.', type: 'error' }
-      : null
+        ? { text: 'Incorrect flag. Please re-examine your exploit output payload.', type: 'error' }
+        : null
   );
 
   const [shareModalOpen, setShareModalOpen] = useState(false);
@@ -163,7 +163,7 @@ export function StudentLabInteractiveClient({
     }
   };
 
-  const shareText = `🛡️ I successfully completed the "${lab.title}" practical cybersecurity lab on Thread Security Education!\n\nCadet: ${student.name} (${student.tsId})\nScore: ${attempt.score}/100\nDifficulty: ${lab.difficulty}\n\n#Cybersecurity #EthicalHacking #ThreadSecurity`;
+  const shareText = `🛡️ I successfully completed the "${lab.title}" practical cybersecurity lab on Edu Nexus Education!\n\nCadet: ${student.name} (${student.tsId})\nScore: ${attempt.score}/100\nDifficulty: ${lab.difficulty}\n\n#Cybersecurity #EthicalHacking #ThreadSecurity`;
 
   const copyShareText = () => {
     navigator.clipboard.writeText(shareText);
@@ -191,11 +191,10 @@ export function StudentLabInteractiveClient({
               HANDS-ON LAB SANDBOX
             </Badge>
             <Badge
-              className={`font-mono text-[10px] uppercase font-bold ${
-                attempt.state === 'COMPLETED'
+              className={`font-mono text-[10px] uppercase font-bold ${attempt.state === 'COMPLETED'
                   ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40'
                   : 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
-              }`}
+                }`}
             >
               {attempt.state}
             </Badge>
@@ -256,11 +255,10 @@ export function StudentLabInteractiveClient({
       {/* Status Alert Banner */}
       {statusMessage && (
         <div
-          className={`p-4 rounded-2xl border flex items-center gap-3 text-xs leading-relaxed ${
-            statusMessage.type === 'success'
+          className={`p-4 rounded-2xl border flex items-center gap-3 text-xs leading-relaxed ${statusMessage.type === 'success'
               ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300'
               : 'bg-rose-500/10 border-rose-500/30 text-rose-300'
-          }`}
+            }`}
         >
           {statusMessage.type === 'success' ? (
             <CheckCircle2 className="w-5 h-5 shrink-0 text-emerald-400" />
@@ -446,9 +444,8 @@ export function StudentLabInteractiveClient({
               <div className="flex items-center justify-between">
                 <span className="text-zinc-400">Current Status:</span>
                 <span
-                  className={`font-bold ${
-                    attempt.state === 'COMPLETED' ? 'text-emerald-400' : 'text-amber-400'
-                  }`}
+                  className={`font-bold ${attempt.state === 'COMPLETED' ? 'text-emerald-400' : 'text-amber-400'
+                    }`}
                 >
                   {attempt.state}
                 </span>
@@ -494,7 +491,7 @@ export function StudentLabInteractiveClient({
             </div>
 
             <div className="p-4 rounded-2xl bg-black border border-[#C6FF34]/30 space-y-2 text-xs font-mono text-zinc-300">
-              <span className="text-[#C6FF34] font-bold block">✓ THREAD SECURITY EDUCATION // VERIFIED</span>
+              <span className="text-[#C6FF34] font-bold block">✓ Edu Nexus EDUCATION // VERIFIED</span>
               <p>Cadet: <strong>{student.name}</strong></p>
               <p>TS-Identity: <strong className="text-white">{student.tsId}</strong></p>
               <p>Target Challenge: <strong className="text-white">{lab.title}</strong></p>

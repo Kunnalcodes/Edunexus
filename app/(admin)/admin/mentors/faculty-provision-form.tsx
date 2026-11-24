@@ -83,11 +83,10 @@ export function FacultyProvisionForm({
 
         {feedback && (
           <div
-            className={`px-3 py-1.5 rounded-lg flex items-center gap-1.5 text-xs font-medium ${
-              feedback.type === 'success'
+            className={`px-3 py-1.5 rounded-lg flex items-center gap-1.5 text-xs font-medium ${feedback.type === 'success'
                 ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
                 : 'bg-rose-50 text-rose-700 border border-rose-200'
-            }`}
+              }`}
           >
             {feedback.type === 'success' ? (
               <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
@@ -208,7 +207,7 @@ export function FacultyProvisionForm({
         </div>
 
         {/* Hidden Defaults */}
-        <input type="hidden" name="company" value="Thread Security Education" />
+        <input type="hidden" name="company" value="Edu Nexus Education" />
         <input type="hidden" name="expertise" value="Offensive Security, VAPT, Web Exploitation, SOC" />
         <input type="hidden" name="bio" value="Accredited instructor in offensive security and advanced cyber defense." />
 

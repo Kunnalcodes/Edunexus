@@ -59,7 +59,7 @@ export function DashboardHero({
               CYBERSECURITY COHORT • {batchName || 'ACTIVE TRACK'}
             </span>
             <span className="text-xs font-mono text-zinc-400 hidden sm:inline-block">
-              Thread Security LMS
+              Edu Nexus LMS
             </span>
           </div>
 

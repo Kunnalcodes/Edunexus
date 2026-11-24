@@ -39,7 +39,7 @@ const ALL_REVIEWS: ReviewItem[] = [
     name: 'Piya Kohli',
     role: 'Pioneer TSE AI Engineer',
     avatar: '/images/Students/Piya.svg',
-    quote: 'My 45-day training experience at Thread Security was a great learning experience. I learned the basics of Artificial Intelligence and Machine Learning and got practical knowledge through projects. I improved my skills in Python, data preprocessing, and machine learning models.',
+    quote: 'My 45-day training experience at Edu Nexus was a great learning experience. I learned the basics of Artificial Intelligence and Machine Learning and got practical knowledge through projects. I improved my skills in Python, data preprocessing, and machine learning models.',
     preRole: 'Information Tech',
     postCompany: 'AI & ML Trainee',
   },
@@ -101,7 +101,7 @@ const ALL_REVIEWS: ReviewItem[] = [
     name: 'Nishika Sehgal',
     role: 'TSE AI Engineer Aspirant',
     avatar: '/images/Students/Nishika.svg',
-    quote: 'The AI & ML curriculum at Thread Security gave me deep clarity on modern artificial intelligence pipelines, neural networks, and generative modeling. The mentorship and real-time guidance were instrumental in accelerating my technical capabilities.',
+    quote: 'The AI & ML curriculum at Edu Nexus gave me deep clarity on modern artificial intelligence pipelines, neural networks, and generative modeling. The mentorship and real-time guidance were instrumental in accelerating my technical capabilities.',
     preRole: 'BCA Graduate',
     postCompany: 'AI Engineer Trainee',
   },
@@ -156,10 +156,10 @@ function TextReviewCard({ review }: { review: ReviewItem }) {
   return (
     <div className="bg-white border border-[#dbebff] rounded-[2rem] p-6 sm:p-7 flex flex-col justify-between shadow-sm hover:shadow-md transition-all duration-300 relative group w-[330px] sm:w-[380px] h-[410px] shrink-0 whitespace-normal">
       {/* LinkedIn Bubble Icon */}
-      <a 
-        href="https://linkedin.com" 
-        target="_blank" 
-        rel="noopener noreferrer" 
+      <a
+        href="https://linkedin.com"
+        target="_blank"
+        rel="noopener noreferrer"
         className="absolute top-5 right-5 w-7 h-7 bg-[#0066c2] rounded-full flex items-center justify-center text-white hover:bg-[#0055a5] hover:scale-105 active:scale-95 transition-all z-20 shadow-sm"
         aria-label={`View ${review.name}'s LinkedIn Profile`}
       >
@@ -185,8 +185,8 @@ function TextReviewCard({ review }: { review: ReviewItem }) {
 
           {/* Avatar Image */}
           <div className="relative w-18 h-18 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-slate-200 z-10 shadow-md bg-white">
-            <Image 
-              src={getCloudinaryAssetUrl(review.avatar)} 
+            <Image
+              src={getCloudinaryAssetUrl(review.avatar)}
               alt={review.name}
               fill
               unoptimized
@@ -255,7 +255,7 @@ export function StudentReviewsSection() {
   return (
     <section id="reviews" className="py-20 bg-slate-50/50 border-t border-slate-200 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
-        
+
         {/* Section Title Header Centered */}
         <div className="text-center">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-violet-950/70 border border-violet-500/30 text-violet-300 text-xs font-medium tracking-[0.25em] uppercase mb-4 shadow-[0_0_15px_rgba(168,85,247,0.2)]">
@@ -297,7 +297,7 @@ export function StudentReviewsSection() {
         <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 sm:w-24 bg-gradient-to-l from-slate-50 to-transparent z-10" />
 
         {/* Scrollable Track */}
-        <div 
+        <div
           ref={scrollContainerRef}
           onScroll={checkScrollState}
           className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth px-4 sm:px-14 lg:px-20 py-4 select-none"

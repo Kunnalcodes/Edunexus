@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { CreditCard, CheckCircle2, Clock, AlertCircle, HelpCircle } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Refund & Cancellation Policy | Thread Security Education',
+  title: 'Refund & Cancellation Policy | Edu Nexus Education',
   description:
-    'Review the transparent admission fee refund, batch transfer, demo class guarantees, and cancellation policies at Thread Security Education.',
+    'Review the transparent admission fee refund, batch transfer, demo class guarantees, and cancellation policies at Edu Nexus Education.',
   alternates: {
     canonical: 'https://threadsecurity.in/refund-policy',
   },
@@ -15,7 +15,7 @@ export default function RefundPolicyPage() {
   return (
     <div className="bg-white min-h-screen text-slate-800 font-sans pt-12 pb-24">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Header */}
         <div className="border-b border-slate-200 pb-8 mb-10">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-900 text-xs font-semibold mb-4">
@@ -36,7 +36,7 @@ export default function RefundPolicyPage() {
           <section className="space-y-3">
             <h2 className="text-lg font-bold text-slate-950">1. Commitment to Student Satisfaction</h2>
             <p>
-              Thread Security Education is dedicated to providing world-class training in Cybersecurity, Ethical Hacking, Cloud DevSecOps, and AI Security. To ensure complete confidence, we offer free interactive demo classes and structured orientation sessions before students make financial commitments.
+              Edu Nexus Education is dedicated to providing world-class training in Cybersecurity, Ethical Hacking, Cloud DevSecOps, and AI Security. To ensure complete confidence, we offer free interactive demo classes and structured orientation sessions before students make financial commitments.
             </p>
           </section>
 

@@ -1,6 +1,6 @@
 # Phase 0: Initial Repository Audit & System Baseline
 
-**Project Name:** Thread Security Education — LMS (TSE LMS)  
+**Project Name:** Edu Nexus Education — LMS (TSE LMS)  
 **Short Name:** TSE LMS  
 **Audit Timestamp:** 2026-08-20  
 **Workspace Path:** `e:\threads-edu`

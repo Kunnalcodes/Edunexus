@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { Compass, BookOpen, Layers, Award, Building, LifeBuoy, FileText } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Website Sitemap | Thread Security Education',
+  title: 'Website Sitemap | Edu Nexus Education',
   description:
-    'Complete directory and sitemap of all public courses, training tracks, student resources, verifiable credential verification, and legal documentation at Thread Security Education.',
+    'Complete directory and sitemap of all public courses, training tracks, student resources, verifiable credential verification, and legal documentation at Edu Nexus Education.',
   alternates: {
     canonical: 'https://threadsecurity.in/sitemap',
   },
@@ -75,7 +75,7 @@ export default function SitemapPage() {
   return (
     <div className="bg-white min-h-screen text-slate-800 font-sans pt-12 pb-24">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Header */}
         <div className="border-b border-slate-200 pb-8 mb-10">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-slate-800 text-xs font-semibold mb-4">

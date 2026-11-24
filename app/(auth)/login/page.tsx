@@ -291,7 +291,7 @@ function AuthContent() {
       if (callbackUrl) {
         try {
           callbackUrl = decodeURIComponent(callbackUrl);
-        } catch {}
+        } catch { }
       }
 
       let destination = res.redirectTo || '/admin';
@@ -389,7 +389,7 @@ function AuthContent() {
             </div>
             <div className="flex flex-col">
               <span className="text-lg font-bold tracking-tight text-white group-hover:text-purple-200 transition-colors">
-                Thread Security
+                Edu Nexus
               </span>
               <span className="text-[11px] font-mono text-purple-300/70 tracking-wider uppercase">
                 Cyber Range & Training Portal
@@ -452,7 +452,7 @@ function AuthContent() {
             <div className="w-9 h-9 rounded-xl bg-purple-600/25 border border-purple-500/40 flex items-center justify-center">
               <Shield className="w-4 h-4 text-purple-300" />
             </div>
-            <span className="text-base font-bold text-white">Thread Security</span>
+            <span className="text-base font-bold text-white">Edu Nexus</span>
           </Link>
           <span className="text-xs text-purple-300/70 font-mono">Academic Portal</span>
         </div>
@@ -466,7 +466,7 @@ function AuthContent() {
             <p className="text-xs sm:text-sm text-purple-300/70">
               {activeTab === 'signin'
                 ? 'Access your cyber range, labs, and security clearance.'
-                : "Join Thread Security Education — It's free"}
+                : "Join Edu Nexus Education — It's free"}
             </p>
           </div>
 
@@ -475,22 +475,20 @@ function AuthContent() {
             <button
               type="button"
               onClick={() => handleTabSwitch('signin')}
-              className={`py-2 text-xs sm:text-sm font-medium rounded-lg transition-all ${
-                activeTab === 'signin'
+              className={`py-2 text-xs sm:text-sm font-medium rounded-lg transition-all ${activeTab === 'signin'
                   ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-[0_2px_10px_rgba(124,58,237,0.3)]'
                   : 'text-purple-300/60 hover:text-white'
-              }`}
+                }`}
             >
               Sign In
             </button>
             <button
               type="button"
               onClick={() => handleTabSwitch('signup')}
-              className={`py-2 text-xs sm:text-sm font-medium rounded-lg transition-all ${
-                activeTab === 'signup'
+              className={`py-2 text-xs sm:text-sm font-medium rounded-lg transition-all ${activeTab === 'signup'
                   ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-[0_2px_10px_rgba(124,58,237,0.3)]'
                   : 'text-purple-300/60 hover:text-white'
-              }`}
+                }`}
             >
               Sign Up
             </button>
@@ -499,11 +497,10 @@ function AuthContent() {
           {/* Feedback Alerts */}
           {error && (
             <div
-              className={`p-3.5 rounded-xl border text-xs flex items-center gap-2.5 transition-all ${
-                isLockedOut
+              className={`p-3.5 rounded-xl border text-xs flex items-center gap-2.5 transition-all ${isLockedOut
                   ? 'bg-amber-500/15 border-amber-500/40 text-amber-300'
                   : 'bg-red-500/15 border-red-500/30 text-red-300'
-              }`}
+                }`}
             >
               {isLockedOut ? (
                 <Lock className="w-4 h-4 text-amber-400 shrink-0 animate-pulse" />
@@ -913,16 +910,14 @@ function AuthContent() {
                         key={lvl}
                         type="button"
                         onClick={() => setExperienceLevel(lvl)}
-                        className={`py-2 px-2 text-xs rounded-xl border flex items-center justify-center gap-1.5 transition-all ${
-                          isSelected
+                        className={`py-2 px-2 text-xs rounded-xl border flex items-center justify-center gap-1.5 transition-all ${isSelected
                             ? 'bg-purple-600/30 border-purple-400 text-white font-medium shadow-[0_0_12px_rgba(168,85,247,0.25)]'
                             : 'bg-[#171032]/50 border-purple-500/20 text-purple-300/70 hover:text-white hover:border-purple-500/40'
-                        }`}
+                          }`}
                       >
                         <span
-                          className={`w-2 h-2 rounded-full ${
-                            isSelected ? 'bg-purple-400 shadow-[0_0_6px_#c084fc]' : 'bg-purple-400/30'
-                          }`}
+                          className={`w-2 h-2 rounded-full ${isSelected ? 'bg-purple-400 shadow-[0_0_6px_#c084fc]' : 'bg-purple-400/30'
+                            }`}
                         />
                         {lvl}
                       </button>
@@ -956,7 +951,7 @@ function AuthContent() {
                 disabled={loading}
                 className="w-full h-11 bg-gradient-to-r from-purple-600 via-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-medium rounded-xl shadow-[0_4px_20px_rgba(124,58,237,0.35)] transition-all flex items-center justify-center gap-2 text-sm pt-1"
               >
-                {loading ? 'Creating Account & TS-ID...' : 'Join Thread Security Education'}
+                {loading ? 'Creating Account & TS-ID...' : 'Join Edu Nexus Education'}
                 <ArrowRight className="w-4 h-4" />
               </Button>
 

@@ -15,20 +15,20 @@ const APP_URL = getSiteUrl();
 
 export const metadata: Metadata = {
   title: 'Cryptographic Certificate Verification | Verify TS-ID Credentials',
-  description: 'Verify the authenticity and integrity of Thread Security Education TS-ID certificates and digital credentials using our anti-tamper verification registry.',
+  description: 'Verify the authenticity and integrity of Edu Nexus Education TS-ID certificates and digital credentials using our anti-tamper verification registry.',
   keywords: [
     'Verify Cybersecurity Certificate',
     'TS-ID Verification',
     'TSE Credential Registry',
     'Anti-Tamper Certificate Verification',
-    'Thread Security Education',
+    'Edu Nexus Education',
   ],
   alternates: {
     canonical: `${APP_URL}/verify-certificate`,
   },
   openGraph: {
-    title: 'Certificate Verification Registry | Thread Security Education',
-    description: 'Verify the authenticity and integrity of Thread Security Education TS-ID certificates.',
+    title: 'Certificate Verification Registry | Edu Nexus Education',
+    description: 'Verify the authenticity and integrity of Edu Nexus Education TS-ID certificates.',
     url: `${APP_URL}/verify-certificate`,
     type: 'website',
   },
@@ -172,7 +172,7 @@ export default async function PublicCertificateVerificationPage({
                   <div className="pt-4 border-t border-border flex items-center justify-between text-xs text-muted">
                     <span className="flex items-center gap-1.5 font-mono">
                       <Lock className="w-3.5 h-3.5 text-security-green" />
-                      Verified by Thread Security Education Registrar
+                      Verified by Edu Nexus Education Registrar
                     </span>
                     <span className="font-mono text-security-green-dark">STATUS: ISSUED & VALID</span>
                   </div>
