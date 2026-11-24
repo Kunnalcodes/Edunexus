@@ -53,7 +53,7 @@ async function main() {
   if (!baseMentor) {
     const mentorUser = await prisma.user.create({
       data: {
-        email: 'threadsecuritymentor@gmail.com',
+        email: 'kunaldigitalconnect@gmail.com',
         name: 'TS-Mentor-Dummy-01',
         passwordHash: 'TS2619',
         role: RoleType.MENTOR,

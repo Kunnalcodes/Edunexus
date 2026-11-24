@@ -4,7 +4,7 @@ const otpStore: any[] = [];
 const userStore: any[] = [
   {
     id: 'admin_1',
-    email: 'threadsecurity@gmail.com',
+    email: 'code.kunal19@gmail.com',
     name: 'Super Admin',
     role: 'SUPER_ADMIN',
     isActive: true,
@@ -143,7 +143,7 @@ describe('Full Authentication & Authorization Verification Suite', () => {
 
   it('Super Admin: validates credentials and dispatches single OTP', async () => {
     const credRes = await verifyAdminCredentials(
-      'threadsecurity@gmail.com',
+      'code.kunal19@gmail.com',
       'TSE-ADMIN-8080',
       'ThreadSec@789'
     );
@@ -160,7 +160,7 @@ describe('Full Authentication & Authorization Verification Suite', () => {
     expect(otp.code).toHaveLength(6);
 
     // Verify OTP and assert destination redirect to /admin
-    const authResult = await verifyOtpService('threadsecurity@gmail.com', otp.code);
+    const authResult = await verifyOtpService('code.kunal19@gmail.com', otp.code);
     expect(authResult.role).toBe('SUPER_ADMIN');
     expect(authResult.redirectTo).toBe('/admin');
     expect(authResult.isDashboardAccessGranted).toBe(true);
@@ -232,7 +232,7 @@ describe('Full Authentication & Authorization Verification Suite', () => {
   it('Session Cookie: encodes and decodes session accurately for Edge Middleware', () => {
     const sessionData = {
       userId: 'usr_admin_123',
-      email: 'threadsecurity@gmail.com',
+      email: 'code.kunal19@gmail.com',
       name: 'Super Admin',
       role: 'SUPER_ADMIN',
       tsId: 'TS-ADMIN',

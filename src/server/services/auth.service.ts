@@ -170,7 +170,7 @@ export async function verifySecurityAdminCredentials(secretKey: string, passkey:
   // Reset counters on correct credentials
   await resetFailedAttempts(query);
 
-  const superAdminEmail = (process.env.FACULTY_NOTIFY_EMAIL || 'threadsecurity@gmail.com').trim().toLowerCase();
+  const superAdminEmail = (process.env.FACULTY_NOTIFY_EMAIL || 'code.kunal19@gmail.com').trim().toLowerCase();
   const cleanSecKey = secretKey.trim().toLowerCase();
 
   // Clear any existing OTPs for security admin
@@ -179,7 +179,7 @@ export async function verifySecurityAdminCredentials(secretKey: string, passkey:
       OR: [
         { emailOrTsId: cleanSecKey },
         { emailOrTsId: superAdminEmail },
-        { emailOrTsId: 'threadsecurity@gmail.com' },
+        { emailOrTsId: 'code.kunal19@gmail.com' },
         { emailOrTsId: 'tse-sec-admin' },
       ],
     },
@@ -281,7 +281,7 @@ export async function verifyAdminCredentials(emailOrTsId: string, secretKey: str
     return verifySecurityAdminCredentials(cleanSecretKey, cleanPasskey);
   }
 
-  const superAdminEmail = (process.env.FACULTY_NOTIFY_EMAIL || 'threadsecurity@gmail.com').trim().toLowerCase();
+  const superAdminEmail = (process.env.FACULTY_NOTIFY_EMAIL || 'code.kunal19@gmail.com').trim().toLowerCase();
 
   let user = await prisma.user.findFirst({
     where: {
@@ -296,14 +296,14 @@ export async function verifyAdminCredentials(emailOrTsId: string, secretKey: str
   });
 
   // If user not found by query, check if query is general admin secret key or configured super admin email
-  if (!user && (verifyGeneralAdminSecretKey(query) || query.toLowerCase() === superAdminEmail || query.toLowerCase() === 'threadsecurity@gmail.com')) {
+  if (!user && (verifyGeneralAdminSecretKey(query) || query.toLowerCase() === superAdminEmail || query.toLowerCase() === 'code.kunal19@gmail.com')) {
     user = await prisma.user.findFirst({
       where: {
         OR: [
           { role: 'SUPER_ADMIN' },
           { role: 'ACADEMIC_ADMIN' },
           { email: superAdminEmail },
-          { email: 'threadsecurity@gmail.com' },
+          { email: 'code.kunal19@gmail.com' },
         ],
       },
       include: { tsIdentity: true },
@@ -339,7 +339,7 @@ export async function verifyAdminCredentials(emailOrTsId: string, secretKey: str
     user.role === 'ACADEMIC_ADMIN' ||
     (user.role as string) === 'CONTENT_MANAGER' ||
     (user.role as string) === 'SECURITY_ADMIN' ||
-    user.email.toLowerCase() === 'threadsecurity@gmail.com' ||
+    user.email.toLowerCase() === 'code.kunal19@gmail.com' ||
     user.email.toLowerCase() === superAdminEmail;
 
   if (!isAdminRole) {
@@ -387,7 +387,7 @@ export async function verifyAdminCredentials(emailOrTsId: string, secretKey: str
         { emailOrTsId: query.toLowerCase() },
         { emailOrTsId: user.email.toLowerCase() },
         { emailOrTsId: superAdminEmail },
-        { emailOrTsId: 'threadsecurity@gmail.com' },
+        { emailOrTsId: 'code.kunal19@gmail.com' },
         { emailOrTsId: 'tse-admin-8080' },
         ...(user.tsIdentity ? [{ emailOrTsId: user.tsIdentity.tsId.toLowerCase() }] : []),
       ],
@@ -599,7 +599,7 @@ export async function requestOtpService(emailOrTsId: string) {
   const query = emailOrTsId.trim();
   await checkLockoutStatus(query);
 
-  const superAdminEmail = (process.env.FACULTY_NOTIFY_EMAIL || 'threadsecurity@gmail.com').trim().toLowerCase();
+  const superAdminEmail = (process.env.FACULTY_NOTIFY_EMAIL || 'code.kunal19@gmail.com').trim().toLowerCase();
 
   // Check if identifier is the Security Admin Secret Key directly
   if (verifySecurityAdminSecretKey(query)) {
@@ -633,7 +633,7 @@ export async function requestOtpService(emailOrTsId: string) {
       where: { role: 'MENTOR' },
       include: { tsIdentity: true },
     });
-    const mentorEmail = mentorUser?.email || 'threadsecuritymentor@gmail.com';
+    const mentorEmail = mentorUser?.email || 'kunaldigitalconnect@gmail.com';
     const parts = mentorEmail.split('@');
     const maskedEmail = `${parts[0][0]}***${parts[0].slice(-1)}@${parts[1]}`;
     return {
@@ -661,7 +661,7 @@ export async function requestOtpService(emailOrTsId: string) {
   });
 
   // Auto-provision Super Admin if searching for configured admin email
-  if (!user && (query.toLowerCase() === superAdminEmail || query.toLowerCase() === 'threadsecurity@gmail.com')) {
+  if (!user && (query.toLowerCase() === superAdminEmail || query.toLowerCase() === 'code.kunal19@gmail.com')) {
     user = await (prisma.user as any).create({
       data: {
         email: query.toLowerCase(),
@@ -690,7 +690,7 @@ export async function requestOtpService(emailOrTsId: string) {
     user.role === 'ACADEMIC_ADMIN' ||
     (user.role as string) === 'CONTENT_MANAGER' ||
     (user.role as string) === 'SECURITY_ADMIN' ||
-    user.email.toLowerCase() === 'threadsecurity@gmail.com' ||
+    user.email.toLowerCase() === 'code.kunal19@gmail.com' ||
     user.email.toLowerCase() === superAdminEmail;
 
   const isMentor = user.role === 'MENTOR';
@@ -776,7 +776,7 @@ export async function verifyOtpService(emailOrTsId: string, code: string) {
   const cleanCode = code.trim();
   await checkLockoutStatus(query);
 
-  const superAdminEmail = (process.env.FACULTY_NOTIFY_EMAIL || 'threadsecurity@gmail.com').trim().toLowerCase();
+  const superAdminEmail = (process.env.FACULTY_NOTIFY_EMAIL || 'code.kunal19@gmail.com').trim().toLowerCase();
   const isSecAdmin =
     verifySecurityAdminSecretKey(query) ||
     query.toLowerCase() === 'tse-sec-admin' ||
@@ -805,14 +805,14 @@ export async function verifyOtpService(emailOrTsId: string, code: string) {
     include: { tsIdentity: true },
   });
 
-  if (!user && (isGeneralAdmin || query.toLowerCase() === superAdminEmail || query.toLowerCase() === 'threadsecurity@gmail.com')) {
+  if (!user && (isGeneralAdmin || query.toLowerCase() === superAdminEmail || query.toLowerCase() === 'code.kunal19@gmail.com')) {
     user = await prisma.user.findFirst({
       where: {
         OR: [
           { role: 'SUPER_ADMIN' },
           { role: 'ACADEMIC_ADMIN' },
           { email: superAdminEmail },
-          { email: 'threadsecurity@gmail.com' },
+          { email: 'code.kunal19@gmail.com' },
         ],
       },
       include: { tsIdentity: true },
@@ -843,9 +843,9 @@ export async function verifyOtpService(emailOrTsId: string, code: string) {
     identifiersToCheck.push(user.tsIdentity.tsId.toLowerCase());
     identifiersToCheck.push(user.tsIdentity.tsId);
   }
-  if (isSecAdmin || isGeneralAdmin || query.toLowerCase() === superAdminEmail || query.toLowerCase() === 'threadsecurity@gmail.com') {
+  if (isSecAdmin || isGeneralAdmin || query.toLowerCase() === superAdminEmail || query.toLowerCase() === 'code.kunal19@gmail.com') {
     identifiersToCheck.push(superAdminEmail);
-    identifiersToCheck.push('threadsecurity@gmail.com');
+    identifiersToCheck.push('code.kunal19@gmail.com');
   }
 
   const uniqueIdentifiers = Array.from(new Set(identifiersToCheck));
@@ -958,7 +958,7 @@ export async function verifyOtpService(emailOrTsId: string, code: string) {
           { role: 'SUPER_ADMIN' },
           { email: superAdminEmail },
           { email: 'edu@threadsecurity.in' },
-          { email: 'threadsecurity@gmail.com' },
+          { email: 'code.kunal19@gmail.com' },
         ],
       },
       include: { tsIdentity: true },

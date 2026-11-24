@@ -12,7 +12,7 @@ export interface LeadAlertData {
 }
 
 export async function sendFacultyLeadAlert(lead: LeadAlertData): Promise<{ success: boolean; message?: string }> {
-  const facultyEmail = process.env.FACULTY_NOTIFY_EMAIL || 'threadsecurity@gmail.com';
+  const facultyEmail = process.env.FACULTY_NOTIFY_EMAIL || 'code.kunal19@gmail.com';
   const apiKey = process.env.RESEND_API_KEY;
   const fromEmail = process.env.RESEND_FROM_EMAIL || 'Edu Nexus Education <onboarding@resend.dev>';
 

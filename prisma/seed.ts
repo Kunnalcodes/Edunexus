@@ -31,7 +31,7 @@ async function main() {
   // Admin User
   const adminUser = await prisma.user.create({
     data: {
-      email: 'threadsecurity@gmail.com',
+      email: 'code.kunal19@gmail.com',
       name: 'Super Admin (ThreadSecurity)',
       passwordHash: process.env.ADMIN_PASSKEY || 'TSE_DEV_SEED_ONLY',
       role: RoleType.SUPER_ADMIN,
@@ -41,7 +41,7 @@ async function main() {
   // Mentor 1: TS-Mentor-Dummy-01
   const mentor1User = await prisma.user.create({
     data: {
-      email: 'threadsecuritymentor@gmail.com',
+      email: 'kunaldigitalconnect@gmail.com',
       name: 'TS-Mentor-Dummy-01',
       passwordHash: 'TS2619',
       role: RoleType.MENTOR,
