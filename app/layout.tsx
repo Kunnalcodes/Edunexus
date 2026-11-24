@@ -31,7 +31,6 @@ const lora = Lora({
 });
 
 import { OrganizationJsonLd, WebSiteJsonLd, SiteNavigationJsonLd } from '@/components/seo/JsonLd';
-import { ChatbotWidget } from '@/src/components/chatbot/ChatbotWidget';
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -144,7 +143,6 @@ export default function RootLayout({
         <WebSiteJsonLd />
         <SiteNavigationJsonLd />
         {children}
-        <ChatbotWidget />
       </body>
     </html>
   );
