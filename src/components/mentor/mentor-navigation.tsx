@@ -124,12 +124,12 @@ export function MentorNavigation({ user, unreadNotificationsCount = 0 }: MentorN
           </button>
           <Link href="/mentor" className="flex items-center gap-2">
             <Image
-              src="/logos/TSE Logo Nav.svg"
-              alt="TSE Logo"
+              src="/logos/edunexus-icon.png"
+              alt="Edunexus Logo"
               width={28}
               height={28}
               unoptimized
-              className="h-7 w-auto"
+              className="h-7 w-auto rounded-md"
             />
             <span className="text-xs font-mono font-bold tracking-wider text-white">
               FACULTY PORTAL

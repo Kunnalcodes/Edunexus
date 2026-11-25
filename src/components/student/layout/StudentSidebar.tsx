@@ -82,22 +82,22 @@ export function StudentSidebar({ student }: StudentSidebarProps) {
           <Link href="/student" className="flex items-center gap-2.5 overflow-hidden group">
             <div className="relative shrink-0">
               <Image
-                src="/logos/TSE Logo Nav.svg"
-                alt="Edu Nexus Logo"
+                src="/logos/edunexus-icon.png"
+                alt="Edunexus Logo"
                 width={32}
                 height={32}
                 unoptimized
-                className="h-8 w-auto object-contain transition-transform group-hover:scale-105"
+                className="h-8 w-auto object-contain transition-transform group-hover:scale-105 rounded-md"
               />
-              <span className="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-purple-500 ring-2 ring-[#050706]" />
+              <span className="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-indigo-500 ring-2 ring-[#050706]" />
             </div>
             {!collapsed && (
               <div className="flex flex-col">
                 <span className="font-mono text-xs font-bold tracking-wider text-white uppercase whitespace-nowrap">
-                  Edu Nexus
+                  EDUNEXUS
                 </span>
-                <span className="font-mono text-[9px] text-purple-400 tracking-widest uppercase font-semibold">
-                  EDUCATION TERMINAL
+                <span className="font-mono text-[9px] text-indigo-400 tracking-widest uppercase font-semibold">
+                  STUDENT PORTAL
                 </span>
               </div>
             )}

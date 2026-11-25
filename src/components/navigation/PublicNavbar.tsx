@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { getSession } from '@/lib/auth/session';
 import { Button } from '@/components/ui/button';
 import { Badge, TSIDBadge } from '@/components/ui/badge';
@@ -39,13 +40,18 @@ export async function PublicNavbar() {
         {/* Brand Logo */}
         <Link
           href="/"
-          className="flex items-center gap-2 shrink-0"
-          title="EduNexus Smart Learning & Management Platform"
+          className="flex items-center gap-2.5 shrink-0"
+          title="Edunexus Integrated Education Platform"
         >
-          <span className="font-bold tracking-wider text-base sm:text-lg text-black uppercase">
-            EDUNEXUS
-          </span>
-          <span className="text-[10px] bg-indigo-50 border border-indigo-200/80 px-2 py-0.5 rounded uppercase font-bold tracking-widest text-indigo-700">
+          <Image
+            src="/logos/edunexus-logo.png"
+            alt="Edunexus Logo"
+            width={150}
+            height={44}
+            className="h-9 w-auto object-contain"
+            priority
+          />
+          <span className="hidden sm:inline-block text-[10px] bg-indigo-50 border border-indigo-200/80 px-2 py-0.5 rounded uppercase font-bold tracking-widest text-indigo-700">
             ERP &middot; LMS
           </span>
         </Link>

@@ -133,17 +133,17 @@ export function AdminNavigation({ user }: AdminNavigationProps) {
       <div className="space-y-4">
         {/* Brand Logo & Header */}
         <div className="flex items-center justify-between pb-3 border-b border-slate-800/80">
-          <Link href="/admin" className="flex items-center gap-3 group" title="Edu Nexus Admin Center">
+          <Link href="/admin" className="flex items-center gap-3 group" title="Edunexus Admin Center">
             <Image
-              src="/logos/TSE Logo Nav.svg"
-              alt="Edu Nexus Education Logo"
+              src="/logos/edunexus-icon.png"
+              alt="Edunexus Logo"
               width={34}
               height={34}
               unoptimized
-              className="h-8 w-auto object-contain transition-transform group-hover:scale-105"
+              className="h-8 w-auto object-contain transition-transform group-hover:scale-105 rounded-md"
             />
             <div className="flex flex-col">
-              <span className="text-xs font-mono font-black tracking-wider text-white">Edu Nexus</span>
+              <span className="text-xs font-mono font-black tracking-wider text-white">EDUNEXUS</span>
               <span className="text-[10px] font-mono text-emerald-400 font-bold tracking-widest flex items-center gap-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                 COMMAND CENTER

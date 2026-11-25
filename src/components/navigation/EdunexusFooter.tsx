@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   Mail,
   ArrowRight,
@@ -92,10 +93,16 @@ export function EdunexusFooter({ onOpenDemo }: EdunexusFooterProps) {
           
           {/* Brand Info & Mission (Spans 2 columns) */}
           <div className="lg:col-span-2 space-y-4">
-            <Link href="/" className="inline-flex items-center gap-2">
-              <span className="font-black tracking-wider text-xl text-white uppercase">
-                {FOOTER_CONFIG.brand.name}
-              </span>
+            <Link href="/" className="inline-flex items-center gap-2.5">
+              <div className="bg-white px-2.5 py-1 rounded-xl shadow-xs">
+                <Image
+                  src="/logos/edunexus-logo.png"
+                  alt="Edunexus Logo"
+                  width={130}
+                  height={38}
+                  className="h-7 w-auto object-contain"
+                />
+              </div>
               <span className="text-[10px] bg-indigo-500/20 border border-indigo-400/30 text-indigo-300 px-2 py-0.5 rounded-sm font-semibold tracking-widest uppercase">
                 CAMPUS ERP &middot; LMS
               </span>
