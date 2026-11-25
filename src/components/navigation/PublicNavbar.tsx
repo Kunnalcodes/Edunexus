@@ -52,7 +52,7 @@ export async function PublicNavbar() {
             priority
           />
           <span className="hidden sm:inline-block text-[10px] bg-indigo-50 border border-indigo-200/80 px-2 py-0.5 rounded uppercase font-bold tracking-widest text-indigo-700">
-            ERP &middot; LMS
+            SMART LEARNING &middot;
           </span>
         </Link>
 
