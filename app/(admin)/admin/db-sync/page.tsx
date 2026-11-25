@@ -115,7 +115,7 @@ export default async function SuperAdminDbSyncPage() {
           <CardContent className="p-4 flex items-center justify-between">
             <div>
               <span className="text-[11px] font-medium text-slate-500 uppercase tracking-wider block">
-                Student TS-IDs
+                Student NEXUS-IDs
               </span>
               <div className="text-xl font-bold font-mono text-slate-900 mt-1">
                 {tsIdCount} Identities

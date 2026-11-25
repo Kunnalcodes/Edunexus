@@ -263,8 +263,7 @@ export function UsersDirectoryClient({
           setUsers((prev) => [newUserRecord, ...prev]);
           setIsCreateModalOpen(false);
           showToast(
-            `User ${data.user.name} created as ${data.user.role} with TS-ID ${data.tsId}.${
-              createFormData.dispatchEmail ? ' Credentials dispatched to email.' : ''
+            `User ${data.user.name} created as ${data.user.role} with NEXUS-ID ${data.tsId}.${createFormData.dispatchEmail ? ' Credentials dispatched to email.' : ''
             }`,
             'success'
           );
@@ -324,14 +323,14 @@ export function UsersDirectoryClient({
             prev.map((u) =>
               u.id === editingUser.id
                 ? {
-                    ...u,
-                    name: data.user.name,
-                    email: data.user.email,
-                    role: data.user.role,
-                    isActive: data.user.isActive,
-                    isDashboardAccessGranted: data.user.isDashboardAccessGranted,
-                    phone: editFormData.phone || null,
-                  }
+                  ...u,
+                  name: data.user.name,
+                  email: data.user.email,
+                  role: data.user.role,
+                  isActive: data.user.isActive,
+                  isDashboardAccessGranted: data.user.isDashboardAccessGranted,
+                  phone: editFormData.phone || null,
+                }
                 : u
             )
           );
@@ -450,11 +449,10 @@ export function UsersDirectoryClient({
       {/* Toast Feedback */}
       {feedback && (
         <div
-          className={`p-3.5 rounded-xl border text-xs flex items-center gap-2 shadow-sm transition-all ${
-            feedback.type === 'success'
+          className={`p-3.5 rounded-xl border text-xs flex items-center gap-2 shadow-sm transition-all ${feedback.type === 'success'
               ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
               : 'bg-rose-50 text-rose-800 border-rose-200'
-          }`}
+            }`}
         >
           {feedback.type === 'success' ? (
             <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
@@ -470,11 +468,10 @@ export function UsersDirectoryClient({
         <div className="grid grid-cols-2 sm:grid-cols-6 gap-2.5 w-full sm:w-auto flex-1">
           <button
             onClick={() => setActiveTab('ALL')}
-            className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${
-              activeTab === 'ALL'
+            className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${activeTab === 'ALL'
                 ? 'bg-violet-600 text-white border-violet-600 shadow-sm'
                 : 'bg-white text-slate-800 border-slate-200 hover:border-violet-300'
-            }`}
+              }`}
           >
             <div className="text-[10px] font-semibold uppercase opacity-80">All Users</div>
             <div className="text-xl font-bold mt-0.5">{metrics.total}</div>
@@ -482,11 +479,10 @@ export function UsersDirectoryClient({
 
           <button
             onClick={() => setActiveTab('STUDENT')}
-            className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${
-              activeTab === 'STUDENT'
+            className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${activeTab === 'STUDENT'
                 ? 'bg-violet-600 text-white border-violet-600 shadow-sm'
                 : 'bg-white text-slate-800 border-slate-200 hover:border-violet-300'
-            }`}
+              }`}
           >
             <div className="text-[10px] font-semibold uppercase opacity-80">Students</div>
             <div className="text-xl font-bold mt-0.5">{metrics.students}</div>
@@ -494,11 +490,10 @@ export function UsersDirectoryClient({
 
           <button
             onClick={() => setActiveTab('MENTOR')}
-            className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${
-              activeTab === 'MENTOR'
+            className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${activeTab === 'MENTOR'
                 ? 'bg-violet-600 text-white border-violet-600 shadow-sm'
                 : 'bg-white text-slate-800 border-slate-200 hover:border-violet-300'
-            }`}
+              }`}
           >
             <div className="text-[10px] font-semibold uppercase opacity-80">Mentors</div>
             <div className="text-xl font-bold mt-0.5">{metrics.mentors}</div>
@@ -506,11 +501,10 @@ export function UsersDirectoryClient({
 
           <button
             onClick={() => setActiveTab('STAFF')}
-            className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${
-              activeTab === 'STAFF'
+            className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${activeTab === 'STAFF'
                 ? 'bg-violet-600 text-white border-violet-600 shadow-sm'
                 : 'bg-white text-slate-800 border-slate-200 hover:border-violet-300'
-            }`}
+              }`}
           >
             <div className="text-[10px] font-semibold uppercase opacity-80">Staff / Ops</div>
             <div className="text-xl font-bold mt-0.5">{metrics.staff}</div>
@@ -518,11 +512,10 @@ export function UsersDirectoryClient({
 
           <button
             onClick={() => setActiveTab('SECURITY_ADMIN')}
-            className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${
-              activeTab === 'SECURITY_ADMIN'
+            className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${activeTab === 'SECURITY_ADMIN'
                 ? 'bg-violet-600 text-white border-violet-600 shadow-sm'
                 : 'bg-white text-slate-800 border-slate-200 hover:border-violet-300'
-            }`}
+              }`}
           >
             <div className="text-[10px] font-semibold uppercase opacity-80">Security</div>
             <div className="text-xl font-bold mt-0.5">{metrics.securityAdmins}</div>
@@ -530,11 +523,10 @@ export function UsersDirectoryClient({
 
           <button
             onClick={() => setActiveTab('SUPER_ADMIN')}
-            className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${
-              activeTab === 'SUPER_ADMIN'
+            className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${activeTab === 'SUPER_ADMIN'
                 ? 'bg-violet-600 text-white border-violet-600 shadow-sm'
                 : 'bg-white text-slate-800 border-slate-200 hover:border-violet-300'
-            }`}
+              }`}
           >
             <div className="text-[10px] font-semibold uppercase opacity-80">Super Admins</div>
             <div className="text-xl font-bold mt-0.5">{metrics.superAdmins}</div>
@@ -559,7 +551,7 @@ export function UsersDirectoryClient({
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search users by name, email, TS-ID, or role..."
+            placeholder="Search users by name, email, NEXUS-ID, or role..."
             className="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 text-slate-900 placeholder:text-slate-400 text-xs rounded-xl focus:outline-none focus:border-violet-500 focus:bg-white transition-colors"
           />
         </div>
@@ -578,7 +570,7 @@ export function UsersDirectoryClient({
                 <th className="p-4">User</th>
                 <th className="p-4">Email &amp; Contact</th>
                 <th className="p-4">Role</th>
-                <th className="p-4">TS-ID</th>
+                <th className="p-4">NEXUS-ID</th>
                 <th className="p-4 text-center">Dashboard Access</th>
                 <th className="p-4">Joined Date</th>
                 <th className="p-4 text-right">Actions &amp; Creds</th>
@@ -655,11 +647,10 @@ export function UsersDirectoryClient({
                         <button
                           onClick={() => handleToggleAccess(u.id, u.isDashboardAccessGranted)}
                           disabled={isPending}
-                          className={`px-2.5 py-1 rounded-lg text-[11px] font-medium border inline-flex items-center gap-1.5 transition-all cursor-pointer ${
-                            u.isDashboardAccessGranted
+                          className={`px-2.5 py-1 rounded-lg text-[11px] font-medium border inline-flex items-center gap-1.5 transition-all cursor-pointer ${u.isDashboardAccessGranted
                               ? 'bg-emerald-50 text-emerald-700 border-emerald-200 hover:bg-emerald-100'
                               : 'bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100'
-                          }`}
+                            }`}
                         >
                           {u.isDashboardAccessGranted ? (
                             <>
@@ -777,7 +768,7 @@ export function UsersDirectoryClient({
 
                 <div className="space-y-1">
                   <div className="flex items-center justify-between">
-                    <label className="text-slate-700 font-semibold text-[11px]">Appointed TS-ID *</label>
+                    <label className="text-slate-700 font-semibold text-[11px]">Appointed NEXUS-ID *</label>
                     <button
                       type="button"
                       onClick={() => refreshSuggestedId(createFormData.role)}
@@ -826,11 +817,10 @@ export function UsersDirectoryClient({
                           }));
                           await refreshSuggestedId(r);
                         }}
-                        className={`p-3 rounded-2xl border text-center transition-all cursor-pointer flex flex-col items-center justify-between gap-1 ${
-                          isSelected
+                        className={`p-3 rounded-2xl border text-center transition-all cursor-pointer flex flex-col items-center justify-between gap-1 ${isSelected
                             ? 'bg-violet-50/80 border-violet-500 text-violet-900 shadow-xs ring-1 ring-violet-500'
                             : 'bg-slate-50/50 border-slate-200 hover:border-slate-300 text-slate-700'
-                        }`}
+                          }`}
                       >
                         <Icon className={`w-5 h-5 ${isSelected ? 'text-violet-600' : 'text-slate-500'}`} />
                         <span className="font-bold text-xs">{label}</span>
@@ -913,8 +903,8 @@ export function UsersDirectoryClient({
                           createFormData.role === 'MENTOR'
                             ? 'e.g. Lead Cybersecurity Mentor'
                             : createFormData.role === 'SECURITY_ADMIN'
-                            ? 'e.g. SOC Lead & Incident Analyst'
-                            : 'e.g. Academic Curriculum Coordinator'
+                              ? 'e.g. SOC Lead & Incident Analyst'
+                              : 'e.g. Academic Curriculum Coordinator'
                         }
                         className="w-full px-3 py-2 rounded-xl bg-white border border-slate-200 text-slate-900 text-xs focus:outline-none focus:border-violet-500"
                       />

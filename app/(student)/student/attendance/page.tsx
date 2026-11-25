@@ -52,7 +52,7 @@ export default async function StudentBatchAttendancePage() {
               ACADEMIC COHORT TRACKING
             </Badge>
             <span className="text-xs font-mono text-zinc-400">
-              TS-ID: {session.tsId || 'TSE-2026-STUDENT'}
+              NEXUS-ID: {session.tsId || 'TSE-2026-STUDENT'}
             </span>
           </div>
 
@@ -69,9 +69,8 @@ export default async function StudentBatchAttendancePage() {
           <div className="p-3.5 rounded-2xl bg-white/[0.03] border border-white/[0.08] text-center font-mono min-w-[120px]">
             <span className="text-[10px] text-zinc-400 uppercase tracking-widest block">ATTENDANCE FIDELITY</span>
             <span
-              className={`text-2xl font-extrabold block mt-0.5 ${
-                attendanceRate >= 80 ? 'text-[#C6FF34]' : 'text-amber-400'
-              }`}
+              className={`text-2xl font-extrabold block mt-0.5 ${attendanceRate >= 80 ? 'text-[#C6FF34]' : 'text-amber-400'
+                }`}
             >
               {attendanceRate}%
             </span>
@@ -176,11 +175,10 @@ export default async function StudentBatchAttendancePage() {
                 <div className="flex justify-between items-center py-1.5 border-b border-white/[0.04]">
                   <span className="text-zinc-400">Compliance Status:</span>
                   <span
-                    className={`px-2 py-0.5 rounded text-[10px] font-bold ${
-                      attendanceRate >= 80
+                    className={`px-2 py-0.5 rounded text-[10px] font-bold ${attendanceRate >= 80
                         ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
                         : 'bg-amber-500/15 text-amber-400 border border-amber-500/30'
-                    }`}
+                      }`}
                   >
                     {attendanceRate >= 80 ? 'ELIGIBLE FOR EXAMS' : 'ATTENDANCE WARNING'}
                   </span>
@@ -193,11 +191,10 @@ export default async function StudentBatchAttendancePage() {
                   </div>
                   <div className="w-full bg-white/[0.06] h-2 rounded-full overflow-hidden">
                     <div
-                      className={`h-full rounded-full transition-all duration-500 ${
-                        attendanceRate >= 80
+                      className={`h-full rounded-full transition-all duration-500 ${attendanceRate >= 80
                           ? 'bg-gradient-to-r from-emerald-500 to-[#C6FF34]'
                           : 'bg-amber-500'
-                      }`}
+                        }`}
                       style={{ width: `${Math.min(100, attendanceRate)}%` }}
                     />
                   </div>
@@ -395,7 +392,7 @@ export default async function StudentBatchAttendancePage() {
                             try {
                               const parsed = JSON.parse(sessionItem.resourcesJson);
                               if (parsed.meetingUrl) meetingUrl = parsed.meetingUrl;
-                            } catch {}
+                            } catch { }
                           }
                           if (!meetingUrl) {
                             const match = `${sessionItem.importantNotes || ''} ${sessionItem.agenda || ''}`.match(/https?:\/\/[^\s]+/);
@@ -442,23 +439,22 @@ export default async function StudentBatchAttendancePage() {
                       {/* Status Badge & Timestamp */}
                       <div className="text-right shrink-0 space-y-1 font-mono text-xs">
                         <span
-                          className={`px-3 py-1 rounded-full font-mono text-xs font-bold inline-block ${
-                            status === 'PRESENT'
+                          className={`px-3 py-1 rounded-full font-mono text-xs font-bold inline-block ${status === 'PRESENT'
                               ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
                               : status === 'LATE'
-                              ? 'bg-amber-500/15 text-amber-400 border border-amber-500/30'
-                              : status === 'ABSENT'
-                              ? 'bg-rose-500/15 text-rose-400 border border-rose-500/30'
-                              : 'bg-white/[0.05] text-zinc-400 border border-white/[0.08]'
-                          }`}
+                                ? 'bg-amber-500/15 text-amber-400 border border-amber-500/30'
+                                : status === 'ABSENT'
+                                  ? 'bg-rose-500/15 text-rose-400 border border-rose-500/30'
+                                  : 'bg-white/[0.05] text-zinc-400 border border-white/[0.08]'
+                            }`}
                         >
                           {status === 'PRESENT'
                             ? '✅ PRESENT'
                             : status === 'LATE'
-                            ? '⏰ LATE'
-                            : status === 'ABSENT'
-                            ? '❌ ABSENT'
-                            : '⏳ SCHEDULED'}
+                              ? '⏰ LATE'
+                              : status === 'ABSENT'
+                                ? '❌ ABSENT'
+                                : '⏳ SCHEDULED'}
                         </span>
 
                         {record?.checkInTime && (

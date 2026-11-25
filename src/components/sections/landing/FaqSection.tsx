@@ -36,7 +36,7 @@ const FAQ_DATA: FaqCategory[] = [
       },
       {
         question: 'What kind of credentials will I receive upon graduation?',
-        answer: 'You will receive a TS-ID (Edu Nexus Identifier) verified credential. It is a secure digital record on our directory that lets employers cryptographically verify your lab accomplishments, progress, and capstone scores.',
+        answer: 'You will receive a NEXUS-ID (Edu Nexus Identifier) verified credential. It is a secure digital record on our directory that lets employers cryptographically verify your lab accomplishments, progress, and capstone scores.',
       },
       {
         question: 'What is the fee structure and do you offer installment options?',
@@ -78,7 +78,7 @@ const FAQ_DATA: FaqCategory[] = [
       },
       {
         question: 'What is the mock interview and resume review process?',
-        answer: 'We conduct realistic mock interviews (technical and HR rounds) led by active CISOs and hiring managers. We also review and optimize your GitHub portfolio, TS-ID directory page, and CV.',
+        answer: 'We conduct realistic mock interviews (technical and HR rounds) led by active CISOs and hiring managers. We also review and optimize your GitHub portfolio, NEXUS-ID directory page, and CV.',
       },
       {
         question: 'What is the average salary range for your placed graduates?',
@@ -126,8 +126,8 @@ export function FaqSection() {
                     setExpandedIndex(null);
                   }}
                   className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-sm transition-all duration-200 text-left ${isActive
-                      ? 'bg-violet-50/70 text-violet-600 border-l-2 border-violet-600 pl-3.5'
-                      : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                    ? 'bg-violet-50/70 text-violet-600 border-l-2 border-violet-600 pl-3.5'
+                    : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
                     }`}
                 >
                   <span className={isActive ? 'text-violet-600' : 'text-slate-400'}>

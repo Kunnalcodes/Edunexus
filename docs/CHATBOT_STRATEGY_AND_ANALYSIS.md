@@ -36,7 +36,7 @@ In a high-stakes Cybersecurity Learning Management System like **Edu Nexus Educa
 flowchart TD
     subgraph Client [Student / Mentor UI]
         ChatWidget["Floating Sentinel Chat / Embedded Lab Assistant"]
-        ContextCollector["Context Collector (CourseId, LessonId, LabId, TS-ID)"]
+        ContextCollector["Context Collector (CourseId, LessonId, LabId, NEXUS-ID)"]
     end
 
     subgraph Backend [Next.js App Router API: /api/chat]

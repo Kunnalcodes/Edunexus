@@ -19,7 +19,7 @@ export interface SendOnboardingResult {
 }
 
 /**
- * Sends a welcome onboarding email with login URL, TS-ID, temporary credentials,
+ * Sends a welcome onboarding email with login URL, NEXUS-ID, temporary credentials,
  * and academic batch details using verified domain sender (edu@threadsecurity.in).
  */
 export async function sendStudentOnboardingEmail({
@@ -162,7 +162,7 @@ export async function sendStudentOnboardingEmail({
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%; border-collapse: separate; border-spacing: 0; background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; margin: 24px 0; overflow: hidden;">
                 <tr>
                   <td style="padding: 12px 16px; font-size: 13px; color: #64748b; font-weight: 500; width: 42%; vertical-align: middle; border-bottom: 1px solid #edf2f7; text-align: left;">
-                    Candidate TS-ID
+                    Candidate NEXUS-ID
                   </td>
                   <td align="right" style="padding: 12px 16px; font-size: 13px; color: #15803d; font-weight: 700; width: 58%; vertical-align: middle; border-bottom: 1px solid #edf2f7; text-align: right; font-family: monospace;">
                     <span style="display: inline-block; background-color: #f0fdf4; color: #15803d; padding: 3px 10px; border-radius: 6px; border: 1px solid #bbf7d0;">${tsId}</span>
@@ -223,7 +223,7 @@ export async function sendStudentOnboardingEmail({
               </table>
 
               <p style="font-size: 13px; color: #64748b; line-height: 1.5; margin: 0 0 20px 0;">
-                You can log in to access your practical cyber sandboxes, live lectures, assignments, and verified certifications. You may log in directly with your email or TS-ID using secure OTP or your temporary password.
+                You can log in to access your practical cyber sandboxes, live lectures, assignments, and verified certifications. You may log in directly with your email or NEXUS-ID using secure OTP or your temporary password.
               </p>
 
               <div style="text-align: center;">
@@ -750,7 +750,7 @@ export async function sendStaffOrAdminOnboardingEmail({
                 </tr>
                 <tr>
                   <td style="padding: 12px 16px; font-size: 13px; color: #64748b; font-weight: 500; width: 42%; vertical-align: middle; border-bottom: 1px solid #edf2f7; text-align: left;">
-                    Account TS-ID
+                    Account NEXUS-ID
                   </td>
                   <td align="right" style="padding: 12px 16px; width: 58%; vertical-align: middle; border-bottom: 1px solid #edf2f7; text-align: right;">
                     <span style="display: inline-block; background-color: #ede9fe; color: #5b21b6; padding: 3px 10px; border-radius: 6px; font-family: monospace; font-size: 12px; font-weight: 700; border: 1px solid #ddd6fe;">${tsId}</span>

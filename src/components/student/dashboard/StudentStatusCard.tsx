@@ -61,10 +61,10 @@ export function StudentStatusCard({
           </div>
         </div>
 
-        {/* Visual TS-ID Pill */}
+        {/* Visual NEXUS-ID Pill */}
         <div className="text-right">
           <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest block mb-0.5">
-            AUTHENTICATED TS-ID
+            AUTHENTICATED NEXUS-ID
           </span>
           <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-purple-500/15 border border-purple-500/30 text-purple-300 font-mono font-bold text-xs shadow-[0_0_12px_rgba(168,85,247,0.15)]">
             <ShieldCheck className="w-3.5 h-3.5 text-purple-400" />

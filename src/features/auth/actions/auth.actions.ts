@@ -163,7 +163,7 @@ export async function requestOtpAction(emailOrTsId: string) {
   if (!emailOrTsId || emailOrTsId.trim().length < 3) {
     return {
       success: false,
-      error: 'Please enter a valid Email Address, TS-ID, or Security Secret Key.',
+      error: 'Please enter a valid Email Address, NEXUS-ID, or Security Secret Key.',
     };
   }
 

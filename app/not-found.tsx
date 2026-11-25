@@ -79,7 +79,7 @@ export default function NotFound() {
         <div className="pt-6 border-t border-white/10 text-xs text-slate-400 font-mono flex flex-wrap items-center justify-center gap-4">
           <Link href="/verify-certificate" className="hover:text-[#C6FF34] transition-colors flex items-center gap-1.5">
             <ShieldCheck className="w-3.5 h-3.5 text-[#C6FF34]" aria-hidden="true" />
-            <span>Verify TS-ID</span>
+            <span>Verify NEXUS-ID</span>
           </Link>
           <span className="text-white/20">•</span>
           <Link href="/learning-paths" className="hover:text-[#C6FF34] transition-colors flex items-center gap-1.5">

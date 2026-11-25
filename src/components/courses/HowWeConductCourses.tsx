@@ -165,22 +165,22 @@ const STAGES: StageData[] = [
   {
     step: '07',
     theme: 'lime',
-    title: 'Completion & Cryptographic TS-ID',
+    title: 'Completion & Cryptographic NEXUS-ID',
     tag: 'STAGE 07 • CREDENTIALING & HIRING DISPATCH',
     duration: 'Graduation & Beyond • Lifetime Access',
-    desc: 'Capstone verification, thesis approval, and issuance of a cryptographically signed, blockchain-verifiable TS-ID credential. Verified graduates receive priority referral routing to partner hiring pipelines.',
+    desc: 'Capstone verification, thesis approval, and issuance of a cryptographically signed, blockchain-verifiable NEXUS-ID credential. Verified graduates receive priority referral routing to partner hiring pipelines.',
     competencies: [
       'Cryptographically verifiable credential management and portfolio sharing',
       'Technical interview preparation and system architecture presentation',
       'Direct dispatch to hiring partners across Cyber & AI sectors',
     ],
     deliverables: [
-      'Cryptographically signed TS-ID public credential with unique verify URL',
+      'Cryptographically signed NEXUS-ID public credential with unique verify URL',
       'Verified LinkedIn digital skill badge and verifiable certificate',
       'Priority routing into TSE Partner Network hiring database',
     ],
-    tools: ['TS-ID Credential Engine', 'TSE Alumni Portal', 'Partner Network', 'LinkedIn API'],
-    metric: 'Cryptographically Signed TS-ID Credential Issued',
+    tools: ['NEXUS-ID Credential Engine', 'TSE Alumni Portal', 'Partner Network', 'LinkedIn API'],
+    metric: 'Cryptographically Signed NEXUS-ID Credential Issued',
     icon: Award,
   },
 ];
@@ -211,7 +211,7 @@ export function HowWeConductCourses() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_50%,rgba(15,23,42,0.4),transparent)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-24">
-        
+
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 text-slate-300 font-mono text-xs font-bold tracking-widest uppercase shadow-md">
@@ -230,7 +230,7 @@ export function HowWeConductCourses() {
 
         {/* ── CURVY SERPENTINE ROADMAP CONTAINER ── */}
         <div className="relative pt-8 pb-16">
-          
+
           {/* ═════════════════════════════════════════════════════════════════════════════
               SVG CURVY LINE WEAVING LEFT AND RIGHT DOWN THE WHOLE PIPELINE (DESKTOP)
              ═════════════════════════════════════════════════════════════════════════════ */}
@@ -373,11 +373,10 @@ export function HowWeConductCourses() {
                   {/* Center Node / Milestone Pin for Desktop */}
                   <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 z-30 items-center justify-center">
                     <div
-                      className={`w-12 h-12 rounded-2xl flex items-center justify-center font-mono text-xs font-black shadow-2xl transition-all duration-300 ${
-                        isLime
+                      className={`w-12 h-12 rounded-2xl flex items-center justify-center font-mono text-xs font-black shadow-2xl transition-all duration-300 ${isLime
                           ? 'bg-[#080d09] border-2 border-[#C6FF34] text-[#C6FF34] shadow-[0_0_24px_rgba(198,255,52,0.5)]'
                           : 'bg-[#10091d] border-2 border-[#7E3BED] text-purple-300 shadow-[0_0_24px_rgba(126,59,237,0.6)]'
-                      }`}
+                        }`}
                     >
                       {stage.step}
                     </div>

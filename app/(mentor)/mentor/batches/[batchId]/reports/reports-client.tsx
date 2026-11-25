@@ -26,7 +26,7 @@ export function ReportsClient({ batch, metrics }: ReportsClientProps) {
 
   // Export Attendance CSV
   const handleExportAttendanceCsv = () => {
-    const headers = ['TS-ID', 'Student Name', 'Email', 'Total Sessions', 'Attended', 'Attendance %', 'Status'];
+    const headers = ['NEXUS-ID', 'Student Name', 'Email', 'Total Sessions', 'Attended', 'Attendance %', 'Status'];
     const rows = students.map((st: any) => {
       const records = st.attendanceRecords || [];
       const presentCount = records.filter((r: any) => r.status === 'PRESENT' || r.status === 'LATE').length;
@@ -57,7 +57,7 @@ export function ReportsClient({ batch, metrics }: ReportsClientProps) {
 
   // Export Progress CSV
   const handleExportProgressCsv = () => {
-    const headers = ['TS-ID', 'Student Name', 'Email', 'Completed Lessons', 'Progress %', 'Academic Standing'];
+    const headers = ['NEXUS-ID', 'Student Name', 'Email', 'Completed Lessons', 'Progress %', 'Academic Standing'];
     const totalLessons = (batch.course?.modules || []).reduce(
       (acc: number, m: any) => acc + (m.lessons?.length || 0),
       0

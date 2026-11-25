@@ -15,16 +15,16 @@ import {
 export function CourseHero() {
   return (
     <section className="relative pt-12 pb-20 overflow-hidden bg-[#06090e] text-white border-b border-slate-800">
-      
+
       {/* Dark Technical Background Grid (No Blurry Gradients) */}
       <div className="absolute inset-0 pointer-events-none opacity-25 bg-[linear-gradient(to_right,#334155_1px,transparent_1px),linear-gradient(to_bottom,#334155_1px,transparent_1px)] bg-[size:3rem_3rem]" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
+
           {/* Left Column: Headline, Student Trust, and CTAs */}
           <div className="lg:col-span-7 space-y-6 text-left">
-            
+
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900 border border-slate-700 text-slate-300 font-mono text-xs font-semibold tracking-wider uppercase">
               <GraduationCap className="w-3.5 h-3.5 text-[#C6FF34]" />
               <span>TSE ACADEMIC &amp; SANDBOX LABS</span>
@@ -92,7 +92,7 @@ export function CourseHero() {
               </div>
               <div>
                 <span className="block text-xl font-bold text-purple-400">Verified</span>
-                <span>TS-ID Badges</span>
+                <span>NEXUS-ID Badges</span>
               </div>
             </div>
           </div>
@@ -100,7 +100,7 @@ export function CourseHero() {
           {/* Right Column: Live Student Cohort & Sandbox Activity Terminal */}
           <div className="lg:col-span-5 relative">
             <div className="p-6 sm:p-7 rounded-2xl bg-[#0b1019] border border-slate-800 shadow-2xl relative overflow-hidden space-y-5 text-left">
-              
+
               {/* Window Header */}
               <div className="flex items-center justify-between pb-3 border-b border-slate-800">
                 <div className="flex items-center gap-2">
@@ -115,7 +115,7 @@ export function CourseHero() {
 
               {/* Active Student Cohort Sessions */}
               <div className="space-y-3 font-mono text-xs">
-                
+
                 {/* Student Session 1 */}
                 <div className="p-4 rounded-xl bg-slate-950 border border-slate-800/90 flex items-center justify-between">
                   <div className="flex items-center gap-3">

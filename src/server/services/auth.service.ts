@@ -1,5 +1,5 @@
 import { prisma } from '../database/prisma';
-import { generateTSID } from '../../lib/auth/ts-id';
+import { generateTSID } from '../../lib/auth/NEXUS-ID';
 import { LoginInput, RegisterInput } from '../../features/auth/schemas/auth.schema';
 import { logAuditEvent } from '../security/audit';
 import { generate6DigitOtp, sendOtpEmail } from '../email/otp.service';
@@ -331,7 +331,7 @@ export async function verifyAdminCredentials(emailOrTsId: string, secretKey: str
 
   if (!user || !user.isActive) {
     await recordFailedAttempt(query);
-    throw new Error('No active administrator or staff account found matching that Email Address or TS-ID.');
+    throw new Error('No active administrator or staff account found matching that Email Address or NEXUS-ID.');
   }
 
   const isAdminRole =
@@ -484,7 +484,7 @@ export async function verifyMentorCredentials(
 
   if (!user || !user.isActive) {
     await recordFailedAttempt(query);
-    throw new Error('No active Mentor account found matching that Email Address or TS-ID.');
+    throw new Error('No active Mentor account found matching that Email Address or NEXUS-ID.');
   }
 
   const isMentorRole =
@@ -647,7 +647,7 @@ export async function requestOtpService(emailOrTsId: string) {
     };
   }
 
-  // Find user by email OR TS-ID
+  // Find user by email OR NEXUS-ID
   let user = await prisma.user.findFirst({
     where: {
       OR: [
@@ -681,7 +681,7 @@ export async function requestOtpService(emailOrTsId: string) {
   }
 
   if (!user || !user.isActive) {
-    throw new Error('No active account found matching that Email Address or TS-ID.');
+    throw new Error('No active account found matching that Email Address or NEXUS-ID.');
   }
 
   const isStaff = user.role === 'ACADEMIC_ADMIN' || (user.role as string) === 'CONTENT_MANAGER';

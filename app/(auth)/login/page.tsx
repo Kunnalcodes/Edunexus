@@ -85,7 +85,7 @@ function AuthContent() {
     const cleanInput = emailOrTsId.trim();
     if (!cleanInput) {
       setLoading(false);
-      setError('Please enter your Email or TS-ID.');
+      setError('Please enter your Email or NEXUS-ID.');
       return;
     }
 
@@ -476,8 +476,8 @@ function AuthContent() {
               type="button"
               onClick={() => handleTabSwitch('signin')}
               className={`py-2 text-xs sm:text-sm font-medium rounded-lg transition-all ${activeTab === 'signin'
-                  ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-[0_2px_10px_rgba(124,58,237,0.3)]'
-                  : 'text-purple-300/60 hover:text-white'
+                ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-[0_2px_10px_rgba(124,58,237,0.3)]'
+                : 'text-purple-300/60 hover:text-white'
                 }`}
             >
               Sign In
@@ -486,8 +486,8 @@ function AuthContent() {
               type="button"
               onClick={() => handleTabSwitch('signup')}
               className={`py-2 text-xs sm:text-sm font-medium rounded-lg transition-all ${activeTab === 'signup'
-                  ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-[0_2px_10px_rgba(124,58,237,0.3)]'
-                  : 'text-purple-300/60 hover:text-white'
+                ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-[0_2px_10px_rgba(124,58,237,0.3)]'
+                : 'text-purple-300/60 hover:text-white'
                 }`}
             >
               Sign Up
@@ -498,8 +498,8 @@ function AuthContent() {
           {error && (
             <div
               className={`p-3.5 rounded-xl border text-xs flex items-center gap-2.5 transition-all ${isLockedOut
-                  ? 'bg-amber-500/15 border-amber-500/40 text-amber-300'
-                  : 'bg-red-500/15 border-red-500/30 text-red-300'
+                ? 'bg-amber-500/15 border-amber-500/40 text-amber-300'
+                : 'bg-red-500/15 border-red-500/30 text-red-300'
                 }`}
             >
               {isLockedOut ? (
@@ -527,14 +527,14 @@ function AuthContent() {
                 <form onSubmit={handleIdentifierSubmit} className="space-y-5">
                   <div className="space-y-2">
                     <label className="block text-xs font-medium text-purple-200/90">
-                      Email Address or TS-ID
+                      Email Address or NEXUS-ID
                     </label>
                     <div className="relative">
                       <Input
                         type="text"
                         value={emailOrTsId}
                         onChange={(e) => setEmailOrTsId(e.target.value)}
-                        placeholder="you@example.com or TS-ID"
+                        placeholder="you@example.com or NEXUS-ID"
                         className="h-11 bg-[#171032]/80 border-purple-500/25 text-white placeholder:text-purple-300/30 rounded-xl px-3.5 focus:border-purple-400 focus:ring-1 focus:ring-purple-400/50 transition-all text-sm"
                         required
                         autoFocus
@@ -778,7 +778,7 @@ function AuthContent() {
                   <div className="grid grid-cols-2 gap-3">
                     <button
                       type="button"
-                      onClick={() => setError('Institutional single-sign-on is managed via your registered student email or TS-ID.')}
+                      onClick={() => setError('Institutional single-sign-on is managed via your registered student email or NEXUS-ID.')}
                       className="flex items-center justify-center gap-2.5 h-11 px-4 rounded-xl bg-[#171032]/60 hover:bg-purple-950/40 border border-purple-500/20 text-xs font-medium text-purple-200/90 transition-all hover:border-purple-500/40"
                     >
                       <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24">
@@ -911,8 +911,8 @@ function AuthContent() {
                         type="button"
                         onClick={() => setExperienceLevel(lvl)}
                         className={`py-2 px-2 text-xs rounded-xl border flex items-center justify-center gap-1.5 transition-all ${isSelected
-                            ? 'bg-purple-600/30 border-purple-400 text-white font-medium shadow-[0_0_12px_rgba(168,85,247,0.25)]'
-                            : 'bg-[#171032]/50 border-purple-500/20 text-purple-300/70 hover:text-white hover:border-purple-500/40'
+                          ? 'bg-purple-600/30 border-purple-400 text-white font-medium shadow-[0_0_12px_rgba(168,85,247,0.25)]'
+                          : 'bg-[#171032]/50 border-purple-500/20 text-purple-300/70 hover:text-white hover:border-purple-500/40'
                           }`}
                       >
                         <span
@@ -951,7 +951,7 @@ function AuthContent() {
                 disabled={loading}
                 className="w-full h-11 bg-gradient-to-r from-purple-600 via-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-medium rounded-xl shadow-[0_4px_20px_rgba(124,58,237,0.35)] transition-all flex items-center justify-center gap-2 text-sm pt-1"
               >
-                {loading ? 'Creating Account & TS-ID...' : 'Join Edu Nexus Education'}
+                {loading ? 'Creating Account & NEXUS-ID...' : 'Join Edu Nexus Education'}
                 <ArrowRight className="w-4 h-4" />
               </Button>
 
@@ -968,7 +968,7 @@ function AuthContent() {
                 <div className="grid grid-cols-2 gap-3">
                   <button
                     type="button"
-                    onClick={() => setError('Institutional single-sign-on is managed via your registered student email or TS-ID.')}
+                    onClick={() => setError('Institutional single-sign-on is managed via your registered student email or NEXUS-ID.')}
                     className="flex items-center justify-center gap-2.5 h-11 px-4 rounded-xl bg-[#171032]/60 hover:bg-purple-950/40 border border-purple-500/20 text-xs font-medium text-purple-200/90 transition-all hover:border-purple-500/40"
                   >
                     <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24">

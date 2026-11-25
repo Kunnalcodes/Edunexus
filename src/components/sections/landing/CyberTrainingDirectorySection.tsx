@@ -2,16 +2,16 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { 
-  ShieldCheck, 
-  MapPin, 
-  Clock, 
-  GraduationCap, 
-  Award, 
-  Terminal, 
-  ChevronRight, 
-  Search, 
-  CheckCircle2, 
+import {
+  ShieldCheck,
+  MapPin,
+  Clock,
+  GraduationCap,
+  Award,
+  Terminal,
+  ChevronRight,
+  Search,
+  CheckCircle2,
   BookOpen,
   ArrowRight
 } from 'lucide-react';
@@ -64,7 +64,7 @@ const DIRECTORY_CATEGORIES: DirectoryCategory[] = [
       { label: '6 Month Ethical Hacking Course for Engineering Students', href: '/workshops', tag: 'BTech' },
       { label: '6 Month SOC Analyst Course & Internship', href: '/courses/soc-blue-team-operations', tag: 'SOC' },
       { label: 'Cyber Security Industrial Training after BTech / BCA', href: '/placements', tag: 'Careers' },
-      { label: '45 Days Cyber Security Course with Certificate', href: '/verify-certificate', tag: 'TS-ID' },
+      { label: '45 Days Cyber Security Course with Certificate', href: '/verify-certificate', tag: 'NEXUS-ID' },
       { label: '6 Month Cyber Security Career Program with Placement', href: '/placements', tag: '100% Placement' },
     ],
   },
@@ -107,7 +107,7 @@ const DIRECTORY_CATEGORIES: DirectoryCategory[] = [
       { label: 'Ethical Hacking Course after 12th / BTech / BCA', href: '/learning-paths', tag: 'Roadmap' },
       { label: 'Ethical Hacking Internship & Summer Training', href: '/workshops', tag: 'Internship' },
       { label: 'eJPT & PNPT Practical Training Drills', href: '/courses/cyber-security-course', tag: 'eJPT' },
-      { label: 'Ethical Hacking Career Course with TS-ID Certificate', href: '/verify-certificate', tag: 'TS-ID' },
+      { label: 'Ethical Hacking Career Course with NEXUS-ID Certificate', href: '/verify-certificate', tag: 'NEXUS-ID' },
     ],
   },
   {
@@ -200,13 +200,13 @@ export function CyberTrainingDirectorySection() {
 
   const filteredKeywords = searchFilter.trim()
     ? DIRECTORY_CATEGORIES.flatMap((c) => c.keywords).filter((k) =>
-        k.label.toLowerCase().includes(searchFilter.toLowerCase()) ||
-        k.tag.toLowerCase().includes(searchFilter.toLowerCase())
-      )
+      k.label.toLowerCase().includes(searchFilter.toLowerCase()) ||
+      k.tag.toLowerCase().includes(searchFilter.toLowerCase())
+    )
     : currentCategory.keywords;
 
   return (
-    <section 
+    <section
       aria-label="Cybersecurity and AI Training Programs Comprehensive Directory"
       className="py-16 md:py-24 bg-[#050914] text-white border-t border-slate-800 relative overflow-hidden"
     >
@@ -216,7 +216,7 @@ export function CyberTrainingDirectorySection() {
       <div className="absolute -bottom-40 left-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Section Header */}
         <div className="text-center max-w-4xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-bold tracking-wider uppercase mb-4">
@@ -263,11 +263,10 @@ export function CyberTrainingDirectorySection() {
                 <button
                   key={cat.id}
                   onClick={() => setActiveTab(cat.id)}
-                  className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-medium transition-all cursor-pointer ${
-                    isActive
+                  className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-medium transition-all cursor-pointer ${isActive
                       ? 'bg-emerald-500 text-black font-bold shadow-md shadow-emerald-500/20'
                       : 'bg-slate-900/80 text-slate-300 hover:text-white hover:bg-slate-800 border border-slate-800'
-                  }`}
+                    }`}
                 >
                   <Icon className="w-3.5 h-3.5 shrink-0" />
                   <span>{cat.name}</span>
@@ -327,7 +326,7 @@ export function CyberTrainingDirectorySection() {
             <Award className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
             <div>
               <span className="text-white font-bold block mb-0.5">Global Certifications Prepared</span>
-              <span>CEH v13 (EC-Council), CompTIA Security+ (SY0-701), OSCP, eJPT, AWS Certified Security, and TS-ID.</span>
+              <span>CEH v13 (EC-Council), CompTIA Security+ (SY0-701), OSCP, eJPT, AWS Certified Security, and NEXUS-ID.</span>
             </div>
           </div>
 

@@ -3,16 +3,16 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { 
-  Shield, 
-  Brain, 
-  Terminal, 
-  Code, 
-  Lock, 
-  Cpu, 
-  Layers, 
-  Sparkles, 
-  ArrowUpRight, 
+import {
+  Shield,
+  Brain,
+  Terminal,
+  Code,
+  Lock,
+  Cpu,
+  Layers,
+  Sparkles,
+  ArrowUpRight,
   CheckCircle2,
   Activity,
   Server,
@@ -252,13 +252,13 @@ export function ProjectsBentoSection() {
   const rightColProjects = [PROJECTS_DATA[2], PROJECTS_DATA[5], PROJECTS_DATA[8]];
 
   return (
-    <section 
-      id="projects" 
+    <section
+      id="projects"
       aria-label="Real-World and AI-Powered Projects Bento Grid"
       className="relative py-20 sm:py-28 bg-white text-slate-900 overflow-hidden border-b border-slate-200"
     >
       {/* Subtle Dot Grid Pattern */}
-      <div 
+      <div
         className="absolute inset-0 opacity-[0.35] pointer-events-none"
         style={{
           backgroundImage: 'radial-gradient(#94a3b8 1px, transparent 1px)',
@@ -270,13 +270,13 @@ export function ProjectsBentoSection() {
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-gradient-to-tr from-violet-100/50 via-purple-50/30 to-transparent rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* ── SECTION HEADER (Matches Reference Image 3) ── */}
         <div className="flex flex-col items-center justify-center text-center mb-10 sm:mb-12">
           <span className="text-xs sm:text-sm font-semibold tracking-[0.25em] text-violet-600 uppercase font-mono mb-2">
             — PROJECTS —
           </span>
-          
+
           <ScrollFloat
             as="h2"
             animationDuration={0.8}
@@ -310,11 +310,10 @@ export function ProjectsBentoSection() {
                       setHoveredId('proj-5');
                     }
                   }}
-                  className={`px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
-                    isActive
+                  className={`px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${isActive
                       ? 'bg-black text-white shadow-md scale-105'
                       : 'text-slate-600 hover:text-black hover:bg-white/60'
-                  }`}
+                    }`}
                 >
                   {cat}
                 </button>
@@ -325,7 +324,7 @@ export function ProjectsBentoSection() {
 
         {/* ── DYNAMIC ASYMMETRIC BENTO GRID (Morphs Smoothly on Hover) ── */}
         {activeCategory === 'All Projects' ? (
-          <div 
+          <div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4 sm:gap-5 items-stretch transition-all duration-500"
             onMouseLeave={() => setHoveredId('proj-5')}
           >
@@ -333,8 +332,8 @@ export function ProjectsBentoSection() {
             <div className="lg:col-span-3 flex flex-col gap-4 sm:gap-5">
               {leftColProjects.map((proj) => {
                 const isLeftHovered = leftColProjects.some((p) => p.id === hoveredId);
-                const isExpanded = isLeftHovered 
-                  ? hoveredId === proj.id 
+                const isExpanded = isLeftHovered
+                  ? hoveredId === proj.id
                   : proj.id === 'proj-4'; // default tall middle card
 
                 return (
@@ -354,8 +353,8 @@ export function ProjectsBentoSection() {
             <div className="lg:col-span-6 flex flex-col gap-4 sm:gap-5">
               {centerColProjects.map((proj) => {
                 const isCenterHovered = centerColProjects.some((p) => p.id === hoveredId);
-                const isExpanded = isCenterHovered 
-                  ? hoveredId === proj.id 
+                const isExpanded = isCenterHovered
+                  ? hoveredId === proj.id
                   : proj.id === 'proj-5'; // default flagship center hero
 
                 return (
@@ -375,8 +374,8 @@ export function ProjectsBentoSection() {
             <div className="lg:col-span-3 flex flex-col gap-4 sm:gap-5">
               {rightColProjects.map((proj) => {
                 const isRightHovered = rightColProjects.some((p) => p.id === hoveredId);
-                const isExpanded = isRightHovered 
-                  ? hoveredId === proj.id 
+                const isExpanded = isRightHovered
+                  ? hoveredId === proj.id
                   : proj.id === 'proj-6'; // default tall middle card
 
                 return (
@@ -419,12 +418,12 @@ export function ProjectsBentoSection() {
                 All Projects Mapped to Real SOC, Cloud & AI Workflows
               </h4>
               <p className="text-xs sm:text-sm text-slate-600 mt-0.5">
-                Every project includes step-by-step lab walkthroughs, code repositories, and cryptographically verified TS-ID credentials.
+                Every project includes step-by-step lab walkthroughs, code repositories, and cryptographically verified NEXUS-ID credentials.
               </p>
             </div>
           </div>
 
-          <Button 
+          <Button
             onClick={() => setSelectedProject(PROJECTS_DATA[4])}
             className="shrink-0 bg-black hover:bg-slate-800 text-white font-medium text-xs sm:text-sm px-6 py-3 rounded-full shadow hover:shadow-lg transition-all"
           >
@@ -494,7 +493,7 @@ export function ProjectsBentoSection() {
                 </h5>
                 <div className="flex flex-wrap gap-2">
                   {selectedProject.technologies.map((tech) => (
-                    <span 
+                    <span
                       key={tech}
                       className="text-xs font-semibold bg-slate-100 text-slate-800 border border-slate-200 px-3 py-1 rounded-lg"
                     >
@@ -521,14 +520,14 @@ export function ProjectsBentoSection() {
 
               {/* Footer Buttons */}
               <div className="pt-4 flex items-center justify-end gap-3 border-t border-slate-100">
-                <Button 
+                <Button
                   variant="outline"
                   onClick={() => setSelectedProject(null)}
                   className="rounded-full font-medium text-xs sm:text-sm"
                 >
                   Close
                 </Button>
-                <Button 
+                <Button
                   onClick={() => {
                     setSelectedProject(null);
                     const element = document.getElementById('featured-courses') || document.getElementById('batches');
@@ -568,13 +567,11 @@ function InteractiveBentoCard({
       transition={{ type: 'spring', stiffness: 320, damping: 28 }}
       onMouseEnter={onHover}
       onClick={onClick}
-      className={`relative rounded-3xl overflow-hidden cursor-pointer group bg-slate-900 border transition-all duration-300 ${
-        isExpanded 
-          ? 'h-[340px] lg:h-[370px] shadow-2xl z-20 border-slate-300 scale-[1.01]' 
+      className={`relative rounded-3xl overflow-hidden cursor-pointer group bg-slate-900 border transition-all duration-300 ${isExpanded
+          ? 'h-[340px] lg:h-[370px] shadow-2xl z-20 border-slate-300 scale-[1.01]'
           : 'h-[210px] sm:h-[220px] shadow-md z-10 border-slate-200/80 hover:border-slate-300'
-      } ${
-        isHovered ? 'ring-2 ring-[#C6FF34]/60' : ''
-      }`}
+        } ${isHovered ? 'ring-2 ring-[#C6FF34]/60' : ''
+        }`}
     >
       {/* Background Image with smooth kinetic zoom */}
       <Image
@@ -582,30 +579,27 @@ function InteractiveBentoCard({
         alt={project.title}
         fill
         unoptimized
-        className={`object-cover transition-transform duration-700 ease-out filter contrast-[1.08] ${
-          isHovered ? 'scale-110 brightness-[0.8]' : 'scale-100 brightness-[0.68]'
-        }`}
+        className={`object-cover transition-transform duration-700 ease-out filter contrast-[1.08] ${isHovered ? 'scale-110 brightness-[0.8]' : 'scale-100 brightness-[0.68]'
+          }`}
         sizes="(max-width: 1024px) 100vw, 33vw"
         loading="lazy"
       />
 
       {/* Multi-tier Gradient Overlay for crisp white text */}
-      <div 
-        className={`absolute inset-0 transition-opacity duration-300 z-10 ${
-          isExpanded 
-            ? 'bg-gradient-to-t from-black via-black/60 to-black/30' 
+      <div
+        className={`absolute inset-0 transition-opacity duration-300 z-10 ${isExpanded
+            ? 'bg-gradient-to-t from-black via-black/60 to-black/30'
             : 'bg-gradient-to-t from-black via-black/45 to-transparent'
-        }`} 
+          }`}
       />
 
       {/* Top Details Bar */}
       <div className="absolute top-0 inset-x-0 p-4 sm:p-5 z-20 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <span className={`text-[10px] sm:text-[11px] font-semibold tracking-widest px-2.5 py-0.5 rounded-full border backdrop-blur-md uppercase transition-colors ${
-            isHovered 
-              ? 'bg-black/90 text-[#C6FF34] border-[#C6FF34]/50' 
+          <span className={`text-[10px] sm:text-[11px] font-semibold tracking-widest px-2.5 py-0.5 rounded-full border backdrop-blur-md uppercase transition-colors ${isHovered
+              ? 'bg-black/90 text-[#C6FF34] border-[#C6FF34]/50'
               : 'bg-black/60 text-white/90 border-white/15'
-          }`}>
+            }`}>
             {project.projectNumber}
           </span>
           {project.isHero && isExpanded && (
@@ -615,13 +609,11 @@ function InteractiveBentoCard({
           )}
         </div>
 
-        <div className={`rounded-full flex items-center justify-center backdrop-blur-md border transition-all duration-300 ${
-          isExpanded ? 'w-8 h-8' : 'w-7 h-7'
-        } ${
-          isHovered 
-            ? 'bg-white text-black border-white scale-110 shadow-lg' 
+        <div className={`rounded-full flex items-center justify-center backdrop-blur-md border transition-all duration-300 ${isExpanded ? 'w-8 h-8' : 'w-7 h-7'
+          } ${isHovered
+            ? 'bg-white text-black border-white scale-110 shadow-lg'
             : 'bg-white/20 text-white border-white/25'
-        }`}>
+          }`}>
           <ArrowUpRight className={isExpanded ? 'w-4 h-4' : 'w-3.5 h-3.5'} />
         </div>
       </div>
@@ -635,22 +627,20 @@ function InteractiveBentoCard({
         </span>
 
         {/* Title */}
-        <h4 className={`font-semibold text-white tracking-tight leading-snug drop-shadow-md transition-all ${
-          isExpanded ? 'text-lg sm:text-xl lg:text-2xl mb-1' : 'text-sm sm:text-base'
-        }`}>
+        <h4 className={`font-semibold text-white tracking-tight leading-snug drop-shadow-md transition-all ${isExpanded ? 'text-lg sm:text-xl lg:text-2xl mb-1' : 'text-sm sm:text-base'
+          }`}>
           {project.title}
         </h4>
 
         {/* Subtitle / Description */}
-        <p className={`text-slate-200 font-medium transition-all ${
-          isExpanded ? 'text-xs sm:text-sm line-clamp-2 mb-2.5 text-slate-100' : 'text-[11px] text-slate-300 line-clamp-1 mt-0.5'
-        }`}>
+        <p className={`text-slate-200 font-medium transition-all ${isExpanded ? 'text-xs sm:text-sm line-clamp-2 mb-2.5 text-slate-100' : 'text-[11px] text-slate-300 line-clamp-1 mt-0.5'
+          }`}>
           {project.subtitle}
         </p>
 
         {/* Expanded Rich Details (revealed dynamically on expanded / active state) */}
         {isExpanded && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.25 }}
@@ -659,7 +649,7 @@ function InteractiveBentoCard({
             {/* Tech Tags */}
             <div className="flex flex-wrap gap-1.5">
               {project.technologies.slice(0, 4).map((tech) => (
-                <span 
+                <span
                   key={tech}
                   className="text-[9px] sm:text-[10px] font-medium text-white bg-black/60 border border-white/20 px-2 py-0.5 rounded backdrop-blur-sm"
                 >
@@ -683,9 +673,8 @@ function InteractiveBentoCard({
       </div>
 
       {/* Subtle glowing top border illumination on hover */}
-      <div className={`absolute top-0 inset-x-4 h-[2px] bg-gradient-to-r from-transparent via-[#C6FF34] to-transparent transition-opacity duration-300 z-30 ${
-        isHovered ? 'opacity-100' : 'opacity-0'
-      }`} />
+      <div className={`absolute top-0 inset-x-4 h-[2px] bg-gradient-to-r from-transparent via-[#C6FF34] to-transparent transition-opacity duration-300 z-30 ${isHovered ? 'opacity-100' : 'opacity-0'
+        }`} />
     </motion.div>
   );
 }

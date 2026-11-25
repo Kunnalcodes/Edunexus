@@ -60,7 +60,7 @@ export default async function StudentPendingApprovalPage() {
           </div>
           <h1 className="tse-h2 text-white">Student Registration & Credentials Verified</h1>
           <p className="tse-body-sm text-slate-300 max-w-xl mx-auto">
-            Your unique Edu Nexus Identity (TS-ID) has been provisioned. Academic registrar approval is required before the full training environment and course labs unlock.
+            Your unique Edu Nexus Identity (NEXUS-ID) has been provisioned. Academic registrar approval is required before the full training environment and course labs unlock.
           </p>
         </div>
 
@@ -76,7 +76,7 @@ export default async function StudentPendingApprovalPage() {
                   Student Credential Verification Card
                 </CardTitle>
                 <span className="text-xs text-slate-400 font-mono">
-                  Review your registered details and TS-ID primary key
+                  Review your registered details and NEXUS-ID primary key
                 </span>
               </div>
             </div>
@@ -89,7 +89,7 @@ export default async function StudentPendingApprovalPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="p-4 rounded-xl bg-white/5 border border-white/10 space-y-1">
                 <span className="text-[11px] font-mono text-slate-400 uppercase tracking-wider block">
-                  Edu Nexus ID (TS-ID)
+                  Edu Nexus ID (NEXUS-ID)
                 </span>
                 <span className="text-xl font-bold font-mono text-security-green block">
                   {tsId}

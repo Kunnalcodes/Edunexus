@@ -180,11 +180,10 @@ export function StudentActionsClient({
       <button
         disabled={toggleLoading}
         onClick={handleToggleAccess}
-        className={`px-2.5 py-1.5 rounded-lg text-xs font-medium transition-all border shadow-xs inline-flex items-center gap-1 cursor-pointer disabled:opacity-50 ${
-          isGranted
+        className={`px-2.5 py-1.5 rounded-lg text-xs font-medium transition-all border shadow-xs inline-flex items-center gap-1 cursor-pointer disabled:opacity-50 ${isGranted
             ? 'bg-emerald-50 text-emerald-700 border-emerald-200 hover:bg-emerald-100/60'
             : 'bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100/60'
-        }`}
+          }`}
         title={isGranted ? 'Click to Revoke Dashboard Access' : 'Click to Grant Dashboard Access'}
       >
         {toggleLoading ? (
@@ -277,11 +276,10 @@ export function StudentActionsClient({
 
             {dispatchFeedback && (
               <div
-                className={`p-3 rounded-xl border text-xs flex items-center gap-2 ${
-                  dispatchFeedback.type === 'success'
+                className={`p-3 rounded-xl border text-xs flex items-center gap-2 ${dispatchFeedback.type === 'success'
                     ? 'bg-emerald-50 border-emerald-200 text-emerald-700'
                     : 'bg-rose-50 border-rose-200 text-rose-700'
-                }`}
+                  }`}
               >
                 {dispatchFeedback.type === 'success' ? (
                   <CheckCircle2 className="w-4 h-4 text-emerald-600" />
@@ -294,7 +292,7 @@ export function StudentActionsClient({
 
             <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 space-y-2 text-slate-700">
               <div className="flex justify-between items-center text-xs">
-                <span className="text-slate-500">Student TS-ID:</span>
+                <span className="text-slate-500">Student NEXUS-ID:</span>
                 <span className="font-mono font-bold text-violet-700 bg-violet-100/60 px-2 py-0.5 rounded border border-violet-200">
                   {student.tsId}
                 </span>
@@ -324,7 +322,7 @@ export function StudentActionsClient({
                   className="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-xl px-3.5 py-2.5 font-mono text-xs focus:outline-none focus:border-violet-500"
                 />
                 <p className="text-[11px] text-slate-500 mt-1">
-                  The email will include the student portal login link, TS-ID, password, and OTP login details.
+                  The email will include the student portal login link, NEXUS-ID, password, and OTP login details.
                 </p>
               </div>
 
@@ -466,9 +464,8 @@ export function StudentActionsClient({
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-slate-500 text-[11px] font-medium">Access Status</span>
-                  <span className={`px-2 py-0.5 rounded-md border text-[11px] font-medium ${
-                    isGranted ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : 'bg-amber-50 text-amber-700 border-amber-200'
-                  }`}>
+                  <span className={`px-2 py-0.5 rounded-md border text-[11px] font-medium ${isGranted ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : 'bg-amber-50 text-amber-700 border-amber-200'
+                    }`}>
                     {isGranted ? 'Active Access' : 'Guest / Pending'}
                   </span>
                 </div>
@@ -476,7 +473,7 @@ export function StudentActionsClient({
 
               {/* Specialization Track Reassignment */}
               <div className="p-3.5 rounded-xl border border-slate-200 bg-violet-50/40 space-y-2">
-                <span className="text-slate-700 font-semibold block text-[11px]">Reassign Track TS-ID</span>
+                <span className="text-slate-700 font-semibold block text-[11px]">Reassign Track NEXUS-ID</span>
                 <div className="flex gap-2">
                   <button
                     disabled={loading}

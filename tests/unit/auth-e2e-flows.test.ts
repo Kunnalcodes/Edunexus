@@ -49,7 +49,7 @@ vi.mock('../../src/server/database/prisma', () => {
       user: {
         findUnique: vi.fn().mockImplementation(({ where }) => {
           const u = userStore.find((user) => user.email === where?.email || user.id === where?.id);
-          return Promise.resolve(u ? { ...u, tsIdentity: { tsId: 'TS-ID-1' } } : null);
+          return Promise.resolve(u ? { ...u, tsIdentity: { tsId: 'NEXUS-ID-1' } } : null);
         }),
         findFirst: vi.fn().mockImplementation(({ where }) => {
           const u = userStore.find((user) => {
@@ -66,12 +66,12 @@ vi.mock('../../src/server/database/prisma', () => {
             }
             return false;
           });
-          return Promise.resolve(u ? { ...u, tsIdentity: { tsId: 'TS-ID-1' } } : null);
+          return Promise.resolve(u ? { ...u, tsIdentity: { tsId: 'NEXUS-ID-1' } } : null);
         }),
         create: vi.fn().mockImplementation(({ data }) => {
           const u = { id: `usr_${Date.now()}`, isActive: true, isApproved: true, ...data };
           userStore.push(u);
-          return Promise.resolve({ ...u, tsIdentity: { tsId: 'TS-ID-1' } });
+          return Promise.resolve({ ...u, tsIdentity: { tsId: 'NEXUS-ID-1' } });
         }),
         upsert: vi.fn().mockImplementation(({ where, update, create }) => {
           let u = userStore.find((user) => user.email === where.email);
@@ -79,7 +79,7 @@ vi.mock('../../src/server/database/prisma', () => {
             u = { id: `usr_${Date.now()}`, isActive: true, isApproved: true, ...create };
             userStore.push(u);
           }
-          return Promise.resolve({ ...u, tsIdentity: { tsId: 'TS-ID-1' } });
+          return Promise.resolve({ ...u, tsIdentity: { tsId: 'NEXUS-ID-1' } });
         }),
       },
       mentorProfile: {

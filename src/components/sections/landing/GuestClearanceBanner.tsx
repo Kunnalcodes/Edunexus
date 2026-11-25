@@ -28,7 +28,7 @@ export function GuestClearanceBanner({ session }: GuestClearanceBannerProps) {
               </Badge>
             </div>
             <p className="text-gray-300 mt-0.5">
-              Welcome <strong>{session?.name || 'Learner'}</strong>! You have unrestricted access to discover the curriculum, courses, and learning paths below while your TS-ID awaits Academic Admin approval.
+              Welcome <strong>{session?.name || 'Learner'}</strong>! You have unrestricted access to discover the curriculum, courses, and learning paths below while your NEXUS-ID awaits Academic Admin approval.
             </p>
           </div>
         </div>
@@ -43,7 +43,7 @@ export function GuestClearanceBanner({ session }: GuestClearanceBannerProps) {
           <Link href="/student/pending-approval">
             <Button variant="outline" size="sm" className="border-white/40 text-white hover:bg-white/10 font-mono text-xs gap-1 font-medium">
               <FileCheck className="w-3.5 h-3.5" />
-              View TS-ID Card
+              View NEXUS-ID Card
             </Button>
           </Link>
         </div>

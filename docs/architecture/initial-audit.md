@@ -57,7 +57,7 @@ A comprehensive initial audit was conducted on the project workspace `e:\threads
 
 3. **Academic Integrity & Certificate Verification:**
    - *Risk:* Unauthorized certificate issuance or forgeable certificate parameters.
-   - *Mitigation:* Unique immutable TS-ID (`TSE-YYYY-XXXXXX`), cryptographic verification hash, server-validated eligibility checks prior to issuance, public verification route `/verify-certificate/[id]`.
+   - *Mitigation:* Unique immutable NEXUS-ID (`TSE-YYYY-XXXXXX`), cryptographic verification hash, server-validated eligibility checks prior to issuance, public verification route `/verify-certificate/[id]`.
 
 ---
 

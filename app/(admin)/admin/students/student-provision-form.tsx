@@ -3,7 +3,7 @@
 import { useState, useTransition } from 'react';
 import { UserPlus, Sparkles, RefreshCw, CheckCircle2, AlertCircle } from 'lucide-react';
 import { createStudentAction, getSuggestedTSIDAction } from '@/features/admin/actions/admin.actions';
-import { StudentTrack } from '@/lib/auth/ts-id';
+import { StudentTrack } from '@/lib/auth/NEXUS-ID';
 
 interface StudentProvisionFormProps {
   initialSuggestedId: string;
@@ -80,7 +80,7 @@ export function StudentProvisionForm({ initialSuggestedId }: StudentProvisionFor
           </div>
           <div>
             <h3 className="text-sm font-semibold text-slate-900 tracking-tight">
-              Provision Student Account &amp; Appointed TS-ID
+              Provision Student Account &amp; Appointed NEXUS-ID
             </h3>
             <p className="text-[11px] text-slate-500">
               System auto-suggests the next unused sequential ID (+1) while allowing custom admin appointment.
@@ -90,11 +90,10 @@ export function StudentProvisionForm({ initialSuggestedId }: StudentProvisionFor
 
         {feedback && (
           <div
-            className={`px-3 py-1.5 rounded-lg flex items-center gap-1.5 text-xs font-medium ${
-              feedback.type === 'success'
+            className={`px-3 py-1.5 rounded-lg flex items-center gap-1.5 text-xs font-medium ${feedback.type === 'success'
                 ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
                 : 'bg-rose-50 text-rose-700 border border-rose-200'
-            }`}
+              }`}
           >
             {feedback.type === 'success' ? (
               <CheckCircle2 className="w-3.5 h-3.5" />
@@ -152,7 +151,7 @@ export function StudentProvisionForm({ initialSuggestedId }: StudentProvisionFor
           <div className="lg:col-span-1">
             <div className="flex items-center justify-between mb-1.5">
               <label className="block text-[11px] font-medium text-slate-600">
-                Appointed TS-ID *
+                Appointed NEXUS-ID *
               </label>
               <button
                 type="button"
@@ -214,7 +213,7 @@ export function StudentProvisionForm({ initialSuggestedId }: StudentProvisionFor
               className="w-4 h-4 rounded text-violet-600 accent-violet-600 cursor-pointer"
             />
             <span className="font-medium">
-              Automatically dispatch welcome email with login credentials &amp; TS-ID to student inbox
+              Automatically dispatch welcome email with login credentials &amp; NEXUS-ID to student inbox
             </span>
           </label>
 

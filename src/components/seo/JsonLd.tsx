@@ -130,7 +130,7 @@ export function SiteNavigationJsonLd() {
       {
         '@type': 'SiteNavigationElement',
         position: 5,
-        name: 'Verify TS-ID Certificate',
+        name: 'Verify NEXUS-ID Certificate',
         description: 'Cryptographically verify student credentials and earned competencies.',
         url: `${APP_URL}/verify-certificate`,
       },
@@ -244,7 +244,7 @@ export function CourseJsonLd({
       sameAs: APP_URL,
       logo: `${APP_URL}/icon-512.png`,
     },
-    educationalCredentialAwarded: 'Verified TS-ID Security Credential',
+    educationalCredentialAwarded: 'Verified NEXUS-ID Security Credential',
     occupationalCategory: category,
     timeRequired: `PT${durationHours}H`,
     educationalLevel: level,

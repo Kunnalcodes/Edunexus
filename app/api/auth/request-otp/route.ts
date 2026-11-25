@@ -8,7 +8,7 @@ export async function POST(req: NextRequest) {
 
     if (!emailOrTsId || typeof emailOrTsId !== 'string' || emailOrTsId.trim().length < 3) {
       return NextResponse.json(
-        { success: false, error: 'Please enter a valid Email Address, TS-ID, or Security Secret Key.' },
+        { success: false, error: 'Please enter a valid Email Address, NEXUS-ID, or Security Secret Key.' },
         { status: 400 }
       );
     }

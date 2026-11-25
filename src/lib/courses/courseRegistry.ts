@@ -68,7 +68,7 @@ export const MASTER_COURSES: MasterCourseData[] = [
       '45 Days / 6 Weeks Summer Training & 6 Months Industrial Internship Options',
       '100% Practical Sandboxed Cloud Labs & Cyber Range Drills',
       'Dual Specialization: Offensive Security (Ethical Hacking/VAPT) & Defensive Security (SOC/Blue Team)',
-      'Global Certification Preparation: CEH v13, CompTIA Security+, OSCP, eJPT & Verifiable TS-ID',
+      'Global Certification Preparation: CEH v13, CompTIA Security+, OSCP, eJPT & Verifiable NEXUS-ID',
       '100% Placement Assistance: Resume Building, Mock Technical Interviews & Direct Partner Hiring Referrals',
       'Offline Classroom Training in Jalandhar, Punjab + Live Online Interactive Batches Across India',
     ],
@@ -83,7 +83,7 @@ export const MASTER_COURSES: MasterCourseData[] = [
       'Hunt threats and monitor security incidents using enterprise SIEM tools including Splunk, Wazuh, and Microsoft Sentinel',
       'Discover and responsibly report high-severity security vulnerabilities on Bug Bounty platforms (HackerOne, Bugcrowd)',
       'Execute defensive incident response playbooks aligned with MITRE ATT&CK and OWASP Top 10 frameworks',
-      'Earn industry-recognized, cryptographically verifiable TS-ID credentials and prepare for CEH, Security+, and OSCP exams',
+      'Earn industry-recognized, cryptographically verifiable NEXUS-ID credentials and prepare for CEH, Security+, and OSCP exams',
     ],
     toolsCovered: [
       'Kali Linux',
@@ -226,7 +226,7 @@ export const MASTER_COURSES: MasterCourseData[] = [
       },
       {
         q: 'Does this course prepare me for CEH, CompTIA Security+, and OSCP certifications?',
-        a: 'Yes. The syllabus is mapped directly to EC-Council CEH v13, CompTIA Security+ (SY0-701), and offensive security standards (OSCP/eJPT). You will also receive an official, cryptographically verifiable TS-ID certificate from Edu Nexus Education.',
+        a: 'Yes. The syllabus is mapped directly to EC-Council CEH v13, CompTIA Security+ (SY0-701), and offensive security standards (OSCP/eJPT). You will also receive an official, cryptographically verifiable NEXUS-ID certificate from Edu Nexus Education.',
       },
       {
         q: 'What placement support is provided after completing the course?',

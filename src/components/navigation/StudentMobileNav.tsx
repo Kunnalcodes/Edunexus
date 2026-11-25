@@ -90,10 +90,10 @@ export function StudentMobileNav({ tsId, studentName }: StudentMobileNavProps) {
                   </button>
                 </div>
 
-                {/* TS-ID Pill */}
+                {/* NEXUS-ID Pill */}
                 <div className="p-3 rounded-xl bg-purple-500/10 border border-purple-500/20 space-y-0.5 font-mono text-xs">
                   <span className="text-[10px] text-purple-300 uppercase tracking-wider block">
-                    AUTHENTICATED TS-ID
+                    AUTHENTICATED NEXUS-ID
                   </span>
                   <span className="text-purple-400 font-bold text-sm block">{tsId}</span>
                 </div>

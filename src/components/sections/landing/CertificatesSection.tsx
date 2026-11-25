@@ -4,11 +4,11 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { getCloudinaryAssetUrl } from '@/lib/cloudinary/assetHelper';
-import { 
-  CheckCircle2, 
-  ShieldCheck, 
-  X, 
-  ZoomIn, 
+import {
+  CheckCircle2,
+  ShieldCheck,
+  X,
+  ZoomIn,
   ArrowUpRight,
   Sparkles,
   User,
@@ -69,8 +69,8 @@ export function CertificatesSection() {
   };
 
   return (
-    <section 
-      id="certifications" 
+    <section
+      id="certifications"
       className="relative bg-gradient-to-b from-[#070312] via-[#080316] to-[#04010d] text-white pt-24 pb-24 sm:pt-36 sm:pb-32 overflow-hidden border-b border-violet-900/20"
     >
       {/* ── TOP & BOTTOM SEAMLESS BLEND OVERLAYS ── */}
@@ -81,13 +81,13 @@ export function CertificatesSection() {
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {/* Soft violet overhead bloom connecting seamlessly with Careers section */}
         <div className="absolute -top-44 left-1/2 -translate-x-1/2 w-[1200px] h-[650px] bg-gradient-to-b from-violet-600/20 via-purple-900/10 to-transparent rounded-full blur-[160px] opacity-75" />
-        
+
         {/* Deep ambient indigo core */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[450px] bg-violet-600/10 rounded-full blur-[120px]" />
       </div>
 
       {/* ── BLUEPRINT WIREFRAME GRID & CROSSHAIR MARKERS (Ultra-Smooth Eased Mask) ── */}
-      <div 
+      <div
         className="absolute inset-0 pointer-events-none opacity-20"
         style={{
           maskImage: 'linear-gradient(180deg, transparent 0%, transparent 10%, rgba(0,0,0,0.5) 28%, rgba(0,0,0,1) 45%, rgba(0,0,0,1) 75%, rgba(0,0,0,0.3) 90%, transparent 100%)',
@@ -111,7 +111,7 @@ export function CertificatesSection() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center">
-        
+
         {/* ── SECTION PRE-HEADER & HEADLINE (Reference Style) ── */}
         <div className="text-center max-w-3xl mb-12 sm:mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-violet-950/70 border border-violet-500/30 text-violet-300 text-xs font-medium tracking-[0.25em] uppercase mb-4 shadow-[0_0_15px_rgba(168,85,247,0.2)]">
@@ -126,47 +126,45 @@ export function CertificatesSection() {
           </h2>
 
           <p className="mt-4 text-xs sm:text-base text-slate-300/90 max-w-3xl mx-auto font-normal leading-relaxed">
-            Validate your practical skills with industry-recognized cyber security certifications and cryptographically verifiable TS-ID credentials. Comprehensive hands-on exam preparation for CEH v13 (EC-Council), CompTIA Security+ (SY0-701), OSCP, eJPT, and cloud defense standards.
+            Validate your practical skills with industry-recognized cyber security certifications and cryptographically verifiable NEXUS-ID credentials. Comprehensive hands-on exam preparation for CEH v13 (EC-Council), CompTIA Security+ (SY0-701), OSCP, eJPT, and cloud defense standards.
           </p>
         </div>
 
         {/* ── PARALLEL SHOWCASE CARDS (Side-by-Side Clean Grid) ── */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 w-full max-w-6xl items-stretch">
-          
+
           {/* ════════════════════════════════════════════════════════════════════════
               1. STUDENT CERTIFICATES (Left Parallel Card)
              ════════════════════════════════════════════════════════════════════════ */}
           <div className="group relative rounded-4xl p-1 bg-gradient-to-b from-violet-500/35 via-violet-900/15 to-violet-950/40 border border-violet-500/30 hover:border-violet-400/70 transition-all duration-500 hover:shadow-[0_0_40px_rgba(168,85,247,0.35)] flex flex-col h-full hover:-translate-y-1.5">
             <div className="relative w-full rounded-xl bg-[#0e071e]/95 p-6 flex flex-col h-full overflow-hidden justify-between">
-              
+
               {/* Header Badge with Track Switcher */}
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-1.5 bg-[#170c30] p-1 rounded-full border border-violet-700/30">
                   <button
                     onClick={() => setActiveStudentCert('cyber')}
-                    className={`px-3 py-1 rounded-full text-[10px] font-medium tracking-wider uppercase transition-all duration-300 ${
-                      activeStudentCert === 'cyber'
+                    className={`px-3 py-1 rounded-full text-[10px] font-medium tracking-wider uppercase transition-all duration-300 ${activeStudentCert === 'cyber'
                         ? 'bg-[#C6FF34] text-slate-950 shadow-[0_0_10px_rgba(198,255,52,0.5)]'
                         : 'text-slate-400 hover:text-white'
-                    }`}
+                      }`}
                   >
                     Cybersecurity Track
                   </button>
                   <button
                     onClick={() => setActiveStudentCert('ai')}
-                    className={`px-3 py-1 rounded-full text-[10px] font-medium tracking-wider uppercase transition-all duration-300 ${
-                      activeStudentCert === 'ai'
+                    className={`px-3 py-1 rounded-full text-[10px] font-medium tracking-wider uppercase transition-all duration-300 ${activeStudentCert === 'ai'
                         ? 'bg-[#C6FF34] text-slate-950 shadow-[0_0_10px_rgba(198,255,52,0.5)]'
                         : 'text-slate-400 hover:text-white'
-                    }`}
+                      }`}
                   >
                     AI & ML Track
                   </button>
                 </div>
 
-                <button 
-                  onClick={() => setSelectedImage({ 
-                    src: activeStudentCert === 'cyber' ? '/images/CertCyber.png' : '/images/CertAI.png', 
+                <button
+                  onClick={() => setSelectedImage({
+                    src: activeStudentCert === 'cyber' ? '/images/CertCyber.png' : '/images/CertAI.png',
                     title: activeStudentCert === 'cyber' ? 'TSE Cybersecurity Specialization Certificate' : 'TSE AI & ML Specialization Certificate',
                     subtitle: activeStudentCert === 'cyber' ? 'Awarded upon clearing live enterprise attack-defense capstones and incident response operations.' : 'Awarded upon mastering production AI architectures, neural systems, and agentic workflows.'
                   })}
@@ -178,18 +176,18 @@ export function CertificatesSection() {
               </div>
 
               {/* Certificate Image Frame */}
-              <div 
-                onClick={() => setSelectedImage({ 
-                  src: activeStudentCert === 'cyber' ? '/images/CertCyber.png' : '/images/CertAI.png', 
+              <div
+                onClick={() => setSelectedImage({
+                  src: activeStudentCert === 'cyber' ? '/images/CertCyber.png' : '/images/CertAI.png',
                   title: activeStudentCert === 'cyber' ? 'TSE Cybersecurity Specialization Certificate' : 'TSE AI & ML Specialization Certificate',
                   subtitle: activeStudentCert === 'cyber' ? 'Awarded upon clearing live enterprise attack-defense capstones and incident response operations.' : 'Awarded upon mastering production AI architectures, neural systems, and agentic workflows.'
                 })}
                 className="relative w-full aspect-[4/3] rounded-xl overflow-hidden border border-white/20 bg-[#120c24] shadow-[0_10px_30px_rgba(0,0,0,0.6)] cursor-pointer group-hover:scale-[1.015] transition-transform duration-500 flex items-center justify-center p-1"
               >
-                <Image 
-                  src={activeStudentCert === 'cyber' ? getCloudinaryAssetUrl('/images/CertCyber.png') : getCloudinaryAssetUrl('/images/CertAI.png')} 
-                  alt={activeStudentCert === 'cyber' ? 'TSE Cybersecurity Student Certificate' : 'TSE AI Student Certificate'} 
-                  fill 
+                <Image
+                  src={activeStudentCert === 'cyber' ? getCloudinaryAssetUrl('/images/CertCyber.png') : getCloudinaryAssetUrl('/images/CertAI.png')}
+                  alt={activeStudentCert === 'cyber' ? 'TSE Cybersecurity Student Certificate' : 'TSE AI Student Certificate'}
+                  fill
                   unoptimized
                   loading="lazy"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -221,35 +219,33 @@ export function CertificatesSection() {
              ════════════════════════════════════════════════════════════════════════ */}
           <div className="group relative rounded-4xl p-1 bg-gradient-to-b from-[#C6FF34]/25 via-violet-900/20 to-violet-950/40 border border-[#C6FF34]/30 hover:border-[#C6FF34]/60 transition-all duration-500 hover:shadow-[0_0_40px_rgba(198,255,52,0.25)] flex flex-col h-full hover:-translate-y-1.5">
             <div className="relative w-full rounded-xl bg-[#0e071e]/95 p-6 flex flex-col h-full overflow-hidden justify-between">
-              
+
               {/* Header Badge with Quick Switcher */}
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-1.5 bg-[#170c30] p-1 rounded-full border border-violet-700/30">
                   <button
                     onClick={() => setActiveGovtCert('dpiit')}
-                    className={`px-3 py-1 rounded-full text-[10px] font-medium tracking-wider uppercase transition-all duration-300 ${
-                      activeGovtCert === 'dpiit'
+                    className={`px-3 py-1 rounded-full text-[10px] font-medium tracking-wider uppercase transition-all duration-300 ${activeGovtCert === 'dpiit'
                         ? 'bg-violet-600 text-white shadow-[0_0_10px_rgba(168,85,247,0.5)]'
                         : 'text-slate-400 hover:text-white'
-                    }`}
+                      }`}
                   >
                     Govt. (DPIIT)
                   </button>
                   <button
                     onClick={() => setActiveGovtCert('iso')}
-                    className={`px-3 py-1 rounded-full text-[10px] font-medium tracking-wider uppercase transition-all duration-300 ${
-                      activeGovtCert === 'iso'
+                    className={`px-3 py-1 rounded-full text-[10px] font-medium tracking-wider uppercase transition-all duration-300 ${activeGovtCert === 'iso'
                         ? 'bg-violet-600 text-white shadow-[0_0_10px_rgba(168,85,247,0.5)]'
                         : 'text-slate-400 hover:text-white'
-                    }`}
+                      }`}
                   >
                     ISO Standard
                   </button>
                 </div>
 
-                <button 
-                  onClick={() => setSelectedImage({ 
-                    src: activeGovtCert === 'dpiit' ? '/images/DPIIT.jpg' : '/images/ISO.jpg', 
+                <button
+                  onClick={() => setSelectedImage({
+                    src: activeGovtCert === 'dpiit' ? '/images/DPIIT.jpg' : '/images/ISO.jpg',
                     title: activeGovtCert === 'dpiit' ? 'DPIIT Government Recognition' : 'ISO Quality Management Certification',
                     subtitle: activeGovtCert === 'dpiit' ? 'Department for Promotion of Industry and Internal Trade, Ministry of Commerce & Industry.' : 'Accredited Quality Management Standard adhering to international training benchmarks.'
                   })}
@@ -261,25 +257,25 @@ export function CertificatesSection() {
               </div>
 
               {/* Certificate Image Frame */}
-              <div 
-                onClick={() => setSelectedImage({ 
-                  src: activeGovtCert === 'dpiit' ? '/images/DPIIT.jpg' : '/images/ISO.jpg', 
+              <div
+                onClick={() => setSelectedImage({
+                  src: activeGovtCert === 'dpiit' ? '/images/DPIIT.jpg' : '/images/ISO.jpg',
                   title: activeGovtCert === 'dpiit' ? 'DPIIT Government Recognition' : 'ISO Quality Management Certification',
                   subtitle: activeGovtCert === 'dpiit' ? 'Department for Promotion of Industry and Internal Trade, Ministry of Commerce & Industry.' : 'Accredited Quality Management Standard adhering to international training benchmarks.'
                 })}
                 className="relative w-full aspect-[4/3] rounded-xl overflow-hidden border border-white/15 bg-[#120c24] shadow-[0_10px_30px_rgba(0,0,0,0.6)] cursor-pointer group-hover:scale-[1.015] transition-transform duration-500"
               >
-                <Image 
-                  src={activeGovtCert === 'dpiit' ? getCloudinaryAssetUrl('/images/DPIIT.jpg') : getCloudinaryAssetUrl('/images/ISO.jpg')} 
-                  alt={activeGovtCert === 'dpiit' ? 'DPIIT Government Certificate' : 'ISO Institutional Certificate'} 
-                  fill 
+                <Image
+                  src={activeGovtCert === 'dpiit' ? getCloudinaryAssetUrl('/images/DPIIT.jpg') : getCloudinaryAssetUrl('/images/ISO.jpg')}
+                  alt={activeGovtCert === 'dpiit' ? 'DPIIT Government Certificate' : 'ISO Institutional Certificate'}
+                  fill
                   unoptimized
                   loading="lazy"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover object-top filter brightness-[0.92] contrast-[1.05]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                
+
                 {/* Overlay Badge */}
                 <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs z-10">
                   <span className="text-[10px] font-medium uppercase tracking-wider text-white bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/20">
@@ -294,8 +290,8 @@ export function CertificatesSection() {
                   {activeGovtCert === 'dpiit' ? 'DPIIT Certificate of Recognition' : 'ISO Institutional Certification'}
                 </h3>
                 <p className="text-xs text-slate-400 leading-relaxed">
-                  {activeGovtCert === 'dpiit' 
-                    ? 'Official recognition under Startup India by the Ministry of Commerce & Industry, Government of India.' 
+                  {activeGovtCert === 'dpiit'
+                    ? 'Official recognition under Startup India by the Ministry of Commerce & Industry, Government of India.'
                     : 'Accredited quality management framework adhering to international industry training standards.'}
                 </p>
                 <div className="pt-2 flex items-center gap-1.5 text-[11px] font-semibold text-violet-400">
@@ -326,11 +322,11 @@ export function CertificatesSection() {
             {/* Comprehensive Callback Dialog Form Modal */}
             <DialogContent className="max-w-4xl p-0 overflow-hidden bg-white text-slate-900 border-none sm:rounded-3xl shadow-2xl">
               <div className="grid grid-cols-1 md:grid-cols-12 items-stretch min-h-[520px]">
-                
+
                 {/* Left Column (Charcoal / Black Brand Card) */}
                 <div className="md:col-span-5 bg-gradient-to-br from-[#0c0c14] via-[#09090f] to-[#040408] p-8 text-white flex flex-col justify-between relative overflow-hidden">
                   <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]" />
-                  
+
                   {/* Brand Logo/Header */}
                   <div className="relative z-10 flex items-center gap-2">
                     <span className="font-semibold tracking-wider text-lg">THREAD</span>
@@ -356,7 +352,7 @@ export function CertificatesSection() {
                     </div>
                     <div className="flex items-center gap-2.5 text-xs text-slate-200">
                       <CheckCircle2 className="w-4 h-4 text-[#C6FF34] shrink-0" />
-                      <span>Direct Employer Verification TS-ID Portal</span>
+                      <span>Direct Employer Verification NEXUS-ID Portal</span>
                     </div>
                     <div className="flex items-center gap-2.5 text-xs text-slate-200">
                       <CheckCircle2 className="w-4 h-4 text-[#C6FF34] shrink-0" />
@@ -398,7 +394,7 @@ export function CertificatesSection() {
                     </motion.div>
                   ) : (
                     <form onSubmit={formStep === 1 ? handleNext : handleSubmit} className="space-y-6">
-                      
+
                       {/* Step Header */}
                       <div className="flex items-center justify-between border-b border-slate-100 pb-4">
                         <div>
@@ -504,11 +500,10 @@ export function CertificatesSection() {
                                   type="button"
                                   key={item.id}
                                   onClick={() => setFormData({ ...formData, currentStatus: item.id })}
-                                  className={`p-2.5 rounded-xl border text-xs font-medium text-left transition-all ${
-                                    formData.currentStatus === item.id
+                                  className={`p-2.5 rounded-xl border text-xs font-medium text-left transition-all ${formData.currentStatus === item.id
                                       ? 'border-violet-600 bg-violet-50/80 text-violet-900 font-medium shadow-sm'
                                       : 'border-slate-200 hover:border-slate-300 text-slate-600'
-                                  }`}
+                                    }`}
                                 >
                                   {item.label}
                                 </button>
@@ -530,11 +525,10 @@ export function CertificatesSection() {
                                   type="button"
                                   key={item.id}
                                   onClick={() => setFormData({ ...formData, domain: item.id })}
-                                  className={`w-full p-3 rounded-xl border text-xs font-medium flex items-center gap-3 transition-all ${
-                                    formData.domain === item.id
+                                  className={`w-full p-3 rounded-xl border text-xs font-medium flex items-center gap-3 transition-all ${formData.domain === item.id
                                       ? 'border-violet-600 bg-violet-50/80 text-violet-900 font-medium shadow-sm'
                                       : 'border-slate-200 hover:border-slate-300 text-slate-600'
-                                  }`}
+                                    }`}
                                 >
                                   {item.icon}
                                   <span>{item.label}</span>
@@ -569,7 +563,7 @@ export function CertificatesSection() {
               </div>
             </DialogContent>
           </Dialog>
-          
+
           <span className="text-[11px] font-medium text-slate-400 tracking-wide">
             Lifetime verification & credentials endorsed by industry leaders
           </span>
@@ -581,9 +575,9 @@ export function CertificatesSection() {
       {selectedImage && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fadeIn">
           <div className="relative w-full max-w-4xl max-h-[90vh] rounded-2xl bg-[#100724] border border-violet-500/40 p-6 sm:p-8 flex flex-col shadow-[0_0_60px_rgba(168,85,247,0.4)] overflow-y-auto">
-            
+
             {/* Modal Close Button */}
-            <button 
+            <button
               onClick={() => setSelectedImage(null)}
               className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white transition-colors z-30"
             >
@@ -608,10 +602,10 @@ export function CertificatesSection() {
             {/* Certificate Big Image View */}
             <div className="relative w-full rounded-xl overflow-hidden border-2 border-violet-500/30 bg-[#090414] mb-6 flex items-center justify-center p-2">
               <div className="relative w-full h-[400px] sm:h-[520px]">
-                <Image 
-                  src={selectedImage.src} 
-                  alt={selectedImage.title} 
-                  fill 
+                <Image
+                  src={selectedImage.src}
+                  alt={selectedImage.title}
+                  fill
                   unoptimized
                   className="object-contain"
                 />

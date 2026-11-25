@@ -112,7 +112,7 @@ export function StudentSidebar({ student }: StudentSidebarProps) {
           </button>
         </div>
 
-        {/* Authenticated TS-ID Badge Card */}
+        {/* Authenticated NEXUS-ID Badge Card */}
         {!collapsed ? (
           <div className="p-3 rounded-2xl bg-gradient-to-b from-white/[0.04] to-white/[0.01] border border-white/[0.08] space-y-1 font-mono text-xs relative overflow-hidden group">
             <div className="absolute top-0 right-0 w-24 h-24 bg-purple-600/[0.05] rounded-full blur-xl pointer-events-none" />
@@ -131,7 +131,7 @@ export function StudentSidebar({ student }: StudentSidebarProps) {
             </div>
           </div>
         ) : (
-          <div className="flex justify-center" title={`Verified TS-ID: ${student.tsId}`}>
+          <div className="flex justify-center" title={`Verified NEXUS-ID: ${student.tsId}`}>
             <span className="p-2.5 rounded-xl bg-white/[0.03] border border-white/[0.08] text-purple-400 hover:bg-white/[0.06] transition-colors cursor-pointer">
               <ShieldCheck className="w-4 h-4" />
             </span>

@@ -124,26 +124,26 @@ export function LearningRoute() {
 
   return (
     <section id="route" className="py-24 bg-[#F8FAFC] text-slate-900 border-t border-slate-200 relative z-10 overflow-hidden">
-      
+
       {/* Background Architectural Grid Pattern */}
       <div className="absolute inset-0 pointer-events-none opacity-35 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:3rem_3rem]" />
-      
+
       {/* Soft Radial Ambient Lighting */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-emerald-500/5 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 relative z-10">
-        
+
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-200 text-slate-700 font-mono text-[11px] font-bold tracking-wider uppercase shadow-sm">
             <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
             <span>THE LEARNING ROUTE</span>
           </div>
-          
+
           <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-slate-900">
             The Continuous <span className="text-emerald-600">Execution Loop</span>
           </h2>
-          
+
           <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed">
             Education is an active feedback loop. Students cycle iteratively through hands-on sandbox exploitation, automated CI/CD security audits, and 1-on-1 mentor code sign-offs.
           </p>
@@ -159,11 +159,10 @@ export function LearningRoute() {
                 <button
                   key={card.id}
                   onClick={() => setActiveIndex(idx)}
-                  className={`px-3.5 py-2 rounded-xl text-xs font-mono font-bold tracking-wider uppercase transition-all duration-200 shrink-0 flex items-center gap-2 ${
-                    isActive
+                  className={`px-3.5 py-2 rounded-xl text-xs font-mono font-bold tracking-wider uppercase transition-all duration-200 shrink-0 flex items-center gap-2 ${isActive
                       ? 'bg-slate-900 text-white shadow-md'
                       : 'bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200/60'
-                  }`}
+                    }`}
                 >
                   <span className={`w-2 h-2 rounded-full ${isActive ? 'bg-emerald-400' : 'bg-slate-400'}`} />
                   <span>{card.step}. {card.label.split(' ')[0]}</span>
@@ -298,11 +297,10 @@ export function LearningRoute() {
                         key={dotIdx}
                         onClick={() => setActiveIndex(dotIdx)}
                         aria-label={`Jump to stage ${dotIdx + 1}`}
-                        className={`h-2 rounded-full transition-all duration-300 ${
-                          dotIdx === activeIndex
+                        className={`h-2 rounded-full transition-all duration-300 ${dotIdx === activeIndex
                             ? 'w-7 bg-emerald-600'
                             : 'w-2 bg-slate-300 hover:bg-slate-400'
-                        }`}
+                          }`}
                       />
                     ))}
                   </div>
@@ -336,11 +334,10 @@ export function LearningRoute() {
                 <div
                   key={card.id}
                   onClick={() => setActiveIndex(idx)}
-                  className={`w-[260px] sm:w-[290px] shrink-0 p-4 rounded-2xl cursor-pointer transition-all duration-300 text-left snap-start flex flex-col justify-between space-y-3 bg-white border ${
-                    isSelected
+                  className={`w-[260px] sm:w-[290px] shrink-0 p-4 rounded-2xl cursor-pointer transition-all duration-300 text-left snap-start flex flex-col justify-between space-y-3 bg-white border ${isSelected
                       ? 'border-emerald-500 ring-2 ring-emerald-500/20 shadow-md bg-emerald-50/20'
                       : 'border-slate-200/80 hover:border-slate-300 shadow-sm hover:shadow'
-                  }`}
+                    }`}
                 >
                   <div className="relative h-28 w-full rounded-xl overflow-hidden bg-slate-900">
                     <Image
@@ -393,7 +390,7 @@ export function LearningRoute() {
                   FINAL MILESTONE
                 </span>
                 <span className="text-xs font-mono text-emerald-700 font-bold">
-                  TS-ID Cryptographic Verification
+                  NEXUS-ID Cryptographic Verification
                 </span>
               </div>
               <h4 className="text-base sm:text-lg font-black text-slate-900 mt-1">

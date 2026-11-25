@@ -236,7 +236,7 @@ export async function getSecurityAnalystChecksService(): Promise<{
         { label: 'Primary Verified Origin', value: '🇮🇳 India (Verified Academic Region)' },
         { label: 'Anti-VPN / Proxy Filter', value: 'ARMED (High-Risk Anonymizers Flagged)' },
         { label: 'Active Lockouts (>3 failed)', value: lockouts.filter((l: any) => l.failedAttempts >= 3).length },
-        { label: 'Approved Active TS-IDs', value: approvedStudentsCount },
+        { label: 'Approved Active NEXUS-IDs', value: approvedStudentsCount },
         { label: 'Pending Guest Verifications', value: pendingGuestsCount },
         { label: 'Brute-Force Rate Limiter', value: '5 attempts / 15m lockout' },
       ],
@@ -439,11 +439,11 @@ export async function getSecurityAnalystChecksService(): Promise<{
       timestamp: now,
       realMetrics: [
         { label: 'Query Execution Latency', value: '< 25ms average' },
-        { label: 'Unique Index Validations', value: '14 Indexed Columns (TS-ID, Email, CertHash)' },
+        { label: 'Unique Index Validations', value: '14 Indexed Columns (NEXUS-ID, Email, CertHash)' },
         { label: 'Pooled Connection Health', value: 'SSL Encrypted (Pooled)' },
       ],
       liveLedger: [
-        { title: 'User TS-ID Index Probe', timestamp: now, status: 'OPTIMAL', info: 'Index Scan time: 1.2ms (B-Tree on tsId)' },
+        { title: 'User NEXUS-ID Index Probe', timestamp: now, status: 'OPTIMAL', info: 'Index Scan time: 1.2ms (B-Tree on tsId)' },
         { title: 'Certificate Hash Index Probe', timestamp: now, status: 'OPTIMAL', info: 'Index Scan time: 0.9ms (Unique on verificationHash)' },
         { title: 'AuditLog Temporal Index Probe', timestamp: now, status: 'OPTIMAL', info: 'Index Scan time: 1.4ms (Desc on createdAt)' },
       ],

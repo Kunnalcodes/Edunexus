@@ -1,6 +1,6 @@
 import { prisma } from '../database/prisma';
 import { logAuditEvent } from '../security/audit';
-import { generateDomainTSID } from '@/lib/auth/ts-id';
+import { generateDomainTSID } from '@/lib/auth/NEXUS-ID';
 import { sendStudentOnboardingEmail } from '../email/onboarding.service';
 import { randomBytes, createHash } from 'crypto';
 
@@ -385,7 +385,7 @@ export async function createStudentByMentor(
 
 /**
  * Moves a student from their current batch to another batch.
- * Strictly preserves student account, TS-ID, enrollments, attendance, and certificates (Rule #2, #14).
+ * Strictly preserves student account, NEXUS-ID, enrollments, attendance, and certificates (Rule #2, #14).
  */
 export async function moveStudentBatch(
   userId: string,

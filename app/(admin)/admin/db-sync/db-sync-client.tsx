@@ -61,7 +61,7 @@ export function DBSyncClient({
     const headers = [
       'Index',
       'Name',
-      'TS-ID',
+      'NEXUS-ID',
       'Email',
       'Phone',
       'Enrolled Track',
@@ -111,7 +111,7 @@ export function DBSyncClient({
           <Search className="w-4 h-4 absolute left-3.5 top-3 text-slate-400" />
           <input
             type="text"
-            placeholder="Search sync records by Name, TS-ID, Email, Course, or Certificate ID..."
+            placeholder="Search sync records by Name, NEXUS-ID, Email, Course, or Certificate ID..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-10 pr-4 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-violet-500 focus:bg-white transition-colors"
@@ -122,31 +122,28 @@ export function DBSyncClient({
         <div className="flex items-center gap-2 flex-wrap text-xs">
           <button
             onClick={() => setFilterTab('ALL')}
-            className={`px-3 py-1.5 rounded-lg font-medium transition-all cursor-pointer border ${
-              filterTab === 'ALL'
+            className={`px-3 py-1.5 rounded-lg font-medium transition-all cursor-pointer border ${filterTab === 'ALL'
                 ? 'bg-violet-600 text-white border-violet-600 shadow-xs'
                 : 'bg-white hover:border-violet-300 text-slate-700 border-slate-200'
-            }`}
+              }`}
           >
             All ({dataList.length})
           </button>
           <button
             onClick={() => setFilterTab('CERTIFICATES')}
-            className={`px-3 py-1.5 rounded-lg font-medium transition-all cursor-pointer border ${
-              filterTab === 'CERTIFICATES'
+            className={`px-3 py-1.5 rounded-lg font-medium transition-all cursor-pointer border ${filterTab === 'CERTIFICATES'
                 ? 'bg-violet-600 text-white border-violet-600 shadow-xs'
                 : 'bg-white hover:border-violet-300 text-slate-700 border-slate-200'
-            }`}
+              }`}
           >
             With Certificates
           </button>
           <button
             onClick={() => setFilterTab('PENDING')}
-            className={`px-3 py-1.5 rounded-lg font-medium transition-all cursor-pointer border ${
-              filterTab === 'PENDING'
+            className={`px-3 py-1.5 rounded-lg font-medium transition-all cursor-pointer border ${filterTab === 'PENDING'
                 ? 'bg-violet-600 text-white border-violet-600 shadow-xs'
                 : 'bg-white hover:border-violet-300 text-slate-700 border-slate-200'
-            }`}
+              }`}
           >
             Pending
           </button>
@@ -190,7 +187,7 @@ export function DBSyncClient({
                 <tr>
                   <th className="p-4">#</th>
                   <th className="p-4">Student Name</th>
-                  <th className="p-4">TS-ID</th>
+                  <th className="p-4">NEXUS-ID</th>
                   <th className="p-4">Email Address</th>
                   <th className="p-4">Phone</th>
                   <th className="p-4">Enrolled Track</th>

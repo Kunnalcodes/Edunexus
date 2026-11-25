@@ -228,11 +228,10 @@ export function MentorStudentDirectoryClient({
       {/* Toast Notification */}
       {toastMessage && (
         <div
-          className={`fixed bottom-6 right-6 z-50 px-4 py-3 rounded-2xl shadow-xl font-mono text-xs flex items-center gap-2 border ${
-            toastMessage.type === 'success'
+          className={`fixed bottom-6 right-6 z-50 px-4 py-3 rounded-2xl shadow-xl font-mono text-xs flex items-center gap-2 border ${toastMessage.type === 'success'
               ? 'bg-white border-violet-300 text-violet-800'
               : 'bg-white border-rose-300 text-rose-700'
-          }`}
+            }`}
         >
           {toastMessage.type === 'success' ? (
             <CheckCircle2 className="w-4 h-4 text-violet-600" />
@@ -282,7 +281,7 @@ export function MentorStudentDirectoryClient({
           <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
           <input
             type="text"
-            placeholder="Search students by name, email, TS-ID, or batch code..."
+            placeholder="Search students by name, email, NEXUS-ID, or batch code..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="w-full pl-10 pr-4 py-2 text-xs rounded-xl border border-slate-200 bg-slate-50 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-violet-500 font-mono transition-colors"
@@ -322,7 +321,7 @@ export function MentorStudentDirectoryClient({
             <thead className="bg-slate-50 text-slate-700 border-b border-slate-200">
               <tr>
                 <th className="p-4 font-bold">Student Name &amp; Email</th>
-                <th className="p-4 font-bold">TS-ID</th>
+                <th className="p-4 font-bold">NEXUS-ID</th>
                 <th className="p-4 font-bold">Assigned Batch</th>
                 <th className="p-4 font-bold">Curriculum Progress</th>
                 <th className="p-4 font-bold">Attendance</th>
@@ -381,9 +380,8 @@ export function MentorStudentDirectoryClient({
 
                     <td className="p-4">
                       <span
-                        className={`text-xs font-bold ${
-                          student.attendancePercentage >= 80 ? 'text-violet-700' : 'text-amber-600'
-                        }`}
+                        className={`text-xs font-bold ${student.attendancePercentage >= 80 ? 'text-violet-700' : 'text-amber-600'
+                          }`}
                       >
                         {student.attendancePercentage}% ({student.totalSessionsAttended}/{student.totalSessionsLogged})
                       </span>
@@ -391,11 +389,10 @@ export function MentorStudentDirectoryClient({
 
                     <td className="p-4">
                       <span
-                        className={`px-2 py-0.5 rounded text-[10px] font-bold ${
-                          student.isActive
+                        className={`px-2 py-0.5 rounded text-[10px] font-bold ${student.isActive
                             ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
                             : 'bg-rose-50 text-rose-700 border border-rose-200'
-                        }`}
+                          }`}
                       >
                         {student.isActive ? 'ACTIVE' : 'DEACTIVATED'}
                       </span>
@@ -419,11 +416,10 @@ export function MentorStudentDirectoryClient({
                         {/* Status Toggle */}
                         <button
                           onClick={() => handleToggleStatus(student)}
-                          className={`p-1.5 rounded-lg border text-xs transition-colors cursor-pointer ${
-                            student.isActive
+                          className={`p-1.5 rounded-lg border text-xs transition-colors cursor-pointer ${student.isActive
                               ? 'border-slate-200 text-slate-500 hover:text-rose-600 hover:bg-rose-50'
                               : 'border-emerald-200 text-emerald-600 hover:bg-emerald-50'
-                          }`}
+                            }`}
                           title={student.isActive ? 'Deactivate Account' : 'Reactivate Account'}
                         >
                           {student.isActive ? (
@@ -460,8 +456,8 @@ export function MentorStudentDirectoryClient({
                   {createStep === 1
                     ? 'Student Personal Details'
                     : createStep === 2
-                    ? 'Academic Cohort Placement'
-                    : 'Credential Dispatch Preview'}
+                      ? 'Academic Cohort Placement'
+                      : 'Credential Dispatch Preview'}
                 </h3>
               </div>
               <button
@@ -604,7 +600,7 @@ export function MentorStudentDirectoryClient({
                       AUTOMATIC CREDENTIAL DISPATCH
                     </span>
                     <p className="text-slate-600 text-xs leading-relaxed">
-                      Upon confirmation, an official onboarding email with temporary login credentials and a unique TS-ID will be dispatched to <strong className="text-slate-900">{formData.email}</strong> via verified sender <code className="text-violet-700 font-bold">edu@threadsecurity.in</code>.
+                      Upon confirmation, an official onboarding email with temporary login credentials and a unique NEXUS-ID will be dispatched to <strong className="text-slate-900">{formData.email}</strong> via verified sender <code className="text-violet-700 font-bold">edu@threadsecurity.in</code>.
                     </p>
                   </div>
 
@@ -674,7 +670,7 @@ export function MentorStudentDirectoryClient({
                 <strong className="text-slate-900">{moveModalStudent.name}</strong>
               </div>
               <div className="flex justify-between">
-                <span className="text-slate-500">TS-ID:</span>
+                <span className="text-slate-500">NEXUS-ID:</span>
                 <strong className="text-violet-700">{moveModalStudent.tsId}</strong>
               </div>
               <div className="flex justify-between">

@@ -403,7 +403,7 @@ The platform enforces a layered, unidirectional data flow architecture ensuring 
 Each major domain concept is encapsulated within an isolated service layer:
 - `auth.service.ts`: Handles session tokens, password hashing, passkey comparison, and RBAC clearance.
 - `crypto-vault.ts`: Computes SHA-256 digital digests for certificate authentication and anti-tamper hashes.
-- `ts-id.ts`: Generates collision-resistant, formatted alphanumeric student IDs (`NEXUS-2026-XXXXXX`).
+- `NEXUS-ID.ts`: Generates collision-resistant, formatted alphanumeric student IDs (`NEXUS-2026-XXXXXX`).
 - `assessment-engine.ts`: Evaluates student submissions, question timers, and penalty algorithms.
 
 ---

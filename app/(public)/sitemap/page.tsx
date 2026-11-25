@@ -51,7 +51,7 @@ export default function SitemapPage() {
       title: 'Student & Verification Portal',
       icon: Award,
       links: [
-        { label: 'Verify Certificate (TS-ID Portal)', href: '/verify-certificate' },
+        { label: 'Verify Certificate (NEXUS-ID Portal)', href: '/verify-certificate' },
         { label: 'Student Dashboard & Portal', href: '/student' },
         { label: 'Assessment Taking Engine', href: '/student/assessment' },
         { label: 'Student Login', href: '/login' },

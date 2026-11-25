@@ -42,8 +42,8 @@ export async function createBatchAction(formData: FormData) {
     rawDays.length > 0
       ? (rawDays as string[])
       : formData.get('daysOfWeek')
-      ? (formData.get('daysOfWeek') as string).split(',').map((s) => s.trim())
-      : undefined;
+        ? (formData.get('daysOfWeek') as string).split(',').map((s) => s.trim())
+        : undefined;
   const startTime = formData.get('startTime') as string;
   const endTime = formData.get('endTime') as string;
   const attendanceLockHoursStr = formData.get('attendanceLockHours') as string;
@@ -102,7 +102,7 @@ export async function assignStudentToBatchAction(studentProfileId: string, batch
 }
 
 /**
- * Super Admin enrolls student into batch by Student ID (TS-ID or Email)
+ * Super Admin enrolls student into batch by Student ID (NEXUS-ID or Email)
  */
 export async function assignStudentToBatchByTsIdAction(tsIdOrEmail: string, batchId: string) {
   const session = await getSession();
@@ -434,7 +434,7 @@ export async function bulkAssignStudentsToBatchAction(
                 status: 'ACTIVE',
               },
             });
-          } catch {}
+          } catch { }
         }
       }
     }

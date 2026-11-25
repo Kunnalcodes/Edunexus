@@ -281,7 +281,7 @@ export default function PlacementHighlightsClient() {
       <div className="absolute inset-0 opacity-[0.04] pointer-events-none bg-[radial-gradient(#7E3BED_1px,transparent_1px)] [background-size:24px_24px] z-0" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* ── HERO HEADER ── */}
         <div className="text-center max-w-3xl mx-auto mb-14 space-y-4">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-100 border border-purple-300 text-purple-900 text-xs font-mono font-bold uppercase tracking-wider shadow-xs">
@@ -344,7 +344,7 @@ export default function PlacementHighlightsClient() {
         {/* ── SEARCH & FILTER CONTROLS BAR ── */}
         <div className="bg-white p-4 sm:p-6 rounded-3xl border border-purple-100 shadow-md mb-10 space-y-4">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            
+
             {/* Search Input */}
             <div className="relative w-full md:w-80">
               <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
@@ -363,11 +363,10 @@ export default function PlacementHighlightsClient() {
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
-                    selectedCategory === cat
+                  className={`px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${selectedCategory === cat
                       ? 'bg-black text-white shadow-sm'
                       : 'bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900'
-                  }`}
+                    }`}
                 >
                   {cat}
                 </button>
@@ -585,9 +584,9 @@ export default function PlacementHighlightsClient() {
               <div className="w-8 h-8 rounded-xl bg-purple-600 text-white font-mono font-black text-sm flex items-center justify-center">
                 03
               </div>
-              <h3 className="font-extrabold text-base text-slate-900">TS-ID Verification</h3>
+              <h3 className="font-extrabold text-base text-slate-900">NEXUS-ID Verification</h3>
               <p className="text-xs text-slate-600 leading-relaxed font-medium">
-                Earn an industry-recognized TS-ID credential with tamper-proof public verification for corporate recruiters.
+                Earn an industry-recognized NEXUS-ID credential with tamper-proof public verification for corporate recruiters.
               </p>
             </div>
 
@@ -622,7 +621,7 @@ export default function PlacementHighlightsClient() {
                   {d.demand}
                 </span>
                 <h3 className="font-extrabold text-base text-slate-900 leading-snug">{d.domain}</h3>
-                
+
                 <div className="space-y-2 pt-2 border-t border-slate-100 font-mono text-xs">
                   <div className="flex justify-between">
                     <span className="text-slate-500">Average Starting:</span>

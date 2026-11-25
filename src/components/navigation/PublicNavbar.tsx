@@ -81,10 +81,10 @@ export async function PublicNavbar() {
                       session.role === 'SECURITY_ADMIN'
                         ? '/admin/security-analyst'
                         : session.role === 'SUPER_ADMIN' || session.role === 'ACADEMIC_ADMIN'
-                        ? '/admin'
-                        : session.role === 'MENTOR'
-                        ? '/mentor'
-                        : '/student'
+                          ? '/admin'
+                          : session.role === 'MENTOR'
+                            ? '/mentor'
+                            : '/student'
                     }
                     className="landing-btn-primary text-xs sm:text-sm font-bold font-mono inline-flex items-center gap-1.5 cursor-pointer"
                   >
@@ -96,7 +96,7 @@ export async function PublicNavbar() {
                   <div className="flex items-center gap-2">
                     <div className="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-800 text-xs font-mono font-bold">
                       <Lock className="w-3.5 h-3.5 text-amber-600" />
-                      <span>{session.tsId || 'Guest TS-ID'}</span>
+                      <span>{session.tsId || 'Guest NEXUS-ID'}</span>
                     </div>
                     <Link href="/courses" className="landing-btn-primary text-xs sm:text-sm inline-flex items-center gap-1.5 cursor-pointer">
                       <Sparkles className="w-4 h-4" />

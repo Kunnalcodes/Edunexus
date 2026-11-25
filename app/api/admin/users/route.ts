@@ -9,7 +9,7 @@ import {
   deleteUserService,
   toggleStudentDashboardAccessService,
 } from '@/server/services/admin.service';
-import { StudentTrack } from '@/lib/auth/ts-id';
+import { StudentTrack } from '@/lib/auth/NEXUS-ID';
 import { RoleType } from '@prisma/client';
 import { revalidatePath } from 'next/cache';
 

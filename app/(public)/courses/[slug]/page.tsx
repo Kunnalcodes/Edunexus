@@ -83,7 +83,7 @@ export async function generateMetadata({
     'CompTIA Security+ training',
     'OSCP training',
     'Edu Nexus Education',
-    'Verified TS-ID Certification',
+    'Verified NEXUS-ID Certification',
   ];
 
   return {
@@ -162,12 +162,12 @@ export default async function CourseDetailPage({
     durationHours: dbCourse?.durationHours || fallback?.durationHours || 60,
     modules: (dbCourse?.modules && dbCourse.modules.length > 0) ? dbCourse.modules : (fallback?.modules || []),
     labs: (dbCourse?.labs && dbCourse.labs.length > 0) ? dbCourse.labs : (fallback?.labs || []),
-    highlights: fallback?.highlights || ['Hands-on Sandbox Labs', 'Mentor Office Hours', 'Cryptographic TS-ID'],
+    highlights: fallback?.highlights || ['Hands-on Sandbox Labs', 'Mentor Office Hours', 'Cryptographic NEXUS-ID'],
     prerequisites: fallback?.prerequisites || ['Basic computer networking', 'Command-line fundamentals'],
     learningOutcomes: fallback?.learningOutcomes || [
       'Master industry-standard security methodologies',
       'Deploy defensive and offensive countermeasures in isolated sandboxes',
-      'Obtain an immutable cryptographic TS-ID verifiable credential',
+      'Obtain an immutable cryptographic NEXUS-ID verifiable credential',
     ],
     toolsCovered: fallback?.toolsCovered || ['Burp Suite', 'Wireshark', 'Linux', 'Docker'],
     mentor: {
@@ -179,7 +179,7 @@ export default async function CourseDetailPage({
     faqs: fallback?.faqs || [
       { q: 'What are the prerequisites for this course?', a: 'Basic familiarity with networking fundamentals and elementary command-line concepts is recommended.' },
       { q: 'How do the practical sandbox labs work?', a: 'Labs are provisioned on-demand in isolated virtual containers directly accessible in your browser.' },
-      { q: 'What credential do I receive upon completion?', a: 'You receive a cryptographically signed TSE TS-ID credential with a publicly verifiable URL.' },
+      { q: 'What credential do I receive upon completion?', a: 'You receive a cryptographically signed TSE NEXUS-ID credential with a publicly verifiable URL.' },
     ],
   };
 
@@ -254,8 +254,8 @@ export default async function CourseDetailPage({
               <div className="flex flex-wrap items-center gap-3">
                 <span
                   className={`px-3.5 py-1 rounded-lg text-xs font-mono font-black uppercase tracking-wider border ${isCyber
-                      ? 'bg-lime-950/80 text-lime-300 border-lime-500/60'
-                      : 'bg-purple-950/80 text-purple-300 border-purple-500/60'
+                    ? 'bg-lime-950/80 text-lime-300 border-lime-500/60'
+                    : 'bg-purple-950/80 text-purple-300 border-purple-500/60'
                     }`}
                 >
                   {course.category}
@@ -307,7 +307,7 @@ export default async function CourseDetailPage({
                 </div>
                 <div className="flex items-center gap-2">
                   <Award className={`w-4 h-4 ${isCyber ? 'text-lime-400' : 'text-purple-400'}`} />
-                  <span>Cryptographic TS-ID Verifiable</span>
+                  <span>Cryptographic NEXUS-ID Verifiable</span>
                 </div>
               </div>
             </div>
@@ -317,8 +317,8 @@ export default async function CourseDetailPage({
               <aside
                 aria-label="Course Enrollment"
                 className={`p-6 sm:p-7 rounded-3xl border text-left shadow-2xl relative overflow-hidden ${isCyber
-                    ? 'bg-gradient-to-br from-[#0c1a10] via-[#08120b] to-[#040805] border-lime-500/40 shadow-[0_0_35px_-5px_rgba(163,230,53,0.3)]'
-                    : 'bg-gradient-to-br from-[#1a0c2e] via-[#10071f] to-[#07030f] border-purple-500/40 shadow-[0_0_35px_-5px_rgba(168,85,247,0.3)]'
+                  ? 'bg-gradient-to-br from-[#0c1a10] via-[#08120b] to-[#040805] border-lime-500/40 shadow-[0_0_35px_-5px_rgba(163,230,53,0.3)]'
+                  : 'bg-gradient-to-br from-[#1a0c2e] via-[#10071f] to-[#07030f] border-purple-500/40 shadow-[0_0_35px_-5px_rgba(168,85,247,0.3)]'
                   }`}
               >
                 <div className="space-y-4">
@@ -360,8 +360,8 @@ export default async function CourseDetailPage({
                     <Link href="/contact?topic=enrollment" className="block">
                       <button
                         className={`w-full py-3.5 px-4 rounded-2xl font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg transition-all cursor-pointer ${isCyber
-                            ? 'bg-gradient-to-r from-lime-500 via-lime-400 to-emerald-400 hover:from-lime-400 hover:to-emerald-300 text-slate-950 shadow-[0_0_20px_rgba(163,230,53,0.4)]'
-                            : 'bg-gradient-to-r from-purple-500 via-fuchsia-500 to-indigo-500 hover:from-purple-400 hover:to-fuchsia-400 text-white shadow-[0_0_20px_rgba(168,85,247,0.4)]'
+                          ? 'bg-gradient-to-r from-lime-500 via-lime-400 to-emerald-400 hover:from-lime-400 hover:to-emerald-300 text-slate-950 shadow-[0_0_20px_rgba(163,230,53,0.4)]'
+                          : 'bg-gradient-to-r from-purple-500 via-fuchsia-500 to-indigo-500 hover:from-purple-400 hover:to-fuchsia-400 text-white shadow-[0_0_20px_rgba(168,85,247,0.4)]'
                           }`}
                       >
                         <span>Enroll in Upcoming Batch</span>
@@ -480,8 +480,8 @@ export default async function CourseDetailPage({
                   <div className="flex items-center gap-3">
                     <span
                       className={`px-2.5 py-1 rounded-lg text-xs font-mono font-black ${isCyber
-                          ? 'bg-lime-950 text-lime-400 border border-lime-500/40'
-                          : 'bg-purple-950 text-purple-400 border border-purple-500/40'
+                        ? 'bg-lime-950 text-lime-400 border border-lime-500/40'
+                        : 'bg-purple-950 text-purple-400 border border-purple-500/40'
                         }`}
                     >
                       MODULE {String(idx + 1).padStart(2, '0')}
@@ -625,8 +625,8 @@ export default async function CourseDetailPage({
         <section
           aria-labelledby="cta-heading"
           className={`p-8 sm:p-12 rounded-3xl border text-center space-y-6 ${isCyber
-              ? 'bg-gradient-to-r from-[#0c1a10] via-[#07120a] to-[#040805] border-lime-500/40'
-              : 'bg-gradient-to-r from-[#1a0c2e] via-[#10071f] to-[#07030f] border-purple-500/40'
+            ? 'bg-gradient-to-r from-[#0c1a10] via-[#07120a] to-[#040805] border-lime-500/40'
+            : 'bg-gradient-to-r from-[#1a0c2e] via-[#10071f] to-[#07030f] border-purple-500/40'
             }`}
         >
           <h2 id="cta-heading" className="text-2xl sm:text-4xl font-black uppercase text-white">
@@ -639,8 +639,8 @@ export default async function CourseDetailPage({
             <Link href="/contact?topic=enrollment">
               <button
                 className={`py-3.5 px-8 rounded-2xl font-black text-xs sm:text-sm flex items-center gap-2 shadow-xl transition-all cursor-pointer ${isCyber
-                    ? 'bg-lime-400 hover:bg-lime-300 text-black shadow-[0_0_25px_rgba(163,230,53,0.4)]'
-                    : 'bg-purple-500 hover:bg-purple-400 text-white shadow-[0_0_25px_rgba(168,85,247,0.4)]'
+                  ? 'bg-lime-400 hover:bg-lime-300 text-black shadow-[0_0_25px_rgba(163,230,53,0.4)]'
+                  : 'bg-purple-500 hover:bg-purple-400 text-white shadow-[0_0_25px_rgba(168,85,247,0.4)]'
                   }`}
               >
                 <span>Apply for Cohort Admission</span>

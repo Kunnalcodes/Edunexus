@@ -237,7 +237,7 @@ export default async function AdminDashboardOverviewPage() {
 
       {/* ── MAIN SPLIT: RECENT STUDENTS & UPCOMING SESSIONS ── */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        
+
         {/* Left Column: Recent Registered Students Table */}
         <div className="lg:col-span-7 space-y-3">
           <div className="flex items-center justify-between">
@@ -264,7 +264,7 @@ export default async function AdminDashboardOverviewPage() {
               <table className="w-full text-left text-xs">
                 <thead className="bg-slate-50 text-slate-600 border-b border-slate-200 sticky top-0 z-10 text-[11px] font-semibold uppercase">
                   <tr>
-                    <th className="p-3.5">TS-ID</th>
+                    <th className="p-3.5">NEXUS-ID</th>
                     <th className="p-3.5">Student Name</th>
                     <th className="p-3.5">Email</th>
                     <th className="p-3.5">Batch</th>

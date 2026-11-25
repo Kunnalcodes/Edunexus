@@ -1,6 +1,6 @@
 import { prisma } from '../database/prisma';
 import { logAuditEvent } from '../security/audit';
-import { generateTSID, generateDomainTSID, StudentTrack } from '@/lib/auth/ts-id';
+import { generateTSID, generateDomainTSID, StudentTrack } from '@/lib/auth/NEXUS-ID';
 import {
   sendStudentOnboardingEmail,
   sendFacultyOnboardingEmail,
@@ -9,7 +9,7 @@ import {
 import { RoleType } from '@prisma/client';
 
 /**
- * Calculates the next available TS-ID for a student based on existing IDs + 1.
+ * Calculates the next available NEXUS-ID for a student based on existing IDs + 1.
  * For track 'CYBER': prefix is TS-C (e.g. TS-C147)
  * For track 'AI': prefix is TS-A (e.g. TS-A147)
  */
@@ -134,7 +134,7 @@ export async function createStudentService({
     action: 'STUDENT_CREATED',
     entity: 'USER',
     entityId: user.id,
-    details: `Created new student account for ${name} (${cleanEmail}, Track: ${track}, TS-ID: ${tsId}).`,
+    details: `Created new student account for ${name} (${cleanEmail}, Track: ${track}, NEXUS-ID: ${tsId}).`,
   });
 
   let emailDispatched = false;
@@ -223,7 +223,7 @@ export async function dispatchStudentCredentialsService(userId: string, customPa
     action: 'STUDENT_CREDENTIALS_DISPATCHED',
     entity: 'USER',
     entityId: user.id,
-    details: `Dispatched login credentials email to student ${user.name} (${user.email}, TS-ID: ${tsId}).`,
+    details: `Dispatched login credentials email to student ${user.name} (${user.email}, NEXUS-ID: ${tsId}).`,
   });
 
   return { success: true, email: user.email, tsId, emailResult: emailRes };
@@ -250,7 +250,7 @@ export async function reassignStudentTrackService(userId: string, track: Student
     action: 'STUDENT_TSID_REASSIGNED',
     entity: 'TS_IDENTITY',
     entityId: userId,
-    details: `Reassigned student ${user.name} TS-ID to ${newTsId} (Track: ${track}).`,
+    details: `Reassigned student ${user.name} NEXUS-ID to ${newTsId} (Track: ${track}).`,
   });
 
   return newTsId;
@@ -463,7 +463,7 @@ export async function toggleStudentCourseEnrollmentService(
 }
 
 
-import { generateMentorTSID } from '@/lib/auth/ts-id';
+import { generateMentorTSID } from '@/lib/auth/NEXUS-ID';
 import { randomBytes } from 'crypto';
 
 export async function createMentorService({
@@ -874,7 +874,7 @@ export async function reassignStudentBatchService(
 }
 
 /**
- * Calculates next available sequential TS-ID for Staff, Security Admin, or Super Admin
+ * Calculates next available sequential NEXUS-ID for Staff, Security Admin, or Super Admin
  */
 export async function getNextSuggestedStaffOrAdminID(
   role: 'SECURITY_ADMIN' | 'ACADEMIC_ADMIN' | 'SUPER_ADMIN' | 'CONTENT_MANAGER'
@@ -943,7 +943,7 @@ export async function createUserService({
     throw new Error(`An account with email ${cleanEmail} already exists.`);
   }
 
-  // 2. Resolve TS-ID
+  // 2. Resolve NEXUS-ID
   let appointedTsId = customTsId?.trim().toUpperCase();
   if (!appointedTsId) {
     if (role === 'STUDENT') {
@@ -959,12 +959,12 @@ export async function createUserService({
     }
   }
 
-  // 3. Verify TS-ID Uniqueness
+  // 3. Verify NEXUS-ID Uniqueness
   const existingTsId = await prisma.tSIdentity.findUnique({
     where: { tsId: appointedTsId },
   });
   if (existingTsId) {
-    throw new Error(`TS-ID ${appointedTsId} is already in use by another account.`);
+    throw new Error(`NEXUS-ID ${appointedTsId} is already in use by another account.`);
   }
 
   // 4. Resolve Passkey & Secret Key
@@ -1099,7 +1099,7 @@ export async function createUserService({
     action: 'USER_CREATED',
     entity: 'USER',
     entityId: newUser.id,
-    details: `Created new user ${cleanName} (${cleanEmail}, Role: ${role}, TS-ID: ${appointedTsId}).`,
+    details: `Created new user ${cleanName} (${cleanEmail}, Role: ${role}, NEXUS-ID: ${appointedTsId}).`,
   });
 
   return {
@@ -1244,7 +1244,7 @@ export async function deleteUserService(userId: string, currentAdminUserId?: str
     action: 'USER_DELETED',
     entity: 'USER',
     entityId: userId,
-    details: `Deleted user account for ${userName} (${userEmail}, TS-ID: ${tsId}).`,
+    details: `Deleted user account for ${userName} (${userEmail}, NEXUS-ID: ${tsId}).`,
   });
 
   return { success: true, deletedName: userName, deletedEmail: userEmail };
@@ -1334,7 +1334,7 @@ export async function dispatchUserCredentialsService(
     action: 'ADMIN_CREDENTIALS_DISPATCHED',
     entity: 'USER',
     entityId: user.id,
-    details: `Dispatched ${user.role} clearance credentials and keys to ${user.name} (${user.email}, TS-ID: ${tsId}).`,
+    details: `Dispatched ${user.role} clearance credentials and keys to ${user.name} (${user.email}, NEXUS-ID: ${tsId}).`,
   });
 
   return { success: true, email: user.email, tsId, role: user.role, emailResult: emailRes };

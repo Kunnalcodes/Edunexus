@@ -68,8 +68,8 @@ export default async function SecurityAnalystPage({
     activeTab === 'DAILY'
       ? checks.daily
       : activeTab === 'WEEKLY'
-      ? checks.weekly
-      : checks.monthly;
+        ? checks.weekly
+        : checks.monthly;
 
   return (
     <div className="space-y-8 text-slate-900 font-sans">
@@ -196,7 +196,7 @@ export default async function SecurityAnalystPage({
               </span>
               <div className="text-xl font-bold font-mono text-rose-600 flex items-center gap-2 mt-1">
                 <Users className="w-5 h-5 text-rose-600" />
-                {telemetry.totalUsers} TS-IDs
+                {telemetry.totalUsers} NEXUS-IDs
               </div>
               <span className="text-[10px] font-mono text-slate-500 mt-1 block">
                 Total Enrollments: <strong className="text-rose-600">{telemetry.totalEnrollments}</strong>
@@ -289,11 +289,10 @@ export default async function SecurityAnalystPage({
           <div className="flex items-center gap-2 flex-wrap">
             <Link href="/admin/security-analyst?tab=DAILY">
               <button
-                className={`px-4 py-2 rounded-full text-xs font-mono font-bold flex items-center gap-2 transition-all cursor-pointer border ${
-                  activeTab === 'DAILY'
+                className={`px-4 py-2 rounded-full text-xs font-mono font-bold flex items-center gap-2 transition-all cursor-pointer border ${activeTab === 'DAILY'
                     ? 'bg-gradient-to-r from-red-600 to-rose-600 text-white shadow-[0_2px_10px_rgba(220,38,38,0.25)] border-red-500'
                     : 'bg-slate-100 hover:bg-slate-200 border-slate-200 text-slate-700'
-                }`}
+                  }`}
               >
                 <Calendar className="w-3.5 h-3.5 text-red-600" />
                 <span>Daily Checks</span>
@@ -302,11 +301,10 @@ export default async function SecurityAnalystPage({
 
             <Link href="/admin/security-analyst?tab=WEEKLY">
               <button
-                className={`px-4 py-2 rounded-full text-xs font-mono font-bold flex items-center gap-2 transition-all cursor-pointer border ${
-                  activeTab === 'WEEKLY'
+                className={`px-4 py-2 rounded-full text-xs font-mono font-bold flex items-center gap-2 transition-all cursor-pointer border ${activeTab === 'WEEKLY'
                     ? 'bg-gradient-to-r from-red-600 to-rose-600 text-white shadow-[0_2px_10px_rgba(220,38,38,0.25)] border-red-500'
                     : 'bg-slate-100 hover:bg-slate-200 border-slate-200 text-slate-700'
-                }`}
+                  }`}
               >
                 <Layers className="w-3.5 h-3.5 text-red-600" />
                 <span>Weekly Checks</span>
@@ -315,11 +313,10 @@ export default async function SecurityAnalystPage({
 
             <Link href="/admin/security-analyst?tab=MONTHLY">
               <button
-                className={`px-4 py-2 rounded-full text-xs font-mono font-bold flex items-center gap-2 transition-all cursor-pointer border ${
-                  activeTab === 'MONTHLY'
+                className={`px-4 py-2 rounded-full text-xs font-mono font-bold flex items-center gap-2 transition-all cursor-pointer border ${activeTab === 'MONTHLY'
                     ? 'bg-gradient-to-r from-red-600 to-rose-600 text-white shadow-[0_2px_10px_rgba(220,38,38,0.25)] border-red-500'
                     : 'bg-slate-100 hover:bg-slate-200 border-slate-200 text-slate-700'
-                }`}
+                  }`}
               >
                 <FileText className="w-3.5 h-3.5 text-red-600" />
                 <span>Monthly Checks</span>
@@ -340,8 +337,8 @@ export default async function SecurityAnalystPage({
             activeTab === 'DAILY'
               ? 'Daily Checks'
               : activeTab === 'WEEKLY'
-              ? 'Weekly Checks'
-              : 'Monthly Checks'
+                ? 'Weekly Checks'
+                : 'Monthly Checks'
           }
         />
       </div>
@@ -407,13 +404,12 @@ export default async function SecurityAnalystPage({
                       </td>
                       <td className="p-3.5">
                         <Badge
-                          className={`font-mono text-[9px] font-bold ${
-                            log.level === 'WARN'
+                          className={`font-mono text-[9px] font-bold ${log.level === 'WARN'
                               ? 'bg-amber-50 text-amber-700 border-amber-200'
                               : log.level === 'ERROR'
-                              ? 'bg-red-50 text-red-700 border-red-200'
-                              : 'bg-red-50 text-red-700 border-red-200'
-                          }`}
+                                ? 'bg-red-50 text-red-700 border-red-200'
+                                : 'bg-red-50 text-red-700 border-red-200'
+                            }`}
                         >
                           {log.level}
                         </Badge>

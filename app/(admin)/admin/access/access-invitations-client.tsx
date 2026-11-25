@@ -82,7 +82,7 @@ export function AccessInvitationsClient({
             Activation Tokens &amp; Invitations ({invitations.length})
           </h2>
           <p className="text-slate-500 text-[11px] mt-0.5">
-            Single-use cryptographic setup tokens for faculty onboarding and student TS-ID credentials.
+            Single-use cryptographic setup tokens for faculty onboarding and student NEXUS-ID credentials.
           </p>
         </div>
 
@@ -164,11 +164,10 @@ export function AccessInvitationsClient({
                       </td>
                       <td className="p-4">
                         <span
-                          className={`px-2.5 py-0.5 rounded-full text-[11px] font-semibold border ${
-                            inv.role === 'MENTOR'
+                          className={`px-2.5 py-0.5 rounded-full text-[11px] font-semibold border ${inv.role === 'MENTOR'
                               ? 'bg-indigo-50 text-indigo-700 border-indigo-200'
                               : 'bg-emerald-50 text-emerald-700 border-emerald-200'
-                          }`}
+                            }`}
                         >
                           {inv.role}
                         </span>

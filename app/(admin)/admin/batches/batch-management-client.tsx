@@ -144,11 +144,10 @@ function BatchCalendarDatePicker({
                 type="button"
                 key={`day-${dayNum}`}
                 onClick={() => handleSelectDay(dayNum)}
-                className={`h-7 w-7 mx-auto rounded-lg text-xs font-medium flex items-center justify-center transition-all ${
-                  isSelected
+                className={`h-7 w-7 mx-auto rounded-lg text-xs font-medium flex items-center justify-center transition-all ${isSelected
                     ? 'bg-violet-600 text-white font-bold shadow-xs'
                     : 'text-slate-700 hover:bg-violet-100 hover:text-violet-700'
-                }`}
+                  }`}
               >
                 {dayNum}
               </button>
@@ -585,11 +584,10 @@ export function BatchManagementClient({
       <div className="flex items-center gap-2 p-1.5 rounded-2xl bg-white border border-slate-200 shadow-xs">
         <button
           onClick={() => setActiveTab('cohorts')}
-          className={`flex-1 py-2.5 px-4 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center justify-center gap-2 ${
-            activeTab === 'cohorts'
+          className={`flex-1 py-2.5 px-4 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center justify-center gap-2 ${activeTab === 'cohorts'
               ? 'bg-violet-600 text-white shadow-sm'
               : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
-          }`}
+            }`}
         >
           <Layers className="w-4 h-4" />
           <span>Academic Cohorts &amp; Batches ({batches.length})</span>
@@ -597,11 +595,10 @@ export function BatchManagementClient({
 
         <button
           onClick={() => setActiveTab('calendar')}
-          className={`flex-1 py-2.5 px-4 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center justify-center gap-2 ${
-            activeTab === 'calendar'
+          className={`flex-1 py-2.5 px-4 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center justify-center gap-2 ${activeTab === 'calendar'
               ? 'bg-violet-600 text-white shadow-sm'
               : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
-          }`}
+            }`}
         >
           <Calendar className="w-4 h-4" />
           <span>Lecture Calendar</span>
@@ -609,11 +606,10 @@ export function BatchManagementClient({
 
         <button
           onClick={() => setActiveTab('audit')}
-          className={`flex-1 py-2.5 px-4 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center justify-center gap-2 ${
-            activeTab === 'audit'
+          className={`flex-1 py-2.5 px-4 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center justify-center gap-2 ${activeTab === 'audit'
               ? 'bg-violet-600 text-white shadow-sm'
               : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
-          }`}
+            }`}
         >
           <CheckSquare className="w-4 h-4" />
           <span>Lecture Delivery Audit</span>
@@ -621,11 +617,10 @@ export function BatchManagementClient({
 
         <button
           onClick={() => setActiveTab('corrections')}
-          className={`flex-1 py-2.5 px-4 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center justify-center gap-2 ${
-            activeTab === 'corrections'
+          className={`flex-1 py-2.5 px-4 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center justify-center gap-2 ${activeTab === 'corrections'
               ? 'bg-violet-600 text-white shadow-sm'
               : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
-          }`}
+            }`}
         >
           <AlertCircle className="w-4 h-4" />
           <span>Attendance Corrections</span>
@@ -661,11 +656,10 @@ export function BatchManagementClient({
                         {batch.batchCode}
                       </Badge>
                       <Badge
-                        className={`text-[10px] font-mono ${
-                          batch.status === 'ACTIVE'
+                        className={`text-[10px] font-mono ${batch.status === 'ACTIVE'
                             ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
                             : 'bg-slate-100 text-slate-600 border border-slate-200'
-                        }`}
+                          }`}
                       >
                         {batch.status}
                       </Badge>
@@ -866,17 +860,15 @@ export function BatchManagementClient({
                   <div
                     key={`day-${dayNum}`}
                     onClick={() => handleCalendarDayClick(dayNum)}
-                    className={`min-h-[140px] p-2 hover:bg-violet-50/30 transition-colors cursor-pointer flex flex-col justify-between group ${
-                      isToday ? 'bg-violet-50/40 border border-violet-300' : 'bg-white'
-                    }`}
+                    className={`min-h-[140px] p-2 hover:bg-violet-50/30 transition-colors cursor-pointer flex flex-col justify-between group ${isToday ? 'bg-violet-50/40 border border-violet-300' : 'bg-white'
+                      }`}
                   >
                     <div className="flex items-center justify-between">
                       <span
-                        className={`font-mono text-xs font-bold px-2 py-0.5 rounded-full ${
-                          isToday
+                        className={`font-mono text-xs font-bold px-2 py-0.5 rounded-full ${isToday
                             ? 'bg-violet-600 text-white shadow-xs'
                             : 'text-slate-700 group-hover:text-violet-700'
-                        }`}
+                          }`}
                       >
                         {dayNum}
                       </span>
@@ -917,13 +909,12 @@ export function BatchManagementClient({
                               e.stopPropagation();
                               openAttendanceModal(sess, sess.batch);
                             }}
-                            className={`p-1.5 rounded-lg border text-[10px] font-mono space-y-1 shadow-xs transition-all cursor-pointer ${
-                              ongoingStatus === 'LIVE'
+                            className={`p-1.5 rounded-lg border text-[10px] font-mono space-y-1 shadow-xs transition-all cursor-pointer ${ongoingStatus === 'LIVE'
                                 ? 'bg-violet-100 border-violet-400 text-violet-950 ring-1 ring-violet-400'
                                 : ongoingStatus === 'UPCOMING'
-                                ? 'bg-slate-50 border-slate-200 text-slate-900 hover:bg-slate-100'
-                                : 'bg-slate-100/80 border-slate-200 text-slate-700'
-                            }`}
+                                  ? 'bg-slate-50 border-slate-200 text-slate-900 hover:bg-slate-100'
+                                  : 'bg-slate-100/80 border-slate-200 text-slate-700'
+                              }`}
                             title="Click to Review & Mark Attendance"
                           >
                             <div className="flex items-center justify-between font-bold">
@@ -949,11 +940,10 @@ export function BatchManagementClient({
 
                               {ongoingStatus === 'COMPLETED' && (
                                 <span
-                                  className={`px-1.5 py-0.2 rounded-full text-[8px] font-semibold ${
-                                    isWindowOpen
+                                  className={`px-1.5 py-0.2 rounded-full text-[8px] font-semibold ${isWindowOpen
                                       ? 'bg-emerald-100 text-emerald-800 border border-emerald-200'
                                       : 'bg-slate-200 text-slate-500'
-                                  }`}
+                                    }`}
                                 >
                                   {isWindowOpen ? `5-Day Attd: ${daysRemaining}d Left` : 'Attd Locked'}
                                 </span>
@@ -1185,7 +1175,7 @@ export function BatchManagementClient({
                                 <thead>
                                   <tr className="bg-red-50/70 border-b border-red-200 text-red-950 uppercase text-[10px] font-bold">
                                     <th className="p-2.5">Student</th>
-                                    <th className="p-2.5">TS-ID</th>
+                                    <th className="p-2.5">NEXUS-ID</th>
                                     <th className="p-2.5">Status</th>
                                     <th className="p-2.5">Check-In Time</th>
                                     <th className="p-2.5">Remarks / Lab Hash</th>
@@ -1198,15 +1188,14 @@ export function BatchManagementClient({
                                       <td className="p-2.5 text-red-700 font-bold">{r.tsId}</td>
                                       <td className="p-2.5">
                                         <span
-                                          className={`px-2 py-0.5 rounded-full text-[9px] font-bold ${
-                                            r.status === 'PRESENT'
+                                          className={`px-2 py-0.5 rounded-full text-[9px] font-bold ${r.status === 'PRESENT'
                                               ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
                                               : r.status === 'ABSENT'
-                                              ? 'bg-red-50 text-red-700 border border-red-200'
-                                              : r.status === 'LATE'
-                                              ? 'bg-amber-50 text-amber-700 border border-amber-200'
-                                              : 'bg-purple-50 text-purple-700 border border-purple-200'
-                                          }`}
+                                                ? 'bg-red-50 text-red-700 border border-red-200'
+                                                : r.status === 'LATE'
+                                                  ? 'bg-amber-50 text-amber-700 border border-amber-200'
+                                                  : 'bg-purple-50 text-purple-700 border border-purple-200'
+                                            }`}
                                         >
                                           {r.status}
                                         </span>
@@ -1281,11 +1270,10 @@ export function BatchManagementClient({
                 <button
                   key={st}
                   onClick={() => setCorrectionFilter(st)}
-                  className={`px-3 py-1 rounded-lg text-xs font-mono font-bold transition-all cursor-pointer ${
-                    correctionFilter === st
+                  className={`px-3 py-1 rounded-lg text-xs font-mono font-bold transition-all cursor-pointer ${correctionFilter === st
                       ? 'bg-amber-500 text-black font-black shadow-xs'
                       : 'bg-slate-100 text-slate-600 hover:text-slate-950 border border-slate-200'
-                  }`}
+                    }`}
                 >
                   {st} ({count})
                 </button>
@@ -1299,8 +1287,8 @@ export function BatchManagementClient({
               Loading attendance correction requests from database...
             </div>
           ) : correctionRequests.filter(
-              (r) => correctionFilter === 'ALL' || r.status === correctionFilter
-            ).length === 0 ? (
+            (r) => correctionFilter === 'ALL' || r.status === correctionFilter
+          ).length === 0 ? (
             <div className="p-10 rounded-3xl bg-slate-50 border border-red-100 text-center space-y-2">
               <CheckCircle2 className="w-8 h-8 text-emerald-600 mx-auto" />
               <p className="text-sm font-mono text-slate-950 font-bold">
@@ -1324,11 +1312,11 @@ export function BatchManagementClient({
                   const sessionTitle = req.session?.title || 'Session';
                   const sessionDate = req.session?.date
                     ? new Date(req.session.date).toLocaleDateString('en-US', {
-                        weekday: 'short',
-                        month: 'short',
-                        day: 'numeric',
-                        year: 'numeric',
-                      })
+                      weekday: 'short',
+                      month: 'short',
+                      day: 'numeric',
+                      year: 'numeric',
+                    })
                     : 'N/A';
                   const requestDate = new Date(req.createdAt).toLocaleString();
                   const isProcessing = processingRequestId === req.id;
@@ -1342,13 +1330,12 @@ export function BatchManagementClient({
                       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-red-100 pb-3">
                         <div className="flex items-center gap-2 flex-wrap">
                           <span
-                            className={`px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase ${
-                              req.status === 'PENDING'
+                            className={`px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase ${req.status === 'PENDING'
                                 ? 'bg-amber-50 text-amber-700 border border-amber-300 animate-pulse'
                                 : req.status === 'APPROVED'
-                                ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
-                                : 'bg-red-50 text-red-700 border border-red-200'
-                            }`}
+                                  ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                                  : 'bg-red-50 text-red-700 border border-red-200'
+                              }`}
                           >
                             {req.status}
                           </span>
@@ -1398,15 +1385,14 @@ export function BatchManagementClient({
                             </span>
                             <span className="text-slate-400">→</span>
                             <span
-                              className={`px-2 py-0.5 rounded text-[10px] font-bold ${
-                                req.requestedStatus === 'PRESENT'
+                              className={`px-2 py-0.5 rounded text-[10px] font-bold ${req.requestedStatus === 'PRESENT'
                                   ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
                                   : req.requestedStatus === 'ABSENT'
-                                  ? 'bg-red-50 text-red-700 border border-red-200'
-                                  : req.requestedStatus === 'LATE'
-                                  ? 'bg-amber-50 text-amber-700 border border-amber-200'
-                                  : 'bg-purple-50 text-purple-700 border border-purple-200'
-                              }`}
+                                    ? 'bg-red-50 text-red-700 border border-red-200'
+                                    : req.requestedStatus === 'LATE'
+                                      ? 'bg-amber-50 text-amber-700 border border-amber-200'
+                                      : 'bg-purple-50 text-purple-700 border border-purple-200'
+                                }`}
                             >
                               {req.requestedStatus}
                             </span>
@@ -1477,11 +1463,10 @@ export function BatchManagementClient({
                             )}
                           </div>
                           <Badge
-                            className={`font-mono text-[10px] ${
-                              req.status === 'APPROVED'
+                            className={`font-mono text-[10px] ${req.status === 'APPROVED'
                                 ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
                                 : 'bg-red-50 text-red-700 border-red-200'
-                            }`}
+                              }`}
                           >
                             {req.status}
                           </Badge>
@@ -1596,21 +1581,20 @@ export function BatchManagementClient({
                     preset === '45_DAYS'
                       ? '45 Days'
                       : preset === '3_MONTHS'
-                      ? '3 Months'
-                      : preset === '6_MONTHS'
-                      ? '6 Months'
-                      : 'Custom';
+                        ? '3 Months'
+                        : preset === '6_MONTHS'
+                          ? '6 Months'
+                          : 'Custom';
                   const isSelected = durationPreset === preset;
                   return (
                     <button
                       type="button"
                       key={preset}
                       onClick={() => setDurationPreset(preset)}
-                      className={`py-2 px-2.5 rounded-xl text-xs font-semibold border transition-all cursor-pointer text-center ${
-                        isSelected
+                      className={`py-2 px-2.5 rounded-xl text-xs font-semibold border transition-all cursor-pointer text-center ${isSelected
                           ? 'bg-violet-600 text-white border-violet-600 shadow-xs'
                           : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100 hover:border-slate-300'
-                      }`}
+                        }`}
                     >
                       {label}
                     </button>
@@ -1630,17 +1614,15 @@ export function BatchManagementClient({
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-0.5">
                 <div
                   onClick={() => setFacultyRole('TEACHER_LECTURER')}
-                  className={`p-3 rounded-xl border cursor-pointer transition-all ${
-                    facultyRole === 'TEACHER_LECTURER'
+                  className={`p-3 rounded-xl border cursor-pointer transition-all ${facultyRole === 'TEACHER_LECTURER'
                       ? 'bg-violet-50/80 border-violet-400 ring-1 ring-violet-400 shadow-xs'
                       : 'bg-white border-slate-200 hover:bg-slate-50'
-                  }`}
+                    }`}
                 >
                   <div className="flex items-center justify-between mb-1">
                     <span className="font-semibold text-slate-900 text-xs">Teaching Lecturer</span>
-                    <span className={`w-3.5 h-3.5 rounded-full border flex items-center justify-center ${
-                      facultyRole === 'TEACHER_LECTURER' ? 'border-violet-600 bg-violet-600' : 'border-slate-300'
-                    }`}>
+                    <span className={`w-3.5 h-3.5 rounded-full border flex items-center justify-center ${facultyRole === 'TEACHER_LECTURER' ? 'border-violet-600 bg-violet-600' : 'border-slate-300'
+                      }`}>
                       {facultyRole === 'TEACHER_LECTURER' && <span className="w-1.5 h-1.5 rounded-full bg-white" />}
                     </span>
                   </div>
@@ -1651,17 +1633,15 @@ export function BatchManagementClient({
 
                 <div
                   onClick={() => setFacultyRole('FACULTY_NON_TEACHING')}
-                  className={`p-3 rounded-xl border cursor-pointer transition-all ${
-                    facultyRole === 'FACULTY_NON_TEACHING'
+                  className={`p-3 rounded-xl border cursor-pointer transition-all ${facultyRole === 'FACULTY_NON_TEACHING'
                       ? 'bg-violet-50/80 border-violet-400 ring-1 ring-violet-400 shadow-xs'
                       : 'bg-white border-slate-200 hover:bg-slate-50'
-                  }`}
+                    }`}
                 >
                   <div className="flex items-center justify-between mb-1">
                     <span className="font-semibold text-slate-900 text-xs">Faculty Member Only</span>
-                    <span className={`w-3.5 h-3.5 rounded-full border flex items-center justify-center ${
-                      facultyRole === 'FACULTY_NON_TEACHING' ? 'border-violet-600 bg-violet-600' : 'border-slate-300'
-                    }`}>
+                    <span className={`w-3.5 h-3.5 rounded-full border flex items-center justify-center ${facultyRole === 'FACULTY_NON_TEACHING' ? 'border-violet-600 bg-violet-600' : 'border-slate-300'
+                      }`}>
                       {facultyRole === 'FACULTY_NON_TEACHING' && <span className="w-1.5 h-1.5 rounded-full bg-white" />}
                     </span>
                   </div>
@@ -1699,11 +1679,10 @@ export function BatchManagementClient({
                           type="button"
                           key={day}
                           onClick={() => toggleDaySelection(day)}
-                          className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all cursor-pointer ${
-                            isDaySelected
+                          className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all cursor-pointer ${isDaySelected
                               ? 'bg-violet-600 text-white border-violet-600 shadow-xs'
                               : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'
-                          }`}
+                            }`}
                         >
                           {day}
                         </button>
@@ -1964,7 +1943,7 @@ export function BatchManagementClient({
         </Dialog>
       )}
 
-      {/* 👥 BATCH STUDENT ROSTER & FAST ENROLLMENT BY TS-ID */}
+      {/* 👥 BATCH STUDENT ROSTER & FAST ENROLLMENT BY NEXUS-ID */}
       {selectedBatchForStudents && (
         <Dialog
           open={!!selectedBatchForStudents}
@@ -1978,7 +1957,7 @@ export function BatchManagementClient({
                     {selectedBatchForStudents.batchCode}
                   </Badge>
                   <DialogTitle className="text-lg font-bold font-mono text-slate-900">
-                    Batch Student Roster &amp; TS-ID Enrollment
+                    Batch Student Roster &amp; NEXUS-ID Enrollment
                   </DialogTitle>
                 </div>
                 <Badge variant="outline" className="font-mono text-xs text-violet-700 border-violet-200 bg-violet-50">
@@ -1997,12 +1976,12 @@ export function BatchManagementClient({
               <form onSubmit={handleFastEnrollByTsId} className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
                 <span className="font-semibold text-slate-900 uppercase text-[11px] flex items-center gap-1.5">
                   <UserPlus className="w-3.5 h-3.5 text-violet-600" />
-                  Fast Enroll Student by Student ID (TS-ID / Email)
+                  Fast Enroll Student by Student ID (NEXUS-ID / Email)
                 </span>
                 <div className="flex gap-2">
                   <input
                     type="text"
-                    placeholder="Enter Student TS-ID (e.g. TS-C126, TS-A103) or Email..."
+                    placeholder="Enter Student NEXUS-ID (e.g. TS-C126, TS-A103) or Email..."
                     value={tsIdInput}
                     onChange={(e) => setTsIdInput(e.target.value)}
                     className="flex-1 bg-white border border-slate-200 text-slate-900 px-3 py-2 rounded-xl text-xs placeholder:text-slate-400 focus:outline-none focus:border-violet-600"
@@ -2022,33 +2001,30 @@ export function BatchManagementClient({
                 <button
                   type="button"
                   onClick={() => setStudentFilterTab('ALL')}
-                  className={`flex-1 py-1.5 px-2.5 rounded-lg font-medium transition-all cursor-pointer ${
-                    studentFilterTab === 'ALL'
+                  className={`flex-1 py-1.5 px-2.5 rounded-lg font-medium transition-all cursor-pointer ${studentFilterTab === 'ALL'
                       ? 'bg-white text-slate-900 shadow-xs font-semibold'
                       : 'text-slate-600 hover:text-slate-900'
-                  }`}
+                    }`}
                 >
                   All ({allStudents.length})
                 </button>
                 <button
                   type="button"
                   onClick={() => setStudentFilterTab('UNASSIGNED')}
-                  className={`flex-1 py-1.5 px-2.5 rounded-lg font-medium transition-all cursor-pointer ${
-                    studentFilterTab === 'UNASSIGNED'
+                  className={`flex-1 py-1.5 px-2.5 rounded-lg font-medium transition-all cursor-pointer ${studentFilterTab === 'UNASSIGNED'
                       ? 'bg-white text-amber-700 shadow-xs font-semibold'
                       : 'text-slate-600 hover:text-slate-900'
-                  }`}
+                    }`}
                 >
                   Unassigned ({allStudents.filter((s) => !s.batchId).length})
                 </button>
                 <button
                   type="button"
                   onClick={() => setStudentFilterTab('IN_BATCH')}
-                  className={`flex-1 py-1.5 px-2.5 rounded-lg font-medium transition-all cursor-pointer ${
-                    studentFilterTab === 'IN_BATCH'
+                  className={`flex-1 py-1.5 px-2.5 rounded-lg font-medium transition-all cursor-pointer ${studentFilterTab === 'IN_BATCH'
                       ? 'bg-white text-violet-700 shadow-xs font-semibold'
                       : 'text-slate-600 hover:text-slate-900'
-                  }`}
+                    }`}
                 >
                   In This Batch ({allStudents.filter((s) => s.batchId === selectedBatchForStudents.id).length})
                 </button>
@@ -2059,7 +2035,7 @@ export function BatchManagementClient({
                 <div className="relative">
                   <Search className="w-4 h-4 absolute left-3 top-2.5 text-slate-400" />
                   <input
-                    placeholder="Filter students by Name, Email, or TS-ID..."
+                    placeholder="Filter students by Name, Email, or NEXUS-ID..."
                     value={searchStudent}
                     onChange={(e) => setSearchStudent(e.target.value)}
                     className="w-full bg-slate-50 border border-slate-200 text-slate-900 pl-9 pr-3 py-2 rounded-xl text-xs focus:outline-none focus:border-violet-600 focus:bg-white"
@@ -2122,9 +2098,8 @@ export function BatchManagementClient({
                     return (
                       <div
                         key={student.id}
-                        className={`p-3 flex items-center justify-between gap-3 transition-colors ${
-                          isSelected ? 'bg-violet-50/70' : 'hover:bg-slate-50'
-                        }`}
+                        className={`p-3 flex items-center justify-between gap-3 transition-colors ${isSelected ? 'bg-violet-50/70' : 'hover:bg-slate-50'
+                          }`}
                       >
                         <div className="flex items-center gap-3">
                           {!isAssigned && (
@@ -2402,17 +2377,16 @@ export function BatchManagementClient({
                                 onClick={() =>
                                   setAttendanceDraft((prev) => ({ ...prev, [student.id]: st }))
                                 }
-                                className={`px-2.5 py-1 rounded-lg text-[10px] font-semibold transition-all cursor-pointer ${
-                                  status === st
+                                className={`px-2.5 py-1 rounded-lg text-[10px] font-semibold transition-all cursor-pointer ${status === st
                                     ? st === 'PRESENT'
                                       ? 'bg-emerald-600 text-white border border-emerald-600 shadow-xs'
                                       : st === 'ABSENT'
-                                      ? 'bg-rose-600 text-white border border-rose-600 shadow-xs'
-                                      : st === 'LATE'
-                                      ? 'bg-amber-500 text-white border border-amber-500'
-                                      : 'bg-violet-600 text-white border border-violet-600'
+                                        ? 'bg-rose-600 text-white border border-rose-600 shadow-xs'
+                                        : st === 'LATE'
+                                          ? 'bg-amber-500 text-white border border-amber-500'
+                                          : 'bg-violet-600 text-white border border-violet-600'
                                     : 'bg-slate-100 text-slate-600 border border-slate-200 hover:text-slate-900'
-                                }`}
+                                  }`}
                               >
                                 {st}
                               </button>

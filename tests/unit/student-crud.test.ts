@@ -1,8 +1,8 @@
 import { describe, it, expect } from 'vitest';
-import { generateTSID, generateDomainTSID, isValidTSID } from '../../src/lib/auth/ts-id';
+import { generateTSID, generateDomainTSID, isValidTSID } from '../../src/lib/auth/NEXUS-ID';
 
 describe('Student Account Management & Audit Logging', () => {
-  it('generates valid TS-ID format for new student accounts', () => {
+  it('generates valid NEXUS-ID format for new student accounts', () => {
     const tsId = generateTSID();
     expect(tsId).toMatch(/^(NEXUS|TSE)-2026-[A-Z0-9]{6}$/);
     expect(isValidTSID(tsId)).toBe(true);
@@ -24,7 +24,7 @@ describe('Student Account Management & Audit Logging', () => {
     const action = 'STUDENT_CREATED';
     const email = 'rahul.sharma@gmail.com';
     const tsId = generateDomainTSID('AI');
-    const details = `Created new student account for Rahul Sharma (${email}, TS-ID: ${tsId}).`;
+    const details = `Created new student account for Rahul Sharma (${email}, NEXUS-ID: ${tsId}).`;
 
     expect(action).toBe('STUDENT_CREATED');
     expect(details).toContain(email);

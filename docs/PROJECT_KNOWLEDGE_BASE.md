@@ -75,7 +75,7 @@ threads-edu/
 │   │   ├── mentor/actions/             # Mentor grading & feedback actions
 │   │   └── notifications/actions/      # Notification dispatch and mark-as-read actions
 │   ├── lib/
-│   │   ├── auth/                       # Session handling, TS-ID generation (`TSE-YYYY-XXXXXX`)
+│   │   ├── auth/                       # Session handling, NEXUS-ID generation (`TSE-YYYY-XXXXXX`)
 │   │   ├── security/                   # Crypto vault, password hashing, IP rate limiter & guard
 │   │   └── utils.ts                    # Class merging (`clsx`, `tailwind-merge`)
 │   ├── server/
@@ -132,7 +132,7 @@ erDiagram
 ```
 
 ### Key Models & Descriptions
-1. **`User` & `TSIdentity`**: Core user entity linked to an immutable TS-ID (e.g. `TSE-2026-999`). Supports 6-tier RBAC (`STUDENT`, `MENTOR`, `CONTENT_MANAGER`, `ACADEMIC_ADMIN`, `SECURITY_ADMIN`, `SUPER_ADMIN`).
+1. **`User` & `TSIdentity`**: Core user entity linked to an immutable NEXUS-ID (e.g. `TSE-2026-999`). Supports 6-tier RBAC (`STUDENT`, `MENTOR`, `CONTENT_MANAGER`, `ACADEMIC_ADMIN`, `SECURITY_ADMIN`, `SUPER_ADMIN`).
 2. **`StudentProfile` & `MentorProfile`**: Extended domain profiles storing bio, career goals, hours learned, attendance streaks, and mentor associations.
 3. **`Course`, `Module`, `Lesson`**: Hierarchical curriculum structure supporting video streams, technical documentation, preview gating, and ordering.
 4. **`Lab` & `LabAttempt`**: Hands-on offensive/defensive sandboxes with flag verification (`flagHash`), objectives, estimated duration, and score recording.
@@ -149,7 +149,7 @@ erDiagram
    - Progress calculations, lab flag checks, and exam scoring occur exclusively in server-side transactions. Client score submissions are strictly rejected.
 2. **Cryptographic Identity & Anti-Tampering:**
    - Every student is assigned a unique `TSIdentity`.
-   - Certificates store SHA-256 hashes generated from the user's TS-ID, course completion timestamp, and secret salt.
+   - Certificates store SHA-256 hashes generated from the user's NEXUS-ID, course completion timestamp, and secret salt.
 3. **Brute-Force & Credential Stuffing Defense:**
    - `SecurityLockout` tracks failed login and OTP attempts.
    - Accounts lock automatically after 5 failed attempts with exponential backoff.
@@ -161,7 +161,7 @@ erDiagram
 ## 6. Core User Workflows
 
 ### Student Learning Journey
-1. **Onboarding & Approval:** User registers $\rightarrow$ Super Admin grants dashboard access $\rightarrow$ Student assigned unique TS-ID.
+1. **Onboarding & Approval:** User registers $\rightarrow$ Super Admin grants dashboard access $\rightarrow$ Student assigned unique NEXUS-ID.
 2. **Curriculum & Labs:** Student streams lessons $\rightarrow$ launches hands-on lab sandboxes $\rightarrow$ submits flags $\rightarrow$ receives instant feedback.
 3. **Cohort Attendance:** Attends live sessions $\rightarrow$ Mentor logs attendance $\rightarrow$ Student tracks attendance percentage and streak.
 4. **Assessment & Certification:** Completes modular quizzes and final qualification exam ($>75\%$) $\rightarrow$ system automatically issues verified certificate.

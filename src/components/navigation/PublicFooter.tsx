@@ -113,8 +113,8 @@ export function PublicFooter() {
               type="submit"
               disabled={isSubscribed}
               className={`inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-xs transition-all whitespace-nowrap cursor-pointer shrink-0 shadow-md ${isSubscribed
-                  ? 'bg-emerald-600 text-white'
-                  : 'bg-slate-950 text-white hover:bg-slate-800'
+                ? 'bg-emerald-600 text-white'
+                : 'bg-slate-950 text-white hover:bg-slate-800'
                 }`}
             >
               {isSubscribed ? (
@@ -340,7 +340,7 @@ export function PublicFooter() {
               </li>
               <li>
                 <Link href="/verify-certificate" className="text-slate-600 hover:text-slate-950 transition-colors">
-                  Verify TS-ID Certificate
+                  Verify NEXUS-ID Certificate
                 </Link>
               </li>
               <li>

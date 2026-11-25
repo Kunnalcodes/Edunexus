@@ -7,7 +7,7 @@ import {
   verifyGeneralAdminSecretKey,
   verifyGeneralAdminPasskey,
 } from '../../src/lib/security/crypto-vault';
-import { generateTSID, isValidTSID, generateDomainTSID } from '../../src/lib/auth/ts-id';
+import { generateTSID, isValidTSID, generateDomainTSID } from '../../src/lib/auth/NEXUS-ID';
 
 describe('Cryptographic Security Vault & Salted Base64 Hashes', () => {
   const originalEnv = { ...process.env };
@@ -68,14 +68,14 @@ describe('Cryptographic Security Vault & Salted Base64 Hashes', () => {
   });
 });
 
-describe('Student TS-ID & Primary Key Attachment', () => {
-  it('generates unique valid TS-ID with proper prefix format', () => {
+describe('Student NEXUS-ID & Primary Key Attachment', () => {
+  it('generates unique valid NEXUS-ID with proper prefix format', () => {
     const tsId = generateTSID();
     expect(tsId).toMatch(/^(NEXUS|TSE)-2026-[A-Z0-9]{6}$/);
     expect(isValidTSID(tsId)).toBe(true);
   });
 
-  it('generates specialized Cyber & AI Track TS-IDs', () => {
+  it('generates specialized Cyber & AI Track NEXUS-IDs', () => {
     const cyberId = generateDomainTSID('CYBER', 126);
     expect(cyberId).toMatch(/^(NX-C126|TS-C126)$/);
     expect(isValidTSID(cyberId)).toBe(true);

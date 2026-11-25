@@ -49,7 +49,7 @@ export default async function AdminAnnouncementsPage() {
     mentors = [];
   }
 
-  // 3. Get students roster with TS-ID & Batch
+  // 3. Get students roster with NEXUS-ID & Batch
   let students: {
     id: string;
     name: string | null;

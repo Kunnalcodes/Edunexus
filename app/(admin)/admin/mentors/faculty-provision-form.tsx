@@ -76,7 +76,7 @@ export function FacultyProvisionForm({
               Provision Faculty &amp; Staff Account
             </h3>
             <p className="text-[11px] text-slate-500">
-              Appoint faculty TS-ID, map cohort batch, and dispatch portal login credentials directly to instructor inbox.
+              Appoint faculty NEXUS-ID, map cohort batch, and dispatch portal login credentials directly to instructor inbox.
             </p>
           </div>
         </div>
@@ -84,8 +84,8 @@ export function FacultyProvisionForm({
         {feedback && (
           <div
             className={`px-3 py-1.5 rounded-lg flex items-center gap-1.5 text-xs font-medium ${feedback.type === 'success'
-                ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
-                : 'bg-rose-50 text-rose-700 border border-rose-200'
+              ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+              : 'bg-rose-50 text-rose-700 border border-rose-200'
               }`}
           >
             {feedback.type === 'success' ? (
@@ -150,7 +150,7 @@ export function FacultyProvisionForm({
           <div className="space-y-1">
             <div className="flex items-center justify-between">
               <label className="text-[11px] font-medium text-slate-700">
-                Appointed TS-ID *
+                Appointed NEXUS-ID *
               </label>
               <button
                 type="button"

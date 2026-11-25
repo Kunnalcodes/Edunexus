@@ -1,8 +1,8 @@
 import { describe, it, expect } from 'vitest';
-import { generateTSID, isValidTSID } from '../../src/lib/auth/ts-id';
+import { generateTSID, isValidTSID } from '../../src/lib/auth/NEXUS-ID';
 
-describe('TS-ID Generation & Validation', () => {
-  it('should generate valid TS-ID with correct format TSE-YYYY-XXXXXX or NEXUS-YYYY-XXXXXX', () => {
+describe('NEXUS-ID Generation & Validation', () => {
+  it('should generate valid NEXUS-ID with correct format TSE-YYYY-XXXXXX or NEXUS-YYYY-XXXXXX', () => {
     const tsId = generateTSID(2026);
     expect(tsId).toMatch(/^(NEXUS|TSE)-2026-[2-9A-HJ-NP-Z]{6}$/);
     expect(isValidTSID(tsId)).toBe(true);
@@ -16,8 +16,8 @@ describe('TS-ID Generation & Validation', () => {
     expect(set.size).toBe(100);
   });
 
-  it('should reject invalid TS-ID formats', () => {
-    expect(isValidTSID('INVALID-TS-ID')).toBe(false);
+  it('should reject invalid NEXUS-ID formats', () => {
+    expect(isValidTSID('INVALID-NEXUS-ID')).toBe(false);
     expect(isValidTSID('TSE-2026-12')).toBe(false);
     expect(isValidTSID('TSE-2026-0O1I23')).toBe(false); // Excluded ambiguous chars 0, O, 1, I
   });

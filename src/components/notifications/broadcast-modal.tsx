@@ -90,11 +90,10 @@ export function BroadcastMessageModal() {
             <button
               type="button"
               onClick={() => setActiveTab('DISPATCH')}
-              className={`flex-1 py-1.5 rounded-lg font-medium transition-all flex items-center justify-center gap-1.5 ${
-                activeTab === 'DISPATCH'
+              className={`flex-1 py-1.5 rounded-lg font-medium transition-all flex items-center justify-center gap-1.5 ${activeTab === 'DISPATCH'
                   ? 'bg-white text-violet-700 shadow-sm font-semibold'
                   : 'text-slate-600 hover:text-slate-900'
-              }`}
+                }`}
             >
               <Megaphone className="w-3.5 h-3.5" />
               <span>Dispatch Message</span>
@@ -102,11 +101,10 @@ export function BroadcastMessageModal() {
             <button
               type="button"
               onClick={() => setActiveTab('READ_RECEIPTS')}
-              className={`flex-1 py-1.5 rounded-lg font-medium transition-all flex items-center justify-center gap-1.5 ${
-                activeTab === 'READ_RECEIPTS'
+              className={`flex-1 py-1.5 rounded-lg font-medium transition-all flex items-center justify-center gap-1.5 ${activeTab === 'READ_RECEIPTS'
                   ? 'bg-white text-violet-700 shadow-sm font-semibold'
                   : 'text-slate-600 hover:text-slate-900'
-              }`}
+                }`}
             >
               <Eye className="w-3.5 h-3.5" />
               <span>Receipts &amp; Analytics</span>
@@ -161,7 +159,7 @@ export function BroadcastMessageModal() {
                   <option value="ALL">All Active Users (Students and Mentors)</option>
                   <option value="STUDENT">Students Only</option>
                   <option value="MENTOR">Faculty Mentors Only</option>
-                  <option value="SINGLE_STUDENT">Single Student (by TS-ID or Email)</option>
+                  <option value="SINGLE_STUDENT">Single Student (by NEXUS-ID or Email)</option>
                   <option value="SINGLE_MENTOR">Single Mentor (by Email)</option>
                   <option value="SPECIFIC_BATCH">Specific Academic Batch</option>
                 </select>
@@ -170,7 +168,7 @@ export function BroadcastMessageModal() {
               {targetType === 'SINGLE_STUDENT' && (
                 <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
                   <label className="block text-slate-700 font-semibold">
-                    Student Identifier (TS-ID or Email) *
+                    Student Identifier (NEXUS-ID or Email) *
                   </label>
                   <input
                     type="text"

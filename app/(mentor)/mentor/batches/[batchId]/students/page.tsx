@@ -83,7 +83,7 @@ export default async function BatchStudentsPage({
           <table className="w-full text-left border-collapse text-xs font-mono">
             <thead>
               <tr className="border-b border-white/10 bg-white/[0.03] text-slate-400 uppercase text-[10px] tracking-wider">
-                <th className="py-3.5 px-4">Student & TS-ID</th>
+                <th className="py-3.5 px-4">Student & NEXUS-ID</th>
                 <th className="py-3.5 px-4">Email</th>
                 <th className="py-3.5 px-4">Attendance %</th>
                 <th className="py-3.5 px-4">Module Mastery</th>

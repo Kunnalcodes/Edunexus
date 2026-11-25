@@ -25,7 +25,7 @@ import {
 } from '../../../server/services/admin.service';
 import { revalidatePath } from 'next/cache';
 import { getSession } from '@/lib/auth/session';
-import { StudentTrack } from '@/lib/auth/ts-id';
+import { StudentTrack } from '@/lib/auth/NEXUS-ID';
 import { RoleType } from '@prisma/client';
 
 export async function getSuggestedTSIDAction(track: StudentTrack = 'CYBER') {
@@ -33,7 +33,7 @@ export async function getSuggestedTSIDAction(track: StudentTrack = 'CYBER') {
     const tsId = await getNextSuggestedTSID(track);
     return { success: true, tsId };
   } catch {
-    return { success: false, error: 'Failed to generate suggested TS-ID' };
+    return { success: false, error: 'Failed to generate suggested NEXUS-ID' };
   }
 }
 
@@ -114,7 +114,7 @@ export async function reassignStudentTrackAction(userId: string, track: StudentT
     revalidatePath('/admin/audit');
     return { success: true, tsId: newTsId };
   } catch (err: unknown) {
-    const msg = err instanceof Error ? err.message : 'Failed to reassign TS-ID track.';
+    const msg = err instanceof Error ? err.message : 'Failed to reassign NEXUS-ID track.';
     return { success: false, error: msg };
   }
 }

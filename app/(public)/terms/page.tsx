@@ -55,7 +55,7 @@ export default function TermsAndConditionsPage() {
             <ul className="list-disc pl-5 space-y-1.5 text-slate-600">
               <li>No techniques learned may be executed against production networks, websites, or servers without formal written authorization from the system owners.</li>
               <li>Sandboxed VM environments provided by TSE must not be used to launch outbound denial-of-service (DoS) attacks, cryptomining, or botnet staging.</li>
-              <li>Violation of this policy will result in immediate expulsion, permanent revocation of TS-ID credentials, and formal reporting to legal authorities.</li>
+              <li>Violation of this policy will result in immediate expulsion, permanent revocation of NEXUS-ID credentials, and formal reporting to legal authorities.</li>
             </ul>
           </section>
 
@@ -81,9 +81,9 @@ export default function TermsAndConditionsPage() {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-lg font-bold text-slate-950">5. TS-ID Certificate Issuance &amp; Verification</h2>
+            <h2 className="text-lg font-bold text-slate-950">5. NEXUS-ID Certificate Issuance &amp; Verification</h2>
             <p>
-              Edu Nexus Education issues cryptographically verifiable TS-ID credentials upon satisfactory completion of curriculum modules, practical lab benchmarks, and required scores on exit assessments. TSE reserves the right to withhold or revoke credentials in cases of academic dishonesty or code of conduct violations.
+              Edu Nexus Education issues cryptographically verifiable NEXUS-ID credentials upon satisfactory completion of curriculum modules, practical lab benchmarks, and required scores on exit assessments. TSE reserves the right to withhold or revoke credentials in cases of academic dishonesty or code of conduct violations.
             </p>
           </section>
 

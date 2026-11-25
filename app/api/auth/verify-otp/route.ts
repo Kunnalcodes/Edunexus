@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
 
     if (!emailOrTsId || typeof emailOrTsId !== 'string') {
       return NextResponse.json(
-        { success: false, error: 'Identifier (Email or TS-ID) is required.' },
+        { success: false, error: 'Identifier (Email or NEXUS-ID) is required.' },
         { status: 400 }
       );
     }

@@ -27,12 +27,12 @@ export default async function AdminStudentDirectoryPage({
     role: { in: ['STUDENT', 'GUEST'] },
     ...(query
       ? {
-          OR: [
-            { name: { contains: query, mode: 'insensitive' } },
-            { email: { contains: query, mode: 'insensitive' } },
-            { tsIdentity: { tsId: { contains: query, mode: 'insensitive' } } },
-          ],
-        }
+        OR: [
+          { name: { contains: query, mode: 'insensitive' } },
+          { email: { contains: query, mode: 'insensitive' } },
+          { tsIdentity: { tsId: { contains: query, mode: 'insensitive' } } },
+        ],
+      }
       : {}),
   };
 
@@ -84,10 +84,10 @@ export default async function AdminStudentDirectoryPage({
             </span>
           </div>
           <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
-            Student Directory &amp; TS-ID Roster
+            Student Directory &amp; NEXUS-ID Roster
           </h1>
           <p className="text-xs text-slate-500 mt-0.5">
-            Atomic TS-ID provisioning, cohort transfers, dashboard access management, and academic profile audits.
+            Atomic NEXUS-ID provisioning, cohort transfers, dashboard access management, and academic profile audits.
           </p>
         </div>
 
@@ -95,22 +95,20 @@ export default async function AdminStudentDirectoryPage({
         <div className="flex items-center gap-2 text-xs">
           <Link href="/admin/students?status=ALL">
             <span
-              className={`px-3 py-1.5 rounded-lg border transition-all cursor-pointer font-medium ${
-                statusFilter === 'ALL'
+              className={`px-3 py-1.5 rounded-lg border transition-all cursor-pointer font-medium ${statusFilter === 'ALL'
                   ? 'bg-violet-600 text-white border-violet-600 shadow-xs'
                   : 'bg-white border-slate-200 text-slate-600 hover:border-violet-300'
-              }`}
+                }`}
             >
               All ({totalCount})
             </span>
           </Link>
           <Link href="/admin/students?status=APPROVED">
             <span
-              className={`px-3 py-1.5 rounded-lg border transition-all cursor-pointer font-medium inline-flex items-center gap-1.5 ${
-                statusFilter === 'APPROVED'
+              className={`px-3 py-1.5 rounded-lg border transition-all cursor-pointer font-medium inline-flex items-center gap-1.5 ${statusFilter === 'APPROVED'
                   ? 'bg-violet-600 text-white border-violet-600 shadow-xs'
                   : 'bg-emerald-50 text-emerald-700 border-emerald-200 hover:bg-emerald-100/60'
-              }`}
+                }`}
             >
               <Unlock className="w-3.5 h-3.5" />
               <span>Approved ({approvedCount})</span>
@@ -118,11 +116,10 @@ export default async function AdminStudentDirectoryPage({
           </Link>
           <Link href="/admin/students?status=PENDING">
             <span
-              className={`px-3 py-1.5 rounded-lg border transition-all cursor-pointer font-medium inline-flex items-center gap-1.5 ${
-                statusFilter === 'PENDING'
+              className={`px-3 py-1.5 rounded-lg border transition-all cursor-pointer font-medium inline-flex items-center gap-1.5 ${statusFilter === 'PENDING'
                   ? 'bg-violet-600 text-white border-violet-600 shadow-xs'
                   : 'bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100/60'
-              }`}
+                }`}
             >
               <Lock className="w-3.5 h-3.5" />
               <span>Pending ({pendingCount})</span>
@@ -144,7 +141,7 @@ export default async function AdminStudentDirectoryPage({
               type="text"
               name="q"
               defaultValue={query}
-              placeholder="Search by student name, email, phone, or TS-ID (e.g. TS-C146)..."
+              placeholder="Search by student name, email, phone, or NEXUS-ID (e.g. TS-C146)..."
               className="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 text-slate-900 placeholder:text-slate-400 text-xs rounded-xl focus:outline-none focus:border-violet-500 focus:bg-white transition-colors"
             />
           </div>
@@ -163,7 +160,7 @@ export default async function AdminStudentDirectoryPage({
           <table className="w-full text-left text-xs">
             <thead className="bg-slate-50 text-slate-600 border-b border-slate-200 uppercase text-[11px] font-semibold tracking-wider">
               <tr>
-                <th className="p-4">TS-ID</th>
+                <th className="p-4">NEXUS-ID</th>
                 <th className="p-4">Student Name</th>
                 <th className="p-4">Email &amp; Contact</th>
                 <th className="p-4">Current Batch</th>

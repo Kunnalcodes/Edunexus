@@ -33,7 +33,7 @@ const CYBER_CARDS: ChallengeCard[] = [
     problem:
       'Students collect certifications (CEH, CompTIA, etc.) but can\'t apply them in real scenarios. Certs alone don\'t demonstrate operational competence.',
     solution:
-      'We pair industry certifications with portfolio-building projects and TS-ID verified credentials that employers trust.',
+      'We pair industry certifications with portfolio-building projects and NEXUS-ID verified credentials that employers trust.',
   },
   {
     icon: <Route className="w-5 h-5" />,
@@ -198,8 +198,8 @@ export function ChallengesSection() {
                       </div>
                       <span
                         className={`text-[10px] font-medium tracking-[0.15em] uppercase px-2.5 py-1 rounded-full border ${isCyber
-                            ? 'bg-[#C6FF34]/10 text-[#C6FF34] border-[#C6FF34]/20'
-                            : 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20'
+                          ? 'bg-[#C6FF34]/10 text-[#C6FF34] border-[#C6FF34]/20'
+                          : 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20'
                           }`}
                       >
                         {isCyber ? 'Cybersecurity' : 'AI'}

@@ -40,7 +40,7 @@ export function HeroSection({ totalCourses, totalLabs }: HeroSectionProps) {
 
         {/* ── SUBTITLE ── */}
         <p className="text-sm sm:text-lg md:text-xl text-slate-600 max-w-4xl mx-auto mb-8 sm:mb-9 leading-relaxed font-sans font-medium">
-          Edu Nexus Education (TSE) is North Region&apos;s premier career launcher for Ethical Hacking, SOC Analytics, Cloud DevSecOps, and AI Security. Learn in 100% sandboxed live labs, receive 1-on-1 industry mentorship, and earn verified TS-ID student credentials.
+          Edu Nexus Education (TSE) is North Region&apos;s premier career launcher for Ethical Hacking, SOC Analytics, Cloud DevSecOps, and AI Security. Learn in 100% sandboxed live labs, receive 1-on-1 industry mentorship, and earn verified NEXUS-ID student credentials.
         </p>
 
         {/* ── HIGH-CONVERTING CTA BUTTONS ── */}
@@ -87,7 +87,7 @@ export function HeroSection({ totalCourses, totalLabs }: HeroSectionProps) {
 
           <div className="flex items-center gap-1.5 text-slate-700">
             <Award className="w-4 h-4 text-purple-600" />
-            <span>Verifiable TS-ID Credentials</span>
+            <span>Verifiable NEXUS-ID Credentials</span>
           </div>
         </div>
 

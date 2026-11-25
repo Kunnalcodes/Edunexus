@@ -14,11 +14,11 @@ import { getSiteUrl } from '@/lib/seo/siteUrl';
 const APP_URL = getSiteUrl();
 
 export const metadata: Metadata = {
-  title: 'Cryptographic Certificate Verification | Verify TS-ID Credentials',
-  description: 'Verify the authenticity and integrity of Edu Nexus Education TS-ID certificates and digital credentials using our anti-tamper verification registry.',
+  title: 'Cryptographic Certificate Verification | Verify NEXUS-ID Credentials',
+  description: 'Verify the authenticity and integrity of Edu Nexus Education NEXUS-ID certificates and digital credentials using our anti-tamper verification registry.',
   keywords: [
     'Verify Cybersecurity Certificate',
-    'TS-ID Verification',
+    'NEXUS-ID Verification',
     'TSE Credential Registry',
     'Anti-Tamper Certificate Verification',
     'Edu Nexus Education',
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Certificate Verification Registry | Edu Nexus Education',
-    description: 'Verify the authenticity and integrity of Edu Nexus Education TS-ID certificates.',
+    description: 'Verify the authenticity and integrity of Edu Nexus Education NEXUS-ID certificates.',
     url: `${APP_URL}/verify-certificate`,
     type: 'website',
   },
@@ -148,7 +148,7 @@ export default async function PublicCertificateVerificationPage({
                       <span className="text-muted text-xs block">Issued To Student:</span>
                       <span className="font-bold text-primary text-base block">{certificate.user.name}</span>
                       <span className="text-xs font-mono text-security-green-dark">
-                        TS-ID: {certificate.user.tsIdentity?.tsId || 'TSE-2026-STUDENT'}
+                        NEXUS-ID: {certificate.user.tsIdentity?.tsId || 'TSE-2026-STUDENT'}
                       </span>
                     </div>
 

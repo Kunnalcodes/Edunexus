@@ -102,12 +102,12 @@ export function MentorLabSubmissionsClient({
           prev.map((item) =>
             item.id === attemptId
               ? {
-                  ...item,
-                  score,
-                  feedback,
-                  state: score >= 70 ? 'COMPLETED' : 'SUBMITTED',
-                  completedAt: new Date(),
-                }
+                ...item,
+                score,
+                feedback,
+                state: score >= 70 ? 'COMPLETED' : 'SUBMITTED',
+                completedAt: new Date(),
+              }
               : item
           )
         );
@@ -147,11 +147,10 @@ export function MentorLabSubmissionsClient({
       {/* Toast */}
       {toastMessage && (
         <div
-          className={`fixed bottom-6 right-6 z-50 px-4 py-3 rounded-2xl shadow-xl text-xs flex items-center gap-2 border transition-all ${
-            toastMessage.type === 'success'
+          className={`fixed bottom-6 right-6 z-50 px-4 py-3 rounded-2xl shadow-xl text-xs flex items-center gap-2 border transition-all ${toastMessage.type === 'success'
               ? 'bg-white border-emerald-200 text-emerald-800'
               : 'bg-white border-rose-200 text-rose-800'
-          }`}
+            }`}
         >
           {toastMessage.type === 'success' ? (
             <CheckCircle2 className="w-4 h-4 text-emerald-600" />
@@ -199,7 +198,7 @@ export function MentorLabSubmissionsClient({
           <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
           <input
             type="text"
-            placeholder="Search by student name, TS-ID, or lab..."
+            placeholder="Search by student name, NEXUS-ID, or lab..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-10 pr-4 py-2 rounded-xl bg-white border border-slate-200 text-slate-900 text-xs placeholder:text-slate-400 focus:outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20"
@@ -213,11 +212,10 @@ export function MentorLabSubmissionsClient({
             <button
               key={status}
               onClick={() => setStatusFilter(status)}
-              className={`px-3 py-1.5 rounded-xl text-xs font-medium transition-all cursor-pointer ${
-                statusFilter === status
+              className={`px-3 py-1.5 rounded-xl text-xs font-medium transition-all cursor-pointer ${statusFilter === status
                   ? 'bg-violet-600 text-white shadow-xs'
                   : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
-              }`}
+                }`}
             >
               {status}
             </button>
@@ -252,7 +250,7 @@ export function MentorLabSubmissionsClient({
                         {attempt.user.name}
                       </span>
                       <Badge className="bg-violet-50 text-violet-700 border border-violet-200 font-mono text-xs font-semibold">
-                        {attempt.user.tsIdentity?.tsId || 'TS-ID'}
+                        {attempt.user.tsIdentity?.tsId || 'NEXUS-ID'}
                       </Badge>
                       <span className="text-xs text-slate-500">
                         ({attempt.user.email})
@@ -275,11 +273,10 @@ export function MentorLabSubmissionsClient({
 
                   <div className="flex items-center gap-3 shrink-0">
                     <Badge
-                      className={`text-xs px-3 py-1 font-semibold ${
-                        isCompleted
+                      className={`text-xs px-3 py-1 font-semibold ${isCompleted
                           ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
                           : 'bg-amber-50 text-amber-700 border border-amber-200'
-                      }`}
+                        }`}
                     >
                       {isCompleted ? '✓ COMPLETED' : '⏳ IN PROGRESS'} • {attempt.score}%
                     </Badge>

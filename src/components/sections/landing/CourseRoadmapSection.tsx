@@ -1680,7 +1680,7 @@ const COURSES_DATA: CourseItem[] = [
       'Covers Both 45-Day Summer & 6-Month Industrial Tracks',
       '100% Practical Sandboxed Kali Linux & Range Labs',
       'CEH v13, CompTIA Security+ & OSCP Exam Aligned',
-      '100% Placement Support with Verifiable TS-ID Credentials'
+      '100% Placement Support with Verifiable NEXUS-ID Credentials'
     ],
     level: 'Beginner (From Scratch)',
     durationData: {
@@ -3283,8 +3283,8 @@ function TrainProgressTrack({
 
   return (
     <div className={`w-full rounded-3xl p-5 sm:p-7 text-white shadow-2xl relative overflow-hidden mb-10 border transition-all duration-500 backdrop-blur-2xl ${isCyber
-        ? 'bg-[#0a110c]/90 border-[#C6FF34]/30 shadow-[#C6FF34]/10'
-        : 'bg-slate-950/90 border-white/10 shadow-violet-500/10'
+      ? 'bg-[#0a110c]/90 border-[#C6FF34]/30 shadow-[#C6FF34]/10'
+      : 'bg-slate-950/90 border-white/10 shadow-violet-500/10'
       }`}>
       {/* Ambient Background Glow & Micro-Grid */}
       <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-24 rounded-full blur-3xl pointer-events-none opacity-20 transition-colors ${isCyber ? 'bg-[#C6FF34]' : 'bg-cyan-400'
@@ -3295,16 +3295,16 @@ function TrainProgressTrack({
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-6 relative z-10">
         <div className="flex items-center gap-3">
           <div className={`w-9 h-9 rounded-2xl flex items-center justify-center border shadow-sm ${isCyber
-              ? 'bg-[#C6FF34]/15 text-[#C6FF34] border-[#C6FF34]/40'
-              : 'bg-cyan-500/15 text-cyan-300 border-cyan-400/30'
+            ? 'bg-[#C6FF34]/15 text-[#C6FF34] border-[#C6FF34]/40'
+            : 'bg-cyan-500/15 text-cyan-300 border-cyan-400/30'
             }`}>
             <Sparkles className="w-4 h-4 text-white" />
           </div>
           <div>
             <div className="flex items-center gap-2">
               <span className={`text-[10px] font-bold tracking-widest font-mono uppercase px-2 py-0.5 rounded-full border ${isCyber
-                  ? 'bg-[#C6FF34]/10 text-[#C6FF34] border-[#C6FF34]/30'
-                  : 'bg-cyan-400/10 text-cyan-300 border-cyan-400/25'
+                ? 'bg-[#C6FF34]/10 text-[#C6FF34] border-[#C6FF34]/30'
+                : 'bg-cyan-400/10 text-cyan-300 border-cyan-400/25'
                 }`}>
                 iOS PROGRESSION CONTROL
               </span>
@@ -3345,8 +3345,8 @@ function TrainProgressTrack({
           {/* Dynamic Volume Fill Bar */}
           <motion.div
             className={`h-full rounded-full relative overflow-hidden flex items-center transition-all duration-300 ${isCyber
-                ? 'bg-gradient-to-r from-emerald-600 via-lime-500 to-[#C6FF34] shadow-[0_0_25px_rgba(198,255,52,0.4)]'
-                : 'bg-gradient-to-r from-indigo-600 via-violet-500 to-cyan-400 shadow-[0_0_25px_rgba(34,211,238,0.4)]'
+              ? 'bg-gradient-to-r from-emerald-600 via-lime-500 to-[#C6FF34] shadow-[0_0_25px_rgba(198,255,52,0.4)]'
+              : 'bg-gradient-to-r from-indigo-600 via-violet-500 to-cyan-400 shadow-[0_0_25px_rgba(34,211,238,0.4)]'
               }`}
             initial={{ width: `${progressPercent}%` }}
             animate={{ width: `${Math.max(progressPercent, 3)}%` }}
@@ -3393,14 +3393,14 @@ function TrainProgressTrack({
               {/* Station Node Capsule */}
               <div
                 className={`w-7 h-7 sm:w-9 sm:h-9 rounded-full flex items-center justify-center text-xs font-mono font-bold transition-all duration-300 shadow-lg ${isActive
+                  ? isCyber
+                    ? 'bg-[#C6FF34] text-slate-950 scale-125 ring-4 ring-[#C6FF34]/40 font-black shadow-[0_0_15px_rgba(198,255,52,0.6)]'
+                    : 'bg-cyan-400 text-slate-950 scale-125 ring-4 ring-cyan-400/40 font-black shadow-[0_0_15px_rgba(34,211,238,0.6)]'
+                  : isPassed
                     ? isCyber
-                      ? 'bg-[#C6FF34] text-slate-950 scale-125 ring-4 ring-[#C6FF34]/40 font-black shadow-[0_0_15px_rgba(198,255,52,0.6)]'
-                      : 'bg-cyan-400 text-slate-950 scale-125 ring-4 ring-cyan-400/40 font-black shadow-[0_0_15px_rgba(34,211,238,0.6)]'
-                    : isPassed
-                      ? isCyber
-                        ? 'bg-emerald-600/80 text-white border border-emerald-400/40 hover:bg-emerald-500'
-                        : 'bg-violet-600/80 text-white border border-violet-400/40 hover:bg-violet-500'
-                      : 'bg-white/5 text-slate-400 border border-white/10 hover:bg-white/15 hover:text-white'
+                      ? 'bg-emerald-600/80 text-white border border-emerald-400/40 hover:bg-emerald-500'
+                      : 'bg-violet-600/80 text-white border border-violet-400/40 hover:bg-violet-500'
+                    : 'bg-white/5 text-slate-400 border border-white/10 hover:bg-white/15 hover:text-white'
                   }`}
               >
                 {idx === 0 ? '0' : idx}
@@ -3410,12 +3410,12 @@ function TrainProgressTrack({
               <div className="mt-2.5 space-y-0.5">
                 <span
                   className={`block text-[10px] sm:text-xs font-medium leading-tight transition-colors ${isActive
-                      ? isCyber
-                        ? 'text-[#C6FF34] font-bold'
-                        : 'text-cyan-300 font-bold'
-                      : isPassed
-                        ? 'text-slate-200'
-                        : 'text-slate-400 group-hover:text-slate-200'
+                    ? isCyber
+                      ? 'text-[#C6FF34] font-bold'
+                      : 'text-cyan-300 font-bold'
+                    : isPassed
+                      ? 'text-slate-200'
+                      : 'text-slate-400 group-hover:text-slate-200'
                     }`}
                 >
                   {module.moduleNumber}
@@ -3632,8 +3632,8 @@ function CourseApplicationModal({
                     <Button
                       type="submit"
                       className={`w-full py-4 text-white font-semibold text-sm rounded-xl shadow-md transition-all flex items-center justify-center gap-2 ${isCyber
-                          ? 'bg-emerald-600 hover:bg-emerald-700 text-white'
-                          : 'bg-violet-600 hover:bg-violet-700 text-white'
+                        ? 'bg-emerald-600 hover:bg-emerald-700 text-white'
+                        : 'bg-violet-600 hover:bg-violet-700 text-white'
                         }`}
                     >
                       <span>Continue to Learning Goals & Enquiry</span>
@@ -3702,8 +3702,8 @@ function CourseApplicationModal({
                               key={b.id}
                               onClick={() => setFormData({ ...formData, preferredSchedule: b.id })}
                               className={`p-2.5 rounded-xl border text-xs font-semibold transition-all ${formData.preferredSchedule === b.id
-                                  ? 'border-slate-900 bg-slate-900 text-white shadow-xs'
-                                  : 'border-slate-200 text-slate-600 hover:border-slate-300'
+                                ? 'border-slate-900 bg-slate-900 text-white shadow-xs'
+                                : 'border-slate-200 text-slate-600 hover:border-slate-300'
                                 }`}
                             >
                               {b.label}
@@ -3730,8 +3730,8 @@ function CourseApplicationModal({
                       <Button
                         type="submit"
                         className={`w-2/3 py-3.5 text-white font-semibold text-xs rounded-xl shadow-md transition-all flex items-center justify-center gap-2 ${isCyber
-                            ? 'bg-emerald-600 hover:bg-emerald-700 text-white'
-                            : 'bg-violet-600 hover:bg-violet-700 text-white'
+                          ? 'bg-emerald-600 hover:bg-emerald-700 text-white'
+                          : 'bg-violet-600 hover:bg-violet-700 text-white'
                           }`}
                       >
                         <span>Submit Application & Enquiry</span>
@@ -3848,8 +3848,8 @@ export function CourseRoadmapSection() {
     <section
       id="curriculum-roadmap"
       className={`py-20 sm:py-28 relative overflow-hidden border-t transition-colors duration-700 ${isCyber
-          ? 'bg-[#090e0b] text-white border-[#C6FF34]/20'
-          : 'bg-[#F8FAFC] text-slate-900 border-slate-200/80'
+        ? 'bg-[#090e0b] text-white border-[#C6FF34]/20'
+        : 'bg-[#F8FAFC] text-slate-900 border-slate-200/80'
         }`}
     >
       {/* ── TSE BORDER SVG BACKGROUND OVERLAY ── */}
@@ -3885,8 +3885,8 @@ export function CourseRoadmapSection() {
             }`}>
             Your{' '}
             <span className={`text-transparent bg-clip-text ${isCyber
-                ? 'bg-gradient-to-r from-[#C6FF34] via-emerald-400 to-lime-200'
-                : 'bg-gradient-to-r from-violet-600 via-indigo-600 to-blue-600'
+              ? 'bg-gradient-to-r from-[#C6FF34] via-emerald-400 to-lime-200'
+              : 'bg-gradient-to-r from-violet-600 via-indigo-600 to-blue-600'
               }`}>
               Step-by-Step Roadmap
             </span>{' '}
@@ -3931,12 +3931,12 @@ export function CourseRoadmapSection() {
                     }
                   }}
                   className={`flex items-center gap-1.5 px-4 py-2 rounded-xl font-medium transition-all text-xs cursor-pointer ${selectedDuration === dur
-                      ? isCyber
-                        ? 'bg-[#C6FF34] text-slate-950 font-semibold shadow-md'
-                        : 'bg-violet-600 text-white shadow-md'
-                      : isCyber
-                        ? 'text-slate-300 hover:text-white hover:bg-white/5'
-                        : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                    ? isCyber
+                      ? 'bg-[#C6FF34] text-slate-950 font-semibold shadow-md'
+                      : 'bg-violet-600 text-white shadow-md'
+                    : isCyber
+                      ? 'text-slate-300 hover:text-white hover:bg-white/5'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
                     }`}
                 >
                   {dur === '6months' && <Rocket className="w-3.5 h-3.5" />}
@@ -3949,8 +3949,8 @@ export function CourseRoadmapSection() {
 
             {/* Rating Pill Badge */}
             <div className={`flex items-center gap-1.5 px-3.5 py-2 rounded-2xl text-xs font-medium shadow-2xs border ${isCyber
-                ? 'bg-[#111914] border-amber-400/40 text-amber-300'
-                : 'bg-amber-50 border-amber-200/80 text-amber-900'
+              ? 'bg-[#111914] border-amber-400/40 text-amber-300'
+              : 'bg-amber-50 border-amber-200/80 text-amber-900'
               }`}>
               <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
               <span>{currentCourse.rating}/5.0 Rated Program</span>
@@ -3964,12 +3964,12 @@ export function CourseRoadmapSection() {
             <button
               onClick={() => setDomainFilter('all')}
               className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-medium transition-all whitespace-nowrap cursor-pointer ${domainFilter === 'all'
-                  ? isCyber
-                    ? 'bg-[#C6FF34] text-slate-950 font-semibold shadow-md'
-                    : 'bg-slate-900 text-white shadow-md'
-                  : isCyber
-                    ? 'text-slate-300 hover:text-white hover:bg-white/5'
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                ? isCyber
+                  ? 'bg-[#C6FF34] text-slate-950 font-semibold shadow-md'
+                  : 'bg-slate-900 text-white shadow-md'
+                : isCyber
+                  ? 'text-slate-300 hover:text-white hover:bg-white/5'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
                 }`}
             >
               <Layers className="w-3.5 h-3.5" />
@@ -3985,10 +3985,10 @@ export function CourseRoadmapSection() {
                 }
               }}
               className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-medium transition-all whitespace-nowrap cursor-pointer ${domainFilter === 'ai'
-                  ? 'bg-violet-600 text-white shadow-md shadow-violet-500/20'
-                  : isCyber
-                    ? 'text-violet-300 hover:text-white hover:bg-white/5'
-                    : 'text-violet-700 hover:text-violet-900 hover:bg-violet-50'
+                ? 'bg-violet-600 text-white shadow-md shadow-violet-500/20'
+                : isCyber
+                  ? 'text-violet-300 hover:text-white hover:bg-white/5'
+                  : 'text-violet-700 hover:text-violet-900 hover:bg-violet-50'
                 }`}
             >
               <Brain className="w-3.5 h-3.5" />
@@ -4004,10 +4004,10 @@ export function CourseRoadmapSection() {
                 }
               }}
               className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-medium transition-all whitespace-nowrap cursor-pointer ${domainFilter === 'cyber'
-                  ? 'bg-[#C6FF34] text-slate-950 font-semibold shadow-md shadow-lime-500/10'
-                  : isCyber
-                    ? 'text-[#C6FF34] hover:text-white hover:bg-white/5'
-                    : 'text-emerald-800 hover:text-emerald-950 hover:bg-emerald-50'
+                ? 'bg-[#C6FF34] text-slate-950 font-semibold shadow-md shadow-lime-500/10'
+                : isCyber
+                  ? 'text-[#C6FF34] hover:text-white hover:bg-white/5'
+                  : 'text-emerald-800 hover:text-emerald-950 hover:bg-emerald-50'
                 }`}
             >
               <Shield className="w-3.5 h-3.5" />
@@ -4032,21 +4032,21 @@ export function CourseRoadmapSection() {
                         setActiveModuleIndex(0);
                       }}
                       className={`flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl border transition-all duration-300 text-left group cursor-pointer ${isSelected
-                          ? isCourseCyber
-                            ? 'bg-[#142316] border-[#C6FF34] ring-1 ring-[#C6FF34]/40 text-white shadow-sm'
-                            : 'bg-violet-950 border-violet-400 ring-1 ring-violet-500/40 text-white shadow-sm'
-                          : isCyber
-                            ? 'bg-[#111914] hover:bg-[#16221a] border-slate-800 text-slate-300 hover:border-slate-700'
-                            : 'bg-white hover:bg-slate-50 border-slate-200 text-slate-700 hover:border-slate-300'
+                        ? isCourseCyber
+                          ? 'bg-[#142316] border-[#C6FF34] ring-1 ring-[#C6FF34]/40 text-white shadow-sm'
+                          : 'bg-violet-950 border-violet-400 ring-1 ring-violet-500/40 text-white shadow-sm'
+                        : isCyber
+                          ? 'bg-[#111914] hover:bg-[#16221a] border-slate-800 text-slate-300 hover:border-slate-700'
+                          : 'bg-white hover:bg-slate-50 border-slate-200 text-slate-700 hover:border-slate-300'
                         }`}
                     >
                       <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${isSelected
-                          ? isCourseCyber
-                            ? 'bg-[#C6FF34] text-slate-950'
-                            : 'bg-violet-500 text-white'
-                          : isCourseCyber
-                            ? 'bg-[#ecfccb] text-emerald-800'
-                            : 'bg-violet-100 text-violet-700'
+                        ? isCourseCyber
+                          ? 'bg-[#C6FF34] text-slate-950'
+                          : 'bg-violet-500 text-white'
+                        : isCourseCyber
+                          ? 'bg-[#ecfccb] text-emerald-800'
+                          : 'bg-violet-100 text-violet-700'
                         }`}>
                         {isCourseCyber ? <Shield className="w-4 h-4" /> : <Brain className="w-4 h-4" />}
                       </div>
@@ -4058,8 +4058,8 @@ export function CourseRoadmapSection() {
                             {course.title}
                           </span>
                           <span className={`text-[9px] font-normal px-1.5 py-0.5 rounded-full ${isSelected
-                              ? isCourseCyber ? 'bg-[#C6FF34]/20 text-[#C6FF34]' : 'bg-violet-500/30 text-violet-200'
-                              : isCourseCyber ? 'bg-[#C6FF34]/10 text-[#C6FF34]' : 'bg-violet-50 text-violet-700'
+                            ? isCourseCyber ? 'bg-[#C6FF34]/20 text-[#C6FF34]' : 'bg-violet-500/30 text-violet-200'
+                            : isCourseCyber ? 'bg-[#C6FF34]/10 text-[#C6FF34]' : 'bg-violet-50 text-violet-700'
                             }`}>
                             {course.categoryLabel}
                           </span>
@@ -4095,8 +4095,8 @@ export function CourseRoadmapSection() {
 
         {/* ── SPLIT ROADMAP EXPLORER ── */}
         <div className={`rounded-3xl border shadow-xl overflow-hidden p-4 sm:p-8 transition-colors duration-500 ${isCyber
-            ? 'bg-[#0f1712] border-[#C6FF34]/30 shadow-[#C6FF34]/5'
-            : 'bg-white border-violet-200 shadow-violet-500/5'
+          ? 'bg-[#0f1712] border-[#C6FF34]/30 shadow-[#C6FF34]/5'
+          : 'bg-white border-violet-200 shadow-violet-500/5'
           }`}>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
@@ -4111,8 +4111,8 @@ export function CourseRoadmapSection() {
                   </span>
                 </div>
                 <span className={`text-[10px] font-mono px-2.5 py-0.5 rounded-full font-medium border ${isCyber
-                    ? 'bg-[#C6FF34]/15 text-[#C6FF34] border-[#C6FF34]/30'
-                    : 'bg-violet-50 text-violet-900 border-violet-200'
+                  ? 'bg-[#C6FF34]/15 text-[#C6FF34] border-[#C6FF34]/30'
+                  : 'bg-violet-50 text-violet-900 border-violet-200'
                   }`}>
                   {currentCourse.badge}
                 </span>
@@ -4126,12 +4126,12 @@ export function CourseRoadmapSection() {
                     key={mod.id}
                     onClick={() => setActiveModuleIndex(idx)}
                     className={`w-full text-left p-4 rounded-2xl transition-all duration-200 flex items-start gap-3.5 relative border cursor-pointer ${isSelected
-                        ? isCyber
-                          ? 'bg-[#18291c] border-[#C6FF34] shadow-sm text-white'
-                          : 'bg-violet-50/70 border-violet-500/50 shadow-sm text-slate-950'
-                        : isCyber
-                          ? 'bg-[#111914] hover:bg-[#142218] border-slate-800/80 text-slate-400 hover:text-slate-200'
-                          : 'bg-white hover:bg-slate-50/80 border-transparent hover:border-slate-200 text-slate-600'
+                      ? isCyber
+                        ? 'bg-[#18291c] border-[#C6FF34] shadow-sm text-white'
+                        : 'bg-violet-50/70 border-violet-500/50 shadow-sm text-slate-950'
+                      : isCyber
+                        ? 'bg-[#111914] hover:bg-[#142218] border-slate-800/80 text-slate-400 hover:text-slate-200'
+                        : 'bg-white hover:bg-slate-50/80 border-transparent hover:border-slate-200 text-slate-600'
                       }`}
                   >
                     {/* Active Left Indicator Bar */}
@@ -4141,8 +4141,8 @@ export function CourseRoadmapSection() {
                     )}
 
                     <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 mt-0.5 ${isSelected
-                        ? isCyber ? 'bg-[#C6FF34] text-slate-950 font-bold' : 'bg-violet-600 text-white'
-                        : isCyber ? 'bg-[#1b2b1f] text-[#C6FF34]' : 'bg-slate-100 text-slate-500'
+                      ? isCyber ? 'bg-[#C6FF34] text-slate-950 font-bold' : 'bg-violet-600 text-white'
+                      : isCyber ? 'bg-[#1b2b1f] text-[#C6FF34]' : 'bg-slate-100 text-slate-500'
                       }`}>
                       {idx === 0 ? <Sparkles className="w-4 h-4" /> : mod.highlightIcon}
                     </div>
@@ -4150,8 +4150,8 @@ export function CourseRoadmapSection() {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2">
                         <span className={`text-xs font-medium ${isSelected
-                            ? isCyber ? 'text-[#C6FF34]' : 'text-violet-700'
-                            : isCyber ? 'text-slate-300' : 'text-slate-800'
+                          ? isCyber ? 'text-[#C6FF34]' : 'text-violet-700'
+                          : isCyber ? 'text-slate-300' : 'text-slate-800'
                           }`}>
                           {mod.moduleNumber}
                         </span>
@@ -4160,16 +4160,16 @@ export function CourseRoadmapSection() {
                         </span>
                       </div>
                       <h4 className={`text-xs sm:text-sm font-normal mt-0.5 truncate ${isSelected
-                          ? isCyber ? 'text-white' : 'text-slate-900'
-                          : isCyber ? 'text-slate-300' : 'text-slate-700'
+                        ? isCyber ? 'text-white' : 'text-slate-900'
+                        : isCyber ? 'text-slate-300' : 'text-slate-700'
                         }`}>
                         {mod.title}
                       </h4>
                     </div>
 
                     <ChevronRight className={`w-4 h-4 shrink-0 transition-transform ${isSelected
-                        ? isCyber ? 'text-[#C6FF34] translate-x-0.5' : 'text-violet-600 translate-x-0.5'
-                        : 'text-slate-400 opacity-0 group-hover:opacity-100'
+                      ? isCyber ? 'text-[#C6FF34] translate-x-0.5' : 'text-violet-600 translate-x-0.5'
+                      : 'text-slate-400 opacity-0 group-hover:opacity-100'
                       }`} />
                   </button>
                 );
@@ -4177,8 +4177,8 @@ export function CourseRoadmapSection() {
 
               {/* Bottom Apply Advisory Card */}
               <div className={`mt-4 p-4 rounded-2xl text-white space-y-3 shadow-md ${isCyber
-                  ? 'bg-gradient-to-br from-[#0c140e] to-[#142316] border border-[#C6FF34]/30'
-                  : 'bg-gradient-to-br from-slate-900 to-violet-950 border border-violet-800/40'
+                ? 'bg-gradient-to-br from-[#0c140e] to-[#142316] border border-[#C6FF34]/30'
+                : 'bg-gradient-to-br from-slate-900 to-violet-950 border border-violet-800/40'
                 }`}>
                 <div className="flex items-center gap-2">
                   <BookOpen className={`w-4 h-4 ${isCyber ? 'text-[#C6FF34]' : 'text-cyan-300'}`} />
@@ -4190,8 +4190,8 @@ export function CourseRoadmapSection() {
                 <Button
                   onClick={() => setIsApplyModalOpen(true)}
                   className={`w-full py-2.5 rounded-xl text-xs font-medium shadow-md cursor-pointer ${isCyber
-                      ? 'bg-[#C6FF34] hover:bg-[#b8f520] text-slate-950 font-semibold'
-                      : 'bg-violet-600 hover:bg-violet-500 text-white'
+                    ? 'bg-[#C6FF34] hover:bg-[#b8f520] text-slate-950 font-semibold'
+                    : 'bg-violet-600 hover:bg-violet-500 text-white'
                     }`}
                 >
                   Apply & Talk to Faculty
@@ -4201,8 +4201,8 @@ export function CourseRoadmapSection() {
 
             {/* ── RIGHT PANEL: DETAILED MODULE VIEW ── */}
             <div className={`lg:col-span-8 rounded-2xl p-6 sm:p-8 flex flex-col justify-between border ${isCyber
-                ? 'bg-[#111c14] border-[#C6FF34]/20'
-                : 'bg-slate-50/70 border-slate-200/80'
+              ? 'bg-[#111c14] border-[#C6FF34]/20'
+              : 'bg-slate-50/70 border-slate-200/80'
               }`}>
               <div className="space-y-6">
 
@@ -4238,8 +4238,8 @@ export function CourseRoadmapSection() {
                   </div>
 
                   <div className={`flex items-center gap-2 self-start sm:self-auto px-3.5 py-1.5 rounded-xl border text-xs font-mono font-medium shadow-xs ${isCyber
-                      ? 'bg-[#152319] border-slate-700 text-[#C6FF34]'
-                      : 'bg-white border-slate-200 text-slate-700'
+                    ? 'bg-[#152319] border-slate-700 text-[#C6FF34]'
+                    : 'bg-white border-slate-200 text-slate-700'
                     }`}>
                     <Clock className="w-3.5 h-3.5" />
                     <span>{activeModule.durationText}</span>
@@ -4298,8 +4298,8 @@ export function CourseRoadmapSection() {
                         <span
                           key={i}
                           className={`px-2.5 py-1 rounded-md text-[11px] font-medium border shadow-2xs ${isCyber
-                              ? 'bg-[#152419] border-slate-700 text-slate-200'
-                              : 'bg-white border-slate-200 text-slate-800'
+                            ? 'bg-[#152419] border-slate-700 text-slate-200'
+                            : 'bg-white border-slate-200 text-slate-800'
                             }`}
                         >
                           {skill}
@@ -4309,8 +4309,8 @@ export function CourseRoadmapSection() {
                   </div>
 
                   <div className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border text-xs font-medium ${isCyber
-                      ? 'bg-[#142316] text-[#C6FF34] border-[#C6FF34]/30'
-                      : 'bg-emerald-50 text-emerald-800 border-emerald-200'
+                    ? 'bg-[#142316] text-[#C6FF34] border-[#C6FF34]/30'
+                    : 'bg-emerald-50 text-emerald-800 border-emerald-200'
                     }`}>
                     <Laptop className="w-4 h-4" />
                     <span>{activeModule.labsCount} Hands-on Live Labs</span>
@@ -4341,8 +4341,8 @@ export function CourseRoadmapSection() {
                     variant="outline"
                     onClick={() => setIsApplyModalOpen(true)}
                     className={`w-full sm:w-auto px-4 py-5 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 cursor-pointer ${isCyber
-                        ? 'border-slate-700 bg-[#142217] hover:bg-[#1a2d1f] text-slate-200'
-                        : 'border-slate-200 hover:bg-slate-50 text-slate-700'
+                      ? 'border-slate-700 bg-[#142217] hover:bg-[#1a2d1f] text-slate-200'
+                      : 'border-slate-200 hover:bg-slate-50 text-slate-700'
                       }`}
                   >
                     <FileText className={`w-4 h-4 ${isCyber ? 'text-[#C6FF34]' : 'text-violet-600'}`} />
@@ -4352,8 +4352,8 @@ export function CourseRoadmapSection() {
                   <Button
                     onClick={() => setIsApplyModalOpen(true)}
                     className={`w-full sm:w-auto px-6 py-5 text-xs font-medium rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer ${isCyber
-                        ? 'bg-[#C6FF34] hover:bg-[#b8f520] text-slate-950 font-semibold shadow-[#C6FF34]/20'
-                        : 'bg-violet-600 hover:bg-violet-700 text-white shadow-violet-500/25'
+                      ? 'bg-[#C6FF34] hover:bg-[#b8f520] text-slate-950 font-semibold shadow-[#C6FF34]/20'
+                      : 'bg-violet-600 hover:bg-violet-700 text-white shadow-violet-500/25'
                       }`}
                   >
                     <span>Apply for {currentCourse.title}</span>

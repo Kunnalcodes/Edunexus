@@ -9,18 +9,18 @@ const TRAJECTORY_STEPS = [
   { label: 'Labs', desc: 'Dedicated virtual sandbox exploits & defensive hardening', icon: Cpu, color: 'text-amber-700 bg-amber-50 border-amber-200' },
   { label: 'Projects', desc: 'Production-grade security tool construction & report writing', icon: FolderGit2, color: 'text-indigo-700 bg-indigo-50 border-indigo-200' },
   { label: 'Assessment', desc: 'Proctored practical examination & mentor audit', icon: CheckCircle2, color: 'text-purple-700 bg-purple-50 border-purple-200' },
-  { label: 'Completion', desc: 'Cryptographically signed TS-ID verification credential', icon: Award, color: 'text-rose-700 bg-rose-50 border-rose-200' },
+  { label: 'Completion', desc: 'Cryptographically signed NEXUS-ID verification credential', icon: Award, color: 'text-rose-700 bg-rose-50 border-rose-200' },
 ];
 
 export function StudentLearningTrajectory() {
   return (
     <section id="trajectory" className="py-20 bg-white text-slate-900 border-t border-slate-200 relative z-10">
-      
+
       {/* Background Grid Pattern */}
       <div className="absolute inset-0 pointer-events-none opacity-40 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:3rem_3rem]" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 relative z-10">
-        
+
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <span className="inline-block px-3 py-1 rounded-full bg-slate-50 border border-slate-200 text-slate-700 font-mono text-[11px] font-bold tracking-wider uppercase shadow-sm">

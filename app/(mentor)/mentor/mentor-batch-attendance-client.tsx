@@ -152,11 +152,10 @@ export function MentorBatchAttendanceClient({
           <button
             key={b.id}
             onClick={() => setSelectedBatch(b)}
-            className={`px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all whitespace-nowrap flex items-center gap-2 ${
-              selectedBatch.id === b.id
+            className={`px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all whitespace-nowrap flex items-center gap-2 ${selectedBatch.id === b.id
                 ? 'bg-white text-black shadow-md'
                 : 'bg-[#141414] text-slate-400 border border-white/10 hover:text-white'
-            }`}
+              }`}
           >
             <Layers className="w-3.5 h-3.5 text-[#C6FF34]" />
             <span>{b.batchCode}</span>
@@ -213,7 +212,7 @@ export function MentorBatchAttendanceClient({
               <table className="w-full text-left text-xs border-collapse font-sans">
                 <thead>
                   <tr className="bg-white/5 border-b border-white/10 text-slate-400 font-mono text-[10px] uppercase">
-                    <th className="p-3">TS-ID & Name</th>
+                    <th className="p-3">NEXUS-ID & Name</th>
                     <th className="p-3">Email</th>
                     <th className="p-3 text-center">Practice Hours</th>
                     <th className="p-3 text-right">Attendance Rate</th>
@@ -252,13 +251,12 @@ export function MentorBatchAttendanceClient({
                           </td>
                           <td className="p-3 text-right">
                             <span
-                              className={`font-mono font-bold text-xs ${
-                                rate >= 80
+                              className={`font-mono font-bold text-xs ${rate >= 80
                                   ? 'text-[#C6FF34]'
                                   : rate >= 60
-                                  ? 'text-amber-400'
-                                  : 'text-red-400'
-                              }`}
+                                    ? 'text-amber-400'
+                                    : 'text-red-400'
+                                }`}
                             >
                               {rate}%
                             </span>
@@ -490,17 +488,16 @@ export function MentorBatchAttendanceClient({
                             key={stat}
                             type="button"
                             onClick={() => handleStatusChange(st.id, stat)}
-                            className={`px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold transition-all ${
-                              currentStatus === stat
+                            className={`px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold transition-all ${currentStatus === stat
                                 ? stat === 'PRESENT'
                                   ? 'bg-emerald-600 text-white'
                                   : stat === 'LATE'
-                                  ? 'bg-amber-500 text-white'
-                                  : stat === 'ABSENT'
-                                  ? 'bg-red-600 text-white'
-                                  : 'bg-slate-700 text-white'
+                                    ? 'bg-amber-500 text-white'
+                                    : stat === 'ABSENT'
+                                      ? 'bg-red-600 text-white'
+                                      : 'bg-slate-700 text-white'
                                 : 'bg-[#181818] text-slate-400 border border-white/10 hover:text-white'
-                            }`}
+                              }`}
                           >
                             {stat}
                           </button>

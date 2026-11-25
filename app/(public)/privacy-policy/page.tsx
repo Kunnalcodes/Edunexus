@@ -36,7 +36,7 @@ export default function PrivacyPolicyPage() {
           <section className="space-y-3">
             <h2 className="text-lg font-bold text-slate-950">1. Introduction</h2>
             <p>
-              Edu Nexus Education (&quot;TSE&quot;, &quot;we&quot;, &quot;our&quot;, or &quot;us&quot;) operates the training platform, live cyber sandboxed labs, assessment management system, and verified TS-ID credentialing services available at threadsecurity.in. We are committed to safeguarding the privacy and security of our students, applicants, website visitors, and institutional partners.
+              Edu Nexus Education (&quot;TSE&quot;, &quot;we&quot;, &quot;our&quot;, or &quot;us&quot;) operates the training platform, live cyber sandboxed labs, assessment management system, and verified NEXUS-ID credentialing services available at threadsecurity.in. We are committed to safeguarding the privacy and security of our students, applicants, website visitors, and institutional partners.
             </p>
             <p>
               This Privacy Policy explains how we collect, process, store, and disclose your personal and academic data when you register for courses, attend masterclasses, take assessments, or use our sandboxed environments.
@@ -48,7 +48,7 @@ export default function PrivacyPolicyPage() {
             <p>We collect information in the following categories:</p>
             <ul className="list-disc pl-5 space-y-2 text-slate-600">
               <li>
-                <strong className="text-slate-900">Personal Identification:</strong> Full name, email address, phone number, physical address, educational qualifications, and government-issued ID for TS-ID verifiable credentials.
+                <strong className="text-slate-900">Personal Identification:</strong> Full name, email address, phone number, physical address, educational qualifications, and government-issued ID for NEXUS-ID verifiable credentials.
               </li>
               <li>
                 <strong className="text-slate-900">Account Credentials:</strong> Passwords, session tokens, multi-factor authentication (MFA) codes, and clearance roles.
@@ -74,7 +74,7 @@ export default function PrivacyPolicyPage() {
                 <p className="text-xs text-slate-600">Provisioning sandboxed VM environments, lab scenarios, and mentor guidance.</p>
               </div>
               <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
-                <p className="font-semibold text-slate-900 text-xs mb-1">TS-ID Verification</p>
+                <p className="font-semibold text-slate-900 text-xs mb-1">NEXUS-ID Verification</p>
                 <p className="text-xs text-slate-600">Publishing cryptographically verifiable certificates for hiring partners.</p>
               </div>
               <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">

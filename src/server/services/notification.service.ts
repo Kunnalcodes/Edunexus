@@ -53,7 +53,7 @@ export async function broadcastNotificationService({
   message: string;
   targetType?: 'ALL' | 'STUDENT' | 'MENTOR' | 'SINGLE_STUDENT' | 'SINGLE_MENTOR' | 'SPECIFIC_BATCH';
   targetRole?: 'STUDENT' | 'MENTOR';
-  targetStudentIdentifier?: string; // TS-ID or Email or User ID
+  targetStudentIdentifier?: string; // NEXUS-ID or Email or User ID
   targetMentorUserId?: string;
   targetBatchId?: string;
   type?: string;

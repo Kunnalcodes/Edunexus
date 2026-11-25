@@ -270,11 +270,10 @@ export function BatchAttendanceClient({
                       key={sess.id}
                       type="button"
                       onClick={() => syncDraftForSession(sess)}
-                      className={`w-full text-left p-3 rounded-xl border transition-all cursor-pointer ${
-                        isSessSelected
+                      className={`w-full text-left p-3 rounded-xl border transition-all cursor-pointer ${isSessSelected
                           ? 'bg-white/10 border-[#C6FF34] shadow-md'
                           : 'bg-white/[0.02] border-white/5 hover:border-white/20'
-                      }`}
+                        }`}
                     >
                       <div className="flex items-center justify-between mb-1">
                         <span className="text-[10px] font-mono font-bold text-[#C6FF34]">
@@ -413,7 +412,7 @@ export function BatchAttendanceClient({
 
                 <Input
                   type="text"
-                  placeholder="Filter student or TS-ID..."
+                  placeholder="Filter student or NEXUS-ID..."
                   value={searchStudent}
                   onChange={(e) => setSearchStudent(e.target.value)}
                   className="h-8 text-xs font-mono bg-white/5 border-white/10 text-white sm:w-56 focus:border-[#C6FF34]"
@@ -468,11 +467,10 @@ export function BatchAttendanceClient({
                               <button
                                 type="button"
                                 onClick={() => handleStatusChange(st.id, 'PRESENT')}
-                                className={`px-2.5 py-1 rounded-lg text-[11px] font-mono font-bold transition-all cursor-pointer ${
-                                  status === 'PRESENT'
+                                className={`px-2.5 py-1 rounded-lg text-[11px] font-mono font-bold transition-all cursor-pointer ${status === 'PRESENT'
                                     ? 'bg-emerald-500 text-slate-950 shadow-md'
                                     : 'bg-white/5 text-slate-400 hover:text-white'
-                                }`}
+                                  }`}
                               >
                                 Present
                               </button>
@@ -480,11 +478,10 @@ export function BatchAttendanceClient({
                               <button
                                 type="button"
                                 onClick={() => handleStatusChange(st.id, 'ABSENT')}
-                                className={`px-2.5 py-1 rounded-lg text-[11px] font-mono font-bold transition-all cursor-pointer ${
-                                  status === 'ABSENT'
+                                className={`px-2.5 py-1 rounded-lg text-[11px] font-mono font-bold transition-all cursor-pointer ${status === 'ABSENT'
                                     ? 'bg-red-500 text-white shadow-md'
                                     : 'bg-white/5 text-slate-400 hover:text-white'
-                                }`}
+                                  }`}
                               >
                                 Absent
                               </button>
@@ -492,11 +489,10 @@ export function BatchAttendanceClient({
                               <button
                                 type="button"
                                 onClick={() => handleStatusChange(st.id, 'LATE')}
-                                className={`px-2 py-1 rounded-lg text-[11px] font-mono font-bold transition-all cursor-pointer ${
-                                  status === 'LATE'
+                                className={`px-2 py-1 rounded-lg text-[11px] font-mono font-bold transition-all cursor-pointer ${status === 'LATE'
                                     ? 'bg-amber-500 text-slate-950 shadow-md'
                                     : 'bg-white/5 text-slate-400 hover:text-white'
-                                }`}
+                                  }`}
                               >
                                 Late
                               </button>
@@ -679,11 +675,10 @@ export function BatchAttendanceClient({
             <form onSubmit={handleCorrectionSubmit} className="space-y-4 pt-3 text-xs">
               {correctionResultMsg && (
                 <div
-                  className={`p-3 rounded-xl ${
-                    correctionResultMsg.includes('successfully')
+                  className={`p-3 rounded-xl ${correctionResultMsg.includes('successfully')
                       ? 'bg-emerald-500/15 text-emerald-300 border border-emerald-500/30'
                       : 'bg-red-500/15 text-red-300 border border-red-500/30'
-                  }`}
+                    }`}
                 >
                   {correctionResultMsg}
                 </div>
